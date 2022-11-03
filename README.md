@@ -82,16 +82,45 @@ If the tutoring hours will be placed under online meetings, then the mentor will
 
 
 # Git and GitHub Conventions
+---
 #### Branch Names:
-> type(project)/summary
+> type/summary
 
-Branch names should be all lower letter and contain only "/", "-", "(", ")" as special characters.
+Branch names should be all lower case and contain only "/" and "-" as a special characters.
 Spaces between words should be replaced by the character "-".
 
 ##### type:
 - feat
 - fix
 - patch
+- remove
+
+##### summary:
+Always must be in present tense.
+Describes the changes made.
+
+#### Branch Examples:
+> feat/add-dropdown-bullets
+
+> fix/get-account-info-endpoint
+
+> patch/refactor-method-names
+
+> remove/unused-queries
+
+
+---
+
+#### Commit Names:
+> type(project): summary
+
+Commit names should be all lower case and contain only ":", "(", ")" as special characters.
+
+##### type:
+- feat
+- fix
+- patch
+- refactor
 - remove
 
 ##### project:
@@ -103,13 +132,41 @@ Spaces between words should be replaced by the character "-".
 ##### summary:
 Always must be in present tense.
 Describes the changes made.
+Each word is separated by a single space character.
+After the ":", put a space please. :)
 
-#### Branch Examples:
-> feat(fe)/add-dropdown-bullets
+#### Commit Examples:
+> feat(fe): add dropdown bullets
 
-> fix(be)/get-account-info-endpoint
+> fix(be): get account info endpoint
 
-> patch(be)/refactor-method-names
+> patch(be): reduce method queries
 
-> remove(db)/unused-queries
+> refactor(fe/be): variable names
+
+> remove(db): unused rows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -4,12 +4,17 @@
 
 #### 🏢 Team:
 
-1. Dobre Talida
-1. Ion Alexandra
-1. Kayed Amar
-1. Necula Narcis
-1. Postolache Miruna
-1. Predecscu Denisa
+1️⃣ Dobre Talida
+
+2️⃣ Ion Alexandra
+
+3️⃣ Kayed Amar
+
+4️⃣ Necula Narcis
+
+5️⃣ Postolache Miruna
+
+6️⃣ Predecscu Denisa
 
 **MANDAT.io** is an all-in-one mentor-student matchmaking platform.
 The mentors(professors)are college students who teach school students.
@@ -101,11 +106,11 @@ Describes the changes made.
 #### Branch Examples:
 
 > `feat/add-dropdown-bullets`
-> 
+>
 > `fix/get-account-info-endpoint`
-> 
+>
 > `patch/refactor-method-names`
-> 
+>
 > `remove/unused-queries`
 
 ---
@@ -177,6 +182,8 @@ https://devicon.dev/
 https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#example
 
 https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
+
+https://gist.github.com/rxaviers/7360908
 
 -   Cont meme
 -   Accounts - Students - Mentor

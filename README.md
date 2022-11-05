@@ -47,34 +47,16 @@ If the tutoring hours will be placed under online meetings, then the mentor will
 <i class="devicon-vscode-plain colored"></i>
 
 <!-- <img align="left" alt="Visual Studio Code" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" style="padding-right:10px;" /> -->
+
 [![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
-<details>
-<summary>
-    <i><b>Front-End:</b></i>
-</summary>
-<ol>
-    <div>
-        <i class="devicon-html5-plain colored" style="font-size: 20px"></i>
-        HTML
-    </div>
-    <div>
-        <i class="devicon-css3-plain colored" style="font-size: 20px"></i>
-        CSS
-    </div>
-    <div>
-        <i class="devicon-bootstrap-plain colored" style="font-size: 20px"></i>
-        Bootstrap
-    </div>
-    <div>
-        <i class="devicon-typescript-plain colored" style="font-size: 20px"></i>
-        Typescript
-    </div>
-    <div>
-        <i class="devicon-angularjs-plain colored" style="font-size: 20px"></i>
-        Angular
-    </div>
-<ol>
-</details>
+
+
+
+<i><b>Front-End:</b></i>
+
+
+![HTML5](https://skillicons.dev/icons?i=html,css,bootstrap,typescript,angular,figma)
+
 
 <details>
 <summary>
@@ -207,6 +189,8 @@ Structura:
 
 https://profilinator.rishav.dev/
 https://devicon.dev/
+https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#example
+https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 
 -   Cont meme
 -   Accounts - Students - Mentor

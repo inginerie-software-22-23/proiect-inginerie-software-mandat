@@ -42,58 +42,26 @@ If the tutoring hours will be placed under online meetings, then the mentor will
 
 ### :computer: Technologies
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
-
-<i class="devicon-vscode-plain colored"></i>
-
-<!-- <img align="left" alt="Visual Studio Code" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" style="padding-right:10px;" /> -->
-
-[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
-
-
-
 <i><b>Front-End:</b></i>
-
 
 ![HTML5](https://skillicons.dev/icons?i=html,css,bootstrap,typescript,angular,figma)
 
+<i><b>Back-End:</b></i>
 
-<details>
-<summary>
-    <i><b>Back-End:</b></i>
-</summary>
+![HTML5](https://skillicons.dev/icons?i=net,cs,bash)
 
-<div class="technologies">
-    <div>
-        <img src="https://www.svgrepo.com/show/376369/dotnet.svg" />
-        ASP.NET Core 6 Web API
-    </div>
-    <div>
-        <img
-            src="https://seeklogo.com/images/L/linq-logo-8F0353CA36-seeklogo.com.gif"
-        />
-        Entity Framework Core
-    </div>
-    <div>
-        <img
-            src="https://jwt.io/img/pic_logo.svg"
-            class="smaller-icon"
-        />
-        JWT Tokens
-    </div>
-</div>
-</details>
+- JWT Tokens
 
 #### Database:
 
-1. Microsoft SQL Server
-2. src="https://www.svgrepo.com/show/311947/code-editor.svg" SQL Server Management Studio
-3. Azure Data Studio
+
+-  Microsoft SQL Server
+-  SQL Server Management Studio
+-  Azure Data Studio
 
 #### DevOps:
 
-1. Azure Web Apps
-2. Docker
+![HTML5](https://skillicons.dev/icons?i=azure,docker,kubernetes) 
 
 #### External APIs(third parties);
 
@@ -101,7 +69,10 @@ If the tutoring hours will be placed under online meetings, then the mentor will
 2. Facebook Login API
 3. Zoom Meeting API
 4. Google Meet API
- </div>
+
+#### Extra Tools
+![HTML5](https://skillicons.dev/icons?i=git,github,discord,md,nodejs,stackoverflow,vscode)
+
 
 # Git and GitHub Conventions
 

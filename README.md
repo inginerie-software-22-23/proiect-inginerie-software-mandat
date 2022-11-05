@@ -2,7 +2,7 @@
 
 ### MANDAT.io
 
-#### Echipa:
+#### :office: Echipa:
 
 1. Dobre Talida
 1. Ion Alexandra
@@ -40,26 +40,89 @@ The platform will allow clients to register both with an in-house login system, 
 
 If the tutoring hours will be placed under online meetings, then the mentor will have the option to generate a random Zoom or Google Meet link directly from the platform.
 
-### Tehnologii Folosite
+### :computer: Technologies
 
-#### Front-End:
+<style>
+    .technologies > div {
+        display: flex;
+        align-items: center;
+        /* background-color: pink; */
+        gap: 10px;
+    }
+    .technologies img {
+        width: 30px;
+        height: 30px;
+    }
+    .technologies .smaller-icon {
+        transform: scale(0.8);
+    }
+</style>
 
-1. HTML
-2. CSS
-3. Bootstrap
-4. Typescript
-5. Angular
+<details>
+<summary>
+    <i><b>Front-End:</b></i>
+</summary>
 
-#### Back-End:
+<div class="technologies">
+    <div>
+        <img src="https://www.svgrepo.com/show/373669/html.svg" />
+        HTML
+    </div>
+    <div>
+        <img src="https://www.svgrepo.com/show/373535/css.svg" />
+        CSS
+    </div>
+    <div>
+        <img
+            src="https://www.svgrepo.com/show/353498/bootstrap.svg"
+            class="smaller-icon"
+        />
+        Bootstrap
+    </div>
+    <div>
+        <img
+            src="https://www.svgrepo.com/show/349540/typescript.svg"
+            class="smaller-icon"
+        />
+        Typescript
+    </div>
+    <div>
+        <img src="https://www.svgrepo.com/show/349591/angular.svg" />
+        Angular
+    </div>
+</div>
+</details>
 
-1. ASP.NET Core 6 Web API
-2. Entity Framework Core
-3. JWT Tokens
+<details>
+<summary>
+    <i><b>Back-End:</b></i>
+</summary>
+
+<div class="technologies">
+    <div>
+        <img src="https://www.svgrepo.com/show/376369/dotnet.svg" />
+        ASP.NET Core 6 Web API
+    </div>
+    <div>
+        <img
+            src="https://seeklogo.com/images/L/linq-logo-8F0353CA36-seeklogo.com.gif"
+        />
+        Entity Framework Core
+    </div>
+    <div>
+        <img
+            src="https://jwt.io/img/pic_logo.svg"
+            class="smaller-icon"
+        />
+        JWT Tokens
+    </div>
+</div>
+</details>
 
 #### Database:
 
 1. Microsoft SQL Server
-2. SQL Server Management Studio
+2. src="https://www.svgrepo.com/show/311947/code-editor.svg" SQL Server Management Studio
 3. Azure Data Studio
 
 #### DevOps:
@@ -155,3 +218,26 @@ Structura:
 -   Tehnologii Folosite
 -   Conventii GitHub
 -   Dropdowns Sprint-uri
+
+#### Useful Links:
+
+https://profilinator.rishav.dev/
+
+-   Cont meme
+-   Accounts - Students - Mentor
+-   Facebook/Google Login
+
+-   Help for setup guided
+-   Maps integration
+-   Integrare zoom/Google meets
+-   History reciepts
+-   Rating systems
+    -   Reviews from Students
+    -   Reviews for Mentor
+        -?? Reviews for Ease of use ??
+-   match ar fi intre materie, si locatie (pe maps cu distanta se poate calcula cred)
+
+-   Future feature
+    -   Chat
+    -   Assignments page
+    -   File Upload

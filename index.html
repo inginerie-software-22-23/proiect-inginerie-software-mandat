@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
 
-        <style>
+        <!-- <style>
             .technologies > div {
                 display: flex;
                 align-items: center;
@@ -18,11 +18,54 @@
                 height: 30px;
             }
             .technologies .smaller-icon {
-                transform: scale(0.8);
+                height: 25px;
             }
-        </style>
+        </style> -->
     </head>
     <body>
+        <div class="technologies">
+            <style>
+                .technologies > div {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+                .technologies img {
+                    width: 30px;
+                    height: 30px;
+                }
+                .technologies .smaller-icon {
+                    height: 25px;
+                }
+            </style>
+            <div>
+                <img src="https://www.svgrepo.com/show/373669/html.svg" />
+                HTML
+            </div>
+            <div>
+                <img src="https://www.svgrepo.com/show/373535/css.svg" />
+                CSS
+            </div>
+            <div>
+                <img
+                    src="https://www.svgrepo.com/show/353498/bootstrap.svg"
+                    class="smaller-icon"
+                />
+                Bootstrap
+            </div>
+            <div>
+                <img
+                    src="https://www.svgrepo.com/show/349540/typescript.svg"
+                    class="smaller-icon"
+                />
+                Typescript
+            </div>
+            <div>
+                <img src="https://www.svgrepo.com/show/349591/angular.svg" />
+                Angular
+            </div>
+        </div>
+
         <details>
             <summary>
                 <i><b>Back-End:</b></i>

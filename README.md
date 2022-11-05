@@ -42,55 +42,38 @@ If the tutoring hours will be placed under online meetings, then the mentor will
 
 ### :computer: Technologies
 
-<style>
-    .technologies > div {
-        display: flex;
-        align-items: center;
-        /* background-color: pink; */
-        gap: 10px;
-    }
-    .technologies img {
-        width: 30px;
-        height: 30px;
-    }
-    .technologies .smaller-icon {
-        transform: scale(0.8);
-    }
-</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
+<i class="devicon-vscode-plain colored"></i>
+
+<!-- <img align="left" alt="Visual Studio Code" width="26px" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" style="padding-right:10px;" /> -->
+[![My Skills](https://skillicons.dev/icons?i=js,html,css,wasm)](https://skillicons.dev)
 <details>
 <summary>
     <i><b>Front-End:</b></i>
 </summary>
-
-<div class="technologies">
+<ol>
     <div>
-        <img src="https://www.svgrepo.com/show/373669/html.svg" />
+        <i class="devicon-html5-plain colored" style="font-size: 20px"></i>
         HTML
     </div>
     <div>
-        <img src="https://www.svgrepo.com/show/373535/css.svg" />
+        <i class="devicon-css3-plain colored" style="font-size: 20px"></i>
         CSS
     </div>
     <div>
-        <img
-            src="https://www.svgrepo.com/show/353498/bootstrap.svg"
-            class="smaller-icon"
-        />
+        <i class="devicon-bootstrap-plain colored" style="font-size: 20px"></i>
         Bootstrap
     </div>
     <div>
-        <img
-            src="https://www.svgrepo.com/show/349540/typescript.svg"
-            class="smaller-icon"
-        />
+        <i class="devicon-typescript-plain colored" style="font-size: 20px"></i>
         Typescript
     </div>
     <div>
-        <img src="https://www.svgrepo.com/show/349591/angular.svg" />
+        <i class="devicon-angularjs-plain colored" style="font-size: 20px"></i>
         Angular
     </div>
-</div>
+<ol>
 </details>
 
 <details>
@@ -136,6 +119,7 @@ If the tutoring hours will be placed under online meetings, then the mentor will
 2. Facebook Login API
 3. Zoom Meeting API
 4. Google Meet API
+ </div>
 
 # Git and GitHub Conventions
 
@@ -222,6 +206,7 @@ Structura:
 #### Useful Links:
 
 https://profilinator.rishav.dev/
+https://devicon.dev/
 
 -   Cont meme
 -   Accounts - Students - Mentor

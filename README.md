@@ -1,6 +1,6 @@
 # READ ME DANG IT!
 
-### MANDAT.io
+### MANDAT.io 🚀
 
 #### 🏢 Team:
 
@@ -16,8 +16,8 @@
 
 6️⃣ Predecscu Denisa
 
-**MANDAT.io** is an all-in-one mentor-student matchmaking platform.
-The mentors(professors)are college students who teach school students.
+👨‍💻 **MANDAT.io** is an all-in-one mentor-student matchmaking platform.
+The mentors (professors) are college students who teach school students.
 When a user registers to the platform, they have the option to be either a mentor or a student.
 As a student, you have the ability to search for a new mentor based on the following filters:
 
@@ -26,8 +26,11 @@ As a student, you have the ability to search for a new mentor based on the follo
 -   Location(only for face-to-face sessions)
 -   Rating(of the mentor)
 
+🗺️ Along with the search filters, the student will have their very own integrated map to visually check the location of their soon-to-be mentor.
+
 📷 Both the student and the mentors will have their own profiles. The main attributes of a profile is the rating and the description.
 📊 The rating will determined based on the history of each individual on this platform.
+Students will give a rating to their mentors and each mentor will have the ability to assign a rating to their students, so please behave yourselves! 🚨
 
 The student will make a request to be added to the mentor's tutoring list.
 The mentor will then have the ability to accept or reject the student.
@@ -40,31 +43,37 @@ The tutoring sessions can be _online_ 📺 or _face-to-face_ 👬.
 After both parties have agreed to go further with the process.👍
 Weekly the mentor will update his/her schedule, his/her students will then have the ability to choose a timeslot in which they want to have their tutoring hours.
 
-There will also be the ability to set a recurring timeslot, for the students who want to have the same timeslot weekly.
+🔁 There will also be the ability to set a recurring timeslot, for the students who want to have the same timeslot weekly.
 
-The platform will allow clients to register both with an in-house login system, or to login via Google or Facebook, if they choose so.
+✅ The platform will allow clients to register both with an in-house login system, or to login via Google or Facebook, if they choose so.
 
-If the tutoring hours will be placed under online meetings, then the mentor will have the option to generate a random Zoom or Google Meet link directly from the platform.
+📶 If the tutoring hours will be placed under online meetings, then the mentor will have the option to generate a random Zoom or Google Meet link directly from the platform.
+
+### 🔜 Additional Features
+
+-   In-house Chatting System
+-   Built-in Assignments Page
+-   Files Upload/Download
 
 ### 💻 Technologies
 
-<i><b>Front-End:</b></i>
+##### _Front-End:_
 
 ![HTML5](https://skillicons.dev/icons?i=html,css,bootstrap,typescript,angular,figma)
 
-<i><b>Back-End:</b></i>
+##### _Back-End:_
 
 ![HTML5](https://skillicons.dev/icons?i=net,cs,bash)
 
 -   JWT Tokens
 
-#### Database:
+##### _Database:_
 
 -   Microsoft SQL Server
 -   SQL Server Management Studio
 -   Azure Data Studio
 
-#### DevOps:
+##### _DevOps:_
 
 ![HTML5](https://skillicons.dev/icons?i=azure,docker,kubernetes)
 
@@ -126,7 +135,7 @@ Describes the changes made.
 
 Commit names should be all lower case and contain only ":", "(", ")" as special characters.
 
-##### type:
+##### ✔️ type:
 
 -   feat
 -   fix
@@ -134,16 +143,16 @@ Commit names should be all lower case and contain only ":", "(", ")" as special 
 -   refactor
 -   remove
 
-##### project:
+##### 🏭 project:
 
 -   fe -> Front-End
 -   be -> Back-End
 -   db -> Database
 -   do -> DevOps
 
-##### summary:
+##### 📜 summary:
 
-Always must be in present tense.
+Always must be in **present tense**.
 Describes the changes made.
 Each word is separated by a single space character.
 After the ":", put a space please. :)
@@ -164,16 +173,19 @@ After the ":", put a space please. :)
 
 </details>
 
-Structura:
+# 📚 Sprints 📚
 
--   Titlu
--   Echipa
--   Idee
--   Tehnologii Folosite
--   Conventii GitHub
--   Dropdowns Sprint-uri
+<details>
 
-#### ➡️ Useful Links:
+<summary><b> 📗 Sprint 1️⃣ </b></summary>
+
+![Backlog1](/readme-images/sprint_1.PNG)
+
+</details>
+
+---
+
+### ➡️ Useful Links:
 
 https://profilinator.rishav.dev/
 
@@ -184,22 +196,3 @@ https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#example
 https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 
 https://gist.github.com/rxaviers/7360908
-
--   Cont meme
--   Accounts - Students - Mentor
--   Facebook/Google Login
-
--   Help for setup guided
--   Maps integration
--   Integrare zoom/Google meets
--   History reciepts
--   Rating systems
-    -   Reviews from Students
-    -   Reviews for Mentor
-        -?? Reviews for Ease of use ??
--   match ar fi intre materie, si locatie (pe maps cu distanta se poate calcula cred)
-
--   Future feature
-    -   Chat
-    -   Assignments page
-    -   File Upload

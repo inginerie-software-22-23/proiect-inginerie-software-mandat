@@ -196,3 +196,5 @@ https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#example
 https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 
 https://gist.github.com/rxaviers/7360908
+
+https://unicode.org/emoji/charts/full-emoji-list.html

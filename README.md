@@ -179,6 +179,15 @@ After the ":", put a space please. :)
 
 ![Backlog1](/readme-images/sprint_1.PNG)
 
+ > Login & Register
+ 
+  * <i><b>Login</b></i> : Should be composed of two fields (email and password) and Login button acompanied by "Login with Facebook" and/or "Login with Google" button fir different login options.
+  * <i><b>Register</b></i> : Will be a page to start your account and begin adding information to help our algorithm find the best match for you to learn and better yourself. Here you'll have to input relevant information like: name, address (for convenient pairing with a mentor or students), and an email wich will require a new password to secure your account. You will also choose if you want to register as a mentor or as a student.
+  
+  Information about courses and what subjects are you interested in teaching/learning will be at a later step, when completing the profile.
+
+
+
 </details>
 
 ---

@@ -186,7 +186,22 @@ After the ":", put a space please. :)
   
   Information about courses and what subjects are you interested in teaching/learning will be at a later step, when completing the profile.
 
+ > Integrated services
+ 
+  * <i><b>Login with Facebook</b></i> : Facebook Login allows visitors to use their Facebook profile to log into your website instead of creating a unique sign-in. Then, when a visitor uses Facebook to log in, they also grant you access to specific pieces of information. 
+ 
+     That information may include their:
 
+      *  Email
+      *  Public profile
+      *  Likes and interests
+      *  Friends
+
+    This information can be usefull to see what your fielnds are studying and can help you get toghether and combine classes and help each other with homework.
+ 
+ * <i><b>Login with Google</b></i> : For a simplified and secure way to connect to yourt account and transfer the required data with speed and ease.
+ 
+ * <i><b>Maps from Google</b></i> : Integration of Google Maps will help our interface be user friendly and interactive while having all the amazing features of the powerfull API. It will help you pick your location and range in which you are available to go to for phisical tutoring sessions, and help our algorithm to pair ou with the best tutor closest to your desired location.
 ---
 
 ### ➡️ Useful Links:

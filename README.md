@@ -1,5 +1,3 @@
-# READ ME DANG IT!
-
 ### MANDAT.io 🚀
 
 #### 🏢 Team:

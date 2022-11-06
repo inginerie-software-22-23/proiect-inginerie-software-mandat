@@ -100,7 +100,7 @@ Spaces between words should be replaced by the character "-".
 
 ##### ✔️ type:
 
--   feat
+-   feature
 -   fix
 -   patch
 -   remove
@@ -112,7 +112,7 @@ Describes the changes made.
 
 #### Branch Examples:
 
-> `feat/add-dropdown-bullets`
+> `feature/add-dropdown-bullets`
 >
 > `fix/get-account-info-endpoint`
 >
@@ -135,7 +135,7 @@ Commit names should be all lower case and contain only ":", "(", ")" as special 
 
 ##### ✔️ type:
 
--   feat
+-   feature
 -   fix
 -   patch
 -   refactor
@@ -157,7 +157,7 @@ After the ":", put a space please. :)
 
 #### Commit Examples:
 
-> `feat(fe): add dropdown bullets`
+> `feature(fe): add dropdown bullets`
 >
 > `fix(be): get account info endpoint`
 >
@@ -186,9 +186,6 @@ After the ":", put a space please. :)
   
   Information about courses and what subjects are you interested in teaching/learning will be at a later step, when completing the profile.
 
-
-
-</details>
 
 ---
 

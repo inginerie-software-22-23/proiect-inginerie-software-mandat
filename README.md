@@ -223,9 +223,10 @@ After the ":", put a space please. :)
 
 **As a unregistered user/someone without an account:**
 - I want to search the website/endpoints that are public/don't have authorization so that I can check out the website without having to register
+- I want to be able to register so that I can have my own personal account
 
 **As a registered user(mentor or student):**
-- I want to be able to register/login so that I can have my own personal account
+- I want to be able to login so that I can navigate on my own personal account
 - I want to to have the ability to check the details of my profile so that I can view my personal info
 - I want to manage my account(update details/delete account) so that I can leave my details up-to-date
 - I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person

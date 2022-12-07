@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MANDAT.BusinessLogic\MANDAT.BusinessLogic.csproj" />
+    <ProjectReference Include="..\MANDAT.Common\MANDAT.Common.csproj" />
+    <ProjectReference Include="..\MANDAT.DataAccess\MANDAT.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

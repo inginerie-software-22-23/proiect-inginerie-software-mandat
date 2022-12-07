@@ -1,6 +1,10 @@
-﻿using MANDAT.Common.DTOs;
+﻿using MANDAT.BusinessLogic.Services;
+using MANDAT.Common.DTOs;
+using MANDAT.Common.Features.PasswordHashing;
+using MANDAT.Common.Interfaces;
 using MANDAT.DataAccess;
 using MANDATWebApp.Code.Base;
+using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 
 namespace MANDATWebApp.Code.ExtensionMethods
@@ -15,7 +19,10 @@ namespace MANDATWebApp.Code.ExtensionMethods
 
         public static IServiceCollection AddMANDATAppBusinessLogic(this IServiceCollection services)
         {
-            // services.AddScoped<aici adaugam serviciu>();
+      
+            services.AddScoped<IUserManager, UserManagerService>();
+            services.AddScoped<IHashAlgo, HashAlgo>();
+            services.AddScoped<ITokenManager, TokenManager>();
             // services.AddScoped<aici adaugam serviciu>();...
 
             return services;

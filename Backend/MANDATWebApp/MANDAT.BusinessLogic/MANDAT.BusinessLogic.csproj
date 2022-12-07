@@ -6,4 +6,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MANDAT.Common\MANDAT.Common.csproj" />
+    <ProjectReference Include="..\MANDAT.DataAccess\MANDAT.DataAccess.csproj" />
+    <ProjectReference Include="..\MANDAT.Entities\MANDAT.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

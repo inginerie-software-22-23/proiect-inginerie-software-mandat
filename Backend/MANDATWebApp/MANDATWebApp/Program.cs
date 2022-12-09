@@ -1,5 +1,6 @@
 using MANDAT.DataAccess;
 using MANDATWebApp.Code.ExtensionMethods;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,12 +25,23 @@ builder.Services.AddSwaggerGen(c =>
     });
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 });
+
+//database conexion
+
+/*string conexiuneString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<MANDATContext>(
+     options =>
+     {
+         options.UseSqlServer(conexiuneString);
+     });
+
+*/
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-//builder.Services.AddDbContext<>();
+builder.Services.AddDbContext<MANDATContext>();
 builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddPresentation();
 builder.Services.AddMANDATAppCurrentUser();
-builder.Services.AddMANDATAppBusinessLogic();
+//builder.Services.AddMANDATAppBusinessLogic();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

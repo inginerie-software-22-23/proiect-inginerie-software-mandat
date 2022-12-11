@@ -17,7 +17,7 @@ namespace MANDAT.Common.Features.Login
         public string Password { get; set; }
     }
 
-    internal class LoginCommandHandler : IRequestHandler<LoginCommand, TokenWrapper>
+  /*  internal class LoginCommandHandler : IRequestHandler<LoginCommand, TokenWrapper>
     {
         private readonly IUserManager _userManager;
         private readonly IHashAlgo _hashAlgo;
@@ -30,13 +30,13 @@ namespace MANDAT.Common.Features.Login
             _hashAlgo = hashAlgo;
             _tokenManager = tokenManager;
             _loginTokenConfig = loginTokenConfig;
-        }
+        }*/
 
-        public async Task<TokenWrapper> Handle(LoginCommand request, CancellationToken cancellationToken)
-        {
+        //public async Task<TokenWrapper> Handle(LoginCommand request, CancellationToken cancellationToken)
+        //{
             //mut in appsettings
-            const int maxLoginAttempts = 5;
-
+           /* const int maxLoginAttempts = 5;
+*/
 
             //var userProps = await _userManager.GetUserSelectedProperties(
                // request.UniqueIdentifier,
@@ -67,7 +67,7 @@ namespace MANDAT.Common.Features.Login
             //    user.LockoutEnd = null;
             //}
 
-            var isPasswordVerified = true; //se vor sterge
+         /*   var isPasswordVerified = true; //se vor sterge
             var user = new IdentityUser(); // se vor sterge
             if (isPasswordVerified == false)
             {
@@ -84,23 +84,23 @@ namespace MANDAT.Common.Features.Login
 
 
                 user.NumberOfFailLoginAttempts += 1;
-                await _userManager.updateUser(user);
+                await _userManager.updateUser(user);*/
                // throw new IncorrectPasswordException("Wrong Password");
-            }
+          //  }
             //if (userProps.LockoutEnabled == true && userProps.LockoutEnd > DateTime.UtcNow)
             //{
             //   // throw new AccountStillLockedException("Account still locked!");
             //}
             //else
             //{
-
+/*
                 user.NumberOfFailLoginAttempts = 0;
                 await _userManager.updateUser(user);
                 var result = _userManager.Login(request);
                 return await result;
-
+*/
            // }
 
-        }
-    }
+       // }
+    //}
 }

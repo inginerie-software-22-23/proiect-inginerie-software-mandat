@@ -19,10 +19,10 @@ namespace MANDATWebApp.Code.ExtensionMethods
 
         public static IServiceCollection AddMANDATAppBusinessLogic(this IServiceCollection services)
         {
-      
+
             services.AddScoped<IUserManager, UserManagerService>();
             services.AddScoped<IHashAlgo, HashAlgo>();
-            services.AddScoped<ITokenManager, TokenManager>();
+            //services.AddScoped<ITokenManager, TokenManager>();
             // services.AddScoped<aici adaugam serviciu>();...
 
             return services;

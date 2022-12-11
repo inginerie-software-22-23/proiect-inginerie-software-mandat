@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,20 +18,25 @@ namespace MANDAT.Entities.Entities
         }
 
         public Guid Id { get; set; }
+        public byte[] UserImage { get; set; } = null!;
         public string Username { get; set; }
         public string Email { get; set; }
-        public bool EmailConfirmed { get; set; }
-        public bool LockoutEnabled { get; set; }
-        public DateTime? LockoutEnd { get; set; }
-        public string PhoneNumberCountryPrefix { get; set; }
         public string PhoneNumber { get; set; }
-        public bool PhoneNumberConfirmed { get; set; }
         public string PasswordHash { get; set; }
-        public bool TwoFactorEnabled { get; set; }
         public DateTime CreatedAt { get; set; }
-        public int NumberOfFailLoginAttempts { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+
+        public string Bio { get; set; } = null!;
+        public string EducationalInstitution { get; set; } = null!;
+
+        [ForeignKey("Role")]
+        public Guid RoleId { get; set; }
+        public virtual IdentityUserToken Token { get; set; }
+        public virtual IdentityRole Role { get; set; }
+        public virtual Mentor Mentor { get; set; }
+        public virtual Student Student { get; set; }
+        public virtual Adress Adress { get; set; }
 
     }
     //public virtual ICollection<IdentityRole> IdentityRoles { get; set; }

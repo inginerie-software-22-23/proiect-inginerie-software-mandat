@@ -1,9 +1,18 @@
+using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.BusinessLogic.Services;
+using MANDAT.Common.Features.PasswordHashing;
 using MANDAT.DataAccess;
 using MANDATWebApp.Code.ExtensionMethods;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 
+
+
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 
@@ -41,7 +50,12 @@ builder.Services.AddDbContext<MANDATContext>();
 builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddPresentation();
 builder.Services.AddMANDATAppCurrentUser();
-//builder.Services.AddMANDATAppBusinessLogic();
+
+//services here
+
+
+///
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

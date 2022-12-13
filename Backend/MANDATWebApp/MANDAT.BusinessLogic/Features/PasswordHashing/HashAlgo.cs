@@ -1,4 +1,4 @@
-﻿using MANDAT.Common.Interfaces;
+﻿using MANDAT.BusinessLogic.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

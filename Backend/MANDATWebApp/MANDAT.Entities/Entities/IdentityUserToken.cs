@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MANDAT.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MANDAT.Entities.Entities
 {
-    public partial class IdentityUserToken
+    public partial class IdentityUserToken : IEntity
     {
         public IdentityUserToken() { }
         public Guid Id { get; set; }

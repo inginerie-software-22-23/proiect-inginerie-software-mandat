@@ -10,7 +10,7 @@ namespace MANDAT.Common.DTOs
     {
         public CurrentUserDto()
         {
-            Roles = new List<string>();
+   
         }
 
         public Guid? Id { get; set; }
@@ -20,7 +20,7 @@ namespace MANDAT.Common.DTOs
         public bool isAuthenticated { get; set; }
         public bool isAdmin { get; set; }
         public byte[]? UserImage { get; set; } = null!;
-        public List<string> Roles { get; set; }
+        public string Roles { get; set; }
 
     }
 }

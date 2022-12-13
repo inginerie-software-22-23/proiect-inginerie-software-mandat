@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MANDAT.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MANDAT.Entities.Entities
 {
-    public partial class Adress
+    public partial class Adress : IEntity
     {
         public Guid Id { get; set; }
         public string City { get; set; } = null!;

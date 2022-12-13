@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MANDAT.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MANDAT.Entities.Entities
 {
-    public partial class Mentor
+    public partial class Mentor : IEntity
     {
         [ForeignKey("User")]
         public Guid Id { get; set; }

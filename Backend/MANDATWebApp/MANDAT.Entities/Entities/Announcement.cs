@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MANDAT.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MANDAT.Entities.Entities
 {
-    public partial class Announcement
+    public partial class Announcement : IEntity
     {
         public Guid Id { get; set; }
         public string Subject { get; set; }

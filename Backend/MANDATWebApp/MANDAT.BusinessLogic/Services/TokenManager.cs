@@ -1,6 +1,8 @@
-﻿using MANDAT.Common.Configurations;
-using MANDAT.Common.Interfaces;
+﻿using MANDAT.BusinessLogic.Base;
+using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.Common.Configurations;
 using MANDAT.Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -14,12 +16,15 @@ using System.Threading.Tasks;
 
 namespace MANDAT.BusinessLogic.Services
 {
-    public class TokenManager : ITokenManager
+    public class TokenManager : BaseService, ITokenManager
     {
         private readonly RefreshTokenConfig _refreshTokenConfig;
         private readonly SignInKeySetting _signInKeySetting;
         private readonly LoginTokenConfig _loginTokenConfig;
-        public TokenManager( RefreshTokenConfig refreshTokenConfig, SignInKeySetting signInKeySetting, LoginTokenConfig loginTokenConfig)
+        public TokenManager( RefreshTokenConfig refreshTokenConfig, 
+                             SignInKeySetting signInKeySetting,
+                             LoginTokenConfig loginTokenConfig,
+                             ServiceDependencies dependencies) :base(dependencies)
         {
             _refreshTokenConfig = refreshTokenConfig;
             _signInKeySetting = signInKeySetting;
@@ -28,22 +33,23 @@ namespace MANDAT.BusinessLogic.Services
 
 
 
-        public async Task<Tuple<string, string>> GenerateTokenAndRefreshToken(SymmetricSecurityKey signinKey, IdentityUser user, List<string> roles, JwtSecurityTokenHandler tokenHandler, string newJti)
+        public  Tuple<string, string> GenerateTokenAndRefreshToken(SymmetricSecurityKey signinKey, IdentityUser user, string roles, JwtSecurityTokenHandler tokenHandler, string newJti)
         {
 
             var token = GenerateJwtToken(signinKey, user, roles, tokenHandler, newJti);
             string tokenStringValue = tokenHandler.WriteToken(token);
             var refreshToken = GenerateRefreshToken();
 
-            //_context.Set<IdentityUserToken>().Add(new IdentityUserToken()
-            //{
-            //    Id = Guid.NewGuid(),
-            //    UserId = user.Id,
-            //    TokenValue = tokenStringValue,
-            //    RefreshTokenValue = refreshToken,
-            //    CreationDate = token.ValidFrom,
-            //    ExpirationDate = token.ValidTo
-            //});
+            
+            UnitOfWork.IdentityUserTokens.Insert(new IdentityUserToken()
+            {
+                Id = Guid.NewGuid(),
+                UserId = user.Id,
+                TokenValue = tokenStringValue,
+                RefreshTokenValue = refreshToken,
+                CreationDate = token.ValidFrom,
+                ExpirationDate = token.ValidTo
+            });
 
             //await _context.SaveChangesAsync();
             var tuple = new Tuple<string, string>(tokenStringValue, refreshToken);
@@ -51,7 +57,7 @@ namespace MANDAT.BusinessLogic.Services
 
         }
 
-        private SecurityToken GenerateJwtToken(SymmetricSecurityKey signinKey, IdentityUser user, List<string> roles, JwtSecurityTokenHandler tokenHandler, string newJti)
+        public SecurityToken GenerateJwtToken(SymmetricSecurityKey signinKey, IdentityUser user, string roles, JwtSecurityTokenHandler tokenHandler, string newJti)
         {
 
 
@@ -61,14 +67,11 @@ namespace MANDAT.BusinessLogic.Services
                      new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
                      new Claim(JwtRegisteredClaimNames.Jti,newJti),
                      new Claim("NumberOfAllowedRefreshes",_refreshTokenConfig.NumberOfRefreshes),
-                     new Claim("IntervalOfUseOfRefreshTokenAfterTokenHasExpired",_refreshTokenConfig.TimeLeftUntilRefreshTokenExpiresAfterTokenAlreadyExpired)
-
+                     new Claim("IntervalOfUseOfRefreshTokenAfterTokenHasExpired",_refreshTokenConfig.TimeLeftUntilRefreshTokenExpiresAfterTokenAlreadyExpired),
+                     new Claim(ClaimTypes.Role, roles)
 
              });
-            foreach (var role in roles)
-            {
-                subject.AddClaim(new Claim(ClaimTypes.Role, role));
-            }
+   
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = subject,
@@ -82,59 +85,6 @@ namespace MANDAT.BusinessLogic.Services
             return token;
         }
 
-        //public async Task<IdentityUserTokenConfirmation> CreateConfirmationToken(Guid userId, ConfirmationTokenType tokenType)
-        //{
-        //    var res = await GetActiveConfirmationTokens(userId).ToListAsync();
-        //    foreach (var tokens in res)
-        //    {
-        //        tokens.IsRevoked = true;
-        //    }
-
-        //    var confirmationToken = new IdentityUserTokenConfirmation();
-        //    confirmationToken.Id = Guid.NewGuid();
-        //    // confirmationToken.UserId = user.Id;
-        //    confirmationToken.UserId = userId;
-        //    confirmationToken.ConfirmationTypeId = tokenType;
-        //    confirmationToken.CreationDate = DateTime.UtcNow;
-        //    confirmationToken.ExpireDate = DateTime.UtcNow.AddDays(Int32.Parse(_loginTokenConfig.Days)); //addhours
-        //    confirmationToken.ConfirmationToken = Guid.NewGuid().ToString();
-        //    _context.Set<IdentityUserTokenConfirmation>().Add(confirmationToken);
-        //    await _context.SaveChangesAsync();
-        //    return confirmationToken;
-
-        //}
-
-        //public async Task<IdentityUserTokenConfirmation> GetUserActiveConfirmationToken(Guid userId, string tokenValue, ConfirmationTokenType tokenType)
-        //{
-        //    var token = await GetActiveConfirmationTokens(userId)
-        //        .Where(token =>
-        //            token.ConfirmationTypeId == tokenType &&
-        //            token.ConfirmationToken == tokenValue && token.ExpireDate > DateTime.UtcNow
-        //         )
-        //        .SingleOrDefaultAsync();
-
-        //    return token;
-        //}
-
-        //private IQueryable<IdentityUserTokenConfirmation> GetActiveConfirmationTokens(Guid userId)
-        //{
-        //    var activeTokens = _context.IdentityUserTokenConfirmations
-        //        .Where(utc =>
-        //            utc.UserId.Equals(userId) &&
-        //            utc.IsRevoked == false &&
-        //            utc.IsUsed == false &&
-        //            utc.ExpireDate > DateTime.UtcNow
-        //         )
-        //        .AsQueryable();
-        //    return activeTokens;
-        //}
-
-
-        //public async Task MarkRecoveryTokenAsUsed(IdentityUserTokenConfirmation obj)
-        //{
-        //    obj.IsUsed = true;
-        //    await _context.SaveChangesAsync();
-        //}
 
         public string GenerateRefreshToken()
         {
@@ -165,12 +115,12 @@ namespace MANDAT.BusinessLogic.Services
 
         }
 
-        public async Task<Tuple<string, string>> ReGenerateTokens(ClaimsIdentity claims, IdentityUserToken usertoken)
+        public Tuple<string, string> ReGenerateTokens(ClaimsIdentity claims, IdentityUserToken usertoken)
         {
             var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_signInKeySetting.SecretSignInKeyForJwtToken));
             var refreshToken = GenerateRefreshToken();
 
-            var tokenDescriptor = new SecurityTokenDescriptor
+            var tokenDescriptor = new  SecurityTokenDescriptor
             {
                 Subject = claims,
                 Issuer = _refreshTokenConfig.Issuer,

@@ -1,7 +1,8 @@
-﻿using MANDAT.Common.Exceptions;
-using MANDAT.Common.Interfaces;
+﻿using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.Common.Exceptions;
 using MANDAT.Entities.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,13 @@ namespace MANDAT.Common.Features.Register
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public string PhoneNumberCountryPrefix { get; set; }
+        public  IFormFile  UserImage { get; set; } = null!;
+
+        public string Role { get; set; } = null!;
+        public string Bio { get; set; } = null!;
+
+        public string EducationalInstitution { get; set; } = null!;
+
     }
     internal class RegisterCommandHandler : IRequestHandler<RegisterCommand, bool>
     {
@@ -31,19 +38,19 @@ namespace MANDAT.Common.Features.Register
         public async Task<bool> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
             bool ok = false;
-            //var userProps = await _userManager.GetUserSelectedProperties(request.Email, user => new { user.Id, user.Email });
-            //if (userProps != null)
-            //{
+            var userProps = await _userManager.GetUserSelectedProperties(request.Email, user => new { user.Id, user.Email });
+            if (userProps != null)
+            {
 
-            //    string message = $"Username={request.Email} already registered";
-            //    throw new UserAlreadyRegisteredException(nameof(IdentityUser), message);
-            //}
-            //else
-            //{
-            //    var result = await _userManager.Register(request);
-            //    ok = true;
+                string message = $"Username={request.Email} already registered";
+                throw new UserAlreadyRegisteredException(nameof(IdentityUser), message);
+            }
+            else
+            {
+                 _userManager.Register(request);
+                ok = true;
 
-            //}
+            }
             return ok;
         }
     }

@@ -1,7 +1,9 @@
-﻿using MANDAT.BusinessLogic.Services;
+﻿using MANDAT.BusinessLogic.Base;
+using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.BusinessLogic.Services;
+using MANDAT.Common.Configurations;
 using MANDAT.Common.DTOs;
 using MANDAT.Common.Features.PasswordHashing;
-using MANDAT.Common.Interfaces;
 using MANDAT.DataAccess;
 using MANDATWebApp.Code.Base;
 using Microsoft.Extensions.Configuration;
@@ -11,6 +13,8 @@ namespace MANDATWebApp.Code.ExtensionMethods
 {
     public static class ServiceCollectionExtensionMethods
     {
+        private static IConfiguration configuration { get; }
+
         public static IServiceCollection AddPresentation(this IServiceCollection services)
         {
             services.AddScoped<ControllerDependencies>();
@@ -20,13 +24,53 @@ namespace MANDATWebApp.Code.ExtensionMethods
         public static IServiceCollection AddMANDATAppBusinessLogic(this IServiceCollection services)
         {
 
+            services.AddScoped<ServiceDependencies>();
+            services.AddSignInKeyConfiguration(configuration);
+            services.AddRefreshTokenConfiguration(configuration);
+            services.AddLoginTokenConfiguration(configuration);
             services.AddScoped<IUserManager, UserManagerService>();
             services.AddScoped<IHashAlgo, HashAlgo>();
-            //services.AddScoped<ITokenManager, TokenManager>();
+            services.AddScoped<ITokenManager, TokenManager>();
             // services.AddScoped<aici adaugam serviciu>();...
 
             return services;
         }
+        private static IServiceCollection AddSignInKeyConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            var signinConfig = configuration.GetSection(SignInKeySetting.NAME).Get<SignInKeySetting>();
+            //Console.WriteLine(signinConfig.SecretSignInKeyForJwtToken);
+            services.AddSingleton(signinConfig);
+            return services;
+
+        }
+
+        private static IServiceCollection AddLoginTokenConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            var logintokenConfig = configuration.GetSection(LoginTokenSetting.NAME).Get<LoginTokenSetting>();
+            if (logintokenConfig.LoginTokenConfigs.TryGetValue(LoginTokenIdentifier.LoginToken, out var loginTokenConfig) == false)
+            {
+
+                throw new Exception();
+            }
+            // Console.WriteLine(loginTokenConfig.Minutes);
+            services.AddSingleton(loginTokenConfig);
+            return services;
+
+        }
+        private static IServiceCollection AddRefreshTokenConfiguration(this IServiceCollection services, IConfiguration configuration)
+        {
+            var reftokenConfig = configuration.GetSection(RefreshTokenSetting.NAME).Get<RefreshTokenSetting>();
+            if (reftokenConfig.RefreshTokenConfigs.TryGetValue(RefreshTokenIdentifier.RefreshToken, out var refreshTokenConfig) == false)
+            {
+
+                throw new Exception();
+            }
+            //Console.WriteLine(refreshTokenConfig.Issuer);
+            services.AddSingleton(refreshTokenConfig);
+            return services;
+        }
+
+
         public static IServiceCollection AddMANDATAppCurrentUser(this IServiceCollection services)
         {
             services.AddScoped(s =>

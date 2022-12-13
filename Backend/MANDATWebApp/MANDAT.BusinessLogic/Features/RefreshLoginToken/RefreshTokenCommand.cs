@@ -1,6 +1,6 @@
-﻿using MANDAT.Common.Exceptions;
+﻿using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.Common.Exceptions;
 using MANDAT.Common.External.Auth;
-using MANDAT.Common.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -81,7 +81,7 @@ namespace MANDAT.Common.Features.RefreshLoginToken
                             {
                                 claims.AddClaim(new Claim(ClaimTypes.Role, role));
                             }
-                            var tuple = await _tokenManager.ReGenerateTokens(claims, IdentityUserTokenObj);
+                            var tuple =  _tokenManager.ReGenerateTokens(claims, IdentityUserTokenObj);
 
                             tokenwrapper.Token = tuple.Item1;
                             tokenwrapper.RefreshToken = tuple.Item2;

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MANDAT.Common\MANDAT.Common.csproj" />
     <ProjectReference Include="..\MANDAT.Entities\MANDAT.Entities.csproj" />
   </ItemGroup>
 

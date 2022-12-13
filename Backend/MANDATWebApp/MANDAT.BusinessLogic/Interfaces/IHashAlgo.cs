@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MANDAT.Common.Interfaces
+namespace MANDAT.BusinessLogic.Interfaces
 {
     public interface IHashAlgo
     {

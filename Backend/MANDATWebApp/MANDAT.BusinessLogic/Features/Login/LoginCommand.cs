@@ -17,6 +17,7 @@ namespace MANDAT.BusinessLogic.Features.Login
         public string UniqueIdentifier { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
+        public Guid Id { get; set; }
     }
 
   internal class LoginCommandHandler : IRequestHandler<LoginCommand, TokenWrapper>
@@ -42,7 +43,7 @@ namespace MANDAT.BusinessLogic.Features.Login
 
         var userProps = await _userManager.GetUserSelectedProperties(
             request.UniqueIdentifier,
-            user => new { user.Id,  user.PasswordHash });
+            user => new { user.Id,  user.PasswordHash, user.Email });
 
 
             if (userProps == null)

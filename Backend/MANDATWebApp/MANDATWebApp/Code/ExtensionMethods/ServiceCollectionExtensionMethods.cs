@@ -31,6 +31,7 @@ namespace MANDATWebApp.Code.ExtensionMethods
             services.AddScoped<IUserManager, UserManagerService>();
             services.AddScoped<IHashAlgo, HashAlgo>();
             services.AddScoped<ITokenManager, TokenManager>();
+            services.AddScoped<IReview, ReviewService>();
             // services.AddScoped<aici adaugam serviciu>();...
 
             return services;

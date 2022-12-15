@@ -161,6 +161,12 @@ namespace MANDAT.BusinessLogic.Services
                     registerUser.CreatedAt = DateTime.UtcNow;
                     registerUser.IsActive = true;
                     registerUser.IsDeleted = false;
+                    var location = new Adress();
+                    location.Id = Guid.NewGuid();
+                    location.UserId = registerUser.Id;
+                    location.City = registerCommand.City;
+                    location.County = registerCommand.County;
+                    location.AddressInfo = registerCommand.AddressInfo;
 
                     if (result != null)
                     {
@@ -172,8 +178,9 @@ namespace MANDAT.BusinessLogic.Services
                         //var roleid = Guid.NewGuid();
                         registerUser.Role = uow.IdentityRoles.Get().Single(r => r.Name.Equals(registerCommand.Role));
                         uow.IdentityUsers.Insert(registerUser);
+                        uow.Adress.Insert(location);
                         //uow.IdentityRoles.Insert(new IdentityUserIdentityRole(registerUser.Id, roleid));
-                         uow.SaveChanges();
+                        uow.SaveChanges();
 
                     }
 

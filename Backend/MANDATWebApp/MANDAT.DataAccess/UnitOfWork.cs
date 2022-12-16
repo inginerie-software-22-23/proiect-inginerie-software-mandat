@@ -43,6 +43,8 @@ namespace MANDAT.DataAccess
         private IRepository<Student> students;
         public IRepository<Student> Students => students ?? (students = new BaseRepository<Student>(Context));
 
+        private IRepository<Match> matches;
+        public IRepository<Match> Matches => matches ?? (matches = new BaseRepository<Match>(Context));
 
         public void SaveChanges()
         {

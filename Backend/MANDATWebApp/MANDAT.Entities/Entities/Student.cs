@@ -18,5 +18,6 @@ namespace MANDAT.Entities.Entities
 
         public virtual IdentityUser User { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
+        public virtual ICollection<Match> Matches { get; set; }
     }
 }

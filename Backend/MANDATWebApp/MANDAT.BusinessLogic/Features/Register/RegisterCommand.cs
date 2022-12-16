@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,11 @@ namespace MANDAT.Common.Features.Register
         public string Bio { get; set; } = null!;
 
         public string EducationalInstitution { get; set; } = null!;
+        public string City { get; set; } = null!;
+        public string County { get; set; } = null!;
+        public string AddressInfo { get; set; } = null!;
+
+
 
     }
     internal class RegisterCommandHandler : IRequestHandler<RegisterCommand, bool>

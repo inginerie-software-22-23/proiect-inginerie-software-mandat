@@ -60,7 +60,7 @@ namespace MANDATWebApp.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateMentor([FromBody] Guid Id,MentorUpdateDTO mentorUpdateDTO)
+        public async Task<IActionResult> UpdateMentor(Guid Id, [FromBody] MentorUpdateDTO mentorUpdateDTO)
         {
             var result = mentorManager.Update(Id,mentorUpdateDTO);
             return Ok(result);

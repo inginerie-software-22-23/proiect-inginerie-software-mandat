@@ -18,6 +18,7 @@ namespace MANDAT.DataAccess
         public DbSet<Student> Students { get; set; }
         public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<Match> Matches { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
@@ -65,6 +66,17 @@ namespace MANDAT.DataAccess
             builder.Entity<Mentor>()
                  .HasMany(s => s.Reviews)
                  .WithOne(r => r.Mentor);
+
+            //M-M
+            builder.Entity<Match>().HasKey(m => new { m.StudentId, m.MentorId });
+            builder.Entity<Match>()
+                .HasOne(m => m.Student)
+                .WithMany(s => s.Matches)
+                .HasForeignKey(m => m.StudentId);
+            builder.Entity<Match>()
+                .HasOne(m => m.Mentor)
+                .WithMany(me => me.Matches)
+                .HasForeignKey(m => m.MentorId);
         }
 
     }

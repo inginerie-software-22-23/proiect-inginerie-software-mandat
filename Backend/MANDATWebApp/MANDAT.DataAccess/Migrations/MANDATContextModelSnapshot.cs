@@ -235,11 +235,15 @@ namespace MANDAT.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("StarsNumber")
+                             b.Property<int>("StarsNumber")
                         .HasColumnType("int");
 
                     b.Property<Guid>("StudentId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ReviewStatus")
+                       .IsRequired()
+                       .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

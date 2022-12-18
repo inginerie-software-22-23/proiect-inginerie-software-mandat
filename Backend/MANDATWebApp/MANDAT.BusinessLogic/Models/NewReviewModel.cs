@@ -13,5 +13,6 @@ namespace MANDAT.BusinessLogic.Models
         public int StarsNumber { get; set; } = 0;
         public Guid MentorId { get; set; }
         public Guid StudentId { get; set; }
+        public string ReviewStatus { get; set; } = null!;
     }
 }

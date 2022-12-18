@@ -163,7 +163,8 @@ namespace MANDAT.DataAccess.Migrations
                     Message = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StarsNumber = table.Column<int>(type: "int", nullable: false),
                     MentorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ReviewStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                 },
                 constraints: table =>
                 {

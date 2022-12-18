@@ -19,7 +19,7 @@ namespace MANDAT.Entities.Entities
         }
 
         public Guid Id { get; set; }
-        public byte[] UserImage { get; set; } = null!;
+        public byte[]? UserImage { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }

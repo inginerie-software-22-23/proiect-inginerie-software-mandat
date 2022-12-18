@@ -24,9 +24,9 @@ namespace MANDAT.BusinessLogic.Services
                                             .ThenInclude(r => r.Role)
                                             .Select(m => new AllMentorsDto
                                             {
-                                                MentorIdentityCardFront = m.MentorIdentityCardFront,
-                                                MentorIdentityCardBack = m.MentorIdentityCardBack,
-                                                UserImage = m.User.UserImage,
+                                              //  MentorIdentityCardFront = m.MentorIdentityCardFront,
+                                              //  MentorIdentityCardBack = m.MentorIdentityCardBack,
+                                             //   UserImage = m.User.UserImage,
                                                 Username = m.User.Username,
                                                 Email = m.User.Email,
                                                 PhoneNumber = m.User.PhoneNumber,
@@ -53,9 +53,9 @@ namespace MANDAT.BusinessLogic.Services
                                         .Where(m => m.Id.Equals(mentorId))
                                         .Select(m => new MentorByIdViewByMentorAdminDTO
                                         {
-                                            MentorIdentityCardFront = m.MentorIdentityCardFront,
-                                            MentorIdentityCardBack = m.MentorIdentityCardBack,
-                                            UserImage = m.User.UserImage,
+                                            // MentorIdentityCardFront = m.MentorIdentityCardFront,
+                                            //  MentorIdentityCardBack = m.MentorIdentityCardBack,
+                                            // UserImage = m.User.UserImage,
                                             Username = m.User.Username,
                                             Email = m.User.Email,
                                             PhoneNumber = m.User.PhoneNumber,
@@ -65,6 +65,7 @@ namespace MANDAT.BusinessLogic.Services
                                             IsDeleted = m.User.IsDeleted,
                                             Bio = m.User.Bio,
                                             EducationalInstitution = m.User.EducationalInstitution,
+                                            RoleName = m.User.Role.Name
                                         })
                                         .ToList();
             });
@@ -80,7 +81,7 @@ namespace MANDAT.BusinessLogic.Services
                                         .Where(m => m.Id.Equals(mentorId))
                                         .Select(m => new MentorByIdViewByStudentDTO
                                         {
-                                            UserImage = m.User.UserImage,
+                                          //  UserImage = m.User.UserImage,
                                             Username = m.User.Username,
                                             Email = m.User.Email,
                                             Bio = m.User.Bio,
@@ -94,18 +95,18 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                return uow.Mentors.Get()
-                                        .Include(m => m.User)
-                                        .Where(m => m.User.Username.Equals(username))
+                var roleID = uow.IdentityRoles.Get().Where(r => r.Name == "Mentor").Select(r => r.Id).FirstOrDefault();
+                var result =  uow.IdentityUsers.Get()
+                                        .Where(m => m.Username.Equals(username) && m.RoleId.Equals(roleID))
                                         .Select(m => new MentorByIdViewByStudentDTO
                                         {
-                                            UserImage = m.User.UserImage,
-                                            Username = m.User.Username,
-                                            Email = m.User.Email,
-                                            Bio = m.User.Bio,
-                                            EducationalInstitution = m.User.EducationalInstitution,
+                                            Username = m.Username,
+                                            Email = m.Email,
+                                            Bio = m.Bio,
+                                            EducationalInstitution = m.EducationalInstitution,
                                         })
                                         .ToList();
+                return result;
             });
         }
 
@@ -120,7 +121,7 @@ namespace MANDAT.BusinessLogic.Services
                                         .Where(m => m.User.Adress.Id.Equals(locationId))
                                         .Select(m => new MentorByIdViewByStudentDTO
                                         {
-                                            UserImage = m.User.UserImage,
+                                           // UserImage = m.User.UserImage,
                                             Username = m.User.Username,
                                             Email = m.User.Email,
                                             Bio = m.User.Bio,
@@ -140,7 +141,7 @@ namespace MANDAT.BusinessLogic.Services
                                            .Where(ma => ma.MentorId.Equals(mentorId) && ma.Status.Equals(true))
                                            .Select(ma => new GetStudentsForMentorDTO
                                            {
-                                               UserImage = ma.Student.User.UserImage,
+                                            //   UserImage = ma.Student.User.UserImage,
                                                Username = ma.Student.User.Username,
                                                Email = ma.Student.User.Email,
                                                PhoneNumber = ma.Student.User.PhoneNumber,
@@ -191,6 +192,10 @@ namespace MANDAT.BusinessLogic.Services
                 var mentor = uow.Mentors.Get().Include(m => m.User)
                                                 .Where(m => m.Id.Equals(id))
                                                 .SingleOrDefault();
+                if (mentor == null)
+                {
+                    return false;   
+                }
                 mentor.User.IsDeleted = isDeleted;
                 uow.Mentors.Update(mentor);
                 uow.SaveChanges();

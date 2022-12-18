@@ -13,8 +13,8 @@ namespace MANDAT.Entities.Entities
     {
         [ForeignKey("User")]
         public Guid Id { get; set; }
-        public byte[] MentorIdentityCardFront { get; set; } = null!;
-        public byte[] MentorIdentityCardBack { get; set; } = null!;
+        public byte[]? MentorIdentityCardFront { get; set; }
+        public byte[]? MentorIdentityCardBack { get; set; }
 
         public virtual IdentityUser User { get; set; }
 

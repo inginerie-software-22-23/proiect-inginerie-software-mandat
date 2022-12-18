@@ -8,7 +8,7 @@ namespace MANDAT.Common.DTOs
 {
     public class MentorByIdViewByStudentDTO
     {
-        public byte[] UserImage { get; set; } = null!;
+        public byte[]? UserImage { get; set; }// = null!;
         public string Username { get; set; }
         public string Email { get; set; }
         public string Bio { get; set; } = null!;

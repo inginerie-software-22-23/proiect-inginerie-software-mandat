@@ -3,6 +3,7 @@ using MANDAT.Common.DTOs;
 using MANDAT.Entities.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel;
 using System.Globalization;
 
 namespace MANDATWebApp.Controllers
@@ -23,7 +24,7 @@ namespace MANDATWebApp.Controllers
             return Ok(mentorList);
         }
 
-        [HttpGet("byIdViewMentAdm/{id}")]
+        [HttpGet("byIdViewMentAdm/{mentorId}")]
         public async Task<IActionResult> GetMentorByIdMentorAdminView([FromRoute] Guid mentorId)
         {
             var mentor = mentorManager.GetMentorByIdForMentorAdminView(mentorId);
@@ -31,7 +32,7 @@ namespace MANDATWebApp.Controllers
         }
 
 
-        [HttpGet("byIdViewStud/{id}")]
+        [HttpGet("byIdViewStud/{mentorId}")]
         public async Task<IActionResult> GetMentorByIdStudView([FromRoute] Guid mentorId)
         {
             var mentor = mentorManager.GetMentorByIdForStudentView(mentorId);
@@ -39,20 +40,20 @@ namespace MANDATWebApp.Controllers
         }
 
         [HttpGet("byName/{name}")]///////////  !!!!
-        public async Task<IActionResult> GetMentorByHisName([FromRoute]string name)
+        public  List<MentorByIdViewByStudentDTO> GetMentorByHisName([FromRoute]string name)
         {
             var mentor = mentorManager.GetMentorByName(name);
-            return Ok(mentor);
+            return mentor;
         }
 
-        [HttpGet("byIdLocation/{id}")]
+        [HttpGet("byIdLocation/{locationId}")]
         public async Task<IActionResult> GetMentorsByTheLocation([FromRoute] Guid locationId)
         {
             var mentors = mentorManager.GetMentorsByLocation(locationId);
             return Ok(mentors);
         }
 
-        [HttpGet("studentsByIdMentor/{id}")]
+        [HttpGet("studentsByIdMentor/{mentorId}")]
         public async Task<IActionResult> GetAllStudentsForMentorId([FromRoute] Guid mentorId)
         {
             var students = mentorManager.GetStudentsForMentor(mentorId);

@@ -17,7 +17,7 @@ namespace MANDATWebApp.Controllers
             _review = review;
         }
 
-        [HttpGet]
+        [HttpGet("ViewMentorsReview")]
         public List<ViewMentorReview> ViewMentorsReview(Guid id, bool asc) 
         {
             var result = new List<ViewMentorReview>();
@@ -32,7 +32,7 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpGet("ViewStudentsReview")]
         public List<ViewStudentReview> ViewStudentsReview(Guid id, bool asc)
         {
             var result = new List<ViewStudentReview>();

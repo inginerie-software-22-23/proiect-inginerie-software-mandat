@@ -9,7 +9,7 @@ namespace MANDAT.Common.DTOs
 {
     public class GetStudentsForMentorDTO
     {
-        public byte[] UserImage { get; set; } = null!;
+        public byte[]? UserImage { get; set; }// = null!;
         public string Username { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }

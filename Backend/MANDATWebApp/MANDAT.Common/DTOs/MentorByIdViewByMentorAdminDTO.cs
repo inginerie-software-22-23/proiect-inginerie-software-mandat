@@ -8,11 +8,11 @@ namespace MANDAT.Common.DTOs
 {
     public class MentorByIdViewByMentorAdminDTO
     {
-        public byte[] MentorIdentityCardFront { get; set; } = null!;
-        public byte[] MentorIdentityCardBack { get; set; } = null!;
+        public byte[]? MentorIdentityCardFront { get; set; } //= null!;
+        public byte[]? MentorIdentityCardBack { get; set; }// = null!;
 
 
-        public byte[] UserImage { get; set; } = null!;
+        public byte[]? UserImage { get; set; } // = null!;
         public string Username { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -23,6 +23,6 @@ namespace MANDAT.Common.DTOs
 
         public string Bio { get; set; } = null!;
         public string EducationalInstitution { get; set; } = null!;
-        public Guid RoleId { get; set; }
+        public string RoleName { get; set; } = null!;
     }
 }

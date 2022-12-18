@@ -6,6 +6,7 @@ using MANDAT.Common.DTOs;
 using MANDAT.Common.Features.PasswordHashing;
 using MANDAT.DataAccess;
 using MANDATWebApp.Code.Base;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Security.Claims;
 
@@ -13,7 +14,6 @@ namespace MANDATWebApp.Code.ExtensionMethods
 {
     public static class ServiceCollectionExtensionMethods
     {
-        private static IConfiguration configuration { get; }
 
         public static IServiceCollection AddPresentation(this IServiceCollection services)
         {
@@ -21,9 +21,9 @@ namespace MANDATWebApp.Code.ExtensionMethods
             return services;
         }
 
-        public static IServiceCollection AddMANDATAppBusinessLogic(this IServiceCollection services)
+        public static IServiceCollection AddMANDATAppBusinessLogic(this IServiceCollection services, IConfiguration configuration)
         {
-
+            //services.AddDbContexts(configuration);
             services.AddScoped<ServiceDependencies>();
             services.AddSignInKeyConfiguration(configuration);
             services.AddRefreshTokenConfiguration(configuration);
@@ -105,5 +105,27 @@ namespace MANDATWebApp.Code.ExtensionMethods
 
             return services;
         }
+
+        //private static IServiceCollection AddDbContexts(this IServiceCollection services, IConfiguration configuration)
+        //{
+        //    var connectionOptions = configuration.GetSection(ConnectionStringSetting.NAME).Get<ConnectionStringSetting>();
+
+
+        //    if (connectionOptions.ConnectionStringConfigs.TryGetValue(DatabaseIdentifier.MANDATProjectDatabase, out var MANDATDbConfig) == false)
+        //    {
+
+        //        throw new ArgumentException($"{nameof(DatabaseIdentifier.MANDATProjectDatabase)} was not found in the dbConfig!");
+        //    }
+        //    Console.WriteLine(MANDATDbConfig.ConnectionString);
+        //    services.AddDbContext<MANDATContext>(options =>
+        //    {
+        //        options.UseSqlServer(MANDATDbConfig.ConnectionString, configOption =>
+        //        {
+        //            configOption.CommandTimeout(MANDATDbConfig.TimeoutSeconds);
+        //        });
+        //    });
+
+        //    return services;
+        //}
     }
 }

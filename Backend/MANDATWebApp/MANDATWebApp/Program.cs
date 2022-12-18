@@ -1,6 +1,7 @@
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.BusinessLogic.Services;
 using MANDAT.Common.Features.PasswordHashing;
+using Microsoft.AspNetCore.Hosting;
 using MANDAT.DataAccess;
 using MANDATWebApp.Code.ExtensionMethods;
 using Microsoft.AspNetCore.Hosting;
@@ -11,17 +12,17 @@ using Microsoft.OpenApi.Models;
 
 
 
+
 var builder = WebApplication.CreateBuilder(args);
-
-
 // Add services to the container.
+var configuration = builder.Configuration;
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MentalHealthFrontApp", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "MANDATApp", Version = "v1" });
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
@@ -50,6 +51,9 @@ builder.Services.AddDbContext<MANDATContext>();
 builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddPresentation();
 builder.Services.AddMANDATAppCurrentUser();
+builder.Services.AddMANDATAppBusinessLogic(configuration);
+
+
 
 //services here
 

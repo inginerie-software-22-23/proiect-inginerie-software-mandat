@@ -124,6 +124,8 @@ Describes the changes made.
 
 </details>
 
+
+
 <details>
 <summary><i><b>Commit Names</b></i></summary>
 
@@ -170,6 +172,8 @@ After the ":", put a space please. :)
 ---
 
 </details>
+
+
 
 # 📚 Sprints 📚
 
@@ -244,6 +248,12 @@ After the ":", put a space please. :)
 - I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
     
 ---
+</details>
+
+### ➡️ Healper for working in backend
+<details>
+[HelperBackend.docx](https://github.com/inginerie-software-22-23/proiect-inginerie-software-mandat/files/10257937/HelperBackend.docx)
+
 </details>
 
 ### ➡️ Useful Links:

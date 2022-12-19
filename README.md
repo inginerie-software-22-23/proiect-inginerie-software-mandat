@@ -250,7 +250,7 @@ After the ":", put a space please. :)
 ---
 </details>
 
-### ➡️ Healper for working in backend
+### ➡️ Helper for working in backend
 <details>
 [HelperBackend.docx](https://github.com/inginerie-software-22-23/proiect-inginerie-software-mandat/files/10257937/HelperBackend.docx)
 

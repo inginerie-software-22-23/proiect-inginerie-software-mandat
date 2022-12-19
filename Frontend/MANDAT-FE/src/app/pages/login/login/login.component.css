@@ -1,0 +1,25 @@
+*{
+    font-family: "Tomorrow", sans-serif;
+}
+
+.container{
+    background-color: red;
+}
+
+.box{
+    height: 50%;
+    width: 75%;
+    background-color: white;
+    display: flex;
+}
+
+.external-login-options{
+    width: 40%;
+    height: 100%;
+    background: #3C4F9A;
+}
+
+.login-form{
+    width: auto;
+    
+}

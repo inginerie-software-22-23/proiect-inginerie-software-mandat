@@ -11,12 +11,11 @@
   box-shadow: 1px 1px 10px gray, -1px -1px 10px gray;
 } */
 
-.box{
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-
+.box {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
 }
 
 .external-login {
@@ -75,33 +74,46 @@
   background-color: #3065aa;
 }
 
-.login-form{
-    /* background-color: red; */
-    width: 60%;
+.login-form {
+  /* background-color: red; */
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.login-form div {
+  /* width: 100%; */
+}
+
+.login-form-header {
+  text-align: center;
+}
+
+.login-form-inputs-container {
+  /* width: 3px; */
+  width: 70%;
+  background-color: red;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-form-inputs-center{
+    /* width: 80%; */
+    width: auto;
+
+    background-color: blue;
+}
+
+.mb-3{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    text-align: center;
-
-}
-
-.login-form div{
-    /* width: 100%; */
-}
-
-.login-form-header{
-    text-align: center;
-}
-
-.login-form-inputs{
-    /* width: 3px; */
-    width: 70%;
-    background-color: red;
+    justify-content: center;
     text-align: start;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 /* *{

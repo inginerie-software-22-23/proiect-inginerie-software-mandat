@@ -1,16 +1,3 @@
-/* app-login-component
-.box {
-  background-color: red;
-  height: 70vh;
-  width: 60vw;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 10px;
-  box-shadow: 1px 1px 10px gray, -1px -1px 10px gray;
-} */
-
 .box {
   height: 100vh;
   width: 100vw;
@@ -55,6 +42,10 @@
   border-radius: 10px;
 }
 
+.external-login-button:hover > * {
+  transform: scale(1.1);
+}
+
 .external-login-button button {
   background: linear-gradient(#3773b9, #3065aa);
   color: white;
@@ -94,8 +85,9 @@
 
 .login-form-inputs-container {
   height: 40%;
-  width: 100%;
-  /* background-color: red; */
+  /* width: 100%; */
+  width: 65%;
+  /* background-color: green; */
   text-align: start;
   display: flex;
   flex-direction: column;
@@ -103,6 +95,34 @@
   justify-content: space-evenly;
 }
 
-app-form-input{
-  width: 60%;
+app-form-input {
+  width: 100%;
+}
+
+.form-center {
+  /* background-color: blue; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.form-check {
+  /* padding-right: 45%; */
+  /* background-color: red; */
+}
+.form-check > * {
+  cursor: pointer;
+}
+
+.btn-primary {
+  width: 20%;
+  height: 8%;
+  border-radius: 8px;
+  font-size: 1.2em;
+  transition: filter 0.5s ease-in;
+}
+
+.btn-primary:hover {
+  filter: brightness(120%);
 }

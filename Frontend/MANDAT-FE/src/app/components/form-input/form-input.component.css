@@ -1,5 +1,13 @@
-input{
-    height: 3rem;
-    /* width: 100; */
-    
+input {
+  height: 3.5rem;
+  width: 100%;
+  padding-left: 5%;
+  border-radius: 10px;
+  border-width: 1px;
+  transition: all 0.15s ease-in;
+}
+
+input:focus {
+  box-shadow: 5px 5px 8px rgba(115, 133, 253, 0.5),
+    -5px -5px 8px rgba(115, 133, 253, 0.5);
 }

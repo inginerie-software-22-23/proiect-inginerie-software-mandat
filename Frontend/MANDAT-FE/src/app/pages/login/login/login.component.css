@@ -1,4 +1,110 @@
-*{
+/* app-login-component
+.box {
+  background-color: red;
+  height: 70vh;
+  width: 60vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  box-shadow: 1px 1px 10px gray, -1px -1px 10px gray;
+} */
+
+.box{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+
+}
+
+.external-login {
+  background-color: #3c4f9a;
+  height: 100%;
+  width: 40%;
+  /* position: absolute;
+  top: 0; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.external-login-header {
+  color: #d2fdff;
+  font-weight: 400;
+  font-size: 1.5em;
+  width: 80%;
+  text-align: center;
+}
+
+.external-login-button {
+  height: 3em;
+  width: 60%;
+  display: flex;
+  text-decoration: none;
+
+  transform: all 2s ease-in-out;
+  overflow: hidden;
+}
+
+.external-login-button:hover {
+  filter: brightness(110%);
+  box-shadow: 1px 1px 5px black, -1px -1px 5px black;
+  transform: scale(1.1);
+  border-radius: 10px;
+}
+
+.external-login-button button {
+  background: linear-gradient(#3773b9, #3065aa);
+  color: white;
+  border: 0;
+  height: 100%;
+  width: 80%;
+}
+
+.fa {
+  padding: 20px;
+  text-decoration: none;
+}
+
+.external-login-button .fa-facebook {
+  font-size: 1.5em;
+  color: white;
+  background-color: #3065aa;
+}
+
+.login-form{
+    /* background-color: red; */
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+
+}
+
+.login-form div{
+    /* width: 100%; */
+}
+
+.login-form-header{
+    text-align: center;
+}
+
+.login-form-inputs{
+    /* width: 3px; */
+    width: 70%;
+    background-color: red;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* *{
     font-family: "Tomorrow", sans-serif;
 }
 
@@ -22,4 +128,4 @@
 .login-form{
     width: auto;
     
-}
+}  */

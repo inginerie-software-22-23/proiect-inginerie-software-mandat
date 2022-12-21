@@ -47,6 +47,20 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 
 📶 If the tutoring hours will be placed under online meetings, then the mentor will have the option to generate a random Zoom or Google Meet link directly from the platform.
 
+<details>
+<summary><i><b>UML Diagram</b></i></summary>
+
+![UML diagram](https://user-images.githubusercontent.com/86727047/208981747-4afcb39f-f5fc-40f3-ad80-941d4e5f8c06.png)
+
+</details>
+
+<details>
+<summary><i><b>Activity Diagram</b></i></summary>
+
+![activity diagram](https://user-images.githubusercontent.com/86727047/208981859-112e3dec-8bd7-47df-8590-a0e24d88a7c0.png)
+
+</details>
+
 ### 🔜 Additional Features
 
 -   In-house Chatting System

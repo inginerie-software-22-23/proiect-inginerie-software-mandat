@@ -188,6 +188,48 @@ After the ":", put a space please. :)
 </details>
 
 
+# Platform logic :bulb:
+
+<details>
+<summary><b> 🎬 User Stories 📰 </b></summary>
+
+***Discussed in Weekly Meeting on 11.09.2022 08:45PM***
+
+**As Admin:**
+- I can manage/delete any account so that I can enforce appropriate measures if needed
+
+**As a unregistered user/someone without an account:**
+- I want to search the website/endpoints that are public/don't have authorization so that I can check out the website without having to register
+- I want to be able to register so that I can have my own personal account
+
+**As a registered user(mentor or student):**
+- I want to be able to login so that I can navigate on my own personal account
+- I want to to have the ability to check the details of my profile so that I can view my personal info
+- I want to manage my account(update details/delete account) so that I can leave my details up-to-date
+- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person
+
+**As a student:**
+- I want to search for mentors both for online sessions and physical session so that I can find a mentor
+- I want to see every mentor's location on the map(in case of physical sessions) so that I can better estimate my route
+- I want to sort mentors based on filters such as location/distance, rating, subject, price so that I can make a better decision on which mentor to pick
+- I want to see a mentor's phone number so that I can call him/her and schedule a timeslot for the future sessions
+
+**As a mentor:**
+- I want to be able to accept/reject student requests so that I can be more selective with the students I work with
+- I can view all my accepted students/the students I tutor so that I can have an overview on them
+- I can post announcements with subjects I can teach so that I attract more students 
+- I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
+    
+---
+</details>
+
+<details>
+ <summary><b>Prioritized Product Backlog</b> :page_with_curl: :judge:</summary>
+
+![BacklogImage](/readme-images/backlog.png)
+
+</details>
+
 
 # 📚 Sprints 📚
 
@@ -239,38 +281,6 @@ After the ":", put a space please. :)
 </details>
 
 
-<details>
-<summary><b> 🎬 User Stories 📰 </b></summary>
-
-***Discussed in Weekly Meeting on 11.09.2022 08:45PM***
-
-**As Admin:**
-- I can manage/delete any account so that I can enforce appropriate measures if needed
-
-**As a unregistered user/someone without an account:**
-- I want to search the website/endpoints that are public/don't have authorization so that I can check out the website without having to register
-- I want to be able to register so that I can have my own personal account
-
-**As a registered user(mentor or student):**
-- I want to be able to login so that I can navigate on my own personal account
-- I want to to have the ability to check the details of my profile so that I can view my personal info
-- I want to manage my account(update details/delete account) so that I can leave my details up-to-date
-- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person
-
-**As a student:**
-- I want to search for mentors both for online sessions and physical session so that I can find a mentor
-- I want to see every mentor's location on the map(in case of physical sessions) so that I can better estimate my route
-- I want to sort mentors based on filters such as location/distance, rating, subject, price so that I can make a better decision on which mentor to pick
-- I want to see a mentor's phone number so that I can call him/her and schedule a timeslot for the future sessions
-
-**As a mentor:**
-- I want to be able to accept/reject student requests so that I can be more selective with the students I work with
-- I can view all my accepted students/the students I tutor so that I can have an overview on them
-- I can post announcements with subjects I can teach so that I attract more students 
-- I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
-    
----
-</details>
 
 ### ➡️ Helper for working in backend
 <details>

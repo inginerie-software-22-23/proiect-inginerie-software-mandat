@@ -231,9 +231,10 @@ After the ":", put a space please. :)
 
 </details>
 
+<details>
 <summary><b> 📗 Sprint :three: </b></summary>
 
-![Sprint3Image](/readme-images/sprint_3.PNG)
+![Sprint3Image](/readme-images/sprint_3.png)
 
 </details>
 

@@ -225,11 +225,18 @@ After the ":", put a space please. :)
 </details>
 
 <details>
-<summary><b> 📗 Sprint 2️⃣ </b></summary>
+<summary><b> 📗 Sprint 2️⃣✔️ </b></summary>
 
 ![Backlog1](/readme-images/sprint_2.PNG)
 
 </details>
+
+<summary><b> 📗 Sprint :three: </b></summary>
+
+![Sprint3Image](/readme-images/sprint_3.PNG)
+
+</details>
+
 
 <details>
 <summary><b> 🎬 User Stories 📰 </b></summary>

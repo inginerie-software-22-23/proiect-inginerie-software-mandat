@@ -2,12 +2,14 @@
   "ExpandedNodes": [
     "",
     "\\Backend",
+    "\\Backend\\ConsoleApp1",
     "\\Backend\\MANDATWebApp",
     "\\Backend\\MANDATWebApp\\MANDAT.DataAccess",
+    "\\Backend\\MANDATWebApp\\MANDAT.DataAccess\\Migrations",
     "\\Backend\\MANDATWebApp\\MANDAT.Entities",
     "\\Backend\\MANDATWebApp\\MANDAT.Entities\\Entities",
     "\\Backend\\MANDATWebApp\\MANDATWebApp"
   ],
-  "SelectedNode": "\\Backend\\MANDATWebApp\\MANDAT.Entities\\Entities\\IdentityUser.cs",
+  "SelectedNode": "\\Backend\\MANDATWebApp\\MANDATWebApp\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -2,6 +2,7 @@
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.BusinessLogic.Models;
 using MANDAT.Entities.Entities;
+using MANDAT.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;
@@ -27,6 +28,7 @@ namespace MANDAT.BusinessLogic.Services
                 review.Message = reviewModel.Message;
                // review.CommentDate = DateTime.UtcNow;
                 review.StarsNumber = reviewModel.StarsNumber;
+                review.ReviewStatus = reviewModel.ReviewStatus;
                 uow.Reviews.Insert(review);
                 uow.SaveChanges();
                 return  review;
@@ -59,7 +61,7 @@ namespace MANDAT.BusinessLogic.Services
                 return uow.Reviews.Get()
                                              .Include(cd => cd.Mentor)
                                              .ThenInclude(u => u.User)
-                                             .Where(cd => cd.MentorId.Equals(mentorId))
+                                             .Where(cd => cd.MentorId.Equals(mentorId) && cd.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString()))
                                              .Select(cd => new ViewMentorReview
                                              {
                                                  StudentName = uow.IdentityUsers.Get()
@@ -81,7 +83,7 @@ namespace MANDAT.BusinessLogic.Services
                 return uow.Reviews.Get()
                                              .Include(cd => cd.Mentor)
                                              .ThenInclude(u => u.User)
-                                             .Where(cd => cd.MentorId.Equals(mentorId))
+                                             .Where(cd => cd.MentorId.Equals(mentorId) && cd.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString()))
                                              .Select(cd => new ViewMentorReview
                                              {
                                                  StudentName = uow.IdentityUsers.Get()
@@ -104,7 +106,7 @@ namespace MANDAT.BusinessLogic.Services
                 return uow.Reviews.Get()
                                              .Include(cd => cd.Student)
                                              .ThenInclude(u => u.User)
-                                             .Where(cd => cd.StudentId.Equals(studentId))
+                                             .Where(cd => cd.StudentId.Equals(studentId) && cd.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString()))
                                              .Select(cd => new ViewStudentReview
                                              {
                                                  MentorName = uow.IdentityUsers.Get()
@@ -126,7 +128,7 @@ namespace MANDAT.BusinessLogic.Services
                 return uow.Reviews.Get()
                                              .Include(cd => cd.Student)
                                              .ThenInclude(u => u.User)
-                                             .Where(cd => cd.StudentId.Equals(studentId))
+                                             .Where(cd => cd.StudentId.Equals(studentId) && cd.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString()) )
                                              .Select(cd => new ViewStudentReview
                                              {
                                                  MentorName = uow.IdentityUsers.Get()
@@ -144,12 +146,12 @@ namespace MANDAT.BusinessLogic.Services
 
         public double GetMentorStarsAverageRating(Guid id)
         {
-            double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.MentorId.Equals(id)).Average(cd => cd.StarsNumber);
+            double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.MentorId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString())).Average(cd => cd.StarsNumber);
             return averageRating;
         }
         public double GetStudentStarsAverageRating(Guid id)
         {
-            double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.StudentId.Equals(id)).Average(cd => cd.StarsNumber);
+            double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.StudentId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString())).Average(cd => cd.StarsNumber);
             return averageRating;
         }
 

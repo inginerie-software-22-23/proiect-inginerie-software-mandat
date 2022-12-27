@@ -153,20 +153,24 @@ namespace MANDAT.BusinessLogic.Services
                     registerUser.Id = Guid.NewGuid();
                     registerUser.Email = registerCommand.Email;
                     registerUser.PhoneNumber = registerCommand.PhoneNumber;
-                    registerUser.Username = registerCommand.FirstName + registerCommand.LastName;
+                    registerUser.Username = registerCommand.FirstName + " " + registerCommand.LastName;
                     string result = _hashAlgo.CalculateHashValueWithInput(registerCommand.Password);
-                    registerUser.UserImage = ConvertToBytes(registerCommand.UserImage);
+                   // registerUser.UserImage = ConvertToBytes(registerCommand.UserImage);
                     registerUser.Bio = registerCommand.Bio;
                     registerUser.EducationalInstitution = registerCommand.EducationalInstitution;
                     registerUser.CreatedAt = DateTime.UtcNow;
                     registerUser.IsActive = true;
                     registerUser.IsDeleted = false;
+                    registerUser.RoleId = uow.IdentityRoles.Get().Where(r => r.Name.Equals(registerCommand.Role)).Select(r => r.Id).FirstOrDefault();
                     var location = new Adress();
                     location.Id = Guid.NewGuid();
                     location.UserId = registerUser.Id;
                     location.City = registerCommand.City;
                     location.County = registerCommand.County;
                     location.AddressInfo = registerCommand.AddressInfo;
+
+                    
+
 
                     if (result != null)
                     {
@@ -176,8 +180,23 @@ namespace MANDAT.BusinessLogic.Services
 
                         //  var id = await uow.IdentityUsers.Where(u => u.Email.Equals(registerCommand.Email)).Select(u => u.Id).SingleOrDefaultAsync();
                         //var roleid = Guid.NewGuid();
-                        registerUser.Role = uow.IdentityRoles.Get().Single(r => r.Name.Equals(registerCommand.Role));
                         uow.IdentityUsers.Insert(registerUser);
+                        if (registerCommand.Role == "Student")
+                        {
+                            var student = new Student();
+                            student.Id = registerUser.Id;
+                            student.StudentGrade = 0;
+                            student.StudentSchoolQualification = "";
+                            uow.Students.Insert(student);
+                        }
+                        if (registerCommand.Role == "Mentor")
+                        {
+                            var mentor = new Mentor();
+                            mentor.Id = registerUser.Id;
+                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 }; ;
+                            mentor.MentorIdentityCardBack = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
+                            uow.Mentors.Insert(mentor);
+                        }
                         uow.Adress.Insert(location);
                         //uow.IdentityRoles.Insert(new IdentityUserIdentityRole(registerUser.Id, roleid));
                         uow.SaveChanges();

@@ -194,7 +194,7 @@ namespace MANDAT.DataAccess.Migrations
                     b.Property<DateTime>("MatchDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Status")
+                    b.Property<string>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("StudentId", "MentorId");

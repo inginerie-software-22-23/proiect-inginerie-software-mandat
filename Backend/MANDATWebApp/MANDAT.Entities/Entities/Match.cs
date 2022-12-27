@@ -12,7 +12,7 @@ namespace MANDAT.Entities.Entities
         public Guid MentorId { get; set; }
         public Guid StudentId { get; set; }
         public DateTime MatchDate { get; set; }
-        public bool Status { get; set; }
+        public string Status { get; set; }
 
         public virtual Student Student { get; set; }
         public virtual Mentor Mentor { get; set;}

@@ -19,7 +19,7 @@ namespace MANDAT.Common.Features.Register
         public string Email { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public IFormFile UserImage { get; set; } = null!;
+      //  public  IFormFile  UserImage { get; set; } = null!;
 
         public string Role { get; set; } = null!;
         public string Bio { get; set; } = null!;

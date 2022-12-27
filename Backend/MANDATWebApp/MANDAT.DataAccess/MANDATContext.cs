@@ -24,7 +24,9 @@ namespace MANDAT.DataAccess
         {
             if (!builder.IsConfigured)
             {
+
                 builder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
             }
         }
 

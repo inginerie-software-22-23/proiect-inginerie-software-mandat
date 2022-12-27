@@ -47,6 +47,20 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 
 📶 If the tutoring hours will be placed under online meetings, then the mentor will have the option to generate a random Zoom or Google Meet link directly from the platform.
 
+<details>
+<summary><i><b>UML Diagram</b></i></summary>
+
+![UML diagram](https://user-images.githubusercontent.com/86727047/208981747-4afcb39f-f5fc-40f3-ad80-941d4e5f8c06.png)
+
+</details>
+
+<details>
+<summary><i><b>Activity Diagram</b></i></summary>
+
+![activity diagram](https://user-images.githubusercontent.com/86727047/208981859-112e3dec-8bd7-47df-8590-a0e24d88a7c0.png)
+
+</details>
+
 ### 🔜 Additional Features
 
 -   In-house Chatting System
@@ -124,6 +138,8 @@ Describes the changes made.
 
 </details>
 
+
+
 <details>
 <summary><i><b>Commit Names</b></i></summary>
 
@@ -171,6 +187,50 @@ After the ":", put a space please. :)
 
 </details>
 
+
+# Platform logic :bulb:
+
+<details>
+<summary><b> 🎬 User Stories 📰 </b></summary>
+
+***Discussed in Weekly Meeting on 11.09.2022 08:45PM***
+
+**As Admin:**
+- I can manage/delete any account so that I can enforce appropriate measures if needed
+
+**As a unregistered user/someone without an account:**
+- I want to search the website/endpoints that are public/don't have authorization so that I can check out the website without having to register
+- I want to be able to register so that I can have my own personal account
+
+**As a registered user(mentor or student):**
+- I want to be able to login so that I can navigate on my own personal account
+- I want to to have the ability to check the details of my profile so that I can view my personal info
+- I want to manage my account(update details/delete account) so that I can leave my details up-to-date
+- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person
+
+**As a student:**
+- I want to search for mentors both for online sessions and physical session so that I can find a mentor
+- I want to see every mentor's location on the map(in case of physical sessions) so that I can better estimate my route
+- I want to sort mentors based on filters such as location/distance, rating, subject, price so that I can make a better decision on which mentor to pick
+- I want to see a mentor's phone number so that I can call him/her and schedule a timeslot for the future sessions
+
+**As a mentor:**
+- I want to be able to accept/reject student requests so that I can be more selective with the students I work with
+- I can view all my accepted students/the students I tutor so that I can have an overview on them
+- I can post announcements with subjects I can teach so that I attract more students 
+- I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
+    
+---
+</details>
+
+<details>
+ <summary><b>Prioritized Product Backlog</b> :page_with_curl: :judge:</summary>
+
+![BacklogImage](/readme-images/backlog.png)
+
+</details>
+
+
 # 📚 Sprints 📚
 
 <details>
@@ -207,43 +267,25 @@ After the ":", put a space please. :)
 </details>
 
 <details>
-<summary><b> 📗 Sprint 2️⃣ </b></summary>
+<summary><b> 📗 Sprint 2️⃣✔️ </b></summary>
 
 ![Backlog1](/readme-images/sprint_2.PNG)
 
 </details>
 
 <details>
-<summary><b> 🎬 User Stories 📰 </b></summary>
+<summary><b> 📗 Sprint :three: </b></summary>
 
-***Discussed in Weekly Meeting on 11.09.2022 08:45PM***
+![Sprint3Image](/readme-images/sprint_3.png)
 
-**As Admin:**
-- I can manage/delete any account so that I can enforce appropriate measures if needed
+</details>
 
-**As a unregistered user/someone without an account:**
-- I want to search the website/endpoints that are public/don't have authorization so that I can check out the website without having to register
-- I want to be able to register so that I can have my own personal account
 
-**As a registered user(mentor or student):**
-- I want to be able to login so that I can navigate on my own personal account
-- I want to to have the ability to check the details of my profile so that I can view my personal info
-- I want to manage my account(update details/delete account) so that I can leave my details up-to-date
-- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person
 
-**As a student:**
-- I want to search for mentors both for online sessions and physical session so that I can find a mentor
-- I want to see every mentor's location on the map(in case of physical sessions) so that I can better estimate my route
-- I want to sort mentors based on filters such as location/distance, rating, subject, price so that I can make a better decision on which mentor to pick
-- I want to see a mentor's phone number so that I can call him/her and schedule a timeslot for the future sessions
+### ➡️ Helper for working in backend
+<details>
+[HelperBackend.docx](https://github.com/inginerie-software-22-23/proiect-inginerie-software-mandat/files/10257937/HelperBackend.docx)
 
-**As a mentor:**
-- I want to be able to accept/reject student requests so that I can be more selective with the students I work with
-- I can view all my accepted students/the students I tutor so that I can have an overview on them
-- I can post announcements with subjects I can teach so that I attract more students 
-- I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
-    
----
 </details>
 
 ### ➡️ Useful Links:

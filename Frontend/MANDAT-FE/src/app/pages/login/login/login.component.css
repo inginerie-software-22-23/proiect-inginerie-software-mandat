@@ -6,7 +6,8 @@
 }
 
 .external-login {
-  background-color: #3c4f9a;
+  background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
   height: 100%;
   width: 40%;
   /* position: absolute;
@@ -18,7 +19,7 @@
 }
 
 .external-login-header {
-  color: #d2fdff;
+  color: white;
   font-weight: 400;
   font-size: 1.5em;
   width: 80%;
@@ -30,20 +31,21 @@
   width: 60%;
   display: flex;
   text-decoration: none;
-
   transform: all 2s ease-in-out;
   overflow: hidden;
+  border-radius: 8px;
+  transition: all 0.2s ease-in;
 }
 
 .external-login-button:hover {
   filter: brightness(110%);
-  box-shadow: 1px 1px 5px black, -1px -1px 5px black;
-  transform: scale(1.1);
-  border-radius: 10px;
+  box-shadow: 1px 1px 2px rgb(38, 38, 38), -1px -1px 2px rgb(38, 38, 38);
+  transform: scale(1.05);
+  border-radius: 0px;
 }
 
-.external-login-button:hover > * {
-  transform: scale(1.1);
+.external-login-button, .external-login-button button {
+  background: linear-gradient(#3773b9, #3065aa);
 }
 
 .external-login-button button {
@@ -81,6 +83,11 @@
 
 .login-form-header {
   text-align: center;
+}
+
+.register-link{
+  color: #7a80ed;
+  text-decoration: none;;
 }
 
 .login-form-inputs-container {
@@ -121,6 +128,9 @@ app-form-input {
   border-radius: 8px;
   font-size: 1.2em;
   transition: filter 0.5s ease-in;
+  background-color: #8BC6EC;
+  background-image: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+
 }
 
 .btn-primary:hover {

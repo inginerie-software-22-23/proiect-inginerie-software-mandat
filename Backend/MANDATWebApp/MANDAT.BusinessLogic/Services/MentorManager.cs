@@ -90,6 +90,27 @@ namespace MANDAT.BusinessLogic.Services
                                         .ToList();
             });
         }
+<<<<<<< Updated upstream
+=======
+        public string GetMentorPhoneNumber(Guid studentId, Guid mentorId)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var phoneNumber = uow.IdentityUsers.Get().Include(m => m.Mentor).Where(m => m.Mentor.Id.Equals(mentorId)).Select(m => m.PhoneNumber).FirstOrDefault();
+                var statusMatch =  uow.Matches.Get()
+                                            .Include(m => m.Mentor)
+                                            .ThenInclude(u => u.User)
+                                            .Where(m => m.MentorId.Equals(mentorId) && m.StudentId.Equals(studentId))
+                                            .Select(m => m.Status)
+                                            .FirstOrDefault();
+                if (statusMatch.Equals(true))
+                {
+                    return phoneNumber;
+                }
+                else
+                    return "";
+                
+>>>>>>> Stashed changes
 
         public List<MentorByIdViewByStudentDTO> GetMentorByName(string username)
         {

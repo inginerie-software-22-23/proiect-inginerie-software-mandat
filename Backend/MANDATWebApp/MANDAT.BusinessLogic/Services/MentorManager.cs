@@ -91,6 +91,7 @@ namespace MANDAT.BusinessLogic.Services
                                         .ToList();
             });
         }
+
         public string GetMentorPhoneNumber(Guid studentId, Guid mentorId)
         {
             return ExecuteInTransaction(uow =>
@@ -102,7 +103,9 @@ namespace MANDAT.BusinessLogic.Services
                                             .Where(m => m.MentorId.Equals(mentorId) && m.StudentId.Equals(studentId))
                                             .Select(m => m.Status)
                                             .FirstOrDefault();
-                if (statusMatch == true)
+
+                if (statusMatch.Equals(true))
+
                 {
                     return phoneNumber;
                 }

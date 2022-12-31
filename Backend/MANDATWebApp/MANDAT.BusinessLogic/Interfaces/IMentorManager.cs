@@ -18,5 +18,8 @@ namespace MANDAT.BusinessLogic.Interfaces
         List<GetStudentsForMentorDTO> GetStudentsForMentor(Guid mentorId);
         bool Update(Guid id, MentorUpdateDTO mentorUpdateDTO);
         bool ManagerIsDeleted(Guid id, bool isDeleted);
+        bool UpdateMentor(Guid id, MentorUpdateItemsDTO mentorUpdate);
+        string GetMentorPhoneNumber(Guid studentId, Guid mentorId);
+        List<MentorsLocationsDTO> GetMentorsLocations();
     }
 }

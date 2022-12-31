@@ -20,6 +20,8 @@ namespace MANDAT.Entities.Entities
         [ForeignKey("Student")]
         public Guid StudentId { get; set; }
 
+        public string ReviewStatus { get; set; } = null!;
+
         public virtual Mentor Mentor { get; set; }
         public virtual Student Student { get; set; }
     }

@@ -24,5 +24,10 @@ namespace MANDAT.Common.DTOs
         public string Bio { get; set; } = null!;
         public string EducationalInstitution { get; set; } = null!;
         public Guid RoleId { get; set; }
+
+
+        public string City { get; set; } = null!;
+        public string County { get; set; } = null!;
+        public string AddressInfo { get; set; } = null!;
     }
 }

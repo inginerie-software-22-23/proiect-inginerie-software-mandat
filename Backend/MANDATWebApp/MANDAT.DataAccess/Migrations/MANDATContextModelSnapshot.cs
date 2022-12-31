@@ -48,7 +48,7 @@ namespace MANDAT.DataAccess.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Adresses");
+                    b.ToTable("Adresses", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Announcement", b =>
@@ -78,7 +78,7 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.HasIndex("MentorId");
 
-                    b.ToTable("Announcement");
+                    b.ToTable("Announcement", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.IdentityRole", b =>
@@ -93,7 +93,7 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityRoles");
+                    b.ToTable("IdentityRoles", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.IdentityUser", b =>
@@ -146,7 +146,7 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("IdentityUsers");
+                    b.ToTable("IdentityUsers", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.IdentityUserToken", b =>
@@ -180,7 +180,7 @@ namespace MANDAT.DataAccess.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("IdentityUserTokens");
+                    b.ToTable("IdentityUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Match", b =>
@@ -194,14 +194,14 @@ namespace MANDAT.DataAccess.Migrations
                     b.Property<DateTime>("MatchDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Status")
+                    b.Property<string>("Status")
                         .HasColumnType("bit");
 
                     b.HasKey("StudentId", "MentorId");
 
                     b.HasIndex("MentorId");
 
-                    b.ToTable("Matches");
+                    b.ToTable("Matches", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
@@ -219,7 +219,7 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mentors");
+                    b.ToTable("Mentors", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Review", b =>
@@ -247,7 +247,7 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.HasIndex("StudentId");
 
-                    b.ToTable("Reviews");
+                    b.ToTable("Reviews", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
@@ -264,7 +264,7 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Adress", b =>

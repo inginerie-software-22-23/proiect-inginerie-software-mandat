@@ -15,6 +15,12 @@
   border-radius: 4px;
 }
 
+.header{
+  display: grid;
+  place-items: center;
+  padding: 2% 0px;
+}
+
 .login-link {
   cursor: pointer;
 }

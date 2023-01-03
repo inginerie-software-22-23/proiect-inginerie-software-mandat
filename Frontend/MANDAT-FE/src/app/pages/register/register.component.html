@@ -10,20 +10,13 @@
       </div>
     </div>
 
+    
     <div class="form-fields">
-      <app-form-input class="form-input" label="First Name"></app-form-input>
-      <app-form-input class="form-input" label="Last Name"></app-form-input>
-      <app-form-input class="form-input" label="Email"></app-form-input>
-      <app-form-input
-        class="form-input"
-        label="Password"
-        type="password"
-      ></app-form-input>
-      <app-country-selector label="Country"></app-country-selector>
-      <app-form-input class="form-input" label="County"></app-form-input>
-      <app-form-input class="form-input" label="City"></app-form-input>
-      <app-form-input class="form-input" label="Address"></app-form-input>
-
+      <app-material-input [label]="'First Name'" [placeholder]="'Jeff'"></app-material-input>
+      <app-material-input [label]="'Last Name'" [placeholder]="'Smith'"></app-material-input>
+      <!-- <app-material-input [label]="'Email'" [placeholder]="'Jeff'"></app-material-input> -->
+      <app-material-email></app-material-email>
+      <app-material-input [label]="'Password'" [placeholder]="'Jeff'" [type]="'password'"></app-material-input>
       <mat-form-field appearance="fill">
         <mat-label>{{ 'Country' | titlecase }}</mat-label>
         <mat-select>
@@ -32,6 +25,27 @@
             </mat-option>
         </mat-select>
       </mat-form-field>
+
+      <app-material-input [label]="'County'"></app-material-input>
+      <app-material-input [label]="'City'" [placeholder]="'Frankfurt'"></app-material-input>
+      <app-material-input [label]="'Address'" [placeholder]="'Cool People Street, number 1'"></app-material-input>
+
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Account Type' | titlecase }}</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let accountType of accountTypes" [value]="accountType">
+            {{ accountType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" routerLink="home-page">{{ 'Sign Up' | titlecase}}</button>
+
+
+
+
       <mat-slide-toggle>Toggle me!</mat-slide-toggle>
     </div>
   </div>

@@ -8,4 +8,5 @@ import { Country, Countries } from 'src/assets/countries';
 })
 export class RegisterComponent {
   countries: Country[] = Countries;
+  accountTypes: string[] = ['Student', 'Mentor']
 }

@@ -30,11 +30,14 @@
   // flex-wrap: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  place-items: center;
   // grid-gap: 16px;
 
 }
+
 .form-fields > * {
   margin: 2% 6%;
+  width: 75%;
 }
 
 

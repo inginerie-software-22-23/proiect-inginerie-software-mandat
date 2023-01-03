@@ -1,0 +1,44 @@
+<div class="background">
+  <div class="banner">
+    <div class="header">
+      <h1 class="title">Get Started</h1>
+      <div class="already-have-account">
+        <p>
+          Already have an account?
+          <a routerLink="/login" class="login-link">Sign In</a>
+        </p>
+      </div>
+    </div>
+    
+    <div class="form-fields">
+      <app-material-input [label]="'First Name'" [placeholder]="'Jeff'"></app-material-input>
+      <app-material-input [label]="'Last Name'" [placeholder]="'Smith'"></app-material-input>
+      <app-material-email></app-material-email>
+      <app-material-input [label]="'Password'" [placeholder]="'Jeff'" [type]="'password'"></app-material-input>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Country' | titlecase }}</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{country.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <app-material-input [label]="'County'"></app-material-input>
+      <app-material-input [label]="'City'" [placeholder]="'Frankfurt'"></app-material-input>
+      <app-material-input [label]="'Address'" [placeholder]="'Cool People Street, number 1'"></app-material-input>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Account Type' | titlecase }}</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let accountType of accountTypes" [value]="accountType">
+            {{ accountType }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <button mat-raised-button color="primary" routerLink="home-page">{{ 'Sign Up' | titlecase}}</button>
+    </div>
+  </div>
+</div>

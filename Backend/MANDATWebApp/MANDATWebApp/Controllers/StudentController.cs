@@ -50,8 +50,15 @@ namespace MANDATWebApp.Controllers
         [HttpGet("GetMentorsForStudent")]
         public async Task<IActionResult> GetMentorsForStudent(Guid studentId)
         {
-            var students = _studentManager.GetMentorsForStudent(studentId);
-            return Ok(students);
+            var mentors = _studentManager.GetMentorsForStudent(studentId);
+            return Ok(mentors);
+        }
+
+        [HttpGet("GetMentorPhoneNumber")]
+        public async Task<IActionResult> GetMentorPhoneNumber(Guid studentId, Guid mentorId)
+        {
+            var phoneNumber = _studentManager.GetMentorPhoneNumber(studentId, mentorId);
+            return Ok(phoneNumber);
         }
 
         [HttpPut("UpdateStudent")]
@@ -60,7 +67,15 @@ namespace MANDATWebApp.Controllers
             var updatedStudent = _studentManager.Update(studentId, student);
             return Ok(updatedStudent);
         }
-        
+
+        //[HttpPut("UpdateStudentLocation")]
+        //public async Task<IActionResult> UpdateStudentLocation(Guid studentId, StudentDTO student)
+        //{
+        //    var updatedStudent = _studentManager.UpdateStudentLocation(studentId, student);
+        //    return Ok(updatedStudent);
+        //}
+
+
 
         [HttpPatch("SoftDelete")]
         public IActionResult SoftDelete(Guid studentId)

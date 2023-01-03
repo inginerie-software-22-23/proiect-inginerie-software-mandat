@@ -11,11 +11,12 @@ namespace MANDAT.BusinessLogic.Interfaces
     public interface IStudentManager
     {
         List<StudentDTO> GetAllStudents();
-        StudentDTO GetStudentById(Guid studentId);
+        StudentDTO? GetStudentById(Guid studentId);
         List<StudentDTO> GetStudentsByName(String name);
         List<StudentDTO> GetStudentsByLocation(Guid locationId);
         List<MentorsForStudentDTO> GetMentorsForStudent(Guid studentId);
-        StudentDTO Update(Guid studentId, StudentDTO student);
+        String GetMentorPhoneNumber(Guid studentId, Guid mentorId);
+        StudentDTO? Update(Guid studentId, StudentDTO student);
         bool SoftDelete(Guid studentId);
     }
 }

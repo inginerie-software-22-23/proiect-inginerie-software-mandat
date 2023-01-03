@@ -5,7 +5,6 @@
 }
 
 .banner {
-  // background-color: rgb(254, 248, 248);
   background-color: #E6E9FA;
   height: 98vh;
   width: 92vw;
@@ -26,32 +25,12 @@
 }
 
 .form-fields{
-  // display: flex;
-  // flex-wrap: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  // grid-gap: 16px;
-
+  > *{
+    margin: 2% 6%;
+    width: 75%;
+  }
 }
-
-.form-fields > * {
-  margin: 2% 6%;
-  width: 75%;
-}
-
-
-
-// .form-fields > * {
-//   width: 50%;
-// }
-
-// app-form-input {
-// .form-input {
-//   width: 70px;
-//   background-color: red;
-//   margin-top: 50px;
-//   margin-right: 100%;
-// }
-
 

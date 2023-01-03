@@ -9,14 +9,13 @@
         </p>
       </div>
     </div>
-
     
     <div class="form-fields">
       <app-material-input [label]="'First Name'" [placeholder]="'Jeff'"></app-material-input>
       <app-material-input [label]="'Last Name'" [placeholder]="'Smith'"></app-material-input>
-      <!-- <app-material-input [label]="'Email'" [placeholder]="'Jeff'"></app-material-input> -->
       <app-material-email></app-material-email>
       <app-material-input [label]="'Password'" [placeholder]="'Jeff'" [type]="'password'"></app-material-input>
+      
       <mat-form-field appearance="fill">
         <mat-label>{{ 'Country' | titlecase }}</mat-label>
         <mat-select>
@@ -29,9 +28,7 @@
       <app-material-input [label]="'County'"></app-material-input>
       <app-material-input [label]="'City'" [placeholder]="'Frankfurt'"></app-material-input>
       <app-material-input [label]="'Address'" [placeholder]="'Cool People Street, number 1'"></app-material-input>
-
-
-
+      
       <mat-form-field appearance="fill">
         <mat-label>{{ 'Account Type' | titlecase }}</mat-label>
         <mat-select>
@@ -42,11 +39,6 @@
       </mat-form-field>
       
       <button mat-raised-button color="primary" routerLink="home-page">{{ 'Sign Up' | titlecase}}</button>
-
-
-
-
-      <mat-slide-toggle>Toggle me!</mat-slide-toggle>
     </div>
   </div>
 </div>

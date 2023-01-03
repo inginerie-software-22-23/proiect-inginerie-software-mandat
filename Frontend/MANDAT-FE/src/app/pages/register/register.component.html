@@ -23,6 +23,16 @@
       <app-form-input class="form-input" label="County"></app-form-input>
       <app-form-input class="form-input" label="City"></app-form-input>
       <app-form-input class="form-input" label="Address"></app-form-input>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ 'Country' | titlecase }}</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let country of countries" [value]="country.name">
+              {{country.name}}
+            </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle>Toggle me!</mat-slide-toggle>
     </div>
   </div>
 </div>

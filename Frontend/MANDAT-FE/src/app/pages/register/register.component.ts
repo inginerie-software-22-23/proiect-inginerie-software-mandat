@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Country, Countries } from 'src/assets/countries';
 
 @Component({
   selector: 'app-register',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
-
+  countries: Country[] = Countries;
 }

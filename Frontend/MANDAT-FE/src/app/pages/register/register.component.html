@@ -4,12 +4,23 @@
     <div class="already-have-account">
       <p>
         Already have an account?
-        <a routerlink="/login" class="login-link">Sign In</a>
+        <a routerLink="/login" class="login-link">Sign In</a>
       </p>
     </div>
-    <app-form-input label="First Name"></app-form-input>
-    <app-form-input label="Last Name"></app-form-input>
-    <app-form-input label="Email"></app-form-input>
-    <app-form-input label="Password" type="password"></app-form-input>
+
+    <div class="form-fields">
+      <app-form-input class="form-input" label="First Name"></app-form-input>
+      <app-form-input class="form-input" label="Last Name"></app-form-input>
+      <app-form-input class="form-input" label="Email"></app-form-input>
+      <app-form-input
+        class="form-input"
+        label="Password"
+        type="password"
+      ></app-form-input>
+      <app-country-selector label="Country"></app-country-selector>
+      <app-form-input class="form-input" label="County"></app-form-input>
+      <app-form-input class="form-input" label="City"></app-form-input>
+      <app-form-input class="form-input" label="Address"></app-form-input>
+    </div>
   </div>
 </div>

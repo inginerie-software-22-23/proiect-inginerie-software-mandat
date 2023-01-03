@@ -5,7 +5,8 @@
 }
 
 .banner {
-  background-color: rgb(254, 248, 248);
+  // background-color: rgb(254, 248, 248);
+  background-color: #E6E9FA;
   height: 98vh;
   width: 92vw;
   margin: auto;
@@ -17,3 +18,31 @@
 .login-link {
   cursor: pointer;
 }
+
+.form-fields{
+  // display: flex;
+  // flex-wrap: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  // grid-gap: 16px;
+
+}
+.form-fields > * {
+  margin: 2% 6%;
+}
+
+
+
+// .form-fields > * {
+//   width: 50%;
+// }
+
+// app-form-input {
+// .form-input {
+//   width: 70px;
+//   background-color: red;
+//   margin-top: 50px;
+//   margin-right: 100%;
+// }
+
+

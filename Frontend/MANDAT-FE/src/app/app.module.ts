@@ -17,6 +17,14 @@ import { MaterialEmailComponent } from './components/material-email/material-ema
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { HomePageComponent } from './pages/home-page/home-page.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDividerModule} from '@angular/material/divider';
+
+
 
 @NgModule({
   declarations: [
@@ -28,6 +36,8 @@ import { MatIconModule } from '@angular/material/icon';
     CountrySelectorComponent,
     MaterialInputComponent,
     MaterialEmailComponent,
+    HomePageComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,6 +50,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatDividerModule,
+    MatListModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

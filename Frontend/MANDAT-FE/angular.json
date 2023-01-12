@@ -31,8 +31,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss",
-              "../node_modules/font-awesome/css/font-awesome.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
@@ -96,8 +95,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/indigo-pink.css",
-              "src/styles.scss",
-              "../node_modules/font-awesome/css/font-awesome.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }

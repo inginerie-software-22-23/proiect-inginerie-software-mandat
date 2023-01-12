@@ -1,6 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import {BreakpointObserver} from '@angular/cdk/layout';
+import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,18 +13,19 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 export class NavbarComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+  socialUser!: SocialUser;
+  isLoggedin?: boolean;
+   constructor(private observer: BreakpointObserver,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    public socialAuthService: SocialAuthService
+  ) {}
  
-   constructor(private observer: BreakpointObserver) {}
- 
+  
+   logOut():any {
+    this.socialAuthService.signOut();
+  }
    ngAfterViewInit() {
-     this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
-       if (res.matches) {
-         this.sidenav.mode = 'over';
-         this.sidenav.close();
-       } else {
-         this.sidenav.mode = 'side';
-         this.sidenav.open();
-       }
-     });
+   
    }
 }

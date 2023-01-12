@@ -1,8 +1,29 @@
-<img class="avatar mat-elevation-z8" src="../app/images/profile.jpg" />
+<img class="avatar mat-elevation-z8" src="../../../assets/images/profile.jpg" />
 
-    <h4 class="name">Hi anonymous user!</h4>
+    <div *ngIf="isLoggedin === true">
+        <h4 class="name">Hi, {{socialUser.firstName}} {{socialUser.lastName}}</h4>
+    <p class="designation">Email: {{socialUser.email}} <br> Role: ?</p>
+
+    <mat-divider></mat-divider>
+
+        <button mat-button class="menu-button">
+            <mat-icon>home</mat-icon>
+            <a  routerLink="/home">Home</a>
+        </button>
+        <button mat-button class="menu-button">
+            <mat-icon></mat-icon>
+            <a style="color: white;">Mentors</a>
+        </button>
+        <button mat-button class="menu-button" onclick="">
+            <mat-icon>person</mat-icon>
+            <a onclick="LogOut()">LogOut</a>
+        </button>
+  
+
+    </div>
+    <div *ngIf="isLoggedin === false">
+        <h4 class="name">Hi anonymous user!</h4>
     <p class="designation">Role: ?</p>
-    
     <mat-divider></mat-divider>
 
         <button mat-button class="menu-button">
@@ -22,6 +43,10 @@
             <a routerLink="/register" >Register</a>
         </button>
 
+    </div>
+    
+    
+    
         <mat-divider></mat-divider>
 
         <button mat-button class="menu-button">

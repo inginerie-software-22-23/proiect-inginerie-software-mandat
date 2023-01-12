@@ -17,6 +17,7 @@ import { MaterialEmailComponent } from './components/material-email/material-ema
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatIconModule } from '@angular/material/icon';
     CountrySelectorComponent,
     MaterialInputComponent,
     MaterialEmailComponent,
+    MatchingFormComponent,
   ],
   imports: [
     BrowserModule,

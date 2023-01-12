@@ -9,15 +9,67 @@
         </p>
       </div>
     </div>
-    <div class="form-fields" >
-    
-      
-          <app-material-input [label]="'First Name'" [placeholder]="'Jeff'" ngModel="model.firstName"></app-material-input>
 
-         <app-material-input [label]="'Last Name'" [placeholder]="'Smith'" ngModel="model.lastName"></app-material-input>
-          <app-material-email  ngModel="model.email"></app-material-email>
+    <div class="form-fields">
+      <mat-form-field class="example-form">
+        <mat-label>{{ "First Name" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Jeff'"
+          value=""
+          type="text"
+          [(ngModel)]="model.firstName"
+        />
+      </mat-form-field>
 
-          <app-material-input [label]="'Password'" [placeholder]="'Jeff'" [type]="'password'"  ngModel="model.password"></app-material-input>
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Last Name" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Smith'"
+          value=""
+          type="text"
+          [(ngModel)]="model.lastName"
+        />
+      </mat-form-field>
+
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            [formControl]="emailFormControl"
+            [(ngModel)]="model.email"
+            [errorStateMatcher]="matcher"
+            placeholder="Ex. pat@example.com"
+          />
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error
+            *ngIf="
+              emailFormControl.hasError('email') &&
+              !emailFormControl.hasError('required')
+            "
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
+
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Password" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Jeff'"
+          value=""
+          type="password"
+          [(ngModel)]="model.password"
+        />
+      </mat-form-field>
+
       <!-- <mat-form-field appearance="fill">
         <mat-label>{{ 'Country' | titlecase }}</mat-label>
         <mat-select>
@@ -26,29 +78,99 @@
             </mat-option>
         </mat-select>
       </mat-form-field> -->
-        <app-material-input [label]="'County'" [placeholder]="'Ilfov'"  ngModel="model.county"></app-material-input>
-        <app-material-input [label]="'City'" [placeholder]="'Bucuresti'"  ngModel="model.city"></app-material-input>
-        <app-material-input [label]="'Address'" [placeholder]="'Cool People Street, number 1'"  ngModel="model.address"></app-material-input>
-        <app-material-input [label]="'Phone Number'" [placeholder]="'0769905888'"  ngModel="model.phoneNumber"></app-material-input>
-        <mat-label>Bio</mat-label>
-          <textarea   ngModel="model.bio"
-                 placeholder="Ex. Description for your profile....">
-          </textarea>
-        <app-material-input [label]="'Educational Institution'" [placeholder]="'ICHB'"  ngModel="model.educationalInstitution"></app-material-input>
 
-        <mat-form-field appearance="fill">
-        <mat-label>{{ 'Account Type' | titlecase }}</mat-label>
-        <mat-select  ngModel="model.accountType">
-          <mat-option *ngFor="let accountType of accountTypes" [value]="accountType">
+      <mat-form-field class="example-form">
+        <mat-label>{{ "County" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Ilfov'"
+          value=""
+          type="text"
+          [(ngModel)]="model.county"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-form">
+        <mat-label>{{ "City" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Bucuresti'"
+          value=""
+          type="text"
+          [(ngModel)]="model.city"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Address" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Cool People Street, number 1'"
+          value=""
+          type="text"
+          [(ngModel)]="model.address"
+        />
+      </mat-form-field>
+
+      <app-material-input
+        [label]="'Phone Number'"
+        [placeholder]="'0769905888'"
+        [(ngModel)]="model.phoneNumber"
+      ></app-material-input>
+
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Phone Number" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + '0769905888'"
+          value=""
+          type="text"
+          [(ngModel)]="model.phoneNumber"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Bio" | titlecase }}</mat-label>
+        <textarea
+          matInput
+          [placeholder]="'Ex. Description for your profile....'"
+          value=""
+          type="text"
+          [(ngModel)]="model.bio"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Educational Institution" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'ICHB'"
+          value=""
+          type="text"
+          [(ngModel)]="model.educationalInstitution"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>{{ "Account Type" | titlecase }}</mat-label>
+        <mat-select [(ngModel)]="model.accountType">
+          <mat-option
+            *ngFor="let accountType of accountTypes"
+            [value]="accountType"
+          >
             {{ accountType }}
           </mat-option>
         </mat-select>
       </mat-form-field>
-      
-    <button mat-raised-button (click)="register()" color="primary" routerLink="home-page">{{ 'Sign Up' | titlecase}}</button>
 
+      <button
+        mat-raised-button
+        (click)="register()"
+        color="primary"
+        routerLink="home-page"
+      >
+        {{ "Sign Up" | titlecase }}
+      </button>
     </div>
-  
   </div>
-
 </div>

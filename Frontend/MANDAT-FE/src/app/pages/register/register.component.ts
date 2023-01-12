@@ -1,9 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from '@angular/router';
 import { RegisterModel } from 'src/app/components/interface/registermodel';
 import { UserAccountService } from 'src/app/services/user-account.service';
 import { Country, Countries } from 'src/assets/countries';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+  }
+}
 
 @Component({
   selector: 'app-register',
@@ -12,7 +20,7 @@ import { Country, Countries } from 'src/assets/countries';
 })
 export class RegisterComponent {
   public model: RegisterModel = {
-    firstName: '',
+      firstName: '',
       lastName: '',
       email: '',
       password: '',
@@ -24,7 +32,12 @@ export class RegisterComponent {
       phoneNumber: '',
       educationalInstitution: '',
   };
-    constructor(
+  
+  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
+
+  matcher = new MyErrorStateMatcher();
+
+  constructor(
       private router: Router,
       private userAccount: UserAccountService,
     ) { }
@@ -43,6 +56,7 @@ export class RegisterComponent {
     // );
     //console.log(this.model.value.email);
     console.log(this.model.firstName);
+    console.log(this.model);
     //this.router.navigate(['/login'])
   }
 

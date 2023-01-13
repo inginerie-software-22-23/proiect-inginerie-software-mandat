@@ -3,11 +3,11 @@ export interface RegisterModel{
     lastName: string;
     email: string;
     password: string;
-    county: string;
-    city: string;
-    address: string;
-    accountType: string;
+    phoneNumber: string;       
+    role: string;
     bio: string;
-    phoneNumber: string;
     educationalInstitution: string; 
+    city: string;
+    county: string;
+    addressInfo: string;
 }

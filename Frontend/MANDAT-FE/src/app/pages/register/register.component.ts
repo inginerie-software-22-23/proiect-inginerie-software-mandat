@@ -26,8 +26,8 @@ export class RegisterComponent {
       password: '',
       county: '',
       city: '',
-      address: '',
-      accountType: '',
+      addressInfo: '',
+      role: '',
       bio: '',
       phoneNumber: '',
       educationalInstitution: '',
@@ -45,17 +45,17 @@ export class RegisterComponent {
   accountTypes: string[] = ['Student', 'Mentor']
 
   public register(): void{
-    // this.userAccount.Register(this.registerForm.value).subscribe(
-    //   (result) => {
-    //     console.log(result);
-    //   },
-    //   (error) => {
-    //     console.log(error);
-    //   }
+    this.userAccount.Register(this.model).subscribe(
+      (result) => {
+        console.log(result);
+        this.router.navigate(['/login'])
+      },
+      (error) => {
+        console.log(error);
+      }
      
-    // );
-    //console.log(this.model.value.email);
-    console.log(this.model.firstName);
+    );
+    // //console.log(this.model.value.email);
     console.log(this.model);
     //this.router.navigate(['/login'])
   }

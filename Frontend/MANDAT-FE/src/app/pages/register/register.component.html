@@ -108,15 +108,9 @@
           [placeholder]="'Ex. ' + 'Cool People Street, number 1'"
           value=""
           type="text"
-          [(ngModel)]="model.address"
+          [(ngModel)]="model.addressInfo"
         />
       </mat-form-field>
-
-      <app-material-input
-        [label]="'Phone Number'"
-        [placeholder]="'0769905888'"
-        [(ngModel)]="model.phoneNumber"
-      ></app-material-input>
 
       <mat-form-field class="example-form">
         <mat-label>{{ "Phone Number" | titlecase }}</mat-label>
@@ -153,7 +147,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>{{ "Account Type" | titlecase }}</mat-label>
-        <mat-select [(ngModel)]="model.accountType">
+        <mat-select [(ngModel)]="model.role">
           <mat-option
             *ngFor="let accountType of accountTypes"
             [value]="accountType"

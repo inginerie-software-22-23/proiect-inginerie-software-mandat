@@ -17,6 +17,7 @@ import { MaterialEmailComponent } from './components/material-email/material-ema
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -34,6 +35,9 @@ import { FacebookLoginProvider  } from '@abacritt/angularx-social-login';
 import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
 
 
+import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +50,8 @@ import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
     MaterialEmailComponent,
     HomePageComponent,
     NavbarComponent,
+    MatchingFormComponent,
+
   ],
   imports: [
     BrowserModule,

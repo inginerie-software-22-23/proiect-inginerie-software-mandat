@@ -18,7 +18,7 @@ namespace MANDATWebApp.Controllers
             _userAccountService = userAccountService;
         }
         [HttpPost("register")]
-        public  IActionResult Register([FromBody] RegisterCommand registerCommand)
+        public  IActionResult Register(RegisterCommand registerCommand)
         {
             try
             {

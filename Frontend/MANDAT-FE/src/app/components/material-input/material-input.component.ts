@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { RegisterModel } from '../interface/registermodel';
 
 @Component({
   selector: 'app-material-input',
@@ -9,4 +10,17 @@ export class MaterialInputComponent {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() type: string = 'text';
+  @Input() model: RegisterModel = {
+    firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      county: '',
+      city: '',
+      addressInfo: '',
+      role: '',
+      bio: '',
+      phoneNumber: '',
+      educationalInstitution: '',
+  };
 }

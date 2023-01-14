@@ -20,11 +20,41 @@
   
       <div class="login-form-inputs-container">
         <div class="form-center">
-          <app-form-input
-            label="Email"
-            placeholder="email@example.com"
-          ></app-form-input>
-          <app-form-input label="Password" type="password"></app-form-input>
+          <form [formGroup]="model">
+          <mat-form-field class="example-form">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              matInput
+              
+              [errorStateMatcher]="matcher"
+              placeholder="Ex. pat@example.com"
+              formControlName="email"
+            />
+            <mat-hint>Errors appear instantly!</mat-hint>
+            <mat-error
+              *ngIf="
+                email.hasError('email') &&
+                !email.hasError('required')
+              "
+            >
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Password" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Jeff'"
+          value=""
+          type="password"
+          formControlName="password"
+        />
+      </mat-form-field>
           <div class="form-check">
             <input
               class="form-check-input"
@@ -36,10 +66,11 @@
               Remember Me
             </label>
           </div>
+        </form>
         </div>
       </div>
   
-      <button type="button" class="btn btn-primary">Login</button>
+      <button type="button" (click)="Login()" class="btn btn-primary">Login</button>
     </div>
   </div>
   

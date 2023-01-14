@@ -76,13 +76,13 @@ namespace MANDAT.BusinessLogic.Services
 
         }
 
-        public Task<T> GetUserSelectedProperties<T>(string uniqueIdentifier, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default)
+        public Task<T> GetUserSelectedProperties<T>(string email, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default)
         {
             return ExecuteInTransaction(uow =>
             {
                 var selectedUserPropertiesObject = uow.IdentityUsers.Get()
               .AsNoTracking()
-              .Where(u => u.Username.Equals(uniqueIdentifier) || u.Email.Equals(uniqueIdentifier))
+              .Where(u => u.Email.Equals(email) )
               .Select(selector)
               .SingleOrDefaultAsync(cancellationToken);
 
@@ -108,7 +108,7 @@ namespace MANDAT.BusinessLogic.Services
         {
 
             return ExecuteInTransaction(uow => {
-                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Username.Equals(loginCommand.UniqueIdentifier) || u.Email.Equals(loginCommand.UniqueIdentifier)).SingleOrDefault();
+                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) ).SingleOrDefault();
                 user = uow.IdentityUsers.Get().Include(u => u.Role)
                                .SingleOrDefault(u => u.Email == loginCommand.Email);
                 var  roles = user.Role.Name;

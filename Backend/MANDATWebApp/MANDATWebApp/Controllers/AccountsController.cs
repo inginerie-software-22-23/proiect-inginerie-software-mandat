@@ -35,7 +35,7 @@ namespace MANDATWebApp.Controllers
 
         [HttpPost]
         [Route("login")]
-        public async Task<IActionResult> Login([FromBody] LoginCommand loginCommand)
+        public async Task<IActionResult> Login(LoginCommand loginCommand)
         {
 
             try

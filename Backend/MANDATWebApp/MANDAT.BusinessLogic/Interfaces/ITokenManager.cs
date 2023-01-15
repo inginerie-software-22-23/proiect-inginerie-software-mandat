@@ -24,6 +24,6 @@ namespace MANDAT.BusinessLogic.Interfaces
         Task<IdentityUser> GetUserById(Guid id);
         Task<TokenWrapper> Handle(RefreshTokenCommand request, CancellationToken cancellationToken);
         //Task MarkRecoveryTokenAsUsed(IdentityUserTokenConfirmation obj);
-         Task<bool> DeleteToken(string token);
+         Task<bool> DeleteToken(string id);
     }
 }

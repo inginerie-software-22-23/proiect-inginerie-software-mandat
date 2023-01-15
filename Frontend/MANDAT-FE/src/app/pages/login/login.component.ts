@@ -54,6 +54,7 @@ export class LoginComponent {
         )
         this.cookieService.set('LoggedIn', 'true');
           this.cookieService.set('Token', result.token);
+          window.location.reload()
           this.router.navigate(['/home'])
       },      
 

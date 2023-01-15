@@ -36,11 +36,14 @@ export class NavbarComponent {
 
   }
    logOut():any {
-    let token= this.cookieService.get('Token');
-    this.accountService.Logout(token).subscribe(
+    let email= this.cookieService.get('Email');
+    this.accountService.Logout(email).subscribe(
       (result) => {
         console.log(result);
-       this.cookieService.deleteAll;
+        sessionStorage.clear();
+        localStorage.clear();
+       this.cookieService.deleteAll();
+       window.location.reload()
        this.router.navigate(['/home'])
 
       },

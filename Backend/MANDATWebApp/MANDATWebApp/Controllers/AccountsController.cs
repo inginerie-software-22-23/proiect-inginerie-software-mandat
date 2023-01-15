@@ -97,10 +97,10 @@ namespace MANDATWebApp.Controllers
         }
 
         [HttpDelete]
-        [Route("DeleteTokenAsync/{token}")]
-        public async Task<IActionResult> DeleteTokenAsync(string token)
+        [Route("DeleteTokenAsync/{email}")]
+        public async Task<IActionResult> DeleteTokenAsync(string email)
         {
-            if (!await _tokenManager.DeleteToken(token))
+            if (!await _tokenManager.DeleteToken(email))
             {
                 return NotFound();
             }

@@ -255,14 +255,16 @@ namespace MANDAT.BusinessLogic.Services
 
         }
 
-        public async Task<bool> DeleteToken(string token)
+        public async Task<bool> DeleteToken(string email)
         {
+
 
             return ExecuteInTransaction(uow =>
             {
+                var id = uow.IdentityUsers.Get().Where(cd => cd.Email.Equals(email)).Select(cd => cd.Id).Single();
 
                 var comment = uow.IdentityUserTokens.Get()
-                                                .Where(cd => cd.TokenValue.Equals(token))
+                                                .Where(cd => cd.UserId.Equals(id))
                                                 .Single();
                 if (comment == null)
                 {

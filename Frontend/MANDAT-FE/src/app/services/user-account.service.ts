@@ -31,8 +31,8 @@ export class UserAccountService {
     return this.http.get(`${this.url3 + email}`);
   }
 
-  public Logout(token: any): Observable<any> {
+  public Logout(email: any): Observable<any> {
     const headers = { 'content-type': 'application/json'};
-    return this.http.delete(`${this.url3 + token}`);
+    return this.http.delete(`${this.url4 + email}`);
   }
 }

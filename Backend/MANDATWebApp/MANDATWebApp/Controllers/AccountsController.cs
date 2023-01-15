@@ -1,5 +1,6 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.BusinessLogic.Services;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.Features.Register;
 using MANDATWebApp.Code.Base;
@@ -60,6 +61,13 @@ namespace MANDATWebApp.Controllers
                 return BadRequest(ex.Message);
             }
             
+        }
+
+        [HttpGet("idUser/{email}")]
+        public async Task<IActionResult> GetGuidForUser(string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            return Ok(id);
         }
     }
 }

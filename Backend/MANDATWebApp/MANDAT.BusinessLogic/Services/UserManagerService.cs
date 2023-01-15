@@ -76,6 +76,17 @@ namespace MANDAT.BusinessLogic.Services
 
         }
 
+        public Guid GetUserByTheEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                return user.Id;
+            });
+
+
+        }
+
         public Task<T> GetUserSelectedProperties<T>(string uniqueIdentifier, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default)
         {
             return ExecuteInTransaction(uow =>

@@ -28,6 +28,6 @@ namespace MANDAT.BusinessLogic.Interfaces
         IdentityUser updateUser(IdentityUser user);
         // Task<bool> saveAsync();
 
-
+        Guid GetUserByTheEmail(string email);
     }
 }

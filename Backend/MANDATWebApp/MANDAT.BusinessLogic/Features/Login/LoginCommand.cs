@@ -14,10 +14,10 @@ namespace MANDAT.BusinessLogic.Features.Login
 {
     public class LoginCommand : IRequest<TokenWrapper>
     {
-        public string UniqueIdentifier { get; set; }
+       // public string UniqueIdentifier { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public Guid Id { get; set; }
+        //public Guid Id { get; set; }
     }
 
   internal class LoginCommandHandler : IRequestHandler<LoginCommand, TokenWrapper>
@@ -42,13 +42,13 @@ namespace MANDAT.BusinessLogic.Features.Login
 
 
         var userProps = await _userManager.GetUserSelectedProperties(
-            request.UniqueIdentifier,
+            request.Email,
             user => new { user.Id,  user.PasswordHash, user.Email });
 
 
             if (userProps == null)
             {
-                string message = $"User with username or password = {request.UniqueIdentifier}  was not found";
+                string message = $"User with username or password = {request.Email}  was not found";
                 throw new NotFoundException(nameof(IdentityUser), message);
             }
 

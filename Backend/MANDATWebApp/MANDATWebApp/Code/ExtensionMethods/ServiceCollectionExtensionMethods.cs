@@ -97,11 +97,9 @@ namespace MANDATWebApp.Code.ExtensionMethods
                 //    .SingleOrDefault(ui => ui.Email == userEmail)?.UserImage; pentru imagine de profil
                 return new CurrentUserDto
                 {
-                    isAuthenticated = httpContext.User.Identity.IsAuthenticated,
                     Email = userEmail,
-                    FirstName = userName,
-                    Id = Guid.TryParse(userIdClaim, out var userIdClaimAsGuid) ?
-                            userIdClaimAsGuid : null,
+                    Name = userName,
+
                    // UserImage = userImage
 
 

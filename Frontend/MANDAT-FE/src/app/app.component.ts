@@ -5,6 +5,7 @@ import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { UserAccountService } from './services/user-account.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,7 +20,9 @@ export class AppComponent {
     private router: Router,
     private formBuilder: FormBuilder,
     public socialAuthService: SocialAuthService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private accountService: UserAccountService
+
   ) {}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -39,7 +42,20 @@ export class AppComponent {
     //   this.cookieService.set('Name', this.socialUser.firstName + ' ' + this.socialUser.lastName)
     // }
   }
-   
+  logOut():any {
+    let token= this.cookieService.get('Token');
+    this.accountService.Logout(token).subscribe(
+      (result) => {
+        console.log(result);
+       this.cookieService.deleteAll;
+       this.router.navigate(['/home'])
+
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+  }
  
   
    

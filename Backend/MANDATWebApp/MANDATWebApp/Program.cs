@@ -55,9 +55,13 @@ builder.Services.AddMANDATAppBusinessLogic(configuration);
 
 builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
 {
-    builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    builder.WithOrigins("*")
+    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
+    .AllowAnyHeader();
+
 }));
 
+ 
 //services here
 
 
@@ -74,9 +78,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-app.UseCors("MANDATApp");
+
 
 app.UseRouting();
+app.UseCors("MANDATApp");
 app.UseAuthentication();
 app.UseAuthorization();
 

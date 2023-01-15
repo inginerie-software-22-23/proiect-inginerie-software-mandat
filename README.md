@@ -12,7 +12,7 @@
 
 5️⃣ Postolache Miruna
 
-6️⃣ Predecscu Denisa
+6️⃣ Predescu Denisa
 
 👨‍💻 **MANDAT.io** is an all-in-one mentor-student matchmaking platform.
 The mentors (professors) are college students who teach school students.

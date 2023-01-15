@@ -58,11 +58,21 @@ builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
     .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
     .AllowAnyHeader();
 
-
+builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
+{
+    builder.WithOrigins("*")
+    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
+    .AllowAnyHeader();
 
 }));
 
+<<<<<<< HEAD
+}));
 
+
+=======
+ 
+>>>>>>> 4cc66ecb975bc9d0871345ffbbf1150f82e11b3d
 //services here
 
 
@@ -79,6 +89,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 
 app.UseRouting();
 app.UseCors("MANDATApp");

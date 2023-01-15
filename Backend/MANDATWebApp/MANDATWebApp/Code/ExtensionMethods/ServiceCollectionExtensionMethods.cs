@@ -34,7 +34,9 @@ namespace MANDATWebApp.Code.ExtensionMethods
             services.AddScoped<IReview, ReviewService>();
             services.AddScoped<IMentorManager, MentorManager>();
             services.AddScoped<IAnnouncementManager, AnnouncementManager>();
+            services.AddScoped<IMatchingService, MatchingService>();
             services.AddScoped<IStudentManager, StudentService>();
+
             // services.AddScoped<aici adaugam serviciu>();...
 
             return services;
@@ -95,11 +97,9 @@ namespace MANDATWebApp.Code.ExtensionMethods
                 //    .SingleOrDefault(ui => ui.Email == userEmail)?.UserImage; pentru imagine de profil
                 return new CurrentUserDto
                 {
-                    isAuthenticated = httpContext.User.Identity.IsAuthenticated,
                     Email = userEmail,
-                    FirstName = userName,
-                    Id = Guid.TryParse(userIdClaim, out var userIdClaimAsGuid) ?
-                            userIdClaimAsGuid : null,
+                    Name = userName,
+
                    // UserImage = userImage
 
 

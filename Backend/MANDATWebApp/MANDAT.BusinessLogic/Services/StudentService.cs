@@ -5,6 +5,7 @@ using MANDAT.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace MANDAT.BusinessLogic.Services
                  var students = db.Students
                                   .Get()
                                   .Include(u => u.User)
+                                  .ThenInclude(l => l.Adress)
                                   .Where(student => student.User.IsDeleted.Equals(false))
                                   .Select(student => new StudentDTO
                                   {
@@ -35,19 +37,23 @@ namespace MANDAT.BusinessLogic.Services
                                      Bio = student.User.Bio,
                                      EducationalInstitution = student.User.EducationalInstitution,
                                      StudentGrade = student.StudentGrade,
-                                     StudentSchoolQualification = student.StudentSchoolQualification
+                                     StudentSchoolQualification = student.StudentSchoolQualification,
+                                     City = student.User.Adress.City,
+                                     County = student.User.Adress.County,
+                                     AddressInfo = student.User.Adress.AddressInfo
                                   }).ToList();
                 return students;
             });
         }
 
-        public StudentDTO GetStudentById(Guid studentId)   // one student
+        public StudentDTO? GetStudentById(Guid studentId)   // one student
         {
             return ExecuteInTransaction(db =>
             {
                 var student = db.Students
                                  .Get()
                                  .Include(u => u.User)
+                                 .ThenInclude(l => l.Adress)
                                  .Where(student => student.User.IsDeleted.Equals(false) && student.Id.Equals(studentId))
                                  .Select(student => new StudentDTO
                                  {
@@ -60,7 +66,10 @@ namespace MANDAT.BusinessLogic.Services
                                      Bio = student.User.Bio,
                                      EducationalInstitution = student.User.EducationalInstitution,
                                      StudentGrade = student.StudentGrade,
-                                     StudentSchoolQualification = student.StudentSchoolQualification
+                                     StudentSchoolQualification = student.StudentSchoolQualification,
+                                     City = student.User.Adress.City,
+                                     County = student.User.Adress.County,
+                                     AddressInfo = student.User.Adress.AddressInfo
                                  }).FirstOrDefault();
                 return student;
             });
@@ -74,6 +83,7 @@ namespace MANDAT.BusinessLogic.Services
                 var students = db.Students
                                  .Get()
                                  .Include(u => u.User)
+                                 .ThenInclude(l => l.Adress)
                                  .Where(student => student.User.IsDeleted.Equals(false) && student.User.Username.Equals(name))
                                  .Select(student => new StudentDTO
                                  {
@@ -86,9 +96,11 @@ namespace MANDAT.BusinessLogic.Services
                                      Bio = student.User.Bio,
                                      EducationalInstitution = student.User.EducationalInstitution,
                                      StudentGrade = student.StudentGrade,
-                                     StudentSchoolQualification = student.StudentSchoolQualification
-                                 })
-                                  .ToList();
+                                     StudentSchoolQualification = student.StudentSchoolQualification,
+                                     City = student.User.Adress.City,
+                                     County = student.User.Adress.County,
+                                     AddressInfo = student.User.Adress.AddressInfo
+                                 }).ToList();
                 return students;
             });
 
@@ -115,9 +127,11 @@ namespace MANDAT.BusinessLogic.Services
                                      Bio = student.User.Bio,
                                      EducationalInstitution = student.User.EducationalInstitution,
                                      StudentGrade = student.StudentGrade,
-                                     StudentSchoolQualification = student.StudentSchoolQualification
-                                 })
-                                  .ToList();
+                                     StudentSchoolQualification = student.StudentSchoolQualification,
+                                     City = student.User.Adress.City,
+                                     County = student.User.Adress.County,
+                                     AddressInfo = student.User.Adress.AddressInfo
+                                 }).ToList();
                 return students;
             });
         }
@@ -129,8 +143,7 @@ namespace MANDAT.BusinessLogic.Services
                 var mentors = db.Matches
                                 .Get()
                                 .Include(m => m.Mentor)
-                                .ThenInclude(u => u.User)
-                                .Where(match => match.StudentId.Equals(studentId) && match.Status.Equals(true))
+                                .Where(match => match.StudentId.Equals(studentId) && match.Status.Equals("1"))
                                 .Select(match => new MentorsForStudentDTO
                                 {
                                     Username = match.Mentor.User.Username,
@@ -142,22 +155,43 @@ namespace MANDAT.BusinessLogic.Services
                                     IsDeleted = match.Mentor.User.IsDeleted,
                                     Bio = match.Mentor.User.Bio,
                                     EducationalInstitution = match.Mentor.User.EducationalInstitution,
+                                    City = match.Mentor.User.Adress.City,
+                                    County = match.Mentor.User.Adress.County,
+                                    AddressInfo = match.Mentor.User.Adress.County
                                 })
                                 .ToList();
                 return mentors;
             });
-
         }
 
-        public StudentDTO Update(Guid studentId, StudentDTO student)
+        public String GetMentorPhoneNumber(Guid studentId, Guid mentorId)
+        {
+            return ExecuteInTransaction(db =>
+            {
+            var phoneNumber = db.Matches
+                             .Get()
+                             .Include(m => m.Mentor)
+                             .Where(match => match.StudentId.Equals(studentId) && match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
+                             .Select(match => match.Mentor.User.PhoneNumber).FirstOrDefault();
+
+                if (phoneNumber == null)
+                    return "";
+
+                return phoneNumber;
+            });
+        }
+
+        public StudentDTO? Update(Guid studentId, StudentDTO student)
         {
             return ExecuteInTransaction(db =>
             {
                 var updateStudent = db.Students
                                        .Get()
                                        .Include(u => u.User)
+                                       .ThenInclude(l => l.Adress)
                                        .Where(st => st.Id.Equals(studentId))
                                        .FirstOrDefault();
+
                 updateStudent.User.Username = student.Username;
                 updateStudent.User.Email = student.Email;
                 updateStudent.User.PhoneNumber = student.PhoneNumber;
@@ -166,16 +200,20 @@ namespace MANDAT.BusinessLogic.Services
                 updateStudent.User.IsActive = student.IsActive;
                 updateStudent.User.Bio = student.Bio;
                 updateStudent.User.EducationalInstitution = student.EducationalInstitution;
-                updateStudent.StudentGrade = student.StudentGrade; 
+                updateStudent.StudentGrade = student.StudentGrade;
                 updateStudent.StudentSchoolQualification = student.StudentSchoolQualification;
+                updateStudent.User.Adress.City = student.City;
+                updateStudent.User.Adress.County = student.County;
+                updateStudent.User.Adress.AddressInfo = student.AddressInfo;
 
 
                 db.Students.Update((Student)updateStudent);
                 db.SaveChanges();
 
                 var updatedStudent = GetStudentById(studentId);
-                
+
                 return updatedStudent;
+               
             });
         }
 

@@ -1,6 +1,9 @@
 ﻿using MANDAT.BusinessLogic.Base;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.Configurations;
+using MANDAT.Common.Exceptions;
+using MANDAT.Common.External.Auth;
+using MANDAT.Common.Features.RefreshLoginToken;
 using MANDAT.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +16,6 @@ using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace MANDAT.BusinessLogic.Services
 {
     public class TokenManager : BaseService, ITokenManager
@@ -51,7 +53,7 @@ namespace MANDAT.BusinessLogic.Services
                 ExpirationDate = token.ValidTo
             });
 
-            //await _context.SaveChangesAsync();
+             UnitOfWork.SaveChanges();
             var tuple = new Tuple<string, string>(tokenStringValue, refreshToken);
             return tuple;
 
@@ -158,6 +160,119 @@ namespace MANDAT.BusinessLogic.Services
             SecurityToken validatedToken;
             IPrincipal principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out validatedToken);
             return true;
+        }
+
+        public async Task<IdentityUserToken> GetUserTokenByRefreshToken(string refreshtoken)
+        {
+            ///where refreshtokentime is still valid/ where numberofrefreshes < maxallowedtokenrefresh?
+            var userTokenObj = await UnitOfWork.IdentityUserTokens.Get().Where(ut => ut.RefreshTokenValue.Equals(refreshtoken)).SingleOrDefaultAsync();
+            return userTokenObj;
+        }
+        public async Task<IdentityUser> GetUserById(Guid id)
+        {
+            var user = await UnitOfWork.IdentityUsers.Get().Where(u => u.Id.Equals(id)).SingleOrDefaultAsync();
+            return user;
+        }
+
+        public async Task<TokenWrapper> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        {
+            var IdentityUserTokenObj = await GetUserTokenByRefreshToken(request.RefreshLoginToken);
+            var user = await GetUserById(IdentityUserTokenObj.UserId);
+            var result = GetPrincipalFromExpiredToken(request.LoginToken);
+
+
+            var allowedRefreshes = Int32.Parse(result.Item1);
+            var intervalOfUse = Int32.Parse(result.Item2);
+            //1
+            var expirationDate = Int32.Parse(result.Item3);
+            DateTime tokenExpiration = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc); //.local
+            tokenExpiration = tokenExpiration.AddSeconds(expirationDate).ToLocalTime();
+            var jti = result.Item4;
+            var roles = result.Item5.Split(',');
+
+
+            //timespan
+
+
+            if (IdentityUserTokenObj == null)
+            {
+                throw new WasNotAbleToRefreshTokenException("");
+            }
+
+
+            TokenWrapper tokenwrapper = new TokenWrapper();
+            bool isTokenVerified = IsTokenValid(request.LoginToken);
+            if (isTokenVerified == true)
+            {
+                if (tokenExpiration < DateTime.UtcNow.AddHours(3))
+                {
+                    if (tokenExpiration.AddMinutes(intervalOfUse) >= DateTime.UtcNow)//addhours +2
+                    {
+                        if (allowedRefreshes != 0)
+                        {
+                            allowedRefreshes = allowedRefreshes - 1;
+                            var claims = new ClaimsIdentity(new Claim[] {
+                            new Claim(ClaimTypes.Email,user.Email),
+                            new Claim(ClaimTypes.Name,user.Username),
+                            new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                            new Claim(JwtRegisteredClaimNames.Jti,jti),
+                            new Claim("NumberOfAllowedRefreshes",allowedRefreshes.ToString()),
+                            new Claim("IntervalOfUseOfRefreshTokenAfterTokenHasExpired",intervalOfUse.ToString())
+
+
+                        });
+                            foreach (var role in roles)
+                            {
+                                claims.AddClaim(new Claim(ClaimTypes.Role, role));
+                            }
+                            var tuple =  ReGenerateTokens(claims, IdentityUserTokenObj);
+
+                            tokenwrapper.Token = tuple.Item1;
+                            tokenwrapper.RefreshToken = tuple.Item2;
+                            return tokenwrapper;
+
+                        }
+                        else
+                        {
+                            throw new MaximumRefreshesExceededException("You can't refresh the current token anymore. Please login again");
+                        }
+
+
+
+                        //se poate folosi refreshtoken ul si se face update in tabela IdentityUserToken cu un nou token si reftoken
+                        //urmand sa se decrementeze NumberOfRefreshes pana cand =0
+
+                    }
+                    else
+                    {
+                        throw new IntervalOfRefreshTokenExpiredException("Please login again!");
+                    }
+                }
+            }
+
+            return tokenwrapper;
+
+
+        }
+
+        public async Task<bool> DeleteToken(string token)
+        {
+
+            return ExecuteInTransaction(uow =>
+            {
+
+                var comment = uow.IdentityUserTokens.Get()
+                                                .Where(cd => cd.TokenValue.Equals(token))
+                                                .Single();
+                if (comment == null)
+                {
+                    return false;
+                }
+                uow.IdentityUserTokens.Delete(comment);
+                uow.SaveChanges();
+                return true;
+
+            });
         }
     }
 }

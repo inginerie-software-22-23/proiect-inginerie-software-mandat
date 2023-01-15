@@ -43,8 +43,17 @@ export class LoginComponent {
       (result) => {
         console.log(result);
         this.isLoggedin = true;
+        this.userAccount.GetUserInfo(this.model.get('email')?.value).subscribe(
+          (details) =>{
+            this.cookieService.set('Email', details.email);
+            this.cookieService.set('Nume', details.name);
+            this.cookieService.set('Rol', details.roles);
+
+
+          }
+        )
         this.cookieService.set('LoggedIn', 'true');
-          this.cookieService.set('Email', this.model.get('email')?.value);
+          this.cookieService.set('Token', result.token);
           this.router.navigate(['/home'])
       },      
 

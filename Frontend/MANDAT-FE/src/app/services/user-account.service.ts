@@ -7,8 +7,10 @@ import { RegisterModel } from '../components/interface/registermodel';
   providedIn: 'root'
 })
 export class UserAccountService {
-  public url = 'https://localhost:7278/api/Accounts/register';
-  public url2 = 'https://localhost:7278/api/Accounts/login';
+  private url = 'https://localhost:7278/api/Accounts/register';
+  private url2 = 'https://localhost:7278/api/Accounts/login';
+  private url3 = 'https://localhost:7278/api/Accounts/GetUserInfoByEmail/';
+  private url4 = 'https://localhost:7278/api/Accounts/DeleteTokenAsync/';
   constructor(
     private http: HttpClient,
 
@@ -22,5 +24,15 @@ export class UserAccountService {
   public Login(info :any): Observable<any>{
     const headers = { 'content-type': 'application/json'};
     return this.http.post(`${this.url2}`, info, {'headers':headers})
+  }
+
+  public GetUserInfo(email :string) : Observable<any>{
+    
+    return this.http.get(`${this.url3 + email}`);
+  }
+
+  public Logout(token: any): Observable<any> {
+    const headers = { 'content-type': 'application/json'};
+    return this.http.delete(`${this.url3 + token}`);
   }
 }

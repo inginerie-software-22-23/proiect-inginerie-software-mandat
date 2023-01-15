@@ -1,4 +1,6 @@
-﻿using MANDAT.Entities.Entities;
+﻿using MANDAT.Common.External.Auth;
+using MANDAT.Common.Features.RefreshLoginToken;
+using MANDAT.Entities.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,10 @@ namespace MANDAT.BusinessLogic.Interfaces
         Tuple<string, string, string, string, string> GetPrincipalFromExpiredToken(string token);
         Tuple<string, string> ReGenerateTokens(ClaimsIdentity claims, IdentityUserToken usertoken);
         bool IsTokenValid(string token);
+        Task<IdentityUserToken> GetUserTokenByRefreshToken(string refreshtoken);
+        Task<IdentityUser> GetUserById(Guid id);
+        Task<TokenWrapper> Handle(RefreshTokenCommand request, CancellationToken cancellationToken);
         //Task MarkRecoveryTokenAsUsed(IdentityUserTokenConfirmation obj);
+         Task<bool> DeleteToken(string token);
     }
 }

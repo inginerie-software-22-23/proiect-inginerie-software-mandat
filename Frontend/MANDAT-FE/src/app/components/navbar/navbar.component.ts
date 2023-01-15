@@ -4,6 +4,8 @@ import {BreakpointObserver} from '@angular/cdk/layout';
 import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { UserAccountService } from 'src/app/services/user-account.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,16 +16,38 @@ export class NavbarComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
   socialUser!: SocialUser;
-  isLoggedin?: boolean;
+  isLoggedin?: string;
+  name?: string;
+  rol?: string;
    constructor(private observer: BreakpointObserver,
     private router: Router,
     private formBuilder: FormBuilder,
-    public socialAuthService: SocialAuthService
+    public socialAuthService: SocialAuthService,
+    private cookieService: CookieService,
+    private accountService: UserAccountService
   ) {}
  
-  
+  ngOnInit(): void {
+   this.isLoggedin = this.cookieService.get('LoggedIn');
+   if(this.isLoggedin !== ''){
+    this.name = this.cookieService.get('Nume');
+    this.rol = this.cookieService.get('Rol');
+   }
+
+  }
    logOut():any {
-    this.socialAuthService.signOut();
+    let token= this.cookieService.get('Token');
+    this.accountService.Logout(token).subscribe(
+      (result) => {
+        console.log(result);
+       this.cookieService.deleteAll;
+       this.router.navigate(['/home'])
+
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
   }
    ngAfterViewInit() {
    

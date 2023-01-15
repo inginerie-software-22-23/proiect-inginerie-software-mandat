@@ -2,6 +2,7 @@
 using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.Configurations;
+using MANDAT.Common.DTOs;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.External.Auth;
 using MANDAT.Common.Features.Register;
@@ -37,7 +38,7 @@ namespace MANDAT.BusinessLogic.Services
             return ExecuteInTransaction(uow =>
             {
                 return uow.IdentityUsers.Get()
-                             .Where(u => u.Id == CurrentUser.Id)
+                             .Where(u => u.Email == CurrentUser.Email)
                              .Select(u => u.UserImage)
                             .SingleOrDefault();
             });
@@ -63,6 +64,23 @@ namespace MANDAT.BusinessLogic.Services
                 return user;
             });
             
+        }
+
+        public CurrentUserDto? GetUserInfoByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).Select(u => new CurrentUserDto
+                {
+                    Email = u.Email,
+                    Name = u.Username,
+                    UserImage = u.UserImage,
+                    Roles = uow.IdentityRoles.Get().Where(w => w.Id.Equals(u.RoleId)).Select(r => r.Name).FirstOrDefault()
+
+                }).SingleOrDefault();
+                return user;
+            });
+
         }
 
         public  Guid GetUserByUsername(string username)

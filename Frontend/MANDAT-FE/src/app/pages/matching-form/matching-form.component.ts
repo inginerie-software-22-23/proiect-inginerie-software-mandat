@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { MatchingFormModel } from 'src/app/components/interface/matching-form-model';
 
 @Component({
   selector: 'app-matching-form',
@@ -15,55 +16,33 @@ export class MatchingFormComponent implements OnInit {
   meetingTypes: string[] = ['Online', 'Face-To-Face'];
   stars: number[] = [1,2,3,4,5];
 
-  public matchForm: FormGroup = new FormGroup( 
+  public model: MatchingFormModel =( 
     {
-        county: new FormControl(''),
-        subject: new  FormControl(''),
-        city: new  FormControl(''),
-        meeting: new  FormControl(''),
-        address: new  FormControl(''),
-        rating: new  FormControl('')
+        county: '',
+        subjects: '',
+        city: '',
+        meetingType: '',
+        addressInfo : '',
+        stars: 0
         
     });
 
-    get county(): FormGroup{
-      return this.matchForm.get('county') as FormGroup;
-    }
-    get subject(): AbstractControl{
-      return this.matchForm;
-    }
-    get city(): AbstractControl{
-      return this.matchForm;
-    }
-    get meeting(): AbstractControl{
-      return this.matchForm;
-    }
-    get address(): AbstractControl{
-      return this.matchForm;
-    }
-    get rating(): AbstractControl{
-      return this.matchForm;
-    }
+
 
     public match(): void {
-      var city = this.city.value["city"];
-      localStorage.setItem('matchCity',city);
+      localStorage.setItem('matchCity',this.model.city);
 
-      var county = this.matchForm.controls["county"].value;
-      localStorage.setItem('matchCounty',county);
+      localStorage.setItem('matchCounty',this.model.county);
 
-      var subject = this.matchForm.controls["subject"].value;
-      localStorage.setItem('matchSubject',subject);
+      localStorage.setItem('matchSubject',this.model.subjects);
 
-      var meeting = this.matchForm.controls["meeting"].value;
-      localStorage.setItem('matchMeeting',meeting);
+      localStorage.setItem('matchMeeting',this.model.meetingType);
 
-      var address = this.matchForm.controls["address"].value;
-      localStorage.setItem('matchAddress',address);
+      localStorage.setItem('matchAddress',this.model.addressInfo);
 
-      var star = this.rating;
+      // var star = this.rating;
 
-      console.log(city);
+      // console.log(city);
 
     }
 

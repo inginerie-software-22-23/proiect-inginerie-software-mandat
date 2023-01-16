@@ -106,5 +106,12 @@ namespace MANDATWebApp.Controllers
             }
             return Ok();
         }
+
+        [HttpGet("GetUserByEmail/{email}")]
+        public IActionResult GetUserByEmail (string email)
+        {
+            var result = _userAccountService.GetUserIdByEmail(email);
+            return Ok(result);
+        }
     }
 }

@@ -28,6 +28,7 @@ namespace MANDAT.BusinessLogic.Interfaces
         Task<IdentityUserToken> GetUserTokenByRefreshToken(string refreshtoken);
         IdentityUser updateUser(IdentityUser user);
         CurrentUserDto GetUserInfoByEmail(string email);
+        Guid GetUserIdByEmail(string email);
         // Task<bool> saveAsync();
 
 

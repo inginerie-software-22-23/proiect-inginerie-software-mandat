@@ -69,6 +69,13 @@ builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
 <<<<<<< HEAD
 }));
 
+builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
+{
+    builder.WithOrigins("*")
+    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
+    .AllowAnyHeader();
+
+}));
 
 =======
  

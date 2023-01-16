@@ -36,7 +36,7 @@ import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
 
 
 import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
-
+import { MyMentorsComponent } from './pages/my-mentors/my-mentors.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +51,7 @@ import { MatchingFormComponent } from './pages/matching-form/matching-form.compo
     HomePageComponent,
     NavbarComponent,
     MatchingFormComponent,
+    MyMentorsComponent,
 
   ],
   imports: [

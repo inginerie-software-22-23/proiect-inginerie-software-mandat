@@ -2,9 +2,9 @@
 
     <div *ngIf="isLoggedin === 'true'">
         <h4 class="name">Hi, {{name}}</h4>
-    <p class="designation">Role: {{rol}} </p>
+        <p class="designation">Role: {{rol}} </p>
 
-    <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
         <button mat-button class="menu-button">
             <mat-icon>home</mat-icon>
@@ -22,19 +22,28 @@
             <mat-icon>person</mat-icon>
             <a style="color: white;" (click)="logOut()">LogOut</a>
         </button>
-        <mat-divider></mat-divider>
+       <mat-divider></mat-divider>
         <button mat-button class="menu-button" onclick="" *ngIf="rol === 'student'">
             <mat-icon>My mentors</mat-icon>
             <a style="color: white;" (click)="myMentors()">My Mentors</a>
         </button>
   
 
+
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
+            <mat-icon>My students</mat-icon>
+            <a style="color: white;" (click)="myStudents()">My students</a>
+        </button>
+
     </div>
+
     <div *ngIf="isLoggedin === ''">
         <h4 class="name">Hi anonymous user!</h4>
-    <p class="designation">Role: ?</p>
-    <mat-divider></mat-divider>
-
+        <p class="designation">Role: ?</p>
+        
+        <mat-divider></mat-divider>
+        
         <button mat-button class="menu-button">
             <mat-icon>home</mat-icon>
             <a  routerLink="/home">Home</a>
@@ -51,19 +60,16 @@
             <mat-icon>info</mat-icon>
             <a routerLink="/register" >Register</a>
         </button>
-
     </div>
     
-    
-    
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <a style="color: white;">About us</a>
-        </button>
+    <button mat-button class="menu-button">
+        <mat-icon>info</mat-icon>
+        <a style="color: white;">About us</a>
+    </button>
 
-        <button mat-button class="menu-button">
-            <mat-icon>help</mat-icon>
-            <a style="color: white;">Help</a>
-        </button>
+    <button mat-button class="menu-button">
+        <mat-icon>help</mat-icon>
+        <a style="color: white;">Help</a>
+    </button>

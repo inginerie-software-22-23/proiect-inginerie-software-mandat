@@ -236,6 +236,5 @@ namespace MANDAT.BusinessLogic.Services
                 return true;
             });
         }
-
     }
 }

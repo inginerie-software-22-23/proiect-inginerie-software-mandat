@@ -58,4 +58,8 @@ export class NavbarComponent {
    ngAfterViewInit() {
    
    }
+
+  public myStudents(): void {
+    this.router.navigate(['my-students']);
+  }
 }

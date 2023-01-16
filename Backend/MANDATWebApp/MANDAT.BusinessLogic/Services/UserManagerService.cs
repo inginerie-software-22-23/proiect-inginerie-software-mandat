@@ -143,9 +143,10 @@ namespace MANDAT.BusinessLogic.Services
         {
 
             return ExecuteInTransaction(uow => {
+                var email = loginCommand.Email;
                 IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) ).SingleOrDefault();
                 user = uow.IdentityUsers.Get().Include(u => u.Role)
-                               .SingleOrDefault(u => u.Email == loginCommand.Email);
+                               .SingleOrDefault(u => u.Email.Equals(loginCommand.Email));
                 var  roles = user.Role.Name;
 
                 var newJti = Guid.NewGuid().ToString();

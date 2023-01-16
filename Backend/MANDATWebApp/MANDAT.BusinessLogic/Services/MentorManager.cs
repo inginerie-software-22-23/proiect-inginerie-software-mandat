@@ -184,7 +184,7 @@ namespace MANDAT.BusinessLogic.Services
                 return uow.Matches.Get()
                                            .Include(s => s.Student)
                                            .ThenInclude(ma => ma.User)
-                                           .Where(ma => ma.MentorId.Equals(mentorId) && ma.Status.Equals(true))
+                                           .Where(ma => ma.MentorId.Equals(mentorId) && ma.Status.Equals("1"))
                                            .Select(ma => new GetStudentsForMentorDTO
                                            {
                                             //   UserImage = ma.Student.User.UserImage,

@@ -104,6 +104,13 @@ namespace MANDATWebApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("userGuid/{email}")]
+        public IActionResult GetUserGuid(string email)
+        {
+            var result = _userAccountService.GetUserByTheEmail(email);
+            return Ok(result);
+        }
+
         [HttpDelete]
         [Route("DeleteTokenAsync/{email}")]
         public async Task<IActionResult> DeleteTokenAsync(string email)

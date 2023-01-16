@@ -1,5 +1,6 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.BusinessLogic.Services;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.Features.RefreshLoginToken;
 using MANDAT.Common.Features.Register;
@@ -24,7 +25,7 @@ namespace MANDATWebApp.Controllers
             _tokenManager = tokenManager;
         }
         [HttpPost("register")]
-        public  IActionResult Register(RegisterCommand registerCommand)
+        public IActionResult Register(RegisterCommand registerCommand)
         {
             try
             {
@@ -46,7 +47,7 @@ namespace MANDATWebApp.Controllers
 
             try
             {
-                var result =  _userAccountService.Login(loginCommand);
+                var result = _userAccountService.Login(loginCommand);
                 return Ok(result);
 
             }
@@ -65,7 +66,14 @@ namespace MANDATWebApp.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
-            
+
+        }
+
+        [HttpGet("idUser/{email}")]
+        public async Task<IActionResult> GetGuidForUser(string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            return Ok(id);
         }
 
         [HttpPost]
@@ -105,7 +113,11 @@ namespace MANDATWebApp.Controllers
                 return NotFound();
             }
             return Ok();
+
         }
+
+        }
+
 
         [HttpGet("GetUserByEmail/{email}")]
         public IActionResult GetUserByEmail (string email)
@@ -113,5 +125,6 @@ namespace MANDATWebApp.Controllers
             var result = _userAccountService.GetUserIdByEmail(email);
             return Ok(result);
         }
+
     }
 }

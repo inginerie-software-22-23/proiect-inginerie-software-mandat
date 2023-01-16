@@ -31,6 +31,6 @@ namespace MANDAT.BusinessLogic.Interfaces
         Guid GetUserIdByEmail(string email);
         // Task<bool> saveAsync();
 
-
+        Guid GetUserByTheEmail(string email);
     }
 }

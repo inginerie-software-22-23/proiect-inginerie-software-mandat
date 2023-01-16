@@ -52,7 +52,15 @@ builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddPresentation();
 builder.Services.AddMANDATAppCurrentUser();
 builder.Services.AddMANDATAppBusinessLogic(configuration);
+builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
+{
+    builder.WithOrigins("*")
+    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
+    .AllowAnyHeader();
+}));
 
+<<<<<<< HEAD
+=======
 builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
 {
     builder.WithOrigins("*")
@@ -61,11 +69,11 @@ builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
 
 }));
 
- 
 //services here
 
 
 ///
+>>>>>>> a9581f3e6581be2d1a7ee290ae6edb5a23a78bb8
 
 var app = builder.Build();
 

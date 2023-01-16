@@ -90,8 +90,15 @@ namespace MANDAT.BusinessLogic.Services
                 var user =  uow.IdentityUsers.Get().Where(u => u.Username.Equals(username)).FirstOrDefault();
                 return user.Id;
             });
-           
+        }
 
+        public Guid GetUserByTheEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                return user.Id;
+            });
         }
 
         public Guid GetUserIdByEmail(string email)
@@ -222,6 +229,7 @@ namespace MANDAT.BusinessLogic.Services
                             var mentor = new Mentor();
                             mentor.Id = registerUser.Id;
                             mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 }; 
+
                             mentor.MentorIdentityCardBack = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
                             uow.Mentors.Insert(mentor);
                         }

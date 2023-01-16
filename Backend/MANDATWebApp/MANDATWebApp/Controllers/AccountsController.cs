@@ -25,7 +25,7 @@ namespace MANDATWebApp.Controllers
             _tokenManager = tokenManager;
         }
         [HttpPost("register")]
-        public  IActionResult Register(RegisterCommand registerCommand)
+        public IActionResult Register(RegisterCommand registerCommand)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace MANDATWebApp.Controllers
 
             try
             {
-                var result =  _userAccountService.Login(loginCommand);
+                var result = _userAccountService.Login(loginCommand);
                 return Ok(result);
 
             }
@@ -66,7 +66,7 @@ namespace MANDATWebApp.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
-            
+
         }
 
         [HttpGet("idUser/{email}")]
@@ -113,52 +113,6 @@ namespace MANDATWebApp.Controllers
                 return NotFound();
             }
             return Ok();
-        }
-
-        [HttpPost]
-        [Route("refresh-token")]
-        public async Task<IActionResult> RefreshLoginToken([FromBody] RefreshTokenCommand refreshTokenCommand, CancellationToken cancellationToken)
-        {
-            try
-            {
-                var result = await _tokenManager.Handle(refreshTokenCommand, cancellationToken);
-                return Ok(result);
-            }
-            catch (IntervalOfRefreshTokenExpiredException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return BadRequest(ex.Message);
-            }
-            catch (MaximumRefreshesExceededException ex)
-            {
-                Console.WriteLine(ex.Message);
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("GetUserInfoByEmail/{email}")]
-        public IActionResult GetUserInfoByEmail(string email)
-        {
-            var result = _userAccountService.GetUserInfoByEmail(email);
-            return Ok(result);
-        }
-
-        [HttpDelete]
-        [Route("DeleteTokenAsync/{email}")]
-        public async Task<IActionResult> DeleteTokenAsync(string email)
-        {
-            if (!await _tokenManager.DeleteToken(email))
-            {
-                return NotFound();
-            }
-            return Ok();
-        }
-
-        [HttpGet("idUser/{email}")]
-        public async Task<IActionResult> GetGuidForUser(string email)
-        {
-            var id = _userAccountService.GetUserByTheEmail(email);
-            return Ok(id);
         }
     }
 }

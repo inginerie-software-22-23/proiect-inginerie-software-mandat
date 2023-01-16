@@ -29,11 +29,11 @@ export class StudentService {
     return this.http.get<any>(`${this.url}/GetAllStudents`);
   }
 
-  public getStudentById(id: any): Observable<any> {
-    return this.http.get<any>(`${this.url}/GetStudentById`, id);
+  public getStudentByEmail(email: String): Observable<any> {
+    return this.http.get<any>(`${this.url}/GetStudentByEmail/${email}`);
   }
 
-  public getStudentByName(username: any): Observable<any> {
+  public getStudentByName(username: String): Observable<any> {
     return this.http.get<any>(`${this.url}/GetStudentByName/${username}`);
   }
 
@@ -41,11 +41,21 @@ export class StudentService {
     return this.http.get<any>(`${this.url}/GetStudentsByLocation/${locationId}`);
   }
 
-  public getMentorsForStudent(id: any): Observable<any> {
-    return this.http.get<any>(`${this.url}/GetMentorsForStudent`, id);
+  public getMentorsForStudent(email: String): Observable<any> {
+    return this.http.get<any>(`${this.url}/GetMentorsForStudent/${email}`);
   }
 
-  // public getMentorPhoneNumber(studentId: any, mentorId: any): Observable<any> {
-  //   return this.http.get<any>(`${this.url}/GetMentorPhoneNumber/${studentId}/${mentorId}`);
-  // }
+  public getMentorPhoneNumber(studentEmail: String, mentorEmail: String): Observable<any> {
+    return this.http.get<any>(`${this.url}/GetMentorPhoneNumber/${studentEmail}/${mentorEmail}`);
+  }
+
+  public updateStudent(email: String, student: any) : Observable<any> {
+    const options = this.getHttpOptions(student);
+    return this.http.put<any>(`${this.url}/UpdateStudent/${email}`, student);
+  }
+
+  public SoftDelete(email: String, student: any) : Observable<any> {
+    const options = this.getHttpOptions(email);
+    return this.http.patch<any>(`${this.url}/SoftDelete/${email}`, student);
+  }
 }

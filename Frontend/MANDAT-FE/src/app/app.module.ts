@@ -37,6 +37,7 @@ import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
 
 import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { MyStudentsComponent } from './pages/my-students/my-students.component';
     NavbarComponent,
     MatchingFormComponent,
     MyStudentsComponent,
+    CardComponent,
 
   ],
   imports: [

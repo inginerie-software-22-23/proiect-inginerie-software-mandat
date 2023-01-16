@@ -57,33 +57,8 @@ builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
     builder.WithOrigins("*")
     .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
     .AllowAnyHeader();
-
-builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
-{
-    builder.WithOrigins("*")
-    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
-    .AllowAnyHeader();
-
 }));
 
-<<<<<<< HEAD
-}));
-
-builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
-{
-    builder.WithOrigins("*")
-    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
-    .AllowAnyHeader();
-
-}));
-
-=======
- 
->>>>>>> 4cc66ecb975bc9d0871345ffbbf1150f82e11b3d
-//services here
-
-
-///
 
 var app = builder.Build();
 

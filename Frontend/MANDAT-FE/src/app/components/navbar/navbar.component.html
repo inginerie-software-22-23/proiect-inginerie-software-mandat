@@ -33,9 +33,10 @@
 
     <div *ngIf="isLoggedin === ''">
         <h4 class="name">Hi anonymous user!</h4>
-    <p class="designation">Role: ?</p>
-    <mat-divider></mat-divider>
-
+        <p class="designation">Role: ?</p>
+        
+        <mat-divider></mat-divider>
+        
         <button mat-button class="menu-button">
             <mat-icon>home</mat-icon>
             <a  routerLink="/home">Home</a>
@@ -52,19 +53,16 @@
             <mat-icon>info</mat-icon>
             <a routerLink="/register" >Register</a>
         </button>
-
     </div>
     
-    
-    
-        <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
 
-        <button mat-button class="menu-button">
-            <mat-icon>info</mat-icon>
-            <a style="color: white;">About us</a>
-        </button>
+    <button mat-button class="menu-button">
+        <mat-icon>info</mat-icon>
+        <a style="color: white;">About us</a>
+    </button>
 
-        <button mat-button class="menu-button">
-            <mat-icon>help</mat-icon>
-            <a style="color: white;">Help</a>
-        </button>
+    <button mat-button class="menu-button">
+        <mat-icon>help</mat-icon>
+        <a style="color: white;">Help</a>
+    </button>

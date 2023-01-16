@@ -39,7 +39,7 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
-        [HttpGet("InWaitingRequest")]
+        [HttpGet("ViewStudentWaitingRequests/{studentId}")]
 
         public List<ViewStudentMatchDTO> ViewStudentWaitingRequests(Guid studentId)
         {
@@ -65,19 +65,20 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
-        [HttpGet("MentorRejectedRequest")]
+        [HttpGet("MentorRejectedRequest/{email}")]
 
-        public List<ViewMentorMatchDTO> ViewMentorRejectedRequests(Guid mentorId)
+
+        public List<ViewMentorMatchDTO> ViewMentorRejectedRequests(string email)
         {
-            var result = _matchingService.MentorRejectedRequests(mentorId);
+            var result = _matchingService.MentorRejectedRequests(email);
             return result;
         }
 
-        [HttpGet("MentorInWaitingRequest")]
+        [HttpGet("ViewMentorWaitingRequests/{email}")]
 
-        public List<ViewMentorMatchDTO> ViewMentorWaitingRequests(Guid mentorId)
+        public List<ViewMentorMatchDTO> ViewMentorWaitingRequests(string email)
         {
-            var result = _matchingService.MentorInWaitingRequests(mentorId);
+            var result = _matchingService.MentorInWaitingRequests(email);
             return result;
         }
 

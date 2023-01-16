@@ -25,7 +25,7 @@ namespace MANDATWebApp.Controllers
             _tokenManager = tokenManager;
         }
         [HttpPost("register")]
-        public  IActionResult Register(RegisterCommand registerCommand)
+        public IActionResult Register(RegisterCommand registerCommand)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace MANDATWebApp.Controllers
 
             try
             {
-                var result =  _userAccountService.Login(loginCommand);
+                var result = _userAccountService.Login(loginCommand);
                 return Ok(result);
 
             }
@@ -66,7 +66,7 @@ namespace MANDATWebApp.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
-            
+
         }
 
         [HttpGet("idUser/{email}")]
@@ -120,7 +120,11 @@ namespace MANDATWebApp.Controllers
                 return NotFound();
             }
             return Ok();
+<<<<<<< HEAD
+        }
+=======
         }
 
+>>>>>>> a9581f3e6581be2d1a7ee290ae6edb5a23a78bb8
     }
 }

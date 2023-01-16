@@ -63,6 +63,7 @@ builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
 
 
 ///
+>>>>>>> a9581f3e6581be2d1a7ee290ae6edb5a23a78bb8
 
 var app = builder.Build();
 

@@ -26,7 +26,7 @@ namespace MANDATWebApp.Controllers
         }
 
         [HttpGet("GetStudentById")]
-        public async Task<IActionResult> GetStudentById(Guid studentId)
+        public async Task<IActionResult> GetStudentById([FromBody] Guid studentId)
         {
             var student = _studentManager.GetStudentById(studentId);
             return Ok(student);
@@ -40,15 +40,15 @@ namespace MANDATWebApp.Controllers
             return Ok(student);
         }
 
-        [HttpGet("GetStudentsByLocation")]
-        public async Task<IActionResult> GetStudentsByLocation(Guid locationId)
+        [HttpGet("GetStudentsByLocation/{locationId}")]
+        public async Task<IActionResult> GetStudentsByLocation([FromRoute] Guid locationId)
         {
             var students = _studentManager.GetStudentsByLocation(locationId);
             return Ok(students);
         }
 
         [HttpGet("GetMentorsForStudent")]
-        public async Task<IActionResult> GetMentorsForStudent(Guid studentId)
+        public async Task<IActionResult> GetMentorsForStudent([FromBody] Guid studentId)
         {
             var mentors = _studentManager.GetMentorsForStudent(studentId);
             return Ok(mentors);
@@ -78,7 +78,7 @@ namespace MANDATWebApp.Controllers
 
 
         [HttpPatch("SoftDelete")]
-        public IActionResult SoftDelete(Guid studentId)
+        public IActionResult SoftDelete([FromBody] Guid studentId)
         {
             var result = _studentManager.SoftDelete(studentId);
             return Ok(result);

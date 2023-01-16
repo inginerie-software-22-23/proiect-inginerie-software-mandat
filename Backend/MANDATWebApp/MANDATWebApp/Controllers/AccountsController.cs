@@ -106,5 +106,12 @@ namespace MANDATWebApp.Controllers
             }
             return Ok();
         }
+
+        [HttpGet("idUser/{email}")]
+        public async Task<IActionResult> GetGuidForUser(string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            return Ok(id);
+        }
     }
 }

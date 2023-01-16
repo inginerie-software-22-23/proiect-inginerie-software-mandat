@@ -2,9 +2,9 @@
 
     <div *ngIf="isLoggedin === 'true'">
         <h4 class="name">Hi, {{name}}</h4>
-    <p class="designation">Role: {{rol}} </p>
+        <p class="designation">Role: {{rol}} </p>
 
-    <mat-divider></mat-divider>
+        <mat-divider></mat-divider>
 
         <button mat-button class="menu-button">
             <mat-icon>home</mat-icon>
@@ -18,9 +18,15 @@
             <mat-icon>person</mat-icon>
             <a style="color: white;" (click)="logOut()">LogOut</a>
         </button>
-  
+
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
+            <mat-icon>My students</mat-icon>
+            <a style="color: white;" (click)="myStudents()">My students</a>
+        </button>
 
     </div>
+
     <div *ngIf="isLoggedin === ''">
         <h4 class="name">Hi anonymous user!</h4>
     <p class="designation">Role: ?</p>

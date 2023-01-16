@@ -218,7 +218,7 @@ namespace MANDAT.BusinessLogic.Services
                         {
                             var mentor = new Mentor();
                             mentor.Id = registerUser.Id;
-                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 }; ;
+                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
                             mentor.MentorIdentityCardBack = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
                             uow.Mentors.Insert(mentor);
                         }

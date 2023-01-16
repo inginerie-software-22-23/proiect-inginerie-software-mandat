@@ -1,5 +1,6 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
+using MANDAT.BusinessLogic.Services;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.Features.RefreshLoginToken;
 using MANDAT.Common.Features.Register;
@@ -68,6 +69,13 @@ namespace MANDATWebApp.Controllers
             
         }
 
+        [HttpGet("idUser/{email}")]
+        public async Task<IActionResult> GetGuidForUser(string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            return Ok(id);
+        }
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshLoginToken([FromBody] RefreshTokenCommand refreshTokenCommand, CancellationToken cancellationToken)
@@ -106,5 +114,6 @@ namespace MANDATWebApp.Controllers
             }
             return Ok();
         }
+
     }
 }

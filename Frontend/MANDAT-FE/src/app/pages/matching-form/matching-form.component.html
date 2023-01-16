@@ -3,7 +3,6 @@
       <div class="header">
         <h1 class="title">Help us find a mentor for you</h1>
       </div>
-            <form [formGroup]="matchForm" (ngSubmit)="match()">
                     <div class="form-fields">
                                 
                         <div class="header">
@@ -12,32 +11,65 @@
                         <div class="header">
                             <h1 class="title">Subject</h1>
                         </div>
-                        <app-material-input [label]="'County'" id="county" ></app-material-input>
+
+                        <mat-form-field class="example-form">
+                            <mat-label>{{ "County" | titlecase }}</mat-label>
+                            <input
+                              matInput
+                              [placeholder]="'Ex. ' + 'Ilfov'"
+                              value=""
+                              type="text"
+                              [(ngModel)]="model.county"
+                            />
+                          </mat-form-field>
+                    
+                          <mat-form-field class="example-form">
+                            <mat-label>{{ "City" | titlecase }}</mat-label>
+                            <input
+                              matInput
+                              [placeholder]="'Ex. ' + 'Bucuresti'"
+                              value=""
+                              type="text"
+                              [(ngModel)]="model.city"
+                            />
+                          </mat-form-field>
+
+                          <mat-form-field class="example-form">
+                            <mat-label>{{ "Address" | titlecase }}</mat-label>
+                            <input
+                              matInput
+                              [placeholder]="'Ex. ' + 'Cool People Street, number 1'"
+                              value=""
+                              type="text"
+                              [(ngModel)]="model.addressInfo"
+                            />
+                          </mat-form-field>
+                        <!-- <app-material-input [label]="'County'" id="county" ></app-material-input> -->
                     
                         <mat-form-field appearance="fill" id="subject">
                             <mat-label>{{ 'Subject' | titlecase }}</mat-label>
-                            <mat-select>
+                            <mat-select [(ngModel)]="model.subjects">
                             <mat-option *ngFor="let subjects of subjects" [value]="subjects">
                                 {{ subjects }}
                             </mat-option>
                             </mat-select>
                         </mat-form-field>
 
-                        <app-material-input [label]="'City'" id="city" [placeholder]="'Frankfurt'"></app-material-input>
+                        <!-- <app-material-input [label]="'City'" id="city" [placeholder]="'Frankfurt'"></app-material-input> -->
                         
                         <mat-form-field appearance="fill" id="meeting">
                             <mat-label>{{ 'Meeting format' | titlecase }}</mat-label>
-                            <mat-select>
+                            <mat-select [(ngModel)]="model.meetingType">
                             <mat-option *ngFor="let meetingTypes of meetingTypes" [value]="meetingTypes">
                                 {{ meetingTypes }}
                             </mat-option>
                             </mat-select>
                         </mat-form-field>
 
-                        <app-material-input [label]="'Address'" id="address" [placeholder]="'Cool People Street, number 1'"></app-material-input>
+                        <!-- <app-material-input [label]="'Address'" id="address" [placeholder]="'Cool People Street, number 1'"></app-material-input> -->
 
 
-                        <div class="rate" id="rating" >
+                        <div class="rate" id="rating"  >
                             <p>Mentor Rating</p>
                             <input type="radio" id="star5" name="rate" value="5" />
                             <label for="star5" title="text">5 stars</label>
@@ -51,9 +83,8 @@
                             <label for="star1" title="text">1 star</label>
                         </div>
                                     
-                        <button type="submit" color="primary" class="btn btn-success" onclick="match()">Submit</button>
+                        <button type="submit" color="primary" class="btn btn-success" (click)="match()">Submit</button>
                         <!-- <button mat-raised-button color="primary" routerLink="home-page" >{{ 'Submit' | titlecase}}</button> -->
                     </div>
-            </form>
     </div>
   </div>

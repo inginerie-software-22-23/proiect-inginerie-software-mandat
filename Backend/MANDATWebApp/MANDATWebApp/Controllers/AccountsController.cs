@@ -123,8 +123,6 @@ namespace MANDATWebApp.Controllers
 
         }
 
-        }
-
 
         [HttpGet("GetUserByEmail/{email}")]
         public IActionResult GetUserByEmail (string email)

@@ -28,7 +28,7 @@ namespace MANDAT.DataAccess
             {
                // builder.UseSqlServer("Data Source=DESKTOP-BOBO71Q\\MSSQLSERVER01;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
 
-                builder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                builder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 

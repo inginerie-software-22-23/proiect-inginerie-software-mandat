@@ -37,6 +37,9 @@ import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
 
 import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
 import { MentorRequestsComponent } from './pages/mentor-requests/mentor-requests.component';
+
+import { MyMentorsComponent } from './pages/my-mentors/my-mentors.component';
+
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { CardComponent } from './components/card/card.component';
 
@@ -55,8 +58,10 @@ import { CardComponent } from './components/card/card.component';
     NavbarComponent,
     MatchingFormComponent,
     MentorRequestsComponent,
+    MyMentorsComponent,
     MyStudentsComponent,
     CardComponent,
+
 
   ],
   imports: [

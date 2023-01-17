@@ -35,6 +35,9 @@ export class NavbarComponent {
    }
 
   }
+  public myMentors(): void {
+    this.router.navigate(['my-mentors']);
+  }
    logOut():any {
     let email= this.cookieService.get('Email');
     this.accountService.Logout(email).subscribe(

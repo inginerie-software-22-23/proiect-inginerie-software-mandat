@@ -1,8 +1,28 @@
-<div class="card"><img alt="user Avatar" src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=80"/>
-    <h2>Jeffrey Garcia</h2>
-    <p>Sent you a Friend Request!</p>
-    <div class="buttongroup">
-      <button>Approve</button>
-      <button>Remove</button>
+<div class="landing" *ngIf="requests != null" else noData>
+<div *ngFor="let req of requests " class="container" >
+<span style="  display: flex; " class="card" id="{{req.email}}"><img alt="user Avatar" src="../../../assets/images/profile.jpg"/>
+  <h2>{{req.fullName}}</h2>
+  <p>Email: {{req.email}} <br> Data request: {{req.matchDate}}</p>
+  <div class="buttongroup">
+     <button (click)="acceptStudent(req.email)">Approve</button> <!-- -->
+    <button (click)="rejectStudent(req.email)" >Remove</button> 
+    <!--  -->
+  </div>
+</span>
+</div>
+</div>
+<div #noData class="container2" >
+  <div class="empty-icon-container">
+    <div class="animation-container">
+      <div class="bounce"></div>
+      <div class="pebble1"></div>
+      <div class="pebble2"></div>
+      <div class="pebble3"></div>
     </div>
+    <div>
+      <h2>0 results found</h2>
+      <p>Sorry! We couldn't find any results.</p>
+    </div>
+
+  </div>
   </div>

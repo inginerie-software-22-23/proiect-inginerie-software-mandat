@@ -39,6 +39,7 @@ import { MatchingFormComponent } from './pages/matching-form/matching-form.compo
 import { MentorRequestsComponent } from './pages/mentor-requests/mentor-requests.component';
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { CardComponent } from './components/card/card.component';
+import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { CardComponent } from './components/card/card.component';
     MentorRequestsComponent,
     MyStudentsComponent,
     CardComponent,
+    MentorRequestCardComponent,
 
   ],
   imports: [

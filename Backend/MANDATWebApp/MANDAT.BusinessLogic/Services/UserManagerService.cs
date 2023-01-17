@@ -101,6 +101,16 @@ namespace MANDAT.BusinessLogic.Services
             });
         }
 
+        public Guid GetUserIdByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                return user.Id;
+            });
+
+
+        }
         public Task<T> GetUserSelectedProperties<T>(string email, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default)
         {
             return ExecuteInTransaction(uow =>
@@ -219,7 +229,8 @@ namespace MANDAT.BusinessLogic.Services
                         {
                             var mentor = new Mentor();
                             mentor.Id = registerUser.Id;
-                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
+                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 }; 
+
                             mentor.MentorIdentityCardBack = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
                             uow.Mentors.Insert(mentor);
                         }

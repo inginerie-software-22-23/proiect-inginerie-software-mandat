@@ -1,167 +1,166 @@
 $bg: darken(white, 10%);
-$shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-$shadow1: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+$shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow1: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
-*{
-	margin:0;
-	padding:0;
-	box-sizing:border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-img{
-	max-width:100%;
+img {
+  max-width: 100%;
 }
 
-body{
-	background-color:$bg;
-	display:flex;
-	height:100vh;
-	width:100vw;
-	font-family:'Montserrat';
+body {
+  background-color: $bg;
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  font-family: "Montserrat";
 }
 
-.container{
-	width:1600px;
-	max-width:100%;
-	margin:auto;
+.container {
+  width: 1600px;
+  max-width: 100%;
+  margin: auto;
 }
 
-.display{	
-	display:flex;
-	justify-content:space-around;
-	flex-wrap:wrap;
-	.display-item{
-		flex-grow:1;
-		flex-basis:1px;
-		display:flex;
-		justify-content:space-around;
-		padding:15px;
-		max-width:100%;
-	}
+.display {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  .display-item {
+    flex-grow: 1;
+    flex-basis: 1px;
+    display: flex;
+    justify-content: space-around;
+    padding: 15px;
+    max-width: 100%;
+  }
 }
 
-.card{
-	width:480px;
-	max-width:100%;
-	min-height:620px;
-	overflow:hidden;
-	border-radius:4px;
-	box-shadow:$shadow;
-	background-color:white;
-	position:relative;	
-	display: -webkit-box; 
-	display: -moz-box;
-	display: -ms-flexbox;
-	display: -webkit-flex; 
-	display: flex;
-	flex-direction:column;
-	.card-top{
-		-webkit-flex-basis:155px;
-		flex-basis:155px;
-		flex-shrink:1;
-		background-color:rgba(0,0,0,.2);		
-		background-position:center;
-		background-size:cover;	
-	}
-	.card-profile{
-		flex-basis:75px;
-		flex-shrink:1;
-		.profile-image{
-			overflow:hidden;
-			border-radius:100%;
-			position:absolute;
-			left:calc(50% - 75px);
-			top:calc(25% - 75px);
-			border:4px solid white;
-			width:150px;
-			height:150px;			
-			background-size:cover;
-			background-position:center;
-		}
-	}
-	.card-info{
-		flex-basis:56,66665%;
-		padding:0 15px;
-		text-align:center;
-		display: -webkit-box; 
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex; 
-		display: flex;
-		flex-direction:column;
-		.info-title{
-			padding-bottom:10px;
-            padding-top: 15px;
-			h3{
-				font-weight:400;
-			}
-		}
-		.card-rating{
-			margin: auto;
-            margin-bottom: 5px;	
-			
-			>div{
-				flex-grow:1;
-				flex-basis:1px;
-				min-height:20px;
-			}
-		}
-		.info-bio{
-			padding:15px 0;
-            margin-bottom: 5px;	
-		}
-        .divider {
-            margin-left: 55px;
-            margin-right: 55px;
-			border-bottom:1px solid rgba(0,0,0,.3);
-        }
-        .info-address{
-			padding:15px 0;
-            
-		}
-	}
+.card {
+  width: 480px;
+  max-width: 100%;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: $shadow;
+  background-color: white;
+  position: relative;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  .card-top {
+    -webkit-flex-basis: 155px;
+    flex-basis: 155px;
+    flex-shrink: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+    background-position: center;
+    background-size: cover;
+  }
+  .card-profile {
+    flex-basis: 75px;
+    flex-shrink: 1;
+    .profile-image {
+      overflow: hidden;
+      border-radius: 100%;
+      position: absolute;
+      left: calc(50% - 75px);
+      top: calc(25% - 75px);
+      border: 4px solid white;
+      width: 150px;
+      height: 150px;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+  .card-info {
+    flex-basis: 56, 66665%;
+    padding: 0 15px;
+    text-align: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    .info-title {
+      padding-bottom: 10px;
+      padding-top: 15px;
+      h3 {
+        font-weight: 400;
+      }
+    }
+    .card-rating {
+      margin: auto;
+      margin-bottom: 5px;
+
+      > div {
+        flex-grow: 1;
+        flex-basis: 1px;
+        min-height: 20px;
+      }
+    }
+    .info-bio {
+      padding: 15px 0;
+      margin-bottom: 5px;
+    }
+    .divider {
+      margin-left: 55px;
+      margin-right: 55px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    }
+    .info-address {
+      padding: 15px 0;
+    }
+  }
 }
 
-.card.seamus{
-	.card-top{
-		background-image: url(https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=b0aa3fbba9c018e93499effa49dd8e83);
-	}
-	.profile-image{
-		background-image: url(https://images.unsplash.com/photo-1507120878965-54b2d3939100?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=57f3676a7820564424855d5e5c6b09e7);
-	}
+.card.seamus {
+  .card-top {
+    background-image: url(https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=b0aa3fbba9c018e93499effa49dd8e83);
+  }
+  .profile-image {
+    background-image: url(https://images.unsplash.com/photo-1507120878965-54b2d3939100?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=57f3676a7820564424855d5e5c6b09e7);
+  }
 }
 
 .rate {
-    padding: 0 10px;
-    place-items: center;
+  padding: 0 10px;
+  place-items: center;
 }
 .rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
+  position: absolute;
+  top: -9999px;
 }
 .rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:60px;
-    color:#ccc;
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 60px;
+  color: #ccc;
 }
 .rate:not(:checked) > label:before {
-    content: '★ ';
+  content: "★ ";
 }
 .rate > input:checked ~ label {
-    color: #ffc700;    
+  color: #ffc700;
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
+  color: #deb217;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
 .rate > input:checked ~ label:hover,
 .rate > input:checked ~ label:hover ~ label,
 .rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+  color: #c59b08;
 }

@@ -4,14 +4,14 @@
 }
 
 .banner {
-  background-color: #E6E9FA;
+  background-color: #e6e9fa;
   width: 92vw;
   margin: auto;
   box-shadow: 1px 1px 5px rgb(84, 82, 82), -1px -1px 5px rgb(84, 82, 82);
   border-radius: 4px;
 }
 
-.header{
+.header {
   display: grid;
   place-items: center;
   padding: 2% 0px;
@@ -21,14 +21,12 @@
   cursor: pointer;
 }
 
-.form-fields{
+.form-fields {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   place-items: center;
-  > *{
+  > * {
     margin: 2% 6%;
     width: 75%;
   }
 }
-
-

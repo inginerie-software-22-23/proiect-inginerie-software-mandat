@@ -1,15 +1,24 @@
-import { FacebookLoginProvider, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { UserAccountService } from 'src/app/services/user-account.service';
-import { MyErrorStateMatcher } from '../register/register.component';
+import {
+  FacebookLoginProvider,
+  SocialAuthService,
+  SocialUser,
+} from "@abacritt/angularx-social-login";
+import { Component } from "@angular/core";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
+import { UserAccountService } from "src/app/services/user-account.service";
+import { MyErrorStateMatcher } from "../register/register.component";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
   loginForm!: FormGroup;
@@ -23,57 +32,54 @@ export class LoginComponent {
     private cookieService: CookieService
   ) {
     this.model = this.formBuilder.group({
-      email: ['',[Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      rememberMe: [false]
-    })
-   }
-  email = new FormControl('', [Validators.required, Validators.email]);
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", Validators.required],
+      rememberMe: [false],
+    });
+  }
+  email = new FormControl("", [Validators.required, Validators.email]);
 
   matcher = new MyErrorStateMatcher();
 
   public model: FormGroup;
-  Login():void{
+  Login(): void {
     let data = {
-      password: this.model.get('password')?.value,
-      email: this.model.get('email')?.value,
-      
+      password: this.model.get("password")?.value,
+      email: this.model.get("email")?.value,
     };
     this.userAccount.Login(data).subscribe(
-      (result) => {
+      result => {
         console.log(result);
         this.isLoggedin = true;
-        this.userAccount.GetUserInfo(this.model.get('email')?.value).subscribe(
-          (details) =>{
-            this.cookieService.set('Email', details.email);
-            this.cookieService.set('Nume', details.name);
-            this.cookieService.set('Rol', details.roles);
+        this.userAccount
+          .GetUserInfo(this.model.get("email")?.value)
+          .subscribe(details => {
+            this.cookieService.set("Email", details.email);
+            this.cookieService.set("Nume", details.name);
+            this.cookieService.set("Rol", details.roles);
+          });
+        this.cookieService.set("LoggedIn", "true");
+        this.cookieService.set("Token", result.token);
+        window.location.reload();
+        this.router.navigate(["/home"]);
+      },
 
-
-          }
-        )
-        this.cookieService.set('LoggedIn', 'true');
-          this.cookieService.set('Token', result.token);
-          window.location.reload()
-          this.router.navigate(['/home'])
-      },      
-
-      (error) => {
+      error => {
         console.log(error);
       }
-    )
-   
-   
+    );
   }
-   loginWithFacebook():void {
-    console.log(this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID))
-    this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID).then((res)=>{
-      console.log(res)
-      
-    })
-    
+  loginWithFacebook(): void {
+    console.log(
+      this.socialAuthService.signIn(FacebookLoginProvider.PROVIDER_ID)
+    );
+    this.socialAuthService
+      .signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then(res => {
+        console.log(res);
+      });
   }
-  logOut():any {
+  logOut(): any {
     this.socialAuthService.signOut();
   }
 }

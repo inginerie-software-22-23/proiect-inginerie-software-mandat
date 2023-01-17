@@ -14,34 +14,38 @@ namespace MANDATWebApp.Controllers
     public class MentorController : ControllerBase
     {
         private readonly IMentorManager mentorManager;
-        public MentorController(IMentorManager mentorManager)
+        private readonly IUserManager _userAccountService;
+        public MentorController(IMentorManager mentorManager, IUserManager userAccountService)
         {
             this.mentorManager = mentorManager;
+            _userAccountService = userAccountService;
         }
-        [HttpGet]
+        [HttpGet("mentors")]
         public async Task<IActionResult> GetAllMentors()
         {
             var mentorList = mentorManager.GetAllMentors();
             return Ok(mentorList);
         }
 
-        [HttpGet("byIdViewMentAdm/{mentorId}")]
-        public async Task<IActionResult> GetMentorByIdMentorAdminView([FromRoute] Guid mentorId)
+        [HttpGet("byEmailViewMentAdm/{email}")]
+        public async Task<IActionResult> GetMentorByEmailMentorAdminView([FromRoute] String email)
         {
+            var mentorId = _userAccountService.GetUserByTheEmail(email);
             var mentor = mentorManager.GetMentorByIdForMentorAdminView(mentorId);
             return Ok(mentor);
         }
 
 
-        [HttpGet("byIdViewStud/{mentorId}")]
-        public async Task<IActionResult> GetMentorByIdStudView([FromRoute] Guid mentorId)
+        [HttpGet("byEmailViewStud/{email}")]
+        public async Task<IActionResult> GetMentorByEmailStudView([FromRoute] String email)
         {
+            var mentorId = _userAccountService.GetUserByTheEmail(email);
             var mentor = mentorManager.GetMentorByIdForStudentView(mentorId);
             return Ok(mentor);
         }
 
         [HttpGet("byName/{name}")]///////////  !!!!
-        public  List<MentorByIdViewByStudentDTO> GetMentorByHisName([FromRoute]string name)
+        public List<MentorByIdViewByStudentDTO> GetMentorByHisName([FromRoute] string name)
         {
             var mentor = mentorManager.GetMentorByName(name);
             return mentor;
@@ -61,38 +65,42 @@ namespace MANDATWebApp.Controllers
             return Ok(mentors);
         }
 
-        [HttpGet("studentsByIdMentor/{mentorId}")]
-        public async Task<IActionResult> GetAllStudentsForMentorId([FromRoute] Guid mentorId)
+        [HttpGet("studentsByEmailMentor/{email}")]
+        public async Task<IActionResult> GetAllStudentsForMentorEmail([FromRoute] String email)
         {
+            var mentorId = _userAccountService.GetUserByTheEmail(email);
             var students = mentorManager.GetStudentsForMentor(mentorId);
             return Ok(students);
         }
 
-        [HttpGet("phone")]
-        public async Task<IActionResult> GetMentorPhoneNumber(Guid studentId, Guid mentorId)
+        /*        [HttpGet("phone")]// do not need
+                public async Task<IActionResult> GetMentorPhoneNumber(Guid studentId, Guid mentorId)
+                {
+                    var result = mentorManager.GetMentorPhoneNumber(studentId, mentorId);
+                    return Ok(result);
+                }*/
+
+        [HttpPut("mentorUpdate/{email}")]
+        public async Task<IActionResult> UpdateMentor([FromRoute] String email, [FromBody] MentorUpdateDTO mentorUpdateDTO)
         {
-            var result = mentorManager.GetMentorPhoneNumber(studentId, mentorId);
+            var mentorId = _userAccountService.GetUserByTheEmail(email);
+            var result = mentorManager.Update(mentorId, mentorUpdateDTO);
             return Ok(result);
         }
 
-        [HttpPut]
-        public async Task<IActionResult> UpdateMentor(Guid Id, [FromBody] MentorUpdateDTO mentorUpdateDTO)
+        [HttpPut("mentorItems/{email}")]
+        public async Task<IActionResult> UpdateMentorItems([FromRoute] String email, [FromBody] MentorUpdateItemsDTO mentorUpdateItemsDTO)
         {
-            var result = mentorManager.Update(Id,mentorUpdateDTO);
+            var mentorId = _userAccountService.GetUserByTheEmail(email);
+            var result = mentorManager.UpdateMentor(mentorId, mentorUpdateItemsDTO);
             return Ok(result);
         }
 
-        [HttpPut("mentorItems")]
-        public async Task<IActionResult> UpdateMentorItems(Guid Id, [FromBody] MentorUpdateItemsDTO mentorUpdateItemsDTO)
+        [HttpPatch("mentorDelete/{email}")]
+        public IActionResult EditReview(String email, bool isDeleted)
         {
-            var result = mentorManager.UpdateMentor(Id,mentorUpdateItemsDTO);
-            return Ok(result);
-        }
-
-        [HttpPatch]
-        public IActionResult EditReview(Guid id, bool isDeleted)
-        {
-            var result = mentorManager.ManagerIsDeleted(id, isDeleted);
+            var mentorId = _userAccountService.GetUserByTheEmail(email);
+            var result = mentorManager.ManagerIsDeleted(mentorId, isDeleted);
             return Ok(result);
         }
 

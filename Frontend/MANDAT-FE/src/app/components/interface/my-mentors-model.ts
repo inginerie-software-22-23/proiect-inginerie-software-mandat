@@ -7,5 +7,14 @@ export interface MyMentorsModel {
     isActive: boolean,
     isDeleted: boolean,
     bio: string,
-    educationalInstitution: string
+    educationalInstitution: string,
+    subject: string,
+    message: string,
+    starsNumber: number,
+    reviewStatus: string,
+    city: string,
+    county: string,
+    addressInfo: string,
+
+
 }

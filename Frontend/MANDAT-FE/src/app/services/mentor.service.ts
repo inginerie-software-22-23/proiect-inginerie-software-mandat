@@ -27,7 +27,7 @@ export class MentorService {
   // }
 
   public getAllMentors(): Observable<any>{
-    return this.http.get<any>(`${this.url}/mentors`);
+    return this.http.get<any>(`${this.url}`);
   }
 
   public getMentorByEmailMentorAdminView(email: String){

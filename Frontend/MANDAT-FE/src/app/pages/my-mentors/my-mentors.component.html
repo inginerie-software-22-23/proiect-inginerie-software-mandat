@@ -1,2 +1,55 @@
-<p>Mentors based on your filters</p>
+ <p>Mentors based on your filters</p> 
+<!-- <app-card></app-card> -->
+<div  *ngFor="let mentor of mentors" class="container">
+	<div class="display">
+		<div class="display-item">
+			<div class="card seamus">
+				<div class="card-top"></div>
+				<div class="card-profile">
+					<div class="profile-image">
+					</div>
+				</div>
+				<div  class="card-info">
+					<div class="info-title">
+						<h2>{{mentor.username}} </h2>
+                        <h4>Subject: {{mentor.subject}}</h4> 
+                        <h4>Phone: {{mentor.phoneNumber}}</h4>
+                        <!-- <br>
+                        {{mentor.starsNumber}}
+                        <br>
+                        {{mentor.message}}
+                        <br>
+                        {{mentor.reviewStatus}} -->
+					</div>
+					<div class="card-rating divider">
+						
+                        <div class="rate" id="rating">
+                            <input type="radio" id="star5" name="rate" value="5" />
+                            <label for="star5" title="text">5 stars</label>
+                            <input type="radio" id="star4" name="rate" value="4" />
+                            <label for="star4" title="text">4 stars</label>
+                            <input type="radio" id="star3" name="rate" value="3" />
+                            <label for="star3" title="text">3 stars</label>
+                            <input type="radio" id="star2" name="rate" value="2" />
+                            <label for="star2" title="text">2 stars</label>
+                            <input type="radio" id="star1" name="rate" value="1" />
+                            <label for="star1" title="text">1 star</label>
+                        </div>
+
+					</div>
+                    <div class="info-address divider">
+						Address
+                        <p>City: {{mentor.city}}</p>
+                        <p>County: {{mentor.county}}</p>
+                        <p>Details: {{mentor.addressInfo}}</p>
+					</div>
+					<div class="info-bio">
+                        Short description
+                        <p>{{mentor.bio}}</p>
+                    </div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
 

@@ -3,7 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { MyMentorsModel } from 'src/app/components/interface/my-mentors-model';
+import { ReviewForSave } from 'src/app/components/interface/review-for-save';
+import { AccountService } from 'src/app/services/account.service';
 import { MentorService } from 'src/app/services/mentor.service';
+import { ReviewService } from 'src/app/services/review.service';
 import { StudentService } from 'src/app/services/student.service';
 
 @Component({
@@ -23,14 +26,29 @@ export class MyMentorsComponent implements OnInit{
   public addressInfo?: string;
   public bio?:string;
   public subject?:string;
+  public canEdit: boolean = true;
+
+  public message?: string;
+  public starsNumber?: number;
+  public reviewStatus?: string;
+  public emailMentor?:string;
+
+  public idStudent: any;
 
   constructor(
+    private accountService: AccountService,
+    private reviewService: ReviewService,
     private myMentorsService: MentorService,
     private myStudentService: StudentService,
     private route: ActivatedRoute,
     private cookie: CookieService
   ){}
   ngOnInit(): void {
+    if(this.cookie.get('Rol') == 'Student')
+      this.canEdit = true;
+      else
+      this.canEdit = false;
+    
     this.email = this.cookie.get('Email');
     if(this.email){
       this.myStudentService.getMentorsForStudent(this.email).subscribe(
@@ -50,6 +68,24 @@ export class MyMentorsComponent implements OnInit{
         }
         );
     }
+  }
+  public SaveReview(emailMentor:string,message: string){ //does not work yet
+    var idStudent = this.accountService.getGuidByEmail(this.cookie.get('Email'));
+    var idMentor = this.accountService.getGuidByEmail(emailMentor);
+    var starsNumber = 2;
+    var messageReview = message;
+    var reviewStatus = "mentor";
+
+    let review: ReviewForSave = {message: messageReview,
+      starsNumber:starsNumber,
+      mentorId: idMentor,
+      studentId: idStudent,
+      reviewStatus:reviewStatus};
+    this.reviewService.createReview(review);
+  }
+
+  public EditReview(emailMentor:string, message: string){
+
   }
 
 }

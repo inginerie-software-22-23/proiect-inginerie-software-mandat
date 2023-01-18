@@ -1,6 +1,6 @@
 export interface MyMentorsModel {
     username: string,
-    email: string,
+    emailMentor: string,
     phoneNumber: string,
     passwordHash: string,
     createdAt: Date,

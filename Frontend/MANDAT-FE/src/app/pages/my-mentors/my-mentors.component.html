@@ -1,6 +1,6 @@
  <p>Mentors based on your filters</p> 
 <!-- <app-card></app-card> -->
-<div *ngFor="let mentor of mentors" class="container">
+<div *ngFor="let mentor of mentors; let i = index" class="container">
 	<div class="display">
 		<div class="display-item">
 			<div class="card seamus">
@@ -11,6 +11,7 @@
 				</div>
 				<div  class="card-info">
 					<div class="info-title">
+                        <br>
 						<h2>{{mentor.username}} </h2>
                         <h4>Subject: {{mentor.subject}}</h4> 
                         <h4>Phone: {{mentor.phoneNumber}}</h4>
@@ -24,18 +25,29 @@
 					<div class="card-rating divider">
 						
                         <div class="rate" id="rating">
-                            <input type="radio" id="star5" name="rate" value="5" />
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
-                            <label for="star1" title="text">1 star</label>
+                            <input type="radio" id="star5_{{i}}" name="rate_{{i}}" value="5" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
+                            <label for="star5_{{i}}" title="text" [ngClass]="{'noHover' : !canEdit}">5 stars</label>
+                            <input type="radio" id="star4_{{i}}" name="rate_{{i}}" value="4" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
+                            <label for="star4_{{i}}" title="text" [ngClass]="{'noHover' : !canEdit}">4 stars</label>
+                            <input type="radio" id="star3_{{i}}" name="rate_{{i}}" value="3" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
+                            <label for="star3_{{i}}" title="text" [ngClass]="{'noHover' : !canEdit}">3 stars</label>
+                            <input type="radio" id="star2_{{i}}" name="rate_{{i}}" value="2" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
+                            <label for="star2_{{i}}" title="text" [ngClass]="{'noHover' : !canEdit}">2 stars</label>
+                            <input type="radio" id="star1_{{i}}" name="rate_{{i}}" value="1" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
+                            <label for="star1_{{i}}" title="text" [ngClass]="{'noHover' : !canEdit}">1 star</label>
                         </div>
 
+						<mat-form-field class="example-full-width review" *ngIf="canEdit">
+							<mat-label>Leave a review</mat-label>
+							<textarea matInput  [(ngModel)]="mentor.message"></textarea>
+						</mat-form-field>
+
+                        <button mat-raised-button (click)="SaveReview(mentor.emailMentor, mentor.message)">
+                            Save Review
+                        </button>
+                        <button mat-raised-button (click)="EditReview(mentor.emailMentor, mentor.message)">
+                            Edit Review
+                        </button>
 					</div>
                     <div class="info-address divider">
 						Address

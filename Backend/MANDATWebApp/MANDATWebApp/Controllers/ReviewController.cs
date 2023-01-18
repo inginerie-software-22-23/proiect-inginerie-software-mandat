@@ -78,8 +78,8 @@ namespace MANDATWebApp.Controllers
             return NoContent();
         }
 
-        [HttpPatch]
-        public IActionResult EditReview(Guid id, string message)
+        [HttpPatch("editReview/{id}")]
+        public IActionResult EditReview([FromRoute] Guid id, string message)
         {
             if(message == null)
             {

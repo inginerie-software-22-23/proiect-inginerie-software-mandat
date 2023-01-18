@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AbstractControl, FormControl, FormGroup } from "@angular/forms";
-import { MatchingFormModel } from "src/app/components/interface/matching-form-model";
+import { MatchingFormModel } from "src/app/interfaces/matching-form-model";
 
 @Component({
   selector: "app-matching-form",

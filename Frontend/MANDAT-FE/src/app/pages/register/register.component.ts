@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
-import { RegisterModel } from "src/app/components/interface/registermodel";
+import { RegisterModel } from "src/app/interfaces/registermodel";
 import { UserAccountService } from "src/app/services/user-account.service";
 import { Country, Countries } from "src/assets/countries";
 

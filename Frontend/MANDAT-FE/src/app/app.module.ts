@@ -42,6 +42,7 @@ import { MyMentorsComponent } from './pages/my-mentors/my-mentors.component';
 
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { CardComponent } from './components/card/card.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -58,6 +59,7 @@ import { CardComponent } from './components/card/card.component';
     NavbarComponent,
     MatchingFormComponent,
     MyStudentsComponent,
+    MyMentorsComponent,
     CardComponent,
 
 
@@ -81,6 +83,7 @@ import { CardComponent } from './components/card/card.component';
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
+    CommonModule
   ],
   providers: [AcceptJSService,SocialAuthService,
     {

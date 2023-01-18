@@ -1,9 +1,14 @@
-.card {
-  margin-bottom: 10px;
+:host {
   background-color: rgb(255, 255, 255, 0.2);
   color: white;
-  width: 25em;
-  height: 100%;
+  width: 25%;
   padding: 30px;
-  
+}
+
+img {
+  height: 20%;
+  width: 100%;
+  margin: auto;
+  object-fit: contain;
+  margin-bottom: 8%;
 }

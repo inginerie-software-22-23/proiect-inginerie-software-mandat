@@ -1,1 +1,1 @@
-<app-card></app-card>
+<app-card *ngFor="let student of students" [person] = "student" [canEdit] = "false"></app-card>

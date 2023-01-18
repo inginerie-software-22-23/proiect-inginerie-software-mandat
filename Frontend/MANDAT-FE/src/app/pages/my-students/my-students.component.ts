@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { CookieService } from 'ngx-cookie-service';
+import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
   selector: 'app-my-students',
@@ -14,13 +15,14 @@ export class MyStudentsComponent {
 
   constructor(
     private studentService: StudentService,
+    private mentorService: MentorService,
     private cookieService: CookieService,
   ) {}
 
   ngOnInit(): void {
     this.email = this.cookieService.get('Email');
     console.log(this.email);
-    this.studentService.getMentorsForStudent(this.cookieService.get('Email')).subscribe(
+    this.mentorService.getMyStudents(this.cookieService.get('Email')).subscribe(
       (response) => {
         console.log(response);
         this.students = response;

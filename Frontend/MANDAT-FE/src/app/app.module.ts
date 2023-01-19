@@ -40,6 +40,7 @@ import { MyStudentsComponent } from "./pages/my-students/my-students.component";
 import { CardComponent } from "./components/card/card.component";
 import { HomeCardComponent } from "./components/home-card/home-card.component";
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
     CardComponent,
     HomeCardComponent,
     UserProfileComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,

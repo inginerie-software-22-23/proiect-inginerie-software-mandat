@@ -12,8 +12,7 @@ namespace MANDAT.Entities.Entities
     {
         public Guid MentorId { get; set; }
         public Guid StudentId { get; set; }
-
-        [ForeignKey("AnnouncementId")]
+        [ForeignKey("Announcement")]
         public Guid AnnouncementId { get; set; }
         public DateTime MatchDate { get; set; }
         public string Status { get; set; }

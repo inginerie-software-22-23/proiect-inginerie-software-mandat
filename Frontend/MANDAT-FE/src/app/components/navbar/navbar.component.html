@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <img class="avatar mat-elevation-z8" src="../../../assets/images/profile.jpg" />
 
 <div *ngIf="isLoggedin === 'true'">
@@ -5,30 +6,28 @@
   <p class="designation">Role: {{ rol }}</p>
 
   <mat-divider></mat-divider>
+  <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <a  routerLink="/home">Home</a>
+  </button>
+  <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <a  routerLink="/match">Matching Form</a>
+  </button>
+  <button mat-button class="menu-button">
+      <mat-icon></mat-icon>
+      <a style="color: white;">Mentors</a>
+  </button>
+  <button mat-button class="menu-button" onclick="">
+      <mat-icon>person</mat-icon>
+      <a style="color: white;" (click)="logOut()">LogOut</a>
+  </button>
 
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <a  routerLink="/home">Home</a>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <a  routerLink="/match">Matching Form</a>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon></mat-icon>
-            <a style="color: white;">Mentors</a>
-        </button>
-        <button mat-button class="menu-button" onclick="">
-            <mat-icon>person</mat-icon>
-            <a style="color: white;" (click)="logOut()">LogOut</a>
-        </button>
-       <mat-divider></mat-divider>
-        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'student'">
-            <mat-icon>My mentors</mat-icon>
-            <a style="color: white;" (click)="myMentors()">My Mentors</a>
-        </button>
-  
-
+  <mat-divider></mat-divider>
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Student'">
+      <mat-icon>My mentors</mat-icon>
+      <a style="color: white;" (click)="myMentors()">My Mentors</a>
+  </button>
 
   <mat-divider></mat-divider>
   <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">

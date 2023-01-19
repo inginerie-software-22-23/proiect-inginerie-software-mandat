@@ -143,6 +143,9 @@ namespace MANDAT.BusinessLogic.Services
                 var mentors = db.Matches
                                 .Get()
                                 .Include(m => m.Mentor)
+                                .Include(a => a.Mentor.Announcements)
+                                .Include(s => s.Student)
+                                .Include(r => r.Student.Reviews)
                                 .Where(match => match.StudentId.Equals(studentId) && match.Status.Equals("1"))
                                 .Select(match => new MentorsForStudentDTO
                                 {
@@ -157,7 +160,11 @@ namespace MANDAT.BusinessLogic.Services
                                     EducationalInstitution = match.Mentor.User.EducationalInstitution,
                                     City = match.Mentor.User.Adress.City,
                                     County = match.Mentor.User.Adress.County,
-                                    AddressInfo = match.Mentor.User.Adress.County
+                                    AddressInfo = match.Mentor.User.Adress.AddressInfo,
+                                    Subject = match.Mentor.Announcements.FirstOrDefault(m => m.Id == match.AnnouncementId).Subject,
+                                    StarsNumber = match.Student.Reviews.FirstOrDefault(r => r.Mentor.Id == match.Mentor.Id).StarsNumber,
+                                    Message = match.Student.Reviews.FirstOrDefault(r => r.Mentor.Id == match.Mentor.Id).Message,
+                                    ReviewStatus = "mentor"
                                 })
                                 .ToList();
                 return mentors;

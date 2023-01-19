@@ -19,5 +19,7 @@ namespace MANDAT.BusinessLogic.Interfaces
         double GetMentorStarsAverageRating(Guid id);
         double GetStudentStarsAverageRating(Guid id);
         string EditReviewComment(Guid id, string message);
+
+        List<ViewStudentReviewWithId> ViewAllStudentReviewsDesc(Guid studentId);
     }
 }

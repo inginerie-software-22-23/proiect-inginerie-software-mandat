@@ -45,6 +45,9 @@ import { AddParticipantsComponent } from './pages/video-meeting/add-participants
 import { HomeCardComponent } from "./components/home-card/home-card.component";
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     MentorRequestsComponent,
     MyMentorsComponent,
     MyStudentsComponent,
+    MyMentorsComponent,
     CardComponent,
     HomeCardComponent,
     UserProfileComponent,
@@ -91,6 +95,9 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
+    CommonModule,
+    MatDialogModule,
+    //SharedModule
   ],
   providers: [
     AcceptJSService,

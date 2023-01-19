@@ -13,6 +13,7 @@ import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.compo
 
 
 
+
 const routes: Routes = [
 
   {path: 'home', component: HomePageComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {path: 'requests', component: MentorRequestsComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '#popup-article',   component: MyStudentsComponent},
   { path: '**', component: NotFoundComponent },
   
 

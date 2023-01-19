@@ -44,7 +44,8 @@ import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { CardComponent } from './components/card/card.component';
 import { CommonModule } from '@angular/common';
 
-
+import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from './components/shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +84,9 @@ import { CommonModule } from '@angular/common';
     SocialLoginModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatDialogModule,
+    //SharedModule
   ],
   providers: [AcceptJSService,SocialAuthService,
     {

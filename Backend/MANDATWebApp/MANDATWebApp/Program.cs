@@ -35,6 +35,9 @@ builder.Services.AddSwaggerGen(c =>
     });
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 });
+builder.Services.AddControllersWithViews()
+        .AddNewtonsoftJson(options =>
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 //database conexion
 

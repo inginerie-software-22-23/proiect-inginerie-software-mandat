@@ -24,6 +24,12 @@ export class ReviewService {
   }
 
   public editReview(id: any, message: string): Observable<any>{
-    return this.http.patch(`${this.url}/editReview/${id}`,message);
+    const headers = { 'content-type': 'application/json'};
+
+    return this.http.patch(`${this.url +"/editReview/"+ id + ", " + message}`, {'headers':headers});
+  }
+
+  public getAllStudentReviews(email: string): Observable<any>{
+    return this.http.get<any>(`${this.url}/ViewAllStudentReviews/${email}`);
   }
 }

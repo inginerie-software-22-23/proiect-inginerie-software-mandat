@@ -23,7 +23,7 @@ body{
 .container{
 	width:1600px;
 	max-width:100%;
-	margin:auto;
+	margin:0 auto;
 }
 
 .display{	
@@ -172,4 +172,25 @@ body{
 .noHover{
     pointer-events: none;
 	// opacity: 0.2;
+}
+
+.page{
+	min-height: 100vh;
+	display: flex;
+}
+.divButton{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 0%;
+	margin-bottom: 0px;
+}
+.button{
+	margin-left: 20px;
+	margin-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+p{
+	text-align: center;
 }

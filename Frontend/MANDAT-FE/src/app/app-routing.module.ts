@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {path: 'requests', component: MentorRequestsComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '#popup-article',   component: MyStudentsComponent},
   { path: '**', component: NotFoundComponent },
   
 ];

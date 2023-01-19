@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <img class="avatar mat-elevation-z8" src="../../../assets/images/profile.jpg" />
 
     <div *ngIf="isLoggedin === 'true'">
@@ -23,7 +24,7 @@
             <a style="color: white;" (click)="logOut()">LogOut</a>
         </button>
        <mat-divider></mat-divider>
-        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'student'">
+        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Student'">
             <mat-icon>My mentors</mat-icon>
             <a style="color: white;" (click)="myMentors()">My Mentors</a>
         </button>
@@ -31,7 +32,7 @@
 
 
         <mat-divider></mat-divider>
-        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
+        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
             <mat-icon>My students</mat-icon>
             <a style="color: white;" (click)="myStudents()">My students</a>
         </button>

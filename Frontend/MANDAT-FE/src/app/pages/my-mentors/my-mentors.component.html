@@ -1,5 +1,12 @@
  <p>Mentors based on your filters</p> 
-<!-- <app-card></app-card> -->
+ <div class="divButton">
+ <button mat-raised-button (click)="getMyReviews()" class="button">
+  My Reviews
+</button>
+<button mat-raised-button (click)="sorted()"  class="button">Sort by Name</button>
+<button mat-raised-button (click)="sortedStars()"  class="button">Sort by Stars</button>
+</div>
+<div  class="page">
 <div *ngFor="let mentor of mentors; let i = index" class="container">
 	<div class="display">
 		<div class="display-item">
@@ -37,17 +44,10 @@
                             <label for="star1_{{i}}" title="text" [ngClass]="{'noHover' : !canEdit}">1 star</label>
                         </div>
 
-						<mat-form-field class="example-full-width review" *ngIf="canEdit">
-							<mat-label>Leave a review</mat-label>
-							<textarea matInput  [(ngModel)]="mentor.message"></textarea>
-						</mat-form-field>
-
-                        <button mat-raised-button (click)="SaveReview(mentor.emailMentor, mentor.message)">
-                            Save Review
+                        <button mat-raised-button (click)="AddReview(i)">
+                            Add Review
                         </button>
-                        <button mat-raised-button (click)="EditReview(mentor.emailMentor, mentor.message)">
-                            Edit Review
-                        </button>
+                        
 					</div>
                     <div class="info-address divider">
 						Address
@@ -63,5 +63,7 @@
 			</div>
 		</div>
     </div>
+</div>
+
 </div>
 

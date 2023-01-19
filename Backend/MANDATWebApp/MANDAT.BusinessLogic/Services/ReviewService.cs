@@ -21,10 +21,12 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction( uow =>
             {
+                var student = uow.Students.Get().FirstOrDefault(s => s.User.Email == reviewModel.StudentEmail);
+                var mentor = uow.Mentors.Get().FirstOrDefault(s => s.User.Email == reviewModel.MentorEmail);
                 var review = new Review();
                 review.Id = Guid.NewGuid();
-                review.StudentId = reviewModel.StudentId;
-                review.MentorId = reviewModel.MentorId;
+                review.StudentId = student.Id;
+                review.MentorId = mentor.Id;
                 review.Message = reviewModel.Message;
                // review.CommentDate = DateTime.UtcNow;
                 review.StarsNumber = reviewModel.StarsNumber;
@@ -76,7 +78,7 @@ namespace MANDAT.BusinessLogic.Services
                                              .ToList();
             });
         }
-        public List<ViewMentorReview> ViewMentorReviewsAsc(Guid mentorId)
+        public List<ViewMentorReview> ViewMentorReviewsAsc(Guid mentorId)//review made by students for given mentor
         {
             return ExecuteInTransaction(uow =>
             {
@@ -99,7 +101,7 @@ namespace MANDAT.BusinessLogic.Services
             });
         }
 
-        public List<ViewStudentReview> ViewStudentReviewsDesc(Guid studentId)
+        public List<ViewStudentReview> ViewStudentReviewsDesc(Guid studentId)//review made by mentors for given student
         {
             return ExecuteInTransaction(uow =>
             {
@@ -144,6 +146,30 @@ namespace MANDAT.BusinessLogic.Services
             });
         }
 
+        public List<ViewStudentReviewWithId> ViewAllStudentReviewsDesc(Guid studentId)//reviews made by current student 
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.Reviews.Get()
+                                             .Include(cd => cd.Student)
+                                             .ThenInclude(u => u.User)
+                                             .Where(cd => cd.StudentId.Equals(studentId) && cd.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString()))
+                                             .Select(cd => new ViewStudentReviewWithId
+                                             {
+                                                 Id = cd.Id,
+                                                 MentorName = uow.IdentityUsers.Get()
+                                                         .Where(u => u.Id.Equals(cd.MentorId))
+                                                          .Select(u => u.Username)
+                                                          .Single(),
+                                                 Message = cd.Message,
+                                                 StarsNumber = cd.StarsNumber,
+                                                 UserImage = uow.IdentityUsers.Get().Where(u => u.Id.Equals(cd.MentorId)).Select(u => u.UserImage).Single(),
+                                             })
+                                             .OrderByDescending(cd => cd.StarsNumber)
+                                             .ToList();
+            });
+        }
+        
         public double GetMentorStarsAverageRating(Guid id)
         {
             double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.MentorId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString())).Average(cd => cd.StarsNumber);

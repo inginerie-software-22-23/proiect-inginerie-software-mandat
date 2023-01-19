@@ -1,1 +1,12 @@
-<app-card *ngFor="let student of students" [person] = "student" [canEdit] = "false"></app-card>
+<div>
+    <h2>My students</h2>
+
+    <button class="btn" (onclick)="sortByNameASC()">Sort ASC</button>
+    <button class="btn" (onclick)="sortByNameDESC()">Sort DESC</button>
+
+    <button mat-raised-button (click)="getMyReviews()" class="button">
+        My Reviews
+    </button>
+
+    <app-card *ngFor="let student of students" [person] = "student" [canEdit] = "false"></app-card>
+</div>

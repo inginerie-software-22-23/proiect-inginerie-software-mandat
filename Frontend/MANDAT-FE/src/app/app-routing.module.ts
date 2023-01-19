@@ -11,9 +11,6 @@ import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
 
-
-
-
 const routes: Routes = [
 
   {path: 'home', component: HomePageComponent},

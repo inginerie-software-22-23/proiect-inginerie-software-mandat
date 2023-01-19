@@ -32,7 +32,7 @@ export class DialogAddReviewByStudentComponent implements OnInit{
   ){
     console.log(data)
     if(data){
-      this.mentor = data.mentor;
+      this.mentor = data.data;
     }
     const emailStudent =  this.cookie.get('Email');
     const reviewStatus = "ReviewMentor";

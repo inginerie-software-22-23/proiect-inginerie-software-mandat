@@ -28,10 +28,10 @@
                             <label for="star1" title="text" [ngClass]="{'noHover' : !canEdit}">1 star</label>
                         </div>
 
-						<mat-form-field class="example-full-width review" *ngIf="canEdit">
+						<!-- <mat-form-field class="example-full-width review" *ngIf="canEdit">
 							<mat-label>Leave a review</mat-label>
 							<textarea matInput  [(ngModel)]="review"></textarea>
-						</mat-form-field>
+						</mat-form-field> -->
 					</div>
                     <div class="info-address divider">
 						{{address}}
@@ -39,6 +39,10 @@
 					<div class="info-bio">
                         {{description}}
                     </div>
+
+					<button mat-raised-button (click)="addReview(person)">
+						Add Review
+					</button>
 					
 				</div>
 			</div>

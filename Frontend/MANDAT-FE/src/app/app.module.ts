@@ -29,7 +29,6 @@ import { HttpClientModule } from "@angular/common/http";
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
-
   SocialAuthService,
 } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";

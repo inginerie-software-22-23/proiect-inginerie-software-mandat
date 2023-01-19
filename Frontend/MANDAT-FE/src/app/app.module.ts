@@ -39,6 +39,7 @@ import { MentorRequestsComponent } from "./pages/mentor-requests/mentor-requests
 import { MyStudentsComponent } from "./pages/my-students/my-students.component";
 import { CardComponent } from "./components/card/card.component";
 import { HomeCardComponent } from "./components/home-card/home-card.component";
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { HomeCardComponent } from "./components/home-card/home-card.component";
     MyStudentsComponent,
     CardComponent,
     HomeCardComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

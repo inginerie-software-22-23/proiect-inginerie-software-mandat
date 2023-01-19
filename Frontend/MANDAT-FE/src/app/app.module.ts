@@ -34,10 +34,6 @@ import {
 } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { AcceptJSService } from "@openutility/acceptjs-angular-wrapper";
-  SocialAuthService
-} from '@abacritt/angularx-social-login';
-import { FacebookLoginProvider  } from '@abacritt/angularx-social-login';
-import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
 
 
 import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';

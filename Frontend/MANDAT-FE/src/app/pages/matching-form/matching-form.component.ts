@@ -1,7 +1,7 @@
 
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { MatchingFormModel } from 'src/app/components/interface/matching-form-model';
+import { MatchingFormModel } from 'src/app/interfaces/matching-form-model';
 
 @Component({
   selector: "app-matching-form",
@@ -35,7 +35,15 @@ export class MatchingFormComponent implements OnInit {
     stars: 0,
   };
 
-  public match(): void {
+
+  onChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    if (target.checked) {
+      this.model.stars = parseInt(target.value);
+    }
+  }
+  
+  public match(stars: any): void {
     localStorage.setItem("matchCity", this.model.city);
 
     localStorage.setItem("matchCounty", this.model.county);
@@ -46,6 +54,7 @@ export class MatchingFormComponent implements OnInit {
 
     localStorage.setItem("matchAddress", this.model.addressInfo);
 
+    localStorage.setItem("matchStars", this.model.stars.toString());
     // var star = this.rating;
 
     // console.log(city);

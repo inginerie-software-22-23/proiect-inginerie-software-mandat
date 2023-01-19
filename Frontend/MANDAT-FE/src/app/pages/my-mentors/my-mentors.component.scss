@@ -135,44 +135,48 @@ body{
 	}
 }
 
-.rate {
-    padding: 0 10px;
-    place-items: center;
-}
-.rate:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.rate:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:60px;
-    color:#ccc;
-}
-.rate:not(:checked) > label:before {
-    content: '★ ';
-}
-.rate > input:checked ~ label {
-    color: #ffc700;    
-}
-.rate:not(:checked) > label:hover,
-.rate:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
-.noHover{
-    pointer-events: none;
-	// opacity: 0.2;
-}
+// .rating {
+//     padding: 0 10px;
+//     place-items: center;
+// }
+// .rating:not(:checked) > input {
+//     position:absolute;
+//     top:-9999px;
+// 	color: rgb(167, 167, 175);
+// }
+// #star1_0 {
+//     color: rgb(130, 130, 229);
+// }
+// .rating:not(:checked) > label {
+//     float:right;
+//     width:1em;
+//     overflow:hidden;
+//     white-space:nowrap;
+//     //cursor:pointer;
+//     font-size:60px;
+//     //color:rgb(156, 151, 41);
+//  }
+// .rating:not(:checked) > label:before {
+//     content: '★ ';
+// }
+// .rate > input:checked ~ label {
+//     color: #ffc700;    
+// }
+// .rate:not(:checked) > label:hover,
+// .rate:not(:checked) > label:hover ~ label {
+//     color: #deb217;  
+// }
+// .rate > input:checked ,
+// .rate > input:checked  ~ label,
+// .rate > input:checked ,
+// .rate > input:checked ~ label,
+//  .rate > label:hover ~ input:checked ~ label {
+//     color: #c59b08;
+// }
+// .noHover{
+//     pointer-events: none;
+// 	// opacity: 0.2;
+// }
 
 .page{
 	min-height: 100vh;
@@ -194,3 +198,37 @@ body{
 p{
 	text-align: center;
 }
+// .starselected{
+// 	color: #c59b08;
+// }
+
+
+:root {
+    --star-size: 60px;
+    --star-color: #fff;
+    --star-background: #fc0;
+}
+
+.Stars{
+    --percent:calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+    line-height: 1;
+}
+i{
+	font-family: 'Poppins';
+    font-size: 40px;
+}
+.Stars::before {
+        content: "★★★★★";
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+        -webkit-background-clip: text;
+        //webkit-text-fill-color: transparent;
+}
+
+
+
+
+

@@ -65,7 +65,7 @@ export class MyMentorsComponent implements OnInit{
         (result: MyMentorsModel[]) =>{
           console.log(result);
           this.mentors = result;
-
+          setTimeout(()=>{
             for(let mentor of this.mentors)
             {
               console.log(mentor.email);
@@ -73,31 +73,58 @@ export class MyMentorsComponent implements OnInit{
                 (result:number) => {
                   console.log(result);
                   this.starsForMentors.push([result,mentor.email]);
-                  //console.log(this.starsForMentors);
-                  //this.index++;
-
                 },
                 (error) => {
                   console.error(error);
                 }
                 );
             }
+          },600);
+
         },
         (error) => {
           console.error(error);
         }
         );
-
-        
     }
+    setTimeout(()=>{this.firstSort()},1000);
+    setTimeout(()=>{this.starsEvaluate()},1500);
   }
 
+public starsEvaluate():void{
+  for(let i =0; i<this.mentors.length; i++){
+      let div = document.getElementById("ratings-new_"+i);
+          for (let k = 0; k < this.starsForMentors[i][0]; k++) {
+            const stars = document.createElement('i');
+            stars.style.fontSize='40px';
+            stars.innerHTML = "★";
+            div?.appendChild(stars);
+          }
+        }
+  }
 
   public sortByName() {
     this.mentors.sort((a, b) => {
       return a.username.localeCompare(b.username);
     });
   }
+public firstSort(){
+    var rez = this.sortByName();
+    this.starsForMentorsAux = [];
+        for (let i = 0; i < this.mentors.length; i++) {//m1 m2 m3
+          for (let j = 0; j < this.starsForMentors.length; j++) { //st1,m1 st2,m2 st3,m3
+            if (this.starsForMentors[j][1] == this.mentors[i].email) {
+              this.starsForMentorsAux.push([this.starsForMentors[j][0], this.mentors[i].email])
+            }
+          }
+        }
+        console.log(this.starsForMentorsAux);
+        this.starsForMentors.length=0;
+        this.starsForMentors = [...this.starsForMentorsAux];
+    return rez;
+}
+
+  
 public sortByNameDesc() {
   this.mentors.sort((a, b) => {
       return b.username.localeCompare(a.username);
@@ -180,7 +207,7 @@ public sortedStars(){
     dialog.afterClosed().subscribe((result) =>{
       if(result){
         window.location.reload();
-        this.sortByName();
+        this.firstSort();
       }
     });
   }

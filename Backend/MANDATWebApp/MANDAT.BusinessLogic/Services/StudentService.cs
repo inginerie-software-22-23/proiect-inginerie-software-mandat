@@ -2,6 +2,7 @@
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.DTOs;
 using MANDAT.Entities.Entities;
+using MANDAT.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -136,8 +137,9 @@ namespace MANDAT.BusinessLogic.Services
             });
         }
 
-        public List<MentorsForStudentDTO> GetMentorsForStudent(Guid studentId)
+        public List<MentorsForStudentDTO> GetMentorsForStudent(Guid studentId)//buna pana intr-un punct
         {
+          
             return ExecuteInTransaction(db =>
             {
                 var mentors = db.Matches
@@ -161,10 +163,8 @@ namespace MANDAT.BusinessLogic.Services
                                     City = match.Mentor.User.Adress.City,
                                     County = match.Mentor.User.Adress.County,
                                     AddressInfo = match.Mentor.User.Adress.AddressInfo,
-                                    Subject = match.Mentor.Announcements.FirstOrDefault(m => m.Id == match.AnnouncementId).Subject,
-                                    StarsNumber = match.Student.Reviews.FirstOrDefault(r => r.Mentor.Id == match.Mentor.Id).StarsNumber,
-                                    Message = match.Student.Reviews.FirstOrDefault(r => r.Mentor.Id == match.Mentor.Id).Message,
-                                    ReviewStatus = "mentor"
+                                    Subject = match.Mentor.Announcements.FirstOrDefault(m => m.Id == match.AnnouncementId).Subject,                                  
+                                    ReviewStatus = "ReviewMentor"
                                 })
                                 .ToList();
                 return mentors;

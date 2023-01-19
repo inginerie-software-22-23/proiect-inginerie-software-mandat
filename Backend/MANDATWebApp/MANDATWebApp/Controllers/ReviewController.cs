@@ -66,6 +66,14 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
+        [HttpGet("MentorStars/{email}")]
+        public double MentorAverageRatingGood([FromRoute]string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            var result = _review.GetMentorStarsAverageRatingGood(id);
+            return result;
+        }
+
         [HttpGet]
         public double StudentAverageRating(Guid id)
         {

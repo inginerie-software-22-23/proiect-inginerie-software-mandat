@@ -7,7 +7,7 @@
 <button mat-raised-button (click)="sortedStars()"  class="button">Sort by Stars</button>
 </div>
 <div  class="page">
-<div *ngFor="let mentor of mentors; let i = index" class="container">
+<div *ngFor="let mentor of mentors; let i = index;" class="container">
 	<div class="display">
 		<div class="display-item">
 			<div class="card seamus">
@@ -22,6 +22,7 @@
 						<h2>{{mentor.username}} </h2>
                         <h4>Subject: {{mentor.subject}}</h4> 
                         <h4>Phone: {{mentor.phoneNumber}}</h4>
+                        {{starsForMentors[i]}}
                         <!-- <br>
                         {{mentor.starsNumber}}
                         <br>

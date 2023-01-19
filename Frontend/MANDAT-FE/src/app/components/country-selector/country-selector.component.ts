@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-country-selector',
-  templateUrl: './country-selector.component.html',
-  styleUrls: ['./country-selector.component.scss']
+  selector: "app-country-selector",
+  templateUrl: "./country-selector.component.html",
+  styleUrls: ["./country-selector.component.scss"],
 })
 export class CountrySelectorComponent {
-  @Input() label: string = '';
+  @Input() label: string = "";
 }

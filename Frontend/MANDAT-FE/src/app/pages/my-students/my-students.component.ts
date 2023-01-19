@@ -4,9 +4,9 @@ import { CookieService } from 'ngx-cookie-service';
 import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
-  selector: 'app-my-students',
-  templateUrl: './my-students.component.html',
-  styleUrls: ['./my-students.component.scss']
+  selector: "app-my-students",
+  templateUrl: "./my-students.component.html",
+  styleUrls: ["./my-students.component.scss"],
 })
 export class MyStudentsComponent {
 

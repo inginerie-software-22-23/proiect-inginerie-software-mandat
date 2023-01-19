@@ -211,10 +211,12 @@ namespace MANDAT.BusinessLogic.Services
 
         //update request
 
-        public bool RespondToRequests(Guid mentorId, Guid studentId, bool response)
+        public bool RespondToRequests(string mentorEmail, string studentEmail, bool response)
         {
             return ExecuteInTransaction(uow =>
             {
+                var mentorId = uow.IdentityUsers.Get().Where(s => s.Email == mentorEmail).Select(s => s.Id).Single();
+                var studentId = uow.IdentityUsers.Get().Where(s => s.Email == studentEmail).Select(s => s.Id).Single();
                 var request = uow.Matches.Get()
                                             .Where(x => x.StudentId == studentId && x.MentorId == mentorId)
                                             .Include(s => s.Mentor)

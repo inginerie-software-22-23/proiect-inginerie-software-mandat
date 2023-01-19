@@ -34,6 +34,7 @@ export class MentorRequestsComponent {
    
    acceptStudent(data: string) : void{
     var email = this.cookieService.get('Email');
+    
       this.mentorRequests.ChangeRequestStatus(email, data, true).subscribe(
         (result) => {
            const  div =  document.getElementById(data);

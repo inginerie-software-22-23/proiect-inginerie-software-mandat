@@ -40,6 +40,8 @@ import { MentorRequestsComponent } from './pages/mentor-requests/mentor-requests
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { CardComponent } from './components/card/card.component';
 import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';
+import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
+import { AddParticipantsComponent } from './pages/video-meeting/add-participants/add-participants.component';
 
 
 @NgModule({
@@ -59,6 +61,8 @@ import { MentorRequestCardComponent } from './components/mentor-request-card/men
     MyStudentsComponent,
     CardComponent,
     MentorRequestCardComponent,
+    VideoMeetingComponent,
+    AddParticipantsComponent,
 
   ],
   imports: [

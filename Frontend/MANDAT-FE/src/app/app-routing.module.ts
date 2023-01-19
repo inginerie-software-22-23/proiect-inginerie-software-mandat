@@ -7,6 +7,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
 import { MentorRequestsComponent } from './pages/mentor-requests/mentor-requests.component';
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
+import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'match', component: MatchingFormComponent  },
 
   { path: 'my-students', component: MyStudentsComponent  },
-
+  { path: 'video-meeting', component: VideoMeetingComponent  },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

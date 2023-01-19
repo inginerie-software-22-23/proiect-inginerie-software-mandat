@@ -1,11 +1,13 @@
 ﻿using MANDAT.BusinessLogic.Base;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.DTOs;
+using MANDAT.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MANDAT.BusinessLogic.Services
@@ -183,7 +185,7 @@ namespace MANDAT.BusinessLogic.Services
             {
                 return uow.Matches.Get()
                                            .Include(s => s.Student)
-                                           .ThenInclude(ma => ma.User)
+                                           .Include(r => r.Student.Reviews)
                                            .Where(ma => ma.MentorId.Equals(mentorId) && ma.Status.Equals("1"))
                                            .Select(ma => new GetStudentsForMentorDTO
                                            {
@@ -198,9 +200,17 @@ namespace MANDAT.BusinessLogic.Services
                                                Bio = ma.Student.User.Bio,
                                                EducationalInstitution = ma.Student.User.EducationalInstitution,
                                                StudentGrade = ma.Student.StudentGrade,
-                                               StudentSchoolQualification = ma.Student.StudentSchoolQualification
+                                               StudentSchoolQualification = ma.Student.StudentSchoolQualification,
+                                               City = ma.Student.User.Adress.City,
+                                               County = ma.Student.User.Adress.County,
+                                               AddressInfo = ma.Student.User.Adress.AddressInfo,
+                                               Subject = ma.Student.Announcements.FirstOrDefault(m => m.Id == ma.AnnouncementId).Subject,
+                                               StarsNumber = ma.Mentor.Reviews.FirstOrDefault(r => r.Student.Id == ma.Student.Id).StarsNumber,
+                                               Message = ma.Mentor.Reviews.FirstOrDefault(r => r.Student.Id == ma.Student.Id).Message,
+                                               ReviewStatus = "student"
                                            })
                                            .ToList();
+
             });
 
         }

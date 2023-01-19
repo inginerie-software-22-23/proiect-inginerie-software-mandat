@@ -15,6 +15,7 @@ namespace MANDAT.Entities.Entities
         public int StudentGrade { get; set; }
         public string StudentSchoolQualification{ get; set; }
         public virtual IdentityUser User { get; set; }
+        public virtual ICollection<Announcement> Announcements { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
     }

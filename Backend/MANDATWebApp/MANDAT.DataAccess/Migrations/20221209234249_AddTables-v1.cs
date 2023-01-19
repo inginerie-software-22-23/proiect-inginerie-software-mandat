@@ -28,7 +28,7 @@ namespace MANDAT.DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    UserImage = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    UserImage = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),

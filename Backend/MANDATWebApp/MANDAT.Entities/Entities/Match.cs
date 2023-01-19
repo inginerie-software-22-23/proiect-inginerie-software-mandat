@@ -1,6 +1,7 @@
 ﻿using MANDAT.Common;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,9 @@ namespace MANDAT.Entities.Entities
     {
         public Guid MentorId { get; set; }
         public Guid StudentId { get; set; }
+
+        [ForeignKey("AnnouncementId")]
+        public Guid AnnouncementId { get; set; }
         public DateTime MatchDate { get; set; }
         public string Status { get; set; }
 

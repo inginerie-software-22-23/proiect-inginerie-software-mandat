@@ -1,16 +1,16 @@
-import { Component, ViewChild } from '@angular/core';
-import { MatSidenav } from '@angular/material/sidenav';
-import {BreakpointObserver} from '@angular/cdk/layout';
-import { SocialUser, SocialAuthService } from '@abacritt/angularx-social-login';
-import { FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { UserAccountService } from 'src/app/services/user-account.service';
+import { Component, ViewChild } from "@angular/core";
+import { MatSidenav } from "@angular/material/sidenav";
+import { BreakpointObserver } from "@angular/cdk/layout";
+import { SocialUser, SocialAuthService } from "@abacritt/angularx-social-login";
+import { FormBuilder } from "@angular/forms";
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
+import { UserAccountService } from "src/app/services/user-account.service";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent {
   @ViewChild(MatSidenav)
@@ -19,44 +19,41 @@ export class NavbarComponent {
   isLoggedin?: string;
   name?: string;
   rol?: string;
-   constructor(private observer: BreakpointObserver,
+  constructor(
+    private observer: BreakpointObserver,
     private router: Router,
     private formBuilder: FormBuilder,
     public socialAuthService: SocialAuthService,
     private cookieService: CookieService,
     private accountService: UserAccountService
   ) {}
- 
-  ngOnInit(): void {
-   this.isLoggedin = this.cookieService.get('LoggedIn');
-   if(this.isLoggedin !== ''){
-    this.name = this.cookieService.get('Nume');
-    this.rol = this.cookieService.get('Rol');
-   }
 
+  ngOnInit(): void {
+    this.isLoggedin = this.cookieService.get("LoggedIn");
+    if (this.isLoggedin !== "") {
+      this.name = this.cookieService.get("Nume");
+      this.rol = this.cookieService.get("Rol");
+    }
   }
-   logOut():any {
-    let email= this.cookieService.get('Email');
+  logOut(): any {
+    let email = this.cookieService.get("Email");
     this.accountService.Logout(email).subscribe(
-      (result) => {
+      result => {
         console.log(result);
         sessionStorage.clear();
         localStorage.clear();
-       this.cookieService.deleteAll();
-       window.location.reload()
-       this.router.navigate(['/home'])
-
+        this.cookieService.deleteAll();
+        window.location.reload();
+        this.router.navigate(["/home"]);
       },
-      (error) => {
+      error => {
         console.error(error);
       }
-    )
+    );
   }
-   ngAfterViewInit() {
-   
-   }
+  ngAfterViewInit() {}
 
   public myStudents(): void {
-    this.router.navigate(['my-students']);
+    this.router.navigate(["my-students"]);
   }
 }

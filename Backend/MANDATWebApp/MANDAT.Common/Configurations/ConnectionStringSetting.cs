@@ -15,14 +15,11 @@ namespace MANDAT.Common.Configurations
     public enum DatabaseIdentifier
     {
         MANDATProjectDatabase,
-
     }
 
     public class DbConfig
     {
         public string ConnectionString { get; set; }
         public int TimeoutSeconds { get; set; }
-
-
     }
 }

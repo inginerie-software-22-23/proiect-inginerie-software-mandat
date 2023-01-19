@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 * {
   font-family: "Poppins", sans-serif;
@@ -19,5 +19,10 @@
     -5px -5px 8px rgba(115, 133, 253, 0.5);
 }
 
-html, body { height: 100%; }
-body { margin: 0;}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+}

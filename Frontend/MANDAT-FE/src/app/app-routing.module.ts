@@ -1,3 +1,4 @@
+
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomePageComponent } from "./pages/home-page/home-page.component";
@@ -8,17 +9,24 @@ import { MatchingFormComponent } from "./pages/matching-form/matching-form.compo
 import { MentorRequestsComponent } from "./pages/mentor-requests/mentor-requests.component";
 import { MyStudentsComponent } from "./pages/my-students/my-students.component";
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
+import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
+
+
 
 const routes: Routes = [
-  { path: "home", component: HomePageComponent },
+
+  {path: 'home', component: HomePageComponent},
   { path: "user-profile", component: UserProfileComponent },
-  { path: "match", component: MatchingFormComponent },
-  { path: "my-students", component: MyStudentsComponent },
-  { path: "login", component: LoginComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "requests", component: MentorRequestsComponent },
-  { path: "", redirectTo: "/home", pathMatch: "full" },
-  { path: "**", component: NotFoundComponent },
+  { path: 'match', component: MatchingFormComponent  },
+  { path: 'my-students', component: MyStudentsComponent  },
+  { path: 'video-meeting', component: VideoMeetingComponent  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {path: 'requests', component: MentorRequestsComponent},
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent },
+  
+
 ];
 
 @NgModule({

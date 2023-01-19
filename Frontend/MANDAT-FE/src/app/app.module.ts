@@ -29,11 +29,20 @@ import { HttpClientModule } from "@angular/common/http";
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
+
   SocialAuthService,
 } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { AcceptJSService } from "@openutility/acceptjs-angular-wrapper";
+  SocialAuthService
+} from '@abacritt/angularx-social-login';
+import { FacebookLoginProvider  } from '@abacritt/angularx-social-login';
+import { AcceptJSService } from '@openutility/acceptjs-angular-wrapper';
 
+
+import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';
+import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
+import { AddParticipantsComponent } from './pages/video-meeting/add-participants/add-participants.component';
 import { MatchingFormComponent } from "./pages/matching-form/matching-form.component";
 import { MentorRequestsComponent } from "./pages/mentor-requests/mentor-requests.component";
 import { MyStudentsComponent } from "./pages/my-students/my-students.component";
@@ -55,12 +64,15 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     HomePageComponent,
     NavbarComponent,
     MatchingFormComponent,
-    MentorRequestsComponent,
     MyStudentsComponent,
     CardComponent,
     HomeCardComponent,
     UserProfileComponent,
     StarRatingComponent,
+    MentorRequestCardComponent,
+    VideoMeetingComponent,
+    AddParticipantsComponent,
+
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { AbstractControl, FormControl, FormGroup } from "@angular/forms";
-import { MatchingFormModel } from "src/app/interfaces/matching-form-model";
+
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
+import { MatchingFormModel } from 'src/app/components/interface/matching-form-model';
 
 @Component({
   selector: "app-matching-form",
@@ -49,4 +50,5 @@ export class MatchingFormComponent implements OnInit {
 
     // console.log(city);
   }
+
 }

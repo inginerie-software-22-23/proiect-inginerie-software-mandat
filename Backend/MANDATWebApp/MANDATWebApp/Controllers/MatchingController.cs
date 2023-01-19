@@ -82,10 +82,10 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
-        [HttpPatch]
-        public IActionResult RespondToRequests(Guid mentorId, Guid studentId, bool response)
+        [HttpPatch("RespondToRequests/{mentorEmail}, {studentEmail}, {response}")]
+        public IActionResult RespondToRequests(string mentorEmail, string studentEmail, bool response)
         {
-            var result = _matchingService.RespondToRequests(mentorId, studentId, response);
+            var result = _matchingService.RespondToRequests(mentorEmail, studentEmail, response);
             return Ok(result);
         }
 

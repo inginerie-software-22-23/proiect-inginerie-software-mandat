@@ -130,6 +130,6 @@ namespace MANDATWebApp.Controllers
         //    var result = _userAccountService.GetUserIdByEmail(email);
         //    return Ok(result);
         //}
+
     }
-    
 }

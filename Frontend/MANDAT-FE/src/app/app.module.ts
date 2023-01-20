@@ -17,7 +17,6 @@ import { MaterialEmailComponent } from "./components/material-email/material-ema
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
-
 import { HomePageComponent } from "./pages/home-page/home-page.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { MatSidenavModule } from "@angular/material/sidenav";
@@ -42,11 +41,11 @@ import { MentorRequestCardComponent } from './components/mentor-request-card/men
 import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
 import { AddParticipantsComponent } from './pages/video-meeting/add-participants/add-participants.component';
 import { HomeCardComponent } from "./components/home-card/home-card.component";
+import { MatDialogModule } from '@angular/material/dialog';
+import { SharedModule } from './components/shared/shared.module';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule } from '@angular/material/dialog';
-import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [

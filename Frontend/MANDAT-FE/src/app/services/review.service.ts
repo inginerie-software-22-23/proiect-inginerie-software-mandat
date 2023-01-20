@@ -32,4 +32,8 @@ export class ReviewService {
   public getAllStudentReviews(email: string): Observable<any>{
     return this.http.get<any>(`${this.url}/ViewAllStudentReviews/${email}`);
   }
+
+  public getMentorsStars(email: string): Observable<any>{
+    return this.http.get<any>(`${this.url}/MentorStars/${email}`);
+  }
 }

@@ -23,8 +23,8 @@ namespace MANDAT.Common.DTOs
 
         public string Subject { get; set; }
 
-        public int StarsNumber { get; set; }
-        public string Message { get; set; }
+        //public int StarsNumber { get; set; }
+       // public string Message { get; set; }
         public string ReviewStatus { get; set; }
 
         //Location

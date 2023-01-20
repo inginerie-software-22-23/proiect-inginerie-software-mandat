@@ -175,6 +175,21 @@ namespace MANDAT.BusinessLogic.Services
             double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.MentorId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString())).Average(cd => cd.StarsNumber);
             return averageRating;
         }
+        public double GetMentorStarsAverageRatingGood(Guid id)//id mentor
+        {
+            var review = UnitOfWork.Reviews.Get().Where(sr => sr.MentorId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString()));
+            if (review.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                double averageRating = (double)review.Average(cd => cd.StarsNumber);
+                return Math.Ceiling(averageRating);
+            }
+
+
+        }
         public double GetStudentStarsAverageRating(Guid id)
         {
             double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.StudentId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString())).Average(cd => cd.StarsNumber);

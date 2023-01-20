@@ -1,6 +1,6 @@
 export interface MyMentorsModel {
     username: string,
-    emailMentor: string,
+    email: string,
     phoneNumber: string,
     passwordHash: string,
     createdAt: Date,
@@ -9,8 +9,8 @@ export interface MyMentorsModel {
     bio: string,
     educationalInstitution: string,
     subject: string,
-    message: string,
-    starsNumber: number,
+    //message: string,
+    //starsNumber: number,
     reviewStatus: string,
     city: string,
     county: string,

@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Subscription } from 'rxjs';
 import { MyMentorsModel } from 'src/app/components/interface/my-mentors-model';
 import { ReviewForSave } from 'src/app/components/interface/review-for-save';
+import { StarsModel } from 'src/app/components/interface/stars-model';
 import { DialogAddReviewByStudentComponent } from 'src/app/components/shared/dialog-add-review-by-student/dialog-add-review-by-student.component';
 import { DialogViewStudentReviewsComponent } from 'src/app/components/shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
 import { AccountService } from 'src/app/services/account.service';
@@ -20,8 +21,10 @@ import { StudentService } from 'src/app/services/student.service';
 export class MyMentorsComponent implements OnInit{
   public sub: Subscription = new Subscription;
   public id: any | undefined;
-  public email?: string;
+  public emailSt?: string;
   public mentors: MyMentorsModel[] = [];
+  public starsForMentors:Array<[number,string]>=[];// number[]=[];
+  public starsForMentorsAux:Array<[number,string]>=[];
   public username?:string;
   public phoneNumber?:string;
   public city?: string;
@@ -30,6 +33,7 @@ export class MyMentorsComponent implements OnInit{
   public bio?:string;
   public subject?:string;
   public canEdit: boolean = true;
+  public index: number = 0;
 
   public message?: string;
   public starsNumber?: number;
@@ -37,7 +41,8 @@ export class MyMentorsComponent implements OnInit{
   public emailMentor?:string;
 
   public idStudent: any;
-  public counter: number = 0;
+  public counter: number = -1;
+  public counter2: number = -1;
   constructor(
     private accountService: AccountService,
     private reviewService: ReviewService,
@@ -54,33 +59,72 @@ export class MyMentorsComponent implements OnInit{
       else
       this.canEdit = false;
     
-    this.email = this.cookie.get('Email');
-    if(this.email){
-      this.myStudentService.getMentorsForStudent(this.email).subscribe(
+    this.emailSt = this.cookie.get('Email');
+    if(this.emailSt){
+      this.myStudentService.getMentorsForStudent(this.emailSt).subscribe(
         (result: MyMentorsModel[]) =>{
           console.log(result);
           this.mentors = result;
-          // this.username = this.mentors[1].username;
-          // this.phoneNumber = this.mentors[1].phoneNumber;
-          // this.city = this.mentors[1].city;
-          // this.county = this.mentors[1].county;
-          // this.addressInfo = this.mentors[1].addressInfo;
-          // this.bio = this.mentors[1].bio;
-          // this.subject = this.mentors[1].subject;
+          setTimeout(()=>{
+            for(let mentor of this.mentors)
+            {
+              console.log(mentor.email);
+              this.reviewService.getMentorsStars(mentor.email).subscribe(
+                (result:number) => {
+                  console.log(result);
+                  this.starsForMentors.push([result,mentor.email]);
+                },
+                (error) => {
+                  console.error(error);
+                }
+                );
+            }
+          },600);
+
         },
         (error) => {
           console.error(error);
         }
         );
     }
+    setTimeout(()=>{this.firstSort()},1000);
+    setTimeout(()=>{this.starsEvaluate()},1500);
   }
 
+public starsEvaluate():void{
+  for(let i =0; i<this.mentors.length; i++){
+      let div = document.getElementById("ratings-new_"+i);
+          for (let k = 0; k < this.starsForMentors[i][0]; k++) {
+            const stars = document.createElement('i');
+            stars.style.fontSize='40px';
+            stars.innerHTML = "★";
+            div?.appendChild(stars);
+          }
+        }
+  }
 
   public sortByName() {
     this.mentors.sort((a, b) => {
-        return a.username.localeCompare(b.username);
+      return a.username.localeCompare(b.username);
     });
+  }
+public firstSort(){
+    var rez = this.sortByName();
+    this.starsForMentorsAux = [];
+        for (let i = 0; i < this.mentors.length; i++) {//m1 m2 m3
+          for (let j = 0; j < this.starsForMentors.length; j++) { //st1,m1 st2,m2 st3,m3
+            if (this.starsForMentors[j][1] == this.mentors[i].email) {
+              this.starsForMentorsAux.push([this.starsForMentors[j][0], this.mentors[i].email])
+            }
+          }
+        }
+        console.log(this.starsForMentorsAux);
+        this.starsForMentors.length=0;
+        this.starsForMentors = [...this.starsForMentorsAux];
+    return rez;
 }
+
+  
 public sortByNameDesc() {
   this.mentors.sort((a, b) => {
       return b.username.localeCompare(a.username);
@@ -88,19 +132,55 @@ public sortByNameDesc() {
 }
 
 public sorted(){
+  
   this.counter++;
-  if(this.counter % 2 == 0)
+  if(this.counter % 2 != 0)
   {
     var rez = this.sortByName();
   }
   else{
     var rez = this.sortByNameDesc();
   }
+  this.starsForMentorsAux = [];
+      for (let i = 0; i < this.mentors.length; i++) {//m1 m2 m3
+        for (let j = 0; j < this.starsForMentors.length; j++) { //st1,m1 st2,m2 st3,m3
+          if (this.starsForMentors[j][1] == this.mentors[i].email) {
+            this.starsForMentorsAux.push([this.starsForMentors[j][0], this.mentors[i].email])
+          }
+        }
+      }
+      console.log(this.starsForMentorsAux);
+      this.starsForMentors.length=0;
+      this.starsForMentors = [...this.starsForMentorsAux];
   return rez;
 }
-
+public sortedStarsAscending(){
+  this.starsForMentors.sort((a, b) => {
+    return a[0] - b[0];
+  });
+}
+public sortedStarsDescending(){
+  this.starsForMentors.sort((a, b) => {
+    return b[0] - a[0];
+  });
+}
 public sortedStars(){
-  
+  this.counter2++;
+  if(this.counter2 % 2 != 0)
+  {
+    var rez = this.sortedStarsAscending();
+  }
+  else{
+    var rez = this.sortedStarsDescending();
+  }
+
+  this.mentors.sort((a, b) => {
+    let aIndex = this.starsForMentors.findIndex(([index, email]) => email === a.email);
+    let bIndex = this.starsForMentors.findIndex(([index, email]) => email === b.email);
+    return aIndex - bIndex;
+  });
+
+  return rez;
 }
 
  public getMyReviews(){
@@ -127,6 +207,7 @@ public sortedStars(){
     dialog.afterClosed().subscribe((result) =>{
       if(result){
         window.location.reload();
+        this.firstSort();
       }
     });
   }

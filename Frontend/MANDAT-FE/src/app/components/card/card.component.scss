@@ -35,7 +35,7 @@ body {
     flex-basis: 1px;
     display: flex;
     justify-content: space-around;
-    padding: 15px;
+    padding: 25px;
     max-width: 100%;
   }
 }
@@ -93,8 +93,9 @@ body {
 		.info-title{
 			padding-bottom:10px;
             padding-top: 15px;
-			h3{
-				font-weight:400;
+			h2{
+				font-size:35px;
+				padding: 5px;
 			}
 		}
 		.card-rating{
@@ -216,15 +217,90 @@ body {
   }
 }
 
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+// .rate > input:checked + label:hover,
+// .rate > input:checked + label:hover ~ label,
+// .rate > input:checked ~ label:hover,
+// .rate > input:checked ~ label:hover ~ label,
+// .rate > label:hover ~ input:checked ~ label {
+//     color: #c59b08;
+// }
+
+// .rating {
+//     padding: 0 10px;
+//     place-items: center;
+// }
+// .rating:not(:checked) > input {
+//     position:absolute;
+//     top:-9999px;
+// 	color: rgb(167, 167, 175);
+// }
+// #star1_0 {
+//     color: rgb(130, 130, 229);
+// }
+// .rating:not(:checked) > label {
+//     float:right;
+//     width:1em;
+//     overflow:hidden;
+//     white-space:nowrap;
+//     //cursor:pointer;
+//     font-size:60px;
+//     //color:rgb(156, 151, 41);
+//  }
+// .rating:not(:checked) > label:before {
+//     content: '★ ';
+// }
+// .rate > input:checked ~ label {
+//     color: #ffc700;    
+// }
+// .rate:not(:checked) > label:hover,
+// .rate:not(:checked) > label:hover ~ label {
+//     color: #deb217;  
+// }
+// .rate > input:checked ,
+// .rate > input:checked  ~ label,
+// .rate > input:checked ,
+// .rate > input:checked ~ label,
+//  .rate > label:hover ~ input:checked ~ label {
+//     color: #c59b08;
+// }
+// .noHover{
+//     pointer-events: none;
+// 	// opacity: 0.2;
+// }
+
+
+
+// :root {
+//     --star-size: 60px;
+//     --star-color: #fff;
+//     --star-background: #fc0;
+// }
+
+.Stars{
+    --percent:calc(var(--rating) / 5 * 100%);
+    display: inline-block;
+    font-size: var(--star-size);
+    font-family: Times;
+    line-height: 1;
 }
 
-.noHover{
-    pointer-events: none;
-	// opacity: 0.2;
+i {
+	font-family: 'Poppins';
+    font-size: 60px;
+	color: grey;
+}
+.Stars::before {
+        content: "★★★★★";
+        letter-spacing: 3px;
+        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+        -webkit-background-clip: text;
+        //webkit-text-fill-color: transparent;
+}
+
+.button {
+	margin: auto;
+	width: 150px;
+	margin-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
 }

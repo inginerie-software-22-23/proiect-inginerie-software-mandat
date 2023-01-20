@@ -169,7 +169,31 @@ namespace MANDAT.BusinessLogic.Services
                                              .ToList();
             });
         }
-        
+
+        public List<ViewMentorReviewWithId> ViewAllMentorReviewsDesc(Guid mentorId)//reviews made by current mentor 
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.Reviews.Get()
+                                             .Include(cd => cd.Mentor)
+                                             .ThenInclude(u => u.User)
+                                             .Where(cd => cd.MentorId.Equals(mentorId) && cd.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString()))
+                                             .Select(cd => new ViewMentorReviewWithId
+                                             {
+                                                 Id = cd.Id,
+                                                 StudentName = uow.IdentityUsers.Get()
+                                                         .Where(u => u.Id.Equals(cd.StudentId))
+                                                          .Select(u => u.Username)
+                                                          .Single(),
+                                                 Message = cd.Message,
+                                                 StarsNumber = cd.StarsNumber,
+                                                 UserImage = uow.IdentityUsers.Get().Where(u => u.Id.Equals(cd.StudentId)).Select(u => u.UserImage).Single(),
+                                             })
+                                             .OrderByDescending(cd => cd.StarsNumber)
+                                             .ToList();
+            });
+        }
+
         public double GetMentorStarsAverageRating(Guid id)
         {
             double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.MentorId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString())).Average(cd => cd.StarsNumber);
@@ -192,8 +216,17 @@ namespace MANDAT.BusinessLogic.Services
         }
         public double GetStudentStarsAverageRating(Guid id)
         {
-            double averageRating = UnitOfWork.Reviews.Get().Where(sr => sr.StudentId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString())).Average(cd => cd.StarsNumber);
-            return averageRating;
+            var review = UnitOfWork.Reviews.Get().Where(sr => sr.StudentId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString()));
+
+            if (review.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                double averageRating = (double)review.Average(cd => cd.StarsNumber);
+                return Math.Ceiling(averageRating);
+            }
         }
 
         public string EditReviewComment(Guid id, string message)

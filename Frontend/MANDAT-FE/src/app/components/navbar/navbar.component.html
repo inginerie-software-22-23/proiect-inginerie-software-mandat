@@ -15,7 +15,7 @@
       <a  routerLink="/match">Matching Form</a>
   </button>
   <button mat-button class="menu-button">
-      <mat-icon></mat-icon>
+      <mat-icon>Mentors</mat-icon>
       <a style="color: white;">Mentors</a>
   </button>
   <button mat-button class="menu-button" onclick="">
@@ -24,12 +24,11 @@
   </button>
 
   <mat-divider></mat-divider>
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Student'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'student'">
       <mat-icon>My mentors</mat-icon>
-      <a style="color: white;" (click)="myMentors()">My Mentors</a>
+      <a style="color: white;" (click)="myMentors()">My mentors</a>
   </button>
 
-  <mat-divider></mat-divider>
   <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
     <mat-icon>My students</mat-icon>
     <a style="color: white" (click)="myStudents()">My students</a>

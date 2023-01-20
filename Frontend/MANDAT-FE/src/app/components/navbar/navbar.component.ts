@@ -46,7 +46,7 @@ export class NavbarComponent {
         sessionStorage.clear();
         localStorage.clear();
         this.cookieService.deleteAll();
-        window.location.reload();
+        // window.location.reload();
         this.router.navigate(["/home"]);
       },
       error => {

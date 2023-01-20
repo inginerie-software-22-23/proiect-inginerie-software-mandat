@@ -181,37 +181,37 @@ namespace MANDAT.BusinessLogic.Services
         }
         public List<GetStudentsForMentorDTO> GetStudentsForMentor(Guid mentorId)
         {
-            return ExecuteInTransaction(uow =>
-            {
-                return uow.Matches.Get()
-                                           .Include(s => s.Student)
-                                           .Include(r => r.Student.Reviews)
-                                           .Where(ma => ma.MentorId.Equals(mentorId) && ma.Status.Equals("1"))
-                                           .Select(ma => new GetStudentsForMentorDTO
-                                           {
-                                            //   UserImage = ma.Student.User.UserImage,
-                                               Username = ma.Student.User.Username,
-                                               Email = ma.Student.User.Email,
-                                               PhoneNumber = ma.Student.User.PhoneNumber,
-                                               PasswordHash = ma.Student.User.PasswordHash,
-                                               CreatedAt = ma.Student.User.CreatedAt,
-                                               IsActive = ma.Student.User.IsActive,
-                                               IsDeleted = ma.Student.User.IsDeleted,
-                                               Bio = ma.Student.User.Bio,
-                                               EducationalInstitution = ma.Student.User.EducationalInstitution,
-                                               StudentGrade = ma.Student.StudentGrade,
-                                               StudentSchoolQualification = ma.Student.StudentSchoolQualification,
-                                               City = ma.Student.User.Adress.City,
-                                               County = ma.Student.User.Adress.County,
-                                               AddressInfo = ma.Student.User.Adress.AddressInfo,
-                                               Subject = ma.Student.Announcements.FirstOrDefault(m => m.Id == ma.AnnouncementId).Subject,
-                                               StarsNumber = ma.Mentor.Reviews.FirstOrDefault(r => r.Student.Id == ma.Student.Id).StarsNumber,
-                                               Message = ma.Mentor.Reviews.FirstOrDefault(r => r.Student.Id == ma.Student.Id).Message,
-                                               ReviewStatus = "student"
-                                           })
-                                           .ToList();
-
-            });
+                return ExecuteInTransaction(db =>
+                {
+                    var mentors = db.Matches
+                                    .Get()
+                                    .Include(m => m.Student)
+                                    .Include(a => a.Student.Announcements)
+                                    .Include(s => s.Mentor)
+                                    .Include(r => r.Mentor.Reviews)
+                                    .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
+                                    .Select(match => new GetStudentsForMentorDTO
+                                    {
+                                        Username = match.Student.User.Username,
+                                        Email = match.Student.User.Email,
+                                        PhoneNumber = match.Student.User.PhoneNumber,
+                                        PasswordHash = match.Student.User.PasswordHash,
+                                        CreatedAt = match.Student.User.CreatedAt,
+                                        IsActive = match.Student.User.IsActive,
+                                        IsDeleted = match.Student.User.IsDeleted,
+                                        Bio = match.Student.User.Bio,
+                                        EducationalInstitution = match.Student.User.EducationalInstitution,
+                                        StudentGrade = match.Student.StudentGrade,
+                                        StudentSchoolQualification = match.Student.StudentSchoolQualification,
+                                        City = match.Student.User.Adress.City,
+                                        County = match.Student.User.Adress.County,
+                                        AddressInfo = match.Student.User.Adress.AddressInfo,
+                                        Subject = match.Mentor.Announcements.FirstOrDefault(m => m.Id == match.AnnouncementId).Subject,
+                                        ReviewStatus = "ReviewStudent"
+                                    })
+                                    .ToList();
+                    return mentors;
+                });
 
         }
 

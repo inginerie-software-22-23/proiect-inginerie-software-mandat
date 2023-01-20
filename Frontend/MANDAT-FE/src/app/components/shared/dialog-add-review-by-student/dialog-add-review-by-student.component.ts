@@ -13,8 +13,14 @@ import { StudentService } from 'src/app/services/student.service';
   styleUrls: ['./dialog-add-review-by-student.component.scss']
 })
 export class DialogAddReviewByStudentComponent implements OnInit{
-  ngOnInit(): void { }
-  public mentor:any;
+  ngOnInit(): void { 
+    
+  }
+  public reviewStatus: string = '';
+  public emailStudent: string = '';
+  public emailMentor: string = '';
+  public user:any;
+
   public addReviewForm: FormGroup = new FormGroup({
     message: new FormControl(''),
     starsNumber: new FormControl(0),
@@ -32,16 +38,26 @@ export class DialogAddReviewByStudentComponent implements OnInit{
   ){
     console.log(data)
     if(data){
-      this.mentor = data.data;
+      this.user = data.data;
     }
     const emailStudent =  this.cookie.get('Email');
-    const reviewStatus = "ReviewMentor";
-    if(emailStudent)
-    {
-      this.addReviewForm.get('studentEmail')?.setValue(emailStudent);
+    if (this.cookie.get('Rol') === 'student') {
+      this.reviewStatus = "ReviewMentor";
+      this.emailStudent =  this.cookie.get('Email');
+      this.emailMentor = this.user.email;
+
+    } else if (this.cookie.get('Rol') === 'mentor') {
+      this.reviewStatus = "ReviewStudent";
+      this.emailMentor =  this.cookie.get('Email');
+      this.emailStudent= this.user.email;
     }
-    this.addReviewForm.get('reviewStatus')?.setValue(reviewStatus);
-    this.addReviewForm.get('mentorEmail')?.setValue(this.mentor.email);
+    
+    // if(emailStudent)
+    // {
+      this.addReviewForm.get('studentEmail')?.setValue(this.emailStudent);
+    // }
+    this.addReviewForm.get('reviewStatus')?.setValue(this.reviewStatus);
+    this.addReviewForm.get('mentorEmail')?.setValue(this.emailMentor);
 
   }
 
@@ -62,9 +78,9 @@ export class DialogAddReviewByStudentComponent implements OnInit{
     return this.addReviewForm.get('studentEmail') as AbstractControl;
   }
 
-  get reviewStatus(): AbstractControl{
-    return this.addReviewForm.get('reviewStatus') as AbstractControl;
-  }
+  // get reviewStatus(): AbstractControl{
+  //   return this.addReviewForm.get('reviewStatus') as AbstractControl;
+  // }
 
   public saveAdd(): void{
     console.log(this.addReviewForm.value);

@@ -9,11 +9,11 @@
 				</div>
 				<div class="card-info">
 					<div class="info-title">
-						<h2>{{person}}</h2>
-                        <h4>{{subject}}</h4>
-                        <h4>{{phoneNumber}}</h4>
+						<h2>{{person.username}}</h2>
+                        <h4>{{person.subject}}</h4>
+                        <h4>{{person.phoneNumber}}</h4>
 					</div>
-					<div class="card-rating divider">
+					<!-- <div class="card-rating divider">
 						
                         <div class="rate" id="rating">
                             <input type="radio" id="star5" name="rate" value="5" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
@@ -28,19 +28,27 @@
                             <label for="star1" title="text" [ngClass]="{'noHover' : !canEdit}">1 star</label>
                         </div>
 
-						<!-- <mat-form-field class="example-full-width review" *ngIf="canEdit">
-							<mat-label>Leave a review</mat-label>
-							<textarea matInput  [(ngModel)]="review"></textarea>
-						</mat-form-field> -->
+					
+					</div> -->
+					<div class="card-rating review-star-rating divider">
+						<div class="ratings" id="ratings">
+							<i id="1">★</i>
+							<i id="2">★</i>
+							<i id="3">★</i>
+							<i id="4">★</i>
+							<i id="5">★</i>
+						</div>
 					</div>
                     <div class="info-address divider">
-						{{address}}
+						<p>{{person.city}}</p>
+						<p>{{person.county}}</p>
+						<p>{{person.addressInfo}}</p>
 					</div>
 					<div class="info-bio">
                         {{description}}
                     </div>
 
-					<button mat-raised-button (click)="addReview(person)">
+					<button mat-raised-button class="button width:" (click)="addReview(person)">
 						Add Review
 					</button>
 					

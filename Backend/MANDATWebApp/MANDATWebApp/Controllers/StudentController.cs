@@ -1,5 +1,6 @@
 ﻿using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.DTOs;
+using MANDAT.DataAccess;
 using MANDAT.Entities.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +15,16 @@ namespace MANDATWebApp.Controllers
     {
         private readonly IStudentManager _studentManager;
         private readonly IUserManager _userAccountService;
+        private readonly IReview _review;
         public StudentController(
-            IStudentManager studentManager, 
-            IUserManager userAccountService
+            IStudentManager studentManager,
+            IUserManager userAccountService,
+            IReview review
             )
         {
             _studentManager = studentManager;
             _userAccountService = userAccountService;
+            _review = review;
         }
 
         [HttpGet("GetAllStudents")]
@@ -56,7 +60,7 @@ namespace MANDATWebApp.Controllers
 
         [HttpGet("GetMentorsForStudent/{email}")]
         public async Task<IActionResult> GetMentorsForStudent([FromRoute] String email)
-        {
+        { 
             var studentId = _userAccountService.GetUserByTheEmail(email);
             var mentors = _studentManager.GetMentorsForStudent(studentId);
             return Ok(mentors);

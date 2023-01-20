@@ -35,8 +35,12 @@ export class NavbarComponent {
       this.rol = this.cookieService.get("Rol");
     }
   }
-  logOut(): any {
-    let email = this.cookieService.get("Email");
+  public myMentors(): void {
+    this.router.navigate(['my-mentors']);
+  }
+   logOut():any {
+    let email= this.cookieService.get('Email');
+
     this.accountService.Logout(email).subscribe(
       result => {
         console.log(result);

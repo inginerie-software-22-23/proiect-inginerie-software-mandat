@@ -62,6 +62,7 @@ builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
     .AllowAnyHeader();
 }));
 
+
 //services here
 
 

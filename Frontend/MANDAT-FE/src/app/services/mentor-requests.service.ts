@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class MentorRequestsService {
 private url = 'https://localhost:7278/api/Matching/ViewMentorWaitingRequests/';
+private url1 = 'https://localhost:7278/api/Matching/RespondToRequests/';
 constructor(
   private http: HttpClient,
 
@@ -16,5 +17,10 @@ constructor(
 public GetUserRequests(email :string) : Observable<any>{
     
   return this.http.get(`${this.url + email}`);
+}
+
+public ChangeRequestStatus(emailMentor :string, studentEmail: string, status: boolean) : Observable<any>{
+  const headers = { 'content-type': 'application/json'};
+  return this.http.patch(`${this.url1 + emailMentor + ", " + studentEmail + ", " + status}`, {'headers':headers});
 }
 }

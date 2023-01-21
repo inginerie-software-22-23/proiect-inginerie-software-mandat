@@ -1,19 +1,24 @@
 .container{
-    width: 50%;
+    // width: 50%;
+    width: 400px;
+    margin: auto;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     text-align: center;
-    .title{
+    title{
         font-size: 24px;
         font-weight: bold;
         color: black;
     }
-    .form{
-        .mat-form-field{
-            width: 100%;
+    form{
+        .mat-mdc-form-field{
+            width: 400px!important;
         }
+    }
+    button {
+        margin-top:40px;
     }
 }

@@ -1,7 +1,8 @@
-export interface ReviewsByStudent {
+export interface MyReviews {
     id: any;
     message: string;
     starsNumber: number;
-    mentorName: string;
+    mentorName?: string;
+    studentName?: string;
     userImage:string;
 }

@@ -3,5 +3,6 @@ export interface MeetingModel{
     studentEmail: string;
     mentorEmail: string;
     createDate: string;
+    dialIn: string;
 
 }

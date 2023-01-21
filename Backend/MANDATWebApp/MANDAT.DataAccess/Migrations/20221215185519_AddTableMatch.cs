@@ -41,6 +41,39 @@ namespace MANDAT.DataAccess.Migrations
                 name: "IX_Matches_MentorId",
                 table: "Matches",
                 column: "MentorId");
+
+            ////////
+            migrationBuilder.CreateTable(
+               name: "VideoMeetingsDetails",
+               columns: table => new
+               {
+                   MentorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                   StudentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                   MeetingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                   Link = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                   Dial = table.Column<string>(type: "nvarchar(max)", nullable: false),
+               },
+               constraints: table =>
+               {
+                   table.PrimaryKey("PK_VideoMeetingsDetails", x => new { x.StudentId, x.MentorId });
+                   table.ForeignKey(
+                       name: "FK_VideoMeetingsDetails_Mentors",
+                       column: x => x.MentorId,
+                       principalTable: "Mentors",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.Cascade);
+                   table.ForeignKey(
+                       name: "FK_VideoMeetingsDetails_Students",
+                       column: x => x.StudentId,
+                       principalTable: "Students",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.NoAction);
+               });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VideoMeetingsDetails_MentorId",
+                table: "VideoMeetingsDetails",
+                column: "MentorId");
         }
 
         /// <inheritdoc />
@@ -48,6 +81,8 @@ namespace MANDAT.DataAccess.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Matches");
+            migrationBuilder.DropTable(
+                name: "VideoMeetingsDetails");
         }
     }
 }

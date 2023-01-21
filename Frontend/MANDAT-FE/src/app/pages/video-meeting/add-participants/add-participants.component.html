@@ -41,6 +41,16 @@
         />
       </mat-form-field>
 
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Dial-in meeting" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Dial-in: +1.512.647.1431 PIN: 247 310 33#'"
+          value=""
+          [(ngModel)]="model.dialIn"
+        />
+      </mat-form-field>
+
         </div>
       </div>
   

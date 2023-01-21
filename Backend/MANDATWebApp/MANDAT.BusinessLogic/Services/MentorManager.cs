@@ -2,6 +2,7 @@
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.DTOs;
 using MANDAT.Entities.Entities;
+using MANDAT.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -189,7 +190,7 @@ namespace MANDAT.BusinessLogic.Services
                                     .Include(a => a.Student.Announcements)
                                     .Include(s => s.Mentor)
                                     .Include(r => r.Mentor.Reviews)
-                                    .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
+                                    .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals(StatusMatch.Accepted.ToString()))//.Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
                                     .Select(match => new GetStudentsForMentorDTO
                                     {
                                         Username = match.Student.User.Username,

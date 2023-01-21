@@ -23,7 +23,7 @@ fdescribe("MyStudentsComponent", () => {
     fixture.detectChanges();
   });
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     students = [ {
       username: "student1",
       email: "student1@email.com",
@@ -269,7 +269,7 @@ fdescribe("MyStudentsComponent", () => {
     component.sortedStarsAscending();
 
     expect(component.students).toEqual([ {
-      username: "student3",
+      username: "student2",
       email: "student1@email.com",
       phoneNumber: "0712345678",
       passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
@@ -287,7 +287,7 @@ fdescribe("MyStudentsComponent", () => {
       addressInfo: "string",
       numberOfStars: 2
     }, {
-      username: "student2",
+      username: "student3",
       email: "student1@email.com",
       phoneNumber: "0712345678",
       passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
@@ -340,6 +340,87 @@ fdescribe("MyStudentsComponent", () => {
       county: "string",
       addressInfo: "string",
       numberOfStars: 4
+    }
+    ]);
+  });
+
+  it("should be ordered by number of stars desc", () => {
+    component.students = students;
+    component.sortedStarsDescending();
+
+    expect(component.students).toEqual([ 
+      {
+        username: "student1",
+        email: "student1@email.com",
+        phoneNumber: "0712345678",
+        passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+        createdAt: new Date(50000),
+        isActive: true,
+        isDeleted: true,
+        bio: "string",
+        educationalInstitution: "string",
+        studentGrade: 4,
+        studentSchoolQualification: "string",
+        subject: "string",
+        message: "string",
+        city: "string",
+        county: "string",
+        addressInfo: "string",
+        numberOfStars: 4
+      }, {
+        username: "student2",
+        email: "student1@email.com",
+        phoneNumber: "0712345678",
+        passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+        createdAt: new Date(50000),
+        isActive: true,
+        isDeleted: true,
+        bio: "string",
+        educationalInstitution: "string",
+        studentGrade: 4,
+        studentSchoolQualification: "string",
+        subject: "string",
+        message: "string",
+        city: "string",
+        county: "string",
+        addressInfo: "string",
+        numberOfStars: 3
+      }, {
+      username: "student2",
+      email: "student1@email.com",
+      phoneNumber: "0712345678",
+      passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+      createdAt: new Date(50000),
+      isActive: true,
+      isDeleted: true,
+      bio: "string",
+      educationalInstitution: "string",
+      studentGrade: 4,
+      studentSchoolQualification: "string",
+      subject: "string",
+      message: "string",
+      city: "string",
+      county: "string",
+      addressInfo: "string",
+      numberOfStars: 2
+    }, {
+      username: "student3",
+      email: "student1@email.com",
+      phoneNumber: "0712345678",
+      passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+      createdAt: new Date(50000),
+      isActive: true,
+      isDeleted: true,
+      bio: "string",
+      educationalInstitution: "string",
+      studentGrade: 4,
+      studentSchoolQualification: "string",
+      subject: "string",
+      message: "string",
+      city: "string",
+      county: "string",
+      addressInfo: "string",
+      numberOfStars: 2
     }
     ]);
   });

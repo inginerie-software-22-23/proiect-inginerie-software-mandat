@@ -21,16 +21,18 @@
           [(ngModel)]="model.county" />
       </mat-form-field>
 
-      <mat-form-field class="example-form">
-        <mat-label>{{ "City" | titlecase }}</mat-label>
-        <input
-          matInput
-          [placeholder]="'Ex. ' + 'Bucuresti'"
-          value=""
-          type="text"
-          [(ngModel)]="model.city" />
+      <mat-form-field appearance="fill" id="meeting">
+        <mat-label>{{ "Meeting format" | titlecase }}</mat-label>
+        <mat-select [(ngModel)]="model.meetingType">
+          <mat-option
+            *ngFor="let meetingTypes of meetingTypes"
+            [value]="meetingTypes">
+            {{ meetingTypes }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
+      
       <mat-form-field class="example-form">
         <mat-label>{{ "Address" | titlecase }}</mat-label>
         <input
@@ -53,16 +55,16 @@
 
       <!-- <app-material-input [label]="'City'" id="city" [placeholder]="'Frankfurt'"></app-material-input> -->
 
-      <mat-form-field appearance="fill" id="meeting">
-        <mat-label>{{ "Meeting format" | titlecase }}</mat-label>
-        <mat-select [(ngModel)]="model.meetingType">
-          <mat-option
-            *ngFor="let meetingTypes of meetingTypes"
-            [value]="meetingTypes">
-            {{ meetingTypes }}
-          </mat-option>
-        </mat-select>
+      <mat-form-field class="example-form">
+        <mat-label>{{ "City" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Bucuresti'"
+          value=""
+          type="text"
+          [(ngModel)]="model.city" />
       </mat-form-field>
+
 
   
                         <div class="rate" id="rating" #radioButtons >

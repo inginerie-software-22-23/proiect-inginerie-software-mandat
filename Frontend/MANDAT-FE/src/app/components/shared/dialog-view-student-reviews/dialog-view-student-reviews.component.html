@@ -7,13 +7,8 @@
     <table mat-table [dataSource]="reviews" class="mat-elevation-z8 table">
 
         <ng-container matColumnDef="message">
-            <!-- <mat-form-field *ngIf="canEdit">
-                <mat-label>Leave a review</mat-label>
-                <textarea matInput  [(ngModel)]="let element">{{element.message}}</textarea>
-            </mat-form-field> -->
           <th mat-header-cell *matHeaderCellDef> Message </th>
           <td mat-cell *matCellDef="let element"> <input type="text" id = "{{element.id}}"  [(ngModel)]="element.message" readonly> </td>
-        
         </ng-container>
 
         <ng-container matColumnDef="starsNumber">

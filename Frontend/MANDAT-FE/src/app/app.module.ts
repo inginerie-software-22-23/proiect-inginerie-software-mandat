@@ -73,8 +73,7 @@ import { MentorsComponent } from './pages/mentors/mentors.component';
     VideoMeetingComponent,
     AddParticipantsComponent,
     MentorsComponent
-
-
+    
   ],
   imports: [
     BrowserModule,

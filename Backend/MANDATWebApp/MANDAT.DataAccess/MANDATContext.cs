@@ -13,15 +13,13 @@ namespace MANDAT.DataAccess
 
         public DbSet<IdentityUserToken> IdentityUserTokens { get; set; }
 
-       // public DbSet<IdentityUserTokenConfirmation> IdentityUserTokenConfirmations { get; set; }
-
         public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Adress> Adresses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Match> Matches { get; set; }
-
+        public DbSet<VideoMeetingDetails> VideoMeetingsDetails { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             if (!builder.IsConfigured)
@@ -82,6 +80,16 @@ namespace MANDAT.DataAccess
             builder.Entity<Match>()
                 .HasOne(m => m.Mentor)
                 .WithMany(me => me.Matches)
+                .HasForeignKey(m => m.MentorId);
+
+            builder.Entity<VideoMeetingDetails>().HasKey(m => new { m.StudentId, m.MentorId });
+            builder.Entity<VideoMeetingDetails>()
+                .HasOne(m => m.Student)
+                .WithMany(s => s.VideoMeetingsDetails)
+                .HasForeignKey(m => m.StudentId);
+            builder.Entity<VideoMeetingDetails>()
+                .HasOne(m => m.Mentor)
+                .WithMany(me => me.VideoMeetingsDetails)
                 .HasForeignKey(m => m.MentorId);
         }
 

@@ -17,7 +17,8 @@ export class AddParticipantsComponent {
     link: '',
     studentEmail: '',
     mentorEmail: this.cookieService.get('Email'),
-    createDate: Date.now.toString()
+    createDate: Date.now.toString(),
+    dialIn: ''
    }
    
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);

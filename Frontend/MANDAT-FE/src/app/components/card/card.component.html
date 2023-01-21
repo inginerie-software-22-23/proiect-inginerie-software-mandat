@@ -11,7 +11,7 @@
 					<div class="info-title">
 						<h2>{{person.username}}</h2>
                         <h3>{{person.subject}}</h3>
-                        <h3>{{person.phoneNumber}}</h3>
+                        <h3  *ngIf="pageToShowOn != 'mentors'">{{person.phoneNumber}}</h3>
 					</div>
 					<div class="card-rating divider">
 						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 1 ? 'black' : 'grey'">★</i>
@@ -29,10 +29,13 @@
                         <p>{{person.bio}}</p>
                     </div>
 
-					<button mat-raised-button class="button width:" (click)="addReview(person)">
+					<button *ngIf="pageToShowOn != 'mentors'" mat-raised-button class="button" (click)="addReview(person)">
 						Add Review
 					</button>
 					
+					<button *ngIf="pageToShowOn == 'mentors'" mat-raised-button class="button" (click)="chooseMentor(person)">
+						Choose
+					</button>
 				</div>
 			</div>
 		</div>

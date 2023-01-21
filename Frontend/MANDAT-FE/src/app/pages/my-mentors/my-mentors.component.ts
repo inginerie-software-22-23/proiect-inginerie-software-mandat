@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { MyMentorsModel } from 'src/app/components/interface/my-mentors-model';
+import { MentorModel } from 'src/app/components/interface/mentor-model';
 import { DialogViewStudentReviewsComponent } from 'src/app/components/shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
 import { ReviewService } from 'src/app/services/review.service';
 import { StudentService } from 'src/app/services/student.service';
@@ -11,9 +11,10 @@ import { StudentService } from 'src/app/services/student.service';
   templateUrl: './my-mentors.component.html',
   styleUrls: ['./my-mentors.component.scss']
 })
+
 export class MyMentorsComponent implements OnInit{
   public emailSt?: string;
-  public mentors: MyMentorsModel[] = [];
+  public mentors: MentorModel[] = [];
   public starsForMentors:Array<[number,string]> = [];
   public starsForMentorsAux:Array<[number,string]> = [];
   public sortByStarsAsc: boolean = true;
@@ -30,7 +31,7 @@ export class MyMentorsComponent implements OnInit{
     this.emailSt = this.cookie.get('Email');
     if(this.emailSt){
       this.myStudentService.getMentorsForStudent(this.emailSt).subscribe(
-      (result: MyMentorsModel[]) => {
+      (result: MentorModel[]) => {
         console.log(result);
         this.mentors = result;
         

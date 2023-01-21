@@ -10,8 +10,7 @@ namespace MANDAT.Common.DTOs
     {
         public string MentorEmail { get; set; }
         public string  StudentEmail { get; set; }
-        public DateTime MeetingTime { get; set; }
         public string Link { get; set; } = null!;
-        public string Dial { get; set; } = null!;
+       // public string Dial { get; set; } = null!;
     }
 }

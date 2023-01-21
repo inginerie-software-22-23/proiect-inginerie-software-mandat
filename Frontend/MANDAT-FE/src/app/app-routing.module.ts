@@ -10,6 +10,7 @@ import { MyMentorsComponent } from './pages/my-mentors/my-mentors.component';
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
+import { MentorsComponent } from './pages/mentors/mentors.component';
 
 const routes: Routes = [
 
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'requests', component: MentorRequestsComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: 'mentors', component: MentorsComponent},
   { path: '#popup-article',   component: MyStudentsComponent},
   { path: '**', component: NotFoundComponent },
   

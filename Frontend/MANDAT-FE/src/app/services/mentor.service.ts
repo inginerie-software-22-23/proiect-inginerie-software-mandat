@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
-import { MyMentorsModel } from '../components/interface/my-mentors-model';
+import { MentorModel } from '../components/interface/mentor-model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class MentorService {
   ) { }
 
   public getAllMentors(): Observable<any>{
-    return this.http.get<any>(`${this.url}`);
+    return this.http.get<any>(`${this.url}/mentors`);
   }
 
   public getMentorByEmailMentorAdminView(email: String){
@@ -61,6 +61,7 @@ export class MentorService {
     return this.http.patch(`${this.url}/mentorDelete/${email}`,isDeleted);
   }
 
-
-
+  public createNewMatch(emailMentor: string, emailStudent: string): Observable<any>{
+    return this.http.post(`${this.url}/createNewMatch/${emailMentor}-${emailStudent}`, '');
+  }
 }

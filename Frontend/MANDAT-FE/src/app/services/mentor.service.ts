@@ -21,11 +21,6 @@ export class MentorService {
     private cookieService: CookieService,
   ) { }
 
-  // public getMyMentors(id:any): Observable<MyMentorsModel[]> {
-  //   return this.http.get<MyMentorsModel[]>(`${this.url}/studentsByEmailMentor/${id}`,
-  //   this.httpOptions);
-  // }
-
   public getAllMentors(): Observable<any>{
     return this.http.get<any>(`${this.url}`);
   }

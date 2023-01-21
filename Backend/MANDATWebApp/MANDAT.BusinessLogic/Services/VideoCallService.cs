@@ -24,7 +24,7 @@ namespace MANDAT.BusinessLogic.Services
                     var info = new VideoMeetingDetails();
                     var studentId = uow.IdentityUsers.Get().Where(s => s.Email.Equals(model.StudentEmail)).Select(s => s.Id).FirstOrDefault();
                     var mentorId = uow.IdentityUsers.Get().Where(s => s.Email.Equals(model.MentorEmail)).Select(s => s.Id).FirstOrDefault(); ;
-                    var link = uow.VideoMeetingsDetails.Get().Where(v => v.MentorId.Equals(mentorId) && v.StudentId.Equals(studentId));
+                    /*var link = uow.VideoMeetingsDetails.Get().Where(v => v.MentorId.Equals(mentorId) && v.StudentId.Equals(studentId));
 
                     if (link != null)
                     {
@@ -35,15 +35,16 @@ namespace MANDAT.BusinessLogic.Services
                         info.Dial = "no content";
                         uow.VideoMeetingsDetails.Update(info);
                     }
-                    else
-                    {
+                    else*/
+                    //{
                         info.MentorId = mentorId;
                         info.StudentId = studentId;
                         info.MeetingTime = DateTime.Now;
                         info.Link = model.Link;
+                        info.Dial = "no content";
                         //info.Dial = model.Dial;
                         uow.VideoMeetingsDetails.Insert(info);
-                    }
+                    //}
                     uow.SaveChanges();
                     return info;
 

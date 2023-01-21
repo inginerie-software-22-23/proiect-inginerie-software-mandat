@@ -17,5 +17,6 @@ export interface StudentModel {
     city: string,
     county: string,
     addressInfo: string,
-    numberOfStars?: number
+    numberOfStars?: number,
+    link?: string
 }

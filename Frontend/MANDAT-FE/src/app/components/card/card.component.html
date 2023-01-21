@@ -9,6 +9,7 @@
 				</div>
 				<div class="card-info">
 					<div class="info-title">
+						<br>
 						<h2>{{person.username}}</h2>
                         <h3>{{person.subject}}</h3>
                         <h3>{{person.phoneNumber}}</h3>
@@ -32,6 +33,7 @@
 					<button mat-raised-button class="button width:" (click)="addReview(person)">
 						Add Review
 					</button>
+					<a [ngClass]="person.link" href={{person.link}}><button mat-raised-button class="button width:">Meet Link</button></a>
 					
 				</div>
 			</div>

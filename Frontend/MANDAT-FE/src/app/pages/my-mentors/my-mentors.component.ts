@@ -3,8 +3,10 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
 import { MyMentorsModel } from 'src/app/components/interface/my-mentors-model';
 import { DialogViewStudentReviewsComponent } from 'src/app/components/shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
+import { LinksModel } from 'src/app/interfaces/links-model';
 import { ReviewService } from 'src/app/services/review.service';
 import { StudentService } from 'src/app/services/student.service';
+import { VideoCallService } from 'src/app/services/video-call.service';
 
 @Component({
   selector: 'app-my-mentors',
@@ -14,12 +16,15 @@ import { StudentService } from 'src/app/services/student.service';
 export class MyMentorsComponent implements OnInit{
   public emailSt?: string;
   public mentors: MyMentorsModel[] = [];
+  public links: LinksModel[] = [];
+  public linksNew: Array<[string,string]> = [];
   public starsForMentors:Array<[number,string]> = [];
   public starsForMentorsAux:Array<[number,string]> = [];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
 
   constructor(
+    private videoService: VideoCallService,
     private reviewService: ReviewService,
     private myStudentService: StudentService,
     private cookie: CookieService,
@@ -46,6 +51,41 @@ export class MyMentorsComponent implements OnInit{
               console.error(error);
             });
         }
+        if(this.emailSt!=null)
+        {
+          console.log(this.emailSt);
+          this.videoService.getLinkByStudent(this.emailSt).subscribe(
+            (result1:LinksModel[]) =>{
+              this.links = result1;
+              // console.log(result1);
+             // console.log(this.emailSt);
+             //console.log(this.links);
+             for(let mentor of this.mentors){
+              for(let oneLink of this.links)
+               {
+                 if(oneLink.mentorEmail == mentor.email){
+                   this.linksNew.push([oneLink.link,mentor.email]);
+                   mentor.link = oneLink.link;
+                  //  console.log("evfbrwebwb");
+                  //  console.log(mentor.email);
+                  //  console.log(mentor.link);
+                   break;
+                 }
+                 else{
+                   this.linksNew.push(["",mentor.email]);
+                   mentor.link = "";
+                 }
+               }
+                 
+             }
+            },
+            (error) => {
+              console.error(error);
+            });
+        //}
+
+      }
+        
 
         this.sortByNameASC();
         this.sortByNameAsc = true;

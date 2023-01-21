@@ -22,6 +22,7 @@ export class CardComponent {
   public review: string = "";
 
   @Input() person!: StudentModel | MyMentorsModel;  
+  // @Input() personLink!: string; 
   @Input() canEdit: boolean = true;
 
   constructor(

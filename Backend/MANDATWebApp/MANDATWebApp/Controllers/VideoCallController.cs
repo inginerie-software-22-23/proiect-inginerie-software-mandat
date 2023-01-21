@@ -18,9 +18,10 @@ namespace MANDATWebApp.Controllers
         }
 
         [HttpGet("GetStudentVideoCallInfo/{studentEmail}")]
-        public List<StudentVideoCallInfoDTO> GetStudentVideoCallInfo(string studentEmail)
+        public async Task<IActionResult> GetStudentVideoCallInfo(string studentEmail)
         {
-            return _videoCallService.GetStudentVideoCallInfo(studentEmail);
+            var result = _videoCallService.GetStudentVideoCallInfo(studentEmail);
+            return Ok(result);
         }
 
         [HttpPost]

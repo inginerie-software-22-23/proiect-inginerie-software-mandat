@@ -13,31 +13,12 @@
                         <h4>{{person.subject}}</h4>
                         <h4>{{person.phoneNumber}}</h4>
 					</div>
-					<!-- <div class="card-rating divider">
-						
-                        <div class="rate" id="rating">
-                            <input type="radio" id="star5" name="rate" value="5" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star5" title="text" [ngClass]="{'noHover' : !canEdit}">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star4" title="text" [ngClass]="{'noHover' : !canEdit}">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star3" title="text" [ngClass]="{'noHover' : !canEdit}">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star2" title="text" [ngClass]="{'noHover' : !canEdit}">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star1" title="text" [ngClass]="{'noHover' : !canEdit}">1 star</label>
-                        </div>
-
-					
-					</div> -->
-					<div class="card-rating review-star-rating divider">
-						<div class="ratings" id="ratings">
-							<i id="1">★</i>
-							<i id="2">★</i>
-							<i id="3">★</i>
-							<i id="4">★</i>
-							<i id="5">★</i>
-						</div>
+					<div class="card-rating divider">
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 1 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 2 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 3 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 4 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 5 ? 'black' : 'grey'">★</i>
 					</div>
                     <div class="info-address divider">
 						<p>{{person.city}}</p>

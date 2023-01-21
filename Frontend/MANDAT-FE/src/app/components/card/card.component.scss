@@ -21,7 +21,6 @@ body {
 }
 
 .container {
-  width: 1600px;
   max-width: 100%;
   margin: auto;
 }
@@ -92,25 +91,14 @@ body {
 		flex-direction:column;
 		.info-title{
 			padding-bottom:10px;
-            padding-top: 15px;
+            padding-top: 35px;
 			h2{
 				font-size:35px;
-				padding: 5px;
+				padding: 15px;
 			}
 		}
 		.card-rating{
 			margin: auto;
-            margin-bottom: 5px;	
-
-			.review {
-				width: 100%;
-			}
-			
-			>div{
-				flex-grow:1;
-				flex-basis:1px;
-				min-height:20px;
-			}
 		}
 		.info-bio{
 			padding:15px 0;
@@ -127,86 +115,6 @@ body {
 		}
 	}
 }
-// .card {
-//   width: 480px;
-//   max-width: 100%;
-//   min-height: 620px;
-//   overflow: hidden;
-//   border-radius: 4px;
-//   box-shadow: $shadow;
-//   background-color: white;
-//   position: relative;
-//   display: -webkit-box;
-//   display: -moz-box;
-//   display: -ms-flexbox;
-//   display: -webkit-flex;
-//   display: flex;
-//   flex-direction: column;
-//   .card-top {
-//     -webkit-flex-basis: 155px;
-//     flex-basis: 155px;
-//     flex-shrink: 1;
-//     background-color: rgba(0, 0, 0, 0.2);
-//     background-position: center;
-//     background-size: cover;
-//   }
-//   .card-profile {
-//     flex-basis: 75px;
-//     flex-shrink: 1;
-//     .profile-image {
-//       overflow: hidden;
-//       border-radius: 100%;
-//       position: absolute;
-//       left: calc(50% - 75px);
-//       top: calc(25% - 75px);
-//       border: 4px solid white;
-//       width: 150px;
-//       height: 150px;
-//       background-size: cover;
-//       background-position: center;
-//     }
-//   }
-//   .card-info {
-//     flex-basis: 56, 66665%;
-//     padding: 0 15px;
-//     text-align: center;
-//     display: -webkit-box;
-//     display: -moz-box;
-//     display: -ms-flexbox;
-//     display: -webkit-flex;
-//     display: flex;
-//     flex-direction: column;
-//     .info-title {
-//       padding-bottom: 10px;
-//       padding-top: 15px;
-//       h3 {
-//         font-weight: 400;
-//       }
-//     }
-//     .card-rating {
-//       margin: auto;
-//       margin-bottom: 5px;
-
-//       > div {
-//         flex-grow: 1;
-//         flex-basis: 1px;
-//         min-height: 20px;
-//       }
-//     }
-//     .info-bio {
-//       padding: 15px 0;
-//       margin-bottom: 5px;
-//     }
-//     .divider {
-//       margin-left: 55px;
-//       margin-right: 55px;
-//       border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-//     }
-//     .info-address {
-//       padding: 15px 0;
-//     }
-//   }
-// }
 
 .card.seamus {
   .card-top {
@@ -217,84 +125,17 @@ body {
   }
 }
 
-// .rate > input:checked + label:hover,
-// .rate > input:checked + label:hover ~ label,
-// .rate > input:checked ~ label:hover,
-// .rate > input:checked ~ label:hover ~ label,
-// .rate > label:hover ~ input:checked ~ label {
-//     color: #c59b08;
-// }
-
-// .rating {
-//     padding: 0 10px;
-//     place-items: center;
-// }
-// .rating:not(:checked) > input {
-//     position:absolute;
-//     top:-9999px;
-// 	color: rgb(167, 167, 175);
-// }
-// #star1_0 {
-//     color: rgb(130, 130, 229);
-// }
-// .rating:not(:checked) > label {
-//     float:right;
-//     width:1em;
-//     overflow:hidden;
-//     white-space:nowrap;
-//     //cursor:pointer;
-//     font-size:60px;
-//     //color:rgb(156, 151, 41);
-//  }
-// .rating:not(:checked) > label:before {
-//     content: '★ ';
-// }
-// .rate > input:checked ~ label {
-//     color: #ffc700;    
-// }
-// .rate:not(:checked) > label:hover,
-// .rate:not(:checked) > label:hover ~ label {
-//     color: #deb217;  
-// }
-// .rate > input:checked ,
-// .rate > input:checked  ~ label,
-// .rate > input:checked ,
-// .rate > input:checked ~ label,
-//  .rate > label:hover ~ input:checked ~ label {
-//     color: #c59b08;
-// }
-// .noHover{
-//     pointer-events: none;
-// 	// opacity: 0.2;
-// }
-
-
-
-// :root {
-//     --star-size: 60px;
-//     --star-color: #fff;
-//     --star-background: #fc0;
-// }
-
-.Stars{
-    --percent:calc(var(--rating) / 5 * 100%);
-    display: inline-block;
-    font-size: var(--star-size);
-    font-family: Times;
-    line-height: 1;
-}
-
 i {
 	font-family: 'Poppins';
-    font-size: 60px;
-	color: grey;
+    font-size: 70px;
 }
-.Stars::before {
-        content: "★★★★★";
-        letter-spacing: 3px;
-        background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
-        -webkit-background-clip: text;
-        //webkit-text-fill-color: transparent;
+
+.black {
+	color: black;
+}
+
+.grey {
+	color: grey;
 }
 
 .button {

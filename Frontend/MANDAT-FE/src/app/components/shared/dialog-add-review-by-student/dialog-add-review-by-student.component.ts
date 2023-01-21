@@ -52,10 +52,7 @@ export class DialogAddReviewByStudentComponent implements OnInit{
       this.emailStudent= this.user.email;
     }
     
-    // if(emailStudent)
-    // {
-      this.addReviewForm.get('studentEmail')?.setValue(this.emailStudent);
-    // }
+    this.addReviewForm.get('studentEmail')?.setValue(this.emailStudent);
     this.addReviewForm.get('reviewStatus')?.setValue(this.reviewStatus);
     this.addReviewForm.get('mentorEmail')?.setValue(this.emailMentor);
 
@@ -84,6 +81,10 @@ export class DialogAddReviewByStudentComponent implements OnInit{
 
   public saveAdd(): void{
     console.log(this.addReviewForm.value);
+
+    if (this.addReviewForm.value.starsNumber > 5) 
+      this.addReviewForm.value.starsNumber = 5;
+      
     this.reviewService.createReview(this.addReviewForm.value).subscribe(
       (result) =>{
         this.dialogRef.close(result);

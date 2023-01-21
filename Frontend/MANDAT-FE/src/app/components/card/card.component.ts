@@ -20,35 +20,18 @@ export class CardComponent {
   public address: string = "Address";
   public description: string = "Short description";
   public review: string = "";
-  public numberOfStars: number = 0;
 
   @Input() person!: StudentModel | MyMentorsModel;  
   @Input() canEdit: boolean = true;
 
   constructor(
-    private dialog: MatDialog,
-    
-    private reviewService: ReviewService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit() {
-
     console.log(this.person);
     this.name = this.person.username;
     this.subject = this.person.subject;
-    this.reviewService.getStudentStars(this.person.email).subscribe(
-      (response) => {
-        console.log("number of stars");
-        console.log(response);
-        this.numberOfStars = response;
-        this.starsEvaluate();
-        // setTimeout(()=>{this.starsEvaluate()},1000); 
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-    // setTimeout(()=>{this.starsEvaluate()},1000);  
   }
 
   public addReview(person: any) { //does not work yet
@@ -62,30 +45,5 @@ export class CardComponent {
         window.location.reload();
       }
     });
-  }
-
-  public starsEvaluate():void{
-    let div = document.getElementById("ratings");
-   
-    for (let k = 0; k < this.numberOfStars; k++) {
-      const star = document.getElementById(k.toString());
-      
-      if (star != null)
-      {
-        star.style.color="black";
-      }
-      // 
-      // div?.appendChild(stars);
-    }
-
-    // for (let k = this.numberOfStars; k < 5; k++) {
-    //   const stars = document.createElement('i');
-    //   stars.style.fontSize='40px';
-    //   stars.innerHTML = "★";
-    //   stars.style.color = "grey";
-    //   div?.appendChild(stars);
-    // }
-
-    console.log(this.person.email);
   }
 }

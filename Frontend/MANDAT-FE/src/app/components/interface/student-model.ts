@@ -16,5 +16,6 @@ export interface StudentModel {
     reviewStatus?: string,
     city: string,
     county: string,
-    addressInfo: string
+    addressInfo: string,
+    numberOfStars?: number
 }

@@ -16,29 +16,8 @@ export class MyStudentsComponent {
 
   public students: StudentModel[] = [];
   public email: string = "";
-
-  public student: StudentModel = {
-    username: "string",
-    email: "string",
-    phoneNumber: "string",
-    passwordHash: "string",
-    createdAt: new Date(),
-    isActive: true,
-    isDeleted: false,
-    bio: "string",
-    educationalInstitution: "string",
-    studentGrade: 7,
-    studentSchoolQualification: "string",
-    subject: "string",
-    message: "string",
-    starsNumber: 2,
-    reviewStatus: "student",
-    city: "string",
-    county: "string",
-    addressInfo: "string"
-  };
-  public starsForStudents:Array<[number,string]>=[];// number[]=[];
-  public starsForStudentsAux:Array<[number,string]>=[];
+  public starsForStudents:Array<[number,string]> = [];
+  public starsForStudentsAux:Array<[number,string]> = [];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
   
@@ -58,54 +37,32 @@ export class MyStudentsComponent {
         console.log(response);
         this.students = response;
 
-        setTimeout(()=>{
-          for(let student of this.students)
-          {
-            console.log(student.email);
-            this.reviewService.getStudentStars(student.email).subscribe(
-              (result:number) => {
-                console.log(result);
-                this.starsForStudents.push([result,student.email]);
-              },
-              (error) => {
-                console.error(error);
-              }
-              );
-          }
-        },600);
+        for(let student of this.students)
+        {
+          console.log(student.email);
+          this.reviewService.getStudentStars(student.email).subscribe(
+            (result:number) => {
+              console.log(result);
+              this.starsForStudents.push([result,student.email]);
+              student.numberOfStars = result;
+            },
+            (error) => {
+              console.error(error);
+            }
+            );
+        }
+
+        this.sortByNameASC();
+        this.sortByNameAsc = true
       }, 
       (error) => {
         console.error(error);
       }
-      
     );
-
-    
-    setTimeout(()=>{this.firstSort()},1000);
-    setTimeout(()=>{this.sortByNameAsc = true},1100);
-    // this.students.push(this.student);
   }
-
-  public firstSort(){
-    var rez = this.sortByNameASC();
-    this.starsForStudentsAux = [];
-        for (let i = 0; i < this.students.length; i++) {//m1 m2 m3
-          for (let j = 0; j < this.starsForStudents.length; j++) { //st1,m1 st2,m2 st3,m3
-            if (this.starsForStudents[j][1] == this.students[i].email) {
-              this.starsForStudentsAux.push([this.starsForStudents[j][0], this.students[i].email])
-            }
-          }
-        }
-        console.log(this.starsForStudentsAux);
-        this.starsForStudents.length=0;
-        this.starsForStudents = [...this.starsForStudentsAux];
-    return rez;
-}
 
   public sortByNameASC() {
     this.sortByNameAsc = true;
-    console.log("asc");
-    console.log(this.sortByNameAsc);
     this.students.sort((a, b) => {
         return a.username.localeCompare(b.username);
     });
@@ -113,8 +70,6 @@ export class MyStudentsComponent {
 
   public sortByNameDESC() {
     this.sortByNameAsc = false;
-    
-    console.log("desc");
     this.students.sort((a, b) => {
         return b.username.localeCompare(a.username);
     });

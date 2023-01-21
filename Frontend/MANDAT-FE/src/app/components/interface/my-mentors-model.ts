@@ -15,4 +15,5 @@ export interface MyMentorsModel {
     city: string,
     county: string,
     addressInfo: string,
+    numberOfStars?: number
 }

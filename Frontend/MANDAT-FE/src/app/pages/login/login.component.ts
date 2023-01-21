@@ -61,8 +61,10 @@ export class LoginComponent {
           });
         
         this.cookieService.set("Token", result.token);
-        window.location.reload();
+        
         this.router.navigate(["/home"]);
+        setTimeout(function(){window.location.reload();
+        },1000);
       },
 
       error => {

@@ -1,8 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Guid } from 'guid-typescript';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { AccountService } from 'src/app/services/account.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { ReviewEdit } from '../../interface/review-edit';
 import { MyReviews } from '../../interface/my-reviews';
@@ -20,20 +18,14 @@ export class DialogViewStudentReviewsComponent implements OnInit{
   public emailUser: string | undefined;
   public role: string = '';
   public count: number = 0;
+
   constructor(
-    private dialogRef: MatDialogRef<DialogViewStudentReviewsComponent>,
-    private accountService: AccountService,
     private reviewService: ReviewService,
-    private dialog: MatDialog,
     public cookie: CookieService,
     //public canEdit: boolean = false,
     @Inject(MAT_DIALOG_DATA) public date: any
-  ){
+  ){ }
 
-    // if(data){
-    //   var idStudent = this.accountService.getGuidByEmail(this.cookie.get('Email'))
-    //   this.reviewService.viewMentorsReview( )
-     }
   ngOnInit(){
     
     this.emailUser = this.cookie.get('Email');
@@ -73,7 +65,6 @@ export class DialogViewStudentReviewsComponent implements OnInit{
       let div = document.getElementById(id);
      if (div != null)
       div.removeAttribute("readonly");
-      
     }
     else
       {
@@ -87,7 +78,6 @@ export class DialogViewStudentReviewsComponent implements OnInit{
         );
       }
   }
-    
-  }
+}
 
 

@@ -1,11 +1,26 @@
-<p>Mentors based on your filters</p>
-<div class="divButton">
-    <button mat-raised-button (click)="getMyReviews()" class="button">
-        My Reviews
-    </button>
-    <button mat-raised-button (click)="sorted()" class="button">Sort by Name</button>
-    <button mat-raised-button (click)="sortedStars()" class="button">Sort by Stars</button>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<div>
+    <h1>Mentors based on your filters</h1>
+
+    <div class="divButton">
+        <button mat-raised-button (click)="getMyReviews()" class="button">
+            My Reviews
+        </button>
+
+        <button mat-raised-button (click)="sortByNameASC()" class="button" *ngIf="!sortByNameAsc">Sort by name  <i class='fas fa-arrow-down'></i></button>
+        <button mat-raised-button (click)="sortByNameDESC()" class="button" *ngIf="sortByNameAsc">Sort by name  <i class='fas fa-arrow-up'></i></button>
+
+        <button mat-raised-button (click)="sortedStarsAscending()" class="button" *ngIf="!sortByStarsAsc">Sort by stars <i class='fas fa-arrow-down'></i></button>
+        <button mat-raised-button (click)="sortedStarsDescending()" class="button" *ngIf="sortByStarsAsc">Sort by stars <i class='fas fa-arrow-up'></i></button>
+    </div>
+
+    <div class="page">
+        <app-card *ngFor="let mentor of mentors" [person] = "mentor" [canEdit] = "false"></app-card>
+    </div>
+
 </div>
+
+<!-- 
 <div class="page">
     <div *ngFor="let mentor of mentors; let i = index;" class="container">
         <div class="display">
@@ -22,7 +37,6 @@
                             <h2>{{mentor.username}} </h2>
                             <h4>Subject: {{mentor.subject}}</h4>
                             <h4>Phone: {{mentor.phoneNumber}}</h4>
-                            <!-- {{starsForMentors[i][0]}} -->
 
                         </div>
                         <div class="card-rating divider">
@@ -49,4 +63,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

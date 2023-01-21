@@ -22,7 +22,6 @@ export class MyStudentsComponent {
   public sortByNameAsc: boolean = true;
   
   constructor(
-    private studentService: StudentService,
     private mentorService: MentorService,
     private reviewService: ReviewService,
     private cookieService: CookieService,
@@ -48,12 +47,11 @@ export class MyStudentsComponent {
             },
             (error) => {
               console.error(error);
-            }
-            );
+            });
         }
 
         this.sortByNameASC();
-        this.sortByNameAsc = true
+        this.sortByNameAsc = true;
       }, 
       (error) => {
         console.error(error);
@@ -106,10 +104,10 @@ export class MyStudentsComponent {
     dialogConfig.width = '1000px';
     dialogConfig.height = '900px';
   
-    const dialog = this.dialog.open(DialogViewStudentReviewsComponent,dialogConfig);
+    const dialog = this.dialog.open(DialogViewStudentReviewsComponent, dialogConfig);
     dialog.afterClosed().subscribe((result) =>{
       if(result){
-        this.students=result;
+        this.students = result;
       }
     }); 
   }

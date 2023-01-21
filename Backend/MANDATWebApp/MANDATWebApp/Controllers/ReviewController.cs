@@ -10,15 +10,17 @@ namespace MANDATWebApp.Controllers
     [ApiController]
     public class ReviewController : BaseController 
     {
-        private readonly IReview _review; 
-        public ReviewController(ControllerDependencies dependencies, IReview review)
+        private readonly IReview _review;
+        private readonly IUserManager _userAccountService;
+        public ReviewController(ControllerDependencies dependencies, IReview review, IUserManager userManager)
           : base(dependencies)
         {
             _review = review;
+            _userAccountService = userManager;
         }
 
-        [HttpGet("ViewMentorsReview")]
-        public List<ViewMentorReview> ViewMentorsReview(Guid id, bool asc) 
+        [HttpGet("ViewMentorsReview/{id}/{asc}")]
+        public List<ViewMentorReview> ViewMentorsReview([FromRoute] Guid id, bool asc) 
         {
             var result = new List<ViewMentorReview>();
             if (asc)
@@ -31,6 +33,16 @@ namespace MANDATWebApp.Controllers
             }
             return result;
         }
+
+        [HttpGet("ViewAllStudentReviews/{email}")]
+        public List<ViewStudentReviewWithId> ViewAllStudentReviews([FromRoute] string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            var result = new List<ViewStudentReviewWithId>();
+            result = _review.ViewAllStudentReviewsDesc(id);
+            return result;
+        }
+
 
         [HttpGet("ViewStudentsReview")]
         public List<ViewStudentReview> ViewStudentsReview(Guid id, bool asc)
@@ -51,6 +63,14 @@ namespace MANDATWebApp.Controllers
         public double MentorAverageRating(Guid id)
         {
             var result = _review.GetMentorStarsAverageRating(id);
+            return result;
+        }
+
+        [HttpGet("MentorStars/{email}")]
+        public double MentorAverageRatingGood([FromRoute]string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            var result = _review.GetMentorStarsAverageRatingGood(id);
             return result;
         }
 
@@ -78,8 +98,8 @@ namespace MANDATWebApp.Controllers
             return NoContent();
         }
 
-        [HttpPatch]
-        public IActionResult EditReview(Guid id, string message)
+        [HttpPatch("editReview/{id},{message}")]
+        public IActionResult EditReview([FromRoute] Guid id, string message)
         {
             if(message == null)
             {

@@ -76,6 +76,25 @@ namespace MANDATWebApp.Controllers
             return Ok(id);
         }
 
+
+        [HttpGet("userGuid/{email}")]
+        public IActionResult GetUserGuid(string email)
+        {
+            var result = _userAccountService.GetUserByTheEmail(email);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("DeleteTokenAsync/{email}")]
+        public async Task<IActionResult> DeleteTokenAsync(string email)
+        {
+            if (!await _tokenManager.DeleteToken(email))
+            {
+                return NotFound();
+            }
+            return Ok();
+
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshLoginToken([FromBody] RefreshTokenCommand refreshTokenCommand, CancellationToken cancellationToken)
@@ -132,5 +151,10 @@ namespace MANDATWebApp.Controllers
         //}
 
 
+
     }
 }
+
+    
+}
+

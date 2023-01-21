@@ -11,7 +11,7 @@
     </div>
 
     <div class="page">
-        <app-card *ngFor="let mentor of mentors" [person] = "mentor" [pageToShowOn] = "'mentors'"></app-card>
+        <app-card *ngFor="let mentor of filteredList" [person] = "mentor" [pageToShowOn] = "'mentors'"></app-card>
     </div>
 
 </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
 import { MentorModel } from 'src/app/components/interface/mentor-model';
+import { StarRatingComponent } from 'src/app/components/star-rating/star-rating.component';
 import { MentorRequestsService } from 'src/app/services/mentor-requests.service';
 import { MentorService } from 'src/app/services/mentor.service';
 import { ReviewService } from 'src/app/services/review.service';
@@ -14,12 +15,14 @@ import { ReviewService } from 'src/app/services/review.service';
 export class MentorsComponent {
   public emailSt?: string;
   public mentors: MentorModel[] = [];
+  public filteredList: MentorModel[] = [];
   public starsForMentors:Array<[number,string]> = [];
   public starsForMentorsAux:Array<[number,string]> = [];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
 
-  // mentorsX: MentorModel[] = [
+  // hardcoded seed
+  // mentors: MentorModel[] = [
   //   {
   //     username: 'nr1',
   //     email: 'nr1',
@@ -72,7 +75,7 @@ export class MentorsComponent {
   //     numberOfStars: 5
   //   },
   //   {
-  //     username: 'nr3',
+  //     username: 'nr31',
   //     email: 'nr3',
   //     phoneNumber: 'nr3',
   //     passwordHash: 'nr3',
@@ -89,7 +92,7 @@ export class MentorsComponent {
   //     numberOfStars: 5
   //   },
   //   {
-  //     username: 'nr3',
+  //     username: 'nr32',
   //     email: 'nr3',
   //     phoneNumber: 'nr3',
   //     passwordHash: 'nr3',
@@ -106,7 +109,7 @@ export class MentorsComponent {
   //     numberOfStars: 5
   //   },
   //   {
-  //     username: 'nr3',
+  //     username: 'nr33',
   //     email: 'nr3',
   //     phoneNumber: 'nr3',
   //     passwordHash: 'nr3',
@@ -122,6 +125,13 @@ export class MentorsComponent {
   //     addressInfo: 'nr3',
   //     numberOfStars: 5
   //   }];
+
+  matchCity: string = ""; 
+  matchCounty: string = ""; 
+  matchSubject: string = ""; 
+  matchMeeting: string = ""; 
+  matchAddress: string = ""; 
+  matchStars: number = 0; 
 
   constructor(
     private reviewService: ReviewService,
@@ -156,6 +166,54 @@ export class MentorsComponent {
         console.error(error);
       }
     );
+
+    this.filterMentors();
+  }
+
+  
+  filterMentors() {
+    this.matchCity = this.cookie.get('matchCity');
+    this.matchCounty = this.cookie.get('matchCounty');
+    this.matchSubject = this.cookie.get('matchSubject');
+    this.matchAddress = this.cookie.get('matchAddress');
+    this.matchStars = parseInt(this.cookie.get('matchStars'));
+    
+    this.filteredList = this.mentors.filter((mentor) => {
+      if (this.matchCity  === "")
+        return mentor;
+      else
+        return mentor.city == this.matchCity;  
+    });
+    
+    this.filteredList = this.filteredList.filter((mentor) => {
+      if (this.matchCounty  === "")
+        return mentor;
+      else
+        return mentor.county == this.matchCounty;  
+    });
+    
+    this.filteredList = this.filteredList.filter((mentor) => {
+      if (this.matchSubject  === "")
+        return mentor;
+      else
+        return mentor.subject == this.matchSubject;  
+    });
+    
+    this.filteredList = this.filteredList.filter((mentor) => {
+      if (this.matchAddress  === "")
+        return mentor;
+      else
+        return mentor.addressInfo == this.matchAddress;  
+    });
+    
+    this.filteredList = this.filteredList.filter((mentor) => {
+      if (this.matchStars === 0)
+        return mentor;
+      else
+        return mentor.numberOfStars == this.matchStars;  
+    });
+    
+    this.mentors = this.filteredList;
   }
 
   public sortByNameASC() {

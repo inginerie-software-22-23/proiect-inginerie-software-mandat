@@ -80,6 +80,7 @@ export class LoginComponent {
       });
   }
   logOut(): any {
+    window.location.reload(); // ramane navbarul neactualizat
     this.socialAuthService.signOut();
   }
 }

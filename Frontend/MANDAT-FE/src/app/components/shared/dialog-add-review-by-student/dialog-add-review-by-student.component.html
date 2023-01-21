@@ -3,7 +3,6 @@
         Add Review
     </h1>
     <form [formGroup] = "addReviewForm" class="form">
-
         <mat-form-field appearance="outline">
             <mat-label>Mentor Email</mat-label>
             <input matInput placeholder="Mentor Email" formControlName="mentorEmail" readonly/>
@@ -24,12 +23,12 @@
             <input matInput placeholder="Stars" formControlName="starsNumber"/>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <!-- <mat-form-field appearance="outline">
             <mat-label>Status</mat-label>
             <input matInput placeholder="review Status" formControlName="reviewStatus" readonly/>
-        </mat-form-field>
-
-        <button mat-raised-button (click)="saveAdd()" appHoverBtn>Save</button>
+        </mat-form-field>     -->
     </form>
+
+    <button mat-raised-button (click)="saveAdd()" appHoverBtn>Save</button>
 </div>
 

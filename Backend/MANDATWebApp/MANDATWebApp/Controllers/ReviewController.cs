@@ -43,6 +43,15 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
+        [HttpGet("ViewAllMentorReviews/{email}")]
+        public List<ViewMentorReviewWithId> ViewAllMentorReviews([FromRoute] string email)
+        {
+            var id = _userAccountService.GetUserByTheEmail(email);
+            var result = new List<ViewMentorReviewWithId>();
+            result = _review.ViewAllMentorReviewsDesc(id);
+            return result;
+        }
+
 
         [HttpGet("ViewStudentsReview")]
         public List<ViewStudentReview> ViewStudentsReview(Guid id, bool asc)
@@ -74,9 +83,10 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
-        [HttpGet]
-        public double StudentAverageRating(Guid id)
+        [HttpGet("StudentStars/{email}")]
+        public double StudentAverageRating([FromRoute] string email)
         {
+            var id = _userAccountService.GetUserByTheEmail(email);
             var result = _review.GetStudentStarsAverageRating(id);
             return result;
         }

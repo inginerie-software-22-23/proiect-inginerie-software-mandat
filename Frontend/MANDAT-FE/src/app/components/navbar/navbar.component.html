@@ -6,39 +6,36 @@
   <p class="designation">Role: {{ rol }}</p>
 
   <mat-divider></mat-divider>
+  <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <a  routerLink="/home">Home</a>
+  </button>
+  <button mat-button class="menu-button">
+      <mat-icon>home</mat-icon>
+      <a  routerLink="/match">Matching Form</a>
+  </button>
+  <button mat-button class="menu-button">
+      <mat-icon>Mentors</mat-icon>
+      <a style="color: white;">Mentors</a>
+  </button>
+  <button mat-button class="menu-button" onclick="">
+      <mat-icon>person</mat-icon>
+      <a style="color: white;" (click)="logOut()">LogOut</a>
+  </button>
 
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <a  routerLink="/home">Home</a>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon>home</mat-icon>
-            <a  routerLink="/match">Matching Form</a>
-        </button>
-        <button mat-button class="menu-button">
-            <mat-icon></mat-icon>
-            <a style="color: white;">Mentors</a>
-        </button>
-        <button mat-button class="menu-button" onclick="">
-            <mat-icon>person</mat-icon>
-            <a style="color: white;" (click)="logOut()">LogOut</a>
-        </button>
-       <mat-divider></mat-divider>
-        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Student'">
-            <mat-icon>My mentors</mat-icon>
-            <a style="color: white;" (click)="myMentors()">My Mentors</a>
-        </button>
-  
+  <mat-divider></mat-divider>
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'student'">
+      <mat-icon>My mentors</mat-icon>
+      <a style="color: white;" (click)="myMentors()">My mentors</a>
+  </button>
 
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
+    <mat-icon>My students</mat-icon>
+    <a style="color: white" (click)="myStudents()">My students</a>
+  </button>
+</div>
 
-        <mat-divider></mat-divider>
-        <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
-            <mat-icon>My students</mat-icon>
-            <a style="color: white;" (click)="myStudents()">My students</a>
-        </button>
-
-
-<div *ngIf="isLoggedin === ''">
+<div *ngIf="isLoggedin === '' ">
   <h4 class="name">Hi anonymous user!</h4>
   <p class="designation">Role: ?</p>
 

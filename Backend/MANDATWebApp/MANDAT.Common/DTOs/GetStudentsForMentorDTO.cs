@@ -21,5 +21,16 @@ namespace MANDAT.Common.DTOs
         public string EducationalInstitution { get; set; } = null!;
         public int StudentGrade { get; set; }
         public string StudentSchoolQualification { get; set; }
+
+        public string Subject { get; set; }
+
+        //public int StarsNumber { get; set; }
+        //public string Message { get; set; }
+        public string ReviewStatus { get; set; }
+
+        //Location
+        public string City { get; set; } = null!;
+        public string County { get; set; } = null!;
+        public string AddressInfo { get; set; } = null!;
     }
 }

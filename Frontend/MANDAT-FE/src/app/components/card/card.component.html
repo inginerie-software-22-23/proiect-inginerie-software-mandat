@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="person !== null">
 	<div class="display">
 		<div class="display-item">
 			<div class="card seamus">
@@ -9,36 +9,29 @@
 				</div>
 				<div class="card-info">
 					<div class="info-title">
-						<h2>{{nume}}</h2>
-                        <h4>{{subject}}</h4>
-                        <h4>{{phoneNumber}}</h4>
+						<h2>{{person.username}}</h2>
+                        <h3>{{person.subject}}</h3>
+                        <h3>{{person.phoneNumber}}</h3>
 					</div>
 					<div class="card-rating divider">
-						
-                        <div class="rate" id="rating">
-                            <input type="radio" id="star5" name="rate" value="5" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star5" title="text" [ngClass]="{'noHover' : !canEdit}">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star4" title="text" [ngClass]="{'noHover' : !canEdit}">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star3" title="text" [ngClass]="{'noHover' : !canEdit}">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star2" title="text" [ngClass]="{'noHover' : !canEdit}">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" [disabled] = "!canEdit" [ngClass]="{'noHover' : !canEdit}"/>
-                            <label for="star1" title="text" [ngClass]="{'noHover' : !canEdit}">1 star</label>
-                        </div>
-
-						<mat-form-field class="example-full-width review" *ngIf="canEdit">
-							<mat-label>Leave a review</mat-label>
-							<textarea matInput  [(ngModel)]="review"></textarea>
-						</mat-form-field>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 1 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 2 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 3 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 4 ? 'black' : 'grey'">★</i>
+						<i [ngClass]="person.numberOfStars !== undefined && person.numberOfStars >= 5 ? 'black' : 'grey'">★</i>
 					</div>
                     <div class="info-address divider">
-						{{address}}
+						<p>{{person.city}}</p>
+						<p>{{person.county}}</p>
+						<p>{{person.addressInfo}}</p>
 					</div>
 					<div class="info-bio">
-                        {{description}}
+                        <p>{{person.bio}}</p>
                     </div>
+
+					<button mat-raised-button class="button width:" (click)="addReview(person)">
+						Add Review
+					</button>
 					
 				</div>
 			</div>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { StudentService } from 'src/app/services/student.service';
 import { MentorService } from 'src/app/services/mentor.service';
 import { StudentModel } from 'src/app/components/interface/student-model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
@@ -36,13 +35,12 @@ export class MyStudentsComponent {
         console.log(response);
         this.students = response;
 
-        for(let student of this.students)
-        {
+        for(let student of this.students) {
           console.log(student.email);
           this.reviewService.getStudentStars(student.email).subscribe(
             (result:number) => {
               console.log(result);
-              this.starsForStudents.push([result,student.email]);
+              this.starsForStudents.push([result, student.email]);
               student.numberOfStars = result;
             },
             (error) => {

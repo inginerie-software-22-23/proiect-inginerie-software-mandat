@@ -22,7 +22,6 @@ export class DialogViewStudentReviewsComponent implements OnInit{
   constructor(
     private reviewService: ReviewService,
     public cookie: CookieService,
-    //public canEdit: boolean = false,
     @Inject(MAT_DIALOG_DATA) public date: any
   ){ }
 
@@ -42,9 +41,8 @@ export class DialogViewStudentReviewsComponent implements OnInit{
           console.error(error);
         }
        );
-
       this.displayedColumns = ['message','starsNumber','mentorName','edit'];
-    } else if (this.role== "mentor") {
+    } else if (this.role == "mentor") {
       this.reviewService.getAllMentorReviews(this.emailUser).subscribe(
         (result: MyReviews[]) => {
           console.log(result);
@@ -60,23 +58,21 @@ export class DialogViewStudentReviewsComponent implements OnInit{
 
   public editReview(id:any,message: string){
     this.count ++;
-    if(this.count % 2 != 0)
-    { 
+    if(this.count % 2 != 0) { 
       let div = document.getElementById(id);
-     if (div != null)
-      div.removeAttribute("readonly");
+      if (div != null)
+        div.removeAttribute("readonly");
     }
-    else
-      {
-        this.reviewService.editReview(id, message).subscribe(
-        (result) =>{
-          console.log(result);
-        },
-        (error) => {
-          console.log(error);
-        }
-        );
+    else {
+      this.reviewService.editReview(id, message).subscribe(
+      (result) =>{
+        console.log(result);
+      },
+      (error) => {
+        console.log(error);
       }
+      );
+    }
   }
 }
 

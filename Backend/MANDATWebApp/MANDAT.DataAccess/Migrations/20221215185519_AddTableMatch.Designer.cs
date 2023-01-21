@@ -206,7 +206,32 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.ToTable("Matches");
                 });
+            modelBuilder.Entity("MANDAT.Entities.Entities.VideoMeetingDetails", b =>
+            {
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier");
 
+                b.Property<Guid>("MentorId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<DateTime>("MeetingTime")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Dial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+
+                b.HasKey("StudentId", "MentorId");
+
+                b.HasIndex("MentorId");
+
+                b.ToTable("VideoMeetingDetails", (string)null);
+            });
             modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
                 {
                     b.Property<Guid>("Id")
@@ -333,6 +358,25 @@ namespace MANDAT.DataAccess.Migrations
                     b.Navigation("Student");
                 });
 
+            modelBuilder.Entity("MANDAT.Entities.Entities.VideoMeetingDetails", b =>
+            {
+                b.HasOne("MANDAT.Entities.Entities.Mentor", "Mentor")
+                    .WithMany("VideoMeetingsDetails")
+                    .HasForeignKey("MentorId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.HasOne("MANDAT.Entities.Entities.Student", "Student")
+                    .WithMany("VideoMeetingsDetails")
+                    .HasForeignKey("StudentId")
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .IsRequired();
+
+                b.Navigation("Mentor");
+
+                b.Navigation("Student");
+            });
+
             modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
                 {
                     b.HasOne("MANDAT.Entities.Entities.IdentityUser", "User")
@@ -400,12 +444,16 @@ namespace MANDAT.DataAccess.Migrations
 
                     b.Navigation("Matches");
 
+                    b.Navigation("VideoMeetingsDetails");
+
                     b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
                 {
                     b.Navigation("Matches");
+
+                    b.Navigation("VideoMeetingsDetails");
 
                     b.Navigation("Reviews");
                 });

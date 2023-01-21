@@ -46,6 +46,9 @@ namespace MANDAT.DataAccess
         private IRepository<Match> matches;
         public IRepository<Match> Matches => matches ?? (matches = new BaseRepository<Match>(Context));
 
+        private IRepository<VideoMeetingDetails> videoDetails;
+        public IRepository<VideoMeetingDetails> VideoMeetingsDetails => videoDetails ?? (videoDetails = new BaseRepository<VideoMeetingDetails>(Context));
+
         public void SaveChanges()
         {
             Context.SaveChanges();

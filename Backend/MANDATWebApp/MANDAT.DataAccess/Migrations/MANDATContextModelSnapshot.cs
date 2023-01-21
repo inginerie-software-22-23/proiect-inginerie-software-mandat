@@ -204,6 +204,32 @@ namespace MANDAT.DataAccess.Migrations
                     b.ToTable("Matches", (string)null);
                 });
 
+            modelBuilder.Entity("MANDAT.Entities.Entities.VideoMeetingDetails", b =>
+            {
+                b.Property<Guid>("StudentId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<Guid>("MentorId")
+                    .HasColumnType("uniqueidentifier");
+
+                b.Property<DateTime>("MeetingTime")
+                    .HasColumnType("datetime2");
+
+                b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                b.Property<string>("Dial")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+
+                b.HasKey("StudentId", "MentorId");
+
+                b.HasIndex("MentorId");
+
+                b.ToTable("VideoMeetingsDetails", (string)null);
+            });
             modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
                 {
                     b.Property<Guid>("Id")
@@ -318,95 +344,108 @@ namespace MANDAT.DataAccess.Migrations
                         .HasForeignKey("MentorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+                    modelBuilder.Entity("MANDAT.Entities.Entities.VideoMeetingDetails", b =>
+                    {
+                        b.HasOne("MANDAT.Entities.Entities.Mentor", "Mentor")
+                            .WithMany("Matches")
+                            .HasForeignKey("MentorId")
+                            .OnDelete(DeleteBehavior.Cascade)
+                            .IsRequired();
 
-                    b.HasOne("MANDAT.Entities.Entities.Student", "Student")
+                        b.HasOne("MANDAT.Entities.Entities.Student", "Student")
                         .WithMany("Matches")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Mentor");
+                        b.Navigation("Mentor");
 
-                    b.Navigation("Student");
-                });
+                        b.Navigation("Student");
+                    });
+                
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
-                {
-                    b.HasOne("MANDAT.Entities.Entities.IdentityUser", "User")
-                        .WithOne("Mentor")
-                        .HasForeignKey("MANDAT.Entities.Entities.Mentor", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
+                        {
+                            b.HasOne("MANDAT.Entities.Entities.IdentityUser", "User")
+                                .WithOne("Mentor")
+                                .HasForeignKey("MANDAT.Entities.Entities.Mentor", "Id")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
 
-                    b.Navigation("User");
-                });
+                            b.Navigation("User");
+                        });
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.Review", b =>
-                {
-                    b.HasOne("MANDAT.Entities.Entities.Mentor", "Mentor")
-                        .WithMany("Reviews")
-                        .HasForeignKey("MentorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    modelBuilder.Entity("MANDAT.Entities.Entities.Review", b =>
+                        {
+                            b.HasOne("MANDAT.Entities.Entities.Mentor", "Mentor")
+                                .WithMany("Reviews")
+                                .HasForeignKey("MentorId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
 
-                    b.HasOne("MANDAT.Entities.Entities.Student", "Student")
-                        .WithMany("Reviews")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                            b.HasOne("MANDAT.Entities.Entities.Student", "Student")
+                                .WithMany("Reviews")
+                                .HasForeignKey("StudentId")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
 
-                    b.Navigation("Mentor");
+                            b.Navigation("Mentor");
 
-                    b.Navigation("Student");
-                });
+                            b.Navigation("Student");
+                        });
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
-                {
-                    b.HasOne("MANDAT.Entities.Entities.IdentityUser", "User")
-                        .WithOne("Student")
-                        .HasForeignKey("MANDAT.Entities.Entities.Student", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
+                        {
+                            b.HasOne("MANDAT.Entities.Entities.IdentityUser", "User")
+                                .WithOne("Student")
+                                .HasForeignKey("MANDAT.Entities.Entities.Student", "Id")
+                                .OnDelete(DeleteBehavior.Cascade)
+                                .IsRequired();
 
-                    b.Navigation("User");
-                });
+                            b.Navigation("User");
+                        });
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.IdentityRole", b =>
-                {
-                    b.Navigation("Users");
-                });
+                    modelBuilder.Entity("MANDAT.Entities.Entities.IdentityRole", b =>
+                        {
+                            b.Navigation("Users");
+                        });
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.IdentityUser", b =>
-                {
-                    b.Navigation("Adress")
-                        .IsRequired();
+                    modelBuilder.Entity("MANDAT.Entities.Entities.IdentityUser", b =>
+                        {
+                            b.Navigation("Adress")
+                                .IsRequired();
 
-                    b.Navigation("Mentor")
-                        .IsRequired();
+                            b.Navigation("Mentor")
+                                .IsRequired();
 
-                    b.Navigation("Student")
-                        .IsRequired();
+                            b.Navigation("Student")
+                                .IsRequired();
 
-                    b.Navigation("Token")
-                        .IsRequired();
-                });
+                            b.Navigation("Token")
+                                .IsRequired();
+                        });
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
-                {
-                    b.Navigation("Announcements");
+                    modelBuilder.Entity("MANDAT.Entities.Entities.Mentor", b =>
+                        {
+                            b.Navigation("Announcements");
 
-                    b.Navigation("Matches");
+                            b.Navigation("Matches");
 
-                    b.Navigation("Reviews");
-                });
+                            b.Navigation("VideoMeetingsDetails");
 
-            modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
-                {
-                    b.Navigation("Matches");
+                            b.Navigation("Reviews");
+                        });
 
-                    b.Navigation("Reviews");
-                });
+                    modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
+                        {
+                            b.Navigation("Matches");
+
+                            b.Navigation("VideoMeetingsDetails");
+
+                            b.Navigation("Reviews");
+                        });
 #pragma warning restore 612, 618
-        }
+                }
     }
-}
+    }

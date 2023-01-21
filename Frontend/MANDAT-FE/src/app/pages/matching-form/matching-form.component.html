@@ -1,59 +1,85 @@
 <div class="background">
-    <div class="banner">
+  <div class="banner">
+    <div class="header">
+      <h1 class="title">Help us find a mentor for you</h1>
+    </div>
+    <div class="form-fields">
       <div class="header">
-        <h1 class="title">Help us find a mentor for you</h1>
+        <h1 class="title">Location</h1>
       </div>
-            <form [formGroup]="matchForm" (ngSubmit)="match()">
-                    <div class="form-fields">
-                                
-                        <div class="header">
-                            <h1 class="title">Location</h1>
-                        </div>
-                        <div class="header">
-                            <h1 class="title">Subject</h1>
-                        </div>
-                        <app-material-input [label]="'County'" id="county" ></app-material-input>
-                    
-                        <mat-form-field appearance="fill" id="subject">
-                            <mat-label>{{ 'Subject' | titlecase }}</mat-label>
-                            <mat-select>
-                            <mat-option *ngFor="let subjects of subjects" [value]="subjects">
-                                {{ subjects }}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+      <div class="header">
+        <h1 class="title">Subject</h1>
+      </div>
 
-                        <app-material-input [label]="'City'" id="city" [placeholder]="'Frankfurt'"></app-material-input>
-                        
-                        <mat-form-field appearance="fill" id="meeting">
-                            <mat-label>{{ 'Meeting format' | titlecase }}</mat-label>
-                            <mat-select>
-                            <mat-option *ngFor="let meetingTypes of meetingTypes" [value]="meetingTypes">
-                                {{ meetingTypes }}
-                            </mat-option>
-                            </mat-select>
-                        </mat-form-field>
+      <mat-form-field class="example-form">
+        <mat-label>{{ "County" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Ilfov'"
+          value=""
+          type="text"
+          [(ngModel)]="model.county" />
+      </mat-form-field>
 
-                        <app-material-input [label]="'Address'" id="address" [placeholder]="'Cool People Street, number 1'"></app-material-input>
+      <mat-form-field class="example-form">
+        <mat-label>{{ "City" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Bucuresti'"
+          value=""
+          type="text"
+          [(ngModel)]="model.city" />
+      </mat-form-field>
 
+      <mat-form-field class="example-form">
+        <mat-label>{{ "Address" | titlecase }}</mat-label>
+        <input
+          matInput
+          [placeholder]="'Ex. ' + 'Cool People Street, number 1'"
+          value=""
+          type="text"
+          [(ngModel)]="model.addressInfo" />
+      </mat-form-field>
+      <!-- <app-material-input [label]="'County'" id="county" ></app-material-input> -->
 
-                        <div class="rate" id="rating" >
+      <mat-form-field appearance="fill" id="subject">
+        <mat-label>{{ "Subject" | titlecase }}</mat-label>
+        <mat-select [(ngModel)]="model.subjects">
+          <mat-option *ngFor="let subjects of subjects" [value]="subjects">
+            {{ subjects }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <app-material-input [label]="'City'" id="city" [placeholder]="'Frankfurt'"></app-material-input> -->
+
+      <mat-form-field appearance="fill" id="meeting">
+        <mat-label>{{ "Meeting format" | titlecase }}</mat-label>
+        <mat-select [(ngModel)]="model.meetingType">
+          <mat-option
+            *ngFor="let meetingTypes of meetingTypes"
+            [value]="meetingTypes">
+            {{ meetingTypes }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+  
+                        <div class="rate" id="rating" #radioButtons >
                             <p>Mentor Rating</p>
-                            <input type="radio" id="star5" name="rate" value="5" />
+                            <input type="radio" id="star5" name="rate" value="5"  [(ngModel)]="stars"/>
                             <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" />
+                            <input type="radio" id="star4" name="rate" value="4" [(ngModel)]="stars"/>
                             <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3" />
+                            <input type="radio" id="star3" name="rate" value="3"  [(ngModel)]="stars"/>
                             <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2" />
+                            <input type="radio" id="star2" name="rate" value="2"  [(ngModel)]="stars"/>
                             <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1" />
+                            <input type="radio" id="star1" name="rate" value="1"  [(ngModel)]="stars"/>
                             <label for="star1" title="text">1 star</label>
                         </div>
-                                    
-                        <button type="submit" color="primary" class="btn btn-success" onclick="match()">Submit</button>
+                        <button type="submit" color="primary" class="btn btn-success" (click)="match(stars)">Submit</button>
                         <!-- <button mat-raised-button color="primary" routerLink="home-page" >{{ 'Submit' | titlecase}}</button> -->
                     </div>
-            </form>
     </div>
   </div>

@@ -18,5 +18,7 @@ namespace MANDAT.BusinessLogic.Interfaces
         String GetMentorPhoneNumber(Guid studentId, Guid mentorId);
         StudentDTO? Update(Guid studentId, StudentDTO student);
         bool SoftDelete(Guid studentId);
+
+
     }
 }

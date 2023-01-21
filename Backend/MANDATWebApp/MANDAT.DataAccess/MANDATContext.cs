@@ -1,5 +1,7 @@
 ﻿using MANDAT.Entities.Entities;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace MANDAT.DataAccess
 {
@@ -24,9 +26,9 @@ namespace MANDAT.DataAccess
         {
             if (!builder.IsConfigured)
             {
-                builder.UseSqlServer("Data Source=DESKTOP-BOBO71Q\\MSSQLSERVER01;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-
-                builder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                // builder.UseSqlServer("Data Source=DESKTOP-BOBO71Q\\MSSQLSERVER01;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                builder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                //builder.UseSqlServer("Data Source=localhost\\SQLEXPRESS;Initial Catalog=MandatProjectDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             }
         }
 
@@ -70,7 +72,7 @@ namespace MANDAT.DataAccess
                  .WithOne(r => r.Mentor);
 
             //M-M
-            builder.Entity<Match>().HasKey(m => new { m.StudentId, m.MentorId });
+            builder.Entity<Match>().HasKey(m => new { m.StudentId, m.MentorId, m.AnnouncementId });
             builder.Entity<Match>()
                 .HasOne(m => m.Student)
                 .WithMany(s => s.Matches)

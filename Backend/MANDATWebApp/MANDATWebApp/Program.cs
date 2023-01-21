@@ -35,6 +35,9 @@ builder.Services.AddSwaggerGen(c =>
     });
     c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
 });
+builder.Services.AddControllersWithViews()
+        .AddNewtonsoftJson(options =>
+        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 //database conexion
 
@@ -52,13 +55,19 @@ builder.Services.AddScoped<UnitOfWork>();
 builder.Services.AddPresentation();
 builder.Services.AddMANDATAppCurrentUser();
 builder.Services.AddMANDATAppBusinessLogic(configuration);
-
+builder.Services.AddCors(p => p.AddPolicy("MANDATApp", builder =>
+{
+    builder.WithOrigins("*")
+    .WithMethods("GET", "PUT", "DELETE", "POST", "PATCH")
+    .AllowAnyHeader();
+}));
 
 
 //services here
 
 
 ///
+
 
 var app = builder.Build();
 
@@ -72,7 +81,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
 app.UseRouting();
+app.UseCors("MANDATApp");
 app.UseAuthentication();
 app.UseAuthorization();
 

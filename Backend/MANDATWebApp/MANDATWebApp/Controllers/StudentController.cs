@@ -1,5 +1,6 @@
 ﻿using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.DTOs;
+using MANDAT.DataAccess;
 using MANDAT.Entities.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,17 @@ namespace MANDATWebApp.Controllers
     public class StudentController : ControllerBase
     {
         private readonly IStudentManager _studentManager;
-        public StudentController(IStudentManager studentManager)
+        private readonly IUserManager _userAccountService;
+        private readonly IReview _review;
+        public StudentController(
+            IStudentManager studentManager,
+            IUserManager userAccountService,
+            IReview review
+            )
         {
             _studentManager = studentManager;
+            _userAccountService = userAccountService;
+            _review = review;
         }
 
         [HttpGet("GetAllStudents")]
@@ -25,9 +34,10 @@ namespace MANDATWebApp.Controllers
             return Ok(students);
         }
 
-        [HttpGet("GetStudentById")]
-        public async Task<IActionResult> GetStudentById(Guid studentId)
+        [HttpGet("GetStudentByEmail/{email}")]
+        public async Task<IActionResult> GetStudentByEmail([FromRoute] String email)
         {
+            var studentId = _userAccountService.GetUserByTheEmail(email);
             var student = _studentManager.GetStudentById(studentId);
             return Ok(student);
         }
@@ -40,30 +50,35 @@ namespace MANDATWebApp.Controllers
             return Ok(student);
         }
 
-        [HttpGet("GetStudentsByLocation")]
-        public async Task<IActionResult> GetStudentsByLocation(Guid locationId)
+        [HttpGet("GetStudentsByLocation/{locationId}")]
+        public async Task<IActionResult> GetStudentsByLocation([FromRoute] Guid locationId)
         {
+
             var students = _studentManager.GetStudentsByLocation(locationId);
             return Ok(students);
         }
 
-        [HttpGet("GetMentorsForStudent")]
-        public async Task<IActionResult> GetMentorsForStudent(Guid studentId)
-        {
+        [HttpGet("GetMentorsForStudent/{email}")]
+        public async Task<IActionResult> GetMentorsForStudent([FromRoute] String email)
+        { 
+            var studentId = _userAccountService.GetUserByTheEmail(email);
             var mentors = _studentManager.GetMentorsForStudent(studentId);
             return Ok(mentors);
         }
 
-        [HttpGet("GetMentorPhoneNumber")]
-        public async Task<IActionResult> GetMentorPhoneNumber(Guid studentId, Guid mentorId)
+        [HttpGet("GetMentorPhoneNumber/{studentEmail}/{mentorEmail}")]
+        public async Task<IActionResult> GetMentorPhoneNumber([FromRoute] String studentEmail, String mentorEmail)
         {
+            var studentId = _userAccountService.GetUserByTheEmail(studentEmail);
+            var mentorId = _userAccountService.GetUserByTheEmail(mentorEmail);
             var phoneNumber = _studentManager.GetMentorPhoneNumber(studentId, mentorId);
             return Ok(phoneNumber);
         }
 
-        [HttpPut("UpdateStudent")]
-        public async Task<IActionResult> UpdateStudent(Guid studentId, StudentDTO student)
+        [HttpPut("UpdateStudent/{email}")]
+        public async Task<IActionResult> UpdateStudent([FromRoute] String email, [FromBody] StudentDTO student)
         {
+            var studentId = _userAccountService.GetUserByTheEmail(email);
             var updatedStudent = _studentManager.Update(studentId, student);
             return Ok(updatedStudent);
         }
@@ -77,9 +92,10 @@ namespace MANDATWebApp.Controllers
 
 
 
-        [HttpPatch("SoftDelete")]
-        public IActionResult SoftDelete(Guid studentId)
+        [HttpPatch("SoftDelete/{email}")]
+        public IActionResult SoftDelete([FromRoute] String email, [FromBody] StudentDTO student)
         {
+            var studentId = _userAccountService.GetUserByTheEmail(email);
             var result = _studentManager.SoftDelete(studentId);
             return Ok(result);
         }

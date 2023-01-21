@@ -2,6 +2,7 @@
 using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.Configurations;
+using MANDAT.Common.DTOs;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.External.Auth;
 using MANDAT.Common.Features.Register;
@@ -37,7 +38,7 @@ namespace MANDAT.BusinessLogic.Services
             return ExecuteInTransaction(uow =>
             {
                 return uow.IdentityUsers.Get()
-                             .Where(u => u.Id == CurrentUser.Id)
+                             .Where(u => u.Email == CurrentUser.Email)
                              .Select(u => u.UserImage)
                             .SingleOrDefault();
             });
@@ -65,6 +66,23 @@ namespace MANDAT.BusinessLogic.Services
             
         }
 
+        public CurrentUserDto? GetUserInfoByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).Select(u => new CurrentUserDto
+                {
+                    Email = u.Email,
+                    Name = u.Username,
+                    UserImage = u.UserImage,
+                    Roles = uow.IdentityRoles.Get().Where(w => w.Id.Equals(u.RoleId)).Select(r => r.Name).FirstOrDefault()
+
+                }).SingleOrDefault();
+                return user;
+            });
+
+        }
+
         public  Guid GetUserByUsername(string username)
         {
             return ExecuteInTransaction(uow =>
@@ -72,17 +90,34 @@ namespace MANDAT.BusinessLogic.Services
                 var user =  uow.IdentityUsers.Get().Where(u => u.Username.Equals(username)).FirstOrDefault();
                 return user.Id;
             });
-           
-
         }
 
-        public Task<T> GetUserSelectedProperties<T>(string uniqueIdentifier, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default)
+        public Guid GetUserByTheEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                return user.Id;
+            });
+        }
+
+        public Guid GetUserIdByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                return user.Id;
+            });
+
+
+        }
+        public Task<T> GetUserSelectedProperties<T>(string email, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default)
         {
             return ExecuteInTransaction(uow =>
             {
                 var selectedUserPropertiesObject = uow.IdentityUsers.Get()
               .AsNoTracking()
-              .Where(u => u.Username.Equals(uniqueIdentifier) || u.Email.Equals(uniqueIdentifier))
+              .Where(u => u.Email.Equals(email) )
               .Select(selector)
               .SingleOrDefaultAsync(cancellationToken);
 
@@ -108,9 +143,10 @@ namespace MANDAT.BusinessLogic.Services
         {
 
             return ExecuteInTransaction(uow => {
-                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Username.Equals(loginCommand.UniqueIdentifier) || u.Email.Equals(loginCommand.UniqueIdentifier)).SingleOrDefault();
+                var email = loginCommand.Email;
+                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) ).SingleOrDefault();
                 user = uow.IdentityUsers.Get().Include(u => u.Role)
-                               .SingleOrDefault(u => u.Email == loginCommand.Email);
+                               .SingleOrDefault(u => u.Email.Equals(loginCommand.Email));
                 var  roles = user.Role.Name;
 
                 var newJti = Guid.NewGuid().ToString();
@@ -193,7 +229,8 @@ namespace MANDAT.BusinessLogic.Services
                         {
                             var mentor = new Mentor();
                             mentor.Id = registerUser.Id;
-                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 }; ;
+                            mentor.MentorIdentityCardFront = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 }; 
+
                             mentor.MentorIdentityCardBack = new byte[] { 0x10, 0x10, 0x10, 0x10, 0x10, 0x10, 0x10 };
                             uow.Mentors.Insert(mentor);
                         }

@@ -1,4 +1,5 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
+using MANDAT.Common.DTOs;
 using MANDAT.Common.External.Auth;
 using MANDAT.Common.Features.Register;
 using MANDAT.Entities.Entities;
@@ -26,8 +27,10 @@ namespace MANDAT.BusinessLogic.Interfaces
         void Register(RegisterCommand registerCommand);
         Task<IdentityUserToken> GetUserTokenByRefreshToken(string refreshtoken);
         IdentityUser updateUser(IdentityUser user);
+        CurrentUserDto GetUserInfoByEmail(string email);
+        Guid GetUserIdByEmail(string email);
         // Task<bool> saveAsync();
 
-
+        Guid GetUserByTheEmail(string email);
     }
 }

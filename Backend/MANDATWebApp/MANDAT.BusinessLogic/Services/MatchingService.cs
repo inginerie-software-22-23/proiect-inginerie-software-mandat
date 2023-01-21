@@ -158,13 +158,14 @@ namespace MANDAT.BusinessLogic.Services
             });
         }
 
-        public List<ViewMentorMatchDTO> MentorRejectedRequests(Guid mentorId)
+        public List<ViewMentorMatchDTO> MentorRejectedRequests(string email)
         {
             return ExecuteInTransaction(uow =>
             {
+                var userId = uow.IdentityUsers.Get().Where(s => s.Email == email).Select(s => s.Id).Single();
                 return uow.Matches.Get()
                                   .Include(s => s.Student)
-                                  .Where(x => x.MentorId == mentorId && x.Status.Equals(StatusMatch.Rejected.ToString()))
+                                  .Where(x => x.MentorId == userId && x.Status.Equals(StatusMatch.Rejected.ToString()))
                                   .Select(x => new ViewMentorMatchDTO
                                   {
                                       FullName = uow.IdentityUsers.Get()
@@ -182,13 +183,15 @@ namespace MANDAT.BusinessLogic.Services
             });
         }
 
-        public List<ViewMentorMatchDTO> MentorInWaitingRequests(Guid mentorId)
+        public List<ViewMentorMatchDTO> MentorInWaitingRequests(string email)
         {
             return ExecuteInTransaction(uow =>
             {
+                var userId = uow.IdentityUsers.Get().Where(s => s.Email == email).Select(s => s.Id).Single();
+
                 return uow.Matches.Get()
                                    .Include(s => s.Student)
-                                   .Where(x => x.MentorId == mentorId && x.Status.Equals(StatusMatch.Waiting.ToString()))
+                                   .Where(x => x.MentorId == userId && x.Status.Equals(StatusMatch.Waiting.ToString()))
                                    .Select(x => new ViewMentorMatchDTO
                                    {
                                        FullName = uow.IdentityUsers.Get()
@@ -208,10 +211,12 @@ namespace MANDAT.BusinessLogic.Services
 
         //update request
 
-        public bool RespondToRequests(Guid mentorId, Guid studentId, bool response)
+        public bool RespondToRequests(string mentorEmail, string studentEmail, bool response)
         {
             return ExecuteInTransaction(uow =>
             {
+                var mentorId = uow.IdentityUsers.Get().Where(s => s.Email == mentorEmail).Select(s => s.Id).Single();
+                var studentId = uow.IdentityUsers.Get().Where(s => s.Email == studentEmail).Select(s => s.Id).Single();
                 var request = uow.Matches.Get()
                                             .Where(x => x.StudentId == studentId && x.MentorId == mentorId)
                                             .Include(s => s.Mentor)

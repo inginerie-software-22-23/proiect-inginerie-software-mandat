@@ -2,6 +2,7 @@
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.Common.DTOs;
 using MANDAT.Entities.Entities;
+using MANDAT.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -27,9 +28,9 @@ namespace MANDAT.BusinessLogic.Services
                                             .Where(m => m.User.IsDeleted.Equals(false))
                                             .Select(m => new AllMentorsDto
                                             {
-                                              //  MentorIdentityCardFront = m.MentorIdentityCardFront,
-                                              //  MentorIdentityCardBack = m.MentorIdentityCardBack,
-                                             //   UserImage = m.User.UserImage,
+                                                //  MentorIdentityCardFront = m.MentorIdentityCardFront,
+                                                //  MentorIdentityCardBack = m.MentorIdentityCardBack,
+                                                //  UserImage = m.User.UserImage,
                                                 Username = m.User.Username,
                                                 Email = m.User.Email,
                                                 PhoneNumber = m.User.PhoneNumber,
@@ -39,7 +40,11 @@ namespace MANDAT.BusinessLogic.Services
                                                 IsDeleted = m.User.IsDeleted,
                                                 Bio = m.User.Bio,
                                                 EducationalInstitution = m.User.EducationalInstitution,
-                                                RoleName = uow.IdentityRoles.Get().Where(r => r.Id.Equals(m.User.RoleId)).Select(r => r.Name).Single()
+                                                RoleName = uow.IdentityRoles.Get().Where(r => r.Id.Equals(m.User.RoleId)).Select(r => r.Name).Single(),
+                                                City = m.User.Adress.City,
+                                                County = m.User.Adress.County,
+                                                AddressInfo = m.User.Adress.AddressInfo,
+                                                Subject = uow.Announcements.Get().FirstOrDefault(an => an.MentorId == m.Id).Subject,
                                             })
                                             .ToList();
 
@@ -189,7 +194,7 @@ namespace MANDAT.BusinessLogic.Services
                                     .Include(a => a.Student.Announcements)
                                     .Include(s => s.Mentor)
                                     .Include(r => r.Mentor.Reviews)
-                                    .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
+                                    .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals(StatusMatch.Accepted.ToString()))//.Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
                                     .Select(match => new GetStudentsForMentorDTO
                                     {
                                         Username = match.Student.User.Username,

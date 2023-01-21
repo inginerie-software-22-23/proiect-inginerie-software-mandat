@@ -14,10 +14,8 @@
         <button mat-raised-button (click)="sortedStarsDescending()" class="button" *ngIf="sortByStarsAsc">Sort by stars <i class='fas fa-arrow-up'></i></button>
     </div>
 
-    
-
     <div class="page">
-        <app-card *ngFor="let student of students" [person] = "student" [canEdit] = "false"></app-card>
+        <app-card *ngFor="let student of students" [person] = "student" [pageToShowOn] = "'my-students'"></app-card>
     </div>
 
 </div>

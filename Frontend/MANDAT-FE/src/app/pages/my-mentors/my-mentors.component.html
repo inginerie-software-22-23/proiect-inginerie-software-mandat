@@ -1,52 +1,21 @@
-<p>Mentors based on your filters</p>
-<div class="divButton">
-    <button mat-raised-button (click)="getMyReviews()" class="button">
-        My Reviews
-    </button>
-    <button mat-raised-button (click)="sorted()" class="button">Sort by Name</button>
-    <button mat-raised-button (click)="sortedStars()" class="button">Sort by Stars</button>
-</div>
-<div class="page">
-    <div *ngFor="let mentor of mentors; let i = index;" class="container">
-        <div class="display">
-            <div class="display-item">
-                <div class="card seamus">
-                    <div class="card-top"></div>
-                    <div class="card-profile">
-                        <div class="profile-image">
-                        </div>
-                    </div>
-                    <div class="card-info">
-                        <div class="info-title">
-                            <br>
-                            <h2>{{mentor.username}} </h2>
-                            <h4>Subject: {{mentor.subject}}</h4>
-                            <h4>Phone: {{mentor.phoneNumber}}</h4>
-                            <!-- {{starsForMentors[i][0]}} -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+<div>
+    <h1>My Mentors</h1>
 
-                        </div>
-                        <div class="card-rating divider">
-                            <div class="review-star-rating">
-                                <div class="ratings" id="ratings-new_{{i}}">
-                                </div>
-                            </div>
-                            <button mat-raised-button (click)="AddReview(i)">
-                                Add Review
-                            </button>
-                        </div>
-                        <div class="info-address divider">
-                            Address
-                            <p>City: {{mentor.city}}</p>
-                            <p>County: {{mentor.county}}</p>
-                            <p>Details: {{mentor.addressInfo}}</p>
-                        </div>
-                        <div class="info-bio">
-                            Short description
-                            <p>{{mentor.bio}}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="divButton">
+        <button mat-raised-button (click)="getMyReviews()" class="button">
+            My Reviews
+        </button>
+
+        <button mat-raised-button (click)="sortByNameASC()" class="button" *ngIf="!sortByNameAsc">Sort by name  <i class='fas fa-arrow-down'></i></button>
+        <button mat-raised-button (click)="sortByNameDESC()" class="button" *ngIf="sortByNameAsc">Sort by name  <i class='fas fa-arrow-up'></i></button>
+
+        <button mat-raised-button (click)="sortedStarsAscending()" class="button" *ngIf="!sortByStarsAsc">Sort by stars <i class='fas fa-arrow-down'></i></button>
+        <button mat-raised-button (click)="sortedStarsDescending()" class="button" *ngIf="sortByStarsAsc">Sort by stars <i class='fas fa-arrow-up'></i></button>
     </div>
+
+    <div class="page">
+        <app-card *ngFor="let mentor of mentors" [person] = "mentor" [pageToShowOn] = "'my-mentors'"></app-card>
+    </div>
+
 </div>

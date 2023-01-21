@@ -12,8 +12,6 @@ export interface StudentModel {
     studentSchoolQualification: string,
     subject: string,
     message: string,
-    starsNumber?: number,
-    reviewStatus?: string,
     city: string,
     county: string,
     addressInfo: string,

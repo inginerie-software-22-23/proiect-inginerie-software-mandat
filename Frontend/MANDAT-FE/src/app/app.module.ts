@@ -46,6 +46,7 @@ import { SharedModule } from './components/shared/shared.module';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { CommonModule } from '@angular/common';
+import { MentorsComponent } from './pages/mentors/mentors.component';
 
 @NgModule({
   declarations: [
@@ -71,8 +72,8 @@ import { CommonModule } from '@angular/common';
     MentorRequestCardComponent,
     VideoMeetingComponent,
     AddParticipantsComponent,
-
-
+    MentorsComponent
+    
   ],
   imports: [
     BrowserModule,

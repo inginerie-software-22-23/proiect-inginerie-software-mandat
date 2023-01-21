@@ -1,4 +1,4 @@
-export interface MyMentorsModel {
+export interface MentorModel {
     username: string,
     email: string,
     phoneNumber: string,
@@ -9,8 +9,6 @@ export interface MyMentorsModel {
     bio: string,
     educationalInstitution: string,
     subject: string,
-    //message: string,
-    //starsNumber: number,
     reviewStatus: string,
     city: string,
     county: string,

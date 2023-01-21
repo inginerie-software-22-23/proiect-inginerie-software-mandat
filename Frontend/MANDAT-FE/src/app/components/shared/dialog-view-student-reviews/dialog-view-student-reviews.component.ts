@@ -1,6 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Guid } from 'guid-typescript';
 import { CookieService } from 'ngx-cookie-service';
 import { AccountService } from 'src/app/services/account.service';
 import { ReviewService } from 'src/app/services/review.service';

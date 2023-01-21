@@ -15,8 +15,6 @@ export class MyStudentsComponent {
 
   public students: StudentModel[] = [];
   public email: string = "";
-  // public starsForStudents:Array<[number,string]> = [];
-  // public starsForStudentsAux:Array<[number,string]> = [];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
   
@@ -40,7 +38,6 @@ export class MyStudentsComponent {
           this.reviewService.getStudentStars(student.email).subscribe(
             (result:number) => {
               console.log(result);
-              // this.starsForStudents.push([result, student.email]);
               student.numberOfStars = result;
             },
             (error) => {
@@ -76,16 +73,6 @@ export class MyStudentsComponent {
     this.students.sort((a, b) => {
       return (a.numberOfStars !== undefined? a.numberOfStars : 0) - (b.numberOfStars !== undefined? b.numberOfStars : 0);
     });
-
-    // this.starsForStudents.sort((a, b) => {
-    //   return a[0] - b[0];
-    // });
-
-    // this.students.sort((a, b) => {
-    //   let aIndex = this.starsForStudents.findIndex(([index, email]) => email === a.email);
-    //   let bIndex = this.starsForStudents.findIndex(([index, email]) => email === b.email);
-    //   return aIndex - bIndex;
-    // });
   }
 
   public sortedStarsDescending() {
@@ -94,15 +81,6 @@ export class MyStudentsComponent {
     this.students.sort((a, b) => {
       return (b.numberOfStars !== undefined? b.numberOfStars : 0) - (a.numberOfStars !== undefined? a.numberOfStars : 0);
     });
-    // this.starsForStudents.sort((a, b) => {
-    //   return b[0] - a[0];
-    // });
-
-    // this.students.sort((a, b) => {
-    //   let aIndex = this.starsForStudents.findIndex(([index, email]) => email === a.email);
-    //   let bIndex = this.starsForStudents.findIndex(([index, email]) => email === b.email);
-    //   return aIndex - bIndex;
-    // });
   }
 
   public getMyReviews() {

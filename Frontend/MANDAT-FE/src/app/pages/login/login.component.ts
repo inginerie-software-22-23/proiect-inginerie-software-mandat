@@ -57,8 +57,9 @@ export class LoginComponent {
             this.cookieService.set("Email", details.email);
             this.cookieService.set("Nume", details.name);
             this.cookieService.set("Rol", details.roles);
+            this.cookieService.set("LoggedIn", "true");
           });
-        this.cookieService.set("LoggedIn", "true");
+        
         this.cookieService.set("Token", result.token);
         window.location.reload();
         this.router.navigate(["/home"]);
@@ -80,7 +81,8 @@ export class LoginComponent {
       });
   }
   logOut(): any {
-    window.location.reload(); // ramane navbarul neactualizat
+    // ramane navbarul neactualizat
     this.socialAuthService.signOut();
+    window.location.reload(); 
   }
 }

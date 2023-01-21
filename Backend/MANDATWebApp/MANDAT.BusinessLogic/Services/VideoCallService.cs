@@ -32,7 +32,7 @@ namespace MANDAT.BusinessLogic.Services
                         info.StudentId = studentId;
                         info.MeetingTime = DateTime.Now;
                         info.Link = model.Link;
-                        info.Dial = model.Dial;
+                        info.Dial = "no content";
                         uow.VideoMeetingsDetails.Update(info);
                     }
                     else
@@ -41,7 +41,7 @@ namespace MANDAT.BusinessLogic.Services
                         info.StudentId = studentId;
                         info.MeetingTime = DateTime.Now;
                         info.Link = model.Link;
-                        info.Dial = model.Dial;
+                        //info.Dial = model.Dial;
                         uow.VideoMeetingsDetails.Insert(info);
                     }
                     uow.SaveChanges();

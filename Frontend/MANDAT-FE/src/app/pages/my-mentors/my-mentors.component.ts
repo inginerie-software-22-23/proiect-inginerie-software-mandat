@@ -202,7 +202,7 @@ public sortedStars(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '550px';
     dialogConfig.height = '770px';
-    dialogConfig.data = {mentor: this.mentors[i]}
+    dialogConfig.data = {data: this.mentors[i]}
     const dialog = this.dialog.open(DialogAddReviewByStudentComponent, dialogConfig);
     dialog.afterClosed().subscribe((result) =>{
       if(result){

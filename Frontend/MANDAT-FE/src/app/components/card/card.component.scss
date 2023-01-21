@@ -21,7 +21,6 @@ body {
 }
 
 .container {
-  width: 1600px;
   max-width: 100%;
   margin: auto;
 }
@@ -35,7 +34,7 @@ body {
     flex-basis: 1px;
     display: flex;
     justify-content: space-around;
-    padding: 15px;
+    padding: 25px;
     max-width: 100%;
   }
 }
@@ -92,24 +91,19 @@ body {
 		flex-direction:column;
 		.info-title{
 			padding-bottom:10px;
-            padding-top: 15px;
+            padding-top: 35px;
+			h2{
+				font-size:35px;
+				padding: 15px;
+			}
 			h3{
-				font-weight:400;
+				font-size:25px;
+				padding: 0px;
 			}
 		}
 		.card-rating{
 			margin: auto;
-            margin-bottom: 5px;	
-
-			.review {
-				width: 100%;
-			}
-			
-			>div{
-				flex-grow:1;
-				flex-basis:1px;
-				min-height:20px;
-			}
+            padding :15px;
 		}
 		.info-bio{
 			padding:15px 0;
@@ -126,25 +120,6 @@ body {
 		}
 	}
 }
-      > div {
-        flex-grow: 1;
-        flex-basis: 1px;
-        min-height: 20px;
-      }
-    
-    .info-bio {
-      padding: 15px 0;
-      margin-bottom: 5px;
-    }
-    .divider {
-      margin-left: 55px;
-      margin-right: 55px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-    }
-    .info-address {
-      padding: 15px 0;
-    }
-
 
 .card.seamus {
   .card-top {
@@ -155,16 +130,23 @@ body {
   }
 }
 
-.rate > input:checked + label:hover,
-.rate > input:checked + label:hover ~ label,
-.rate > input:checked ~ label:hover,
-.rate > input:checked ~ label:hover ~ label,
-.rate > label:hover ~ input:checked ~ label {
-    color: #c59b08;
+i {
+	font-family: 'Poppins';
+    font-size: 70px;
 }
 
-.noHover{
-    pointer-events: none;
-	// opacity: 0.2;
+.black {
+	color: black;
 }
 
+.grey {
+	color: grey;
+}
+
+.button {
+	margin: auto;
+	width: 150px;
+	margin-top: 20px;
+	padding-left: 15px;
+	padding-right: 15px;
+}

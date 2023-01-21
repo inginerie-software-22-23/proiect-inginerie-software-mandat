@@ -33,7 +33,15 @@ export class ReviewService {
     return this.http.get<any>(`${this.url}/ViewAllStudentReviews/${email}`);
   }
 
+  public getAllMentorReviews(email: string): Observable<any>{
+    return this.http.get<any>(`${this.url}/ViewAllMentorReviews/${email}`);
+  }
+
   public getMentorsStars(email: string): Observable<any>{
     return this.http.get<any>(`${this.url}/MentorStars/${email}`);
+  }
+
+  public getStudentStars(email: string): Observable<any>{
+    return this.http.get<any>(`${this.url}/StudentStars/${email}`);
   }
 }

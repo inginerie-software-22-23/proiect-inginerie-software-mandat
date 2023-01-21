@@ -2,10 +2,10 @@ import { Component, ViewChild } from "@angular/core";
 import { MatSidenav } from "@angular/material/sidenav";
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { SocialUser, SocialAuthService } from "@abacritt/angularx-social-login";
-import { FormBuilder } from "@angular/forms";
+import { UserAccountService } from "src/app/services/user-account.service";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
-import { UserAccountService } from "src/app/services/user-account.service";
+import { FormBuilder } from "@angular/forms";
 
 @Component({
   selector: "app-navbar",
@@ -40,14 +40,13 @@ export class NavbarComponent {
   }
    logOut():any {
     let email= this.cookieService.get('Email');
-
     this.accountService.Logout(email).subscribe(
       result => {
         console.log(result);
         sessionStorage.clear();
         localStorage.clear();
         this.cookieService.deleteAll();
-        window.location.reload();
+        // window.location.reload();
         this.router.navigate(["/home"]);
       },
       error => {

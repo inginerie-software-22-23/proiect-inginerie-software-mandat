@@ -28,27 +28,24 @@ import { HttpClientModule } from "@angular/common/http";
 import {
   SocialLoginModule,
   SocialAuthServiceConfig,
-
   SocialAuthService,
 } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { AcceptJSService } from "@openutility/acceptjs-angular-wrapper";
-
-
-import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';
-import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
-import { AddParticipantsComponent } from './pages/video-meeting/add-participants/add-participants.component';
 import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
 import { MentorRequestsComponent } from './pages/mentor-requests/mentor-requests.component';
 import { MyMentorsComponent } from './pages/my-mentors/my-mentors.component';
 import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { CardComponent } from './components/card/card.component';
-import { CommonModule } from '@angular/common';
+import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';
+import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
+import { AddParticipantsComponent } from './pages/video-meeting/add-participants/add-participants.component';
 import { HomeCardComponent } from "./components/home-card/home-card.component";
 import { MatDialogModule } from '@angular/material/dialog';
 import { SharedModule } from './components/shared/shared.module';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -63,6 +60,8 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
     HomePageComponent,
     NavbarComponent,
     MatchingFormComponent,
+    MentorRequestsComponent,
+    MyMentorsComponent,
     MyStudentsComponent,
     MyMentorsComponent,
     CardComponent,

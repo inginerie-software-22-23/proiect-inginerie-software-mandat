@@ -77,7 +77,6 @@ export class MyStudentsComponent {
 
   public sortedStarsDescending() {
     this.sortByStarsAsc = false;
-
     this.students.sort((a, b) => {
       return (b.numberOfStars !== undefined? b.numberOfStars : 0) - (a.numberOfStars !== undefined? a.numberOfStars : 0);
     });
@@ -94,9 +93,5 @@ export class MyStudentsComponent {
         this.students = result;
       }
     }); 
-  }
-
-  public getStudents() {
-    return this.students;
   }
 }

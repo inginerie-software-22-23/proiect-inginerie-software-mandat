@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { MyMentorsModel } from '../interface/my-mentors-model';
+import { MentorModel } from '../interface/mentor-model';
 import { DialogAddReviewByStudentComponent } from '../shared/dialog-add-review-by-student/dialog-add-review-by-student.component';
 import { DialogViewStudentReviewsComponent } from '../shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
@@ -21,8 +21,8 @@ export class CardComponent {
   public description: string = "Short description";
   public review: string = "";
 
-  @Input() person!: StudentModel | MyMentorsModel;  
-  @Input() canEdit: boolean = true;
+  @Input() person!: StudentModel | MentorModel;  
+  @Input() pageToShowOn: string = "";
 
   constructor(
     private dialog: MatDialog
@@ -46,4 +46,9 @@ export class CardComponent {
       }
     });
   }
+  
+  public chooseMentor(person: any) { 
+
+  }
+
 }

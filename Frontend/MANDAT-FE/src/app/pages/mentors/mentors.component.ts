@@ -21,111 +21,6 @@ export class MentorsComponent {
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
 
-  // hardcoded seed
-  // mentors: MentorModel[] = [
-  //   {
-  //     username: 'nr1',
-  //     email: 'nr1',
-  //     phoneNumber: 'nr1',
-  //     passwordHash: 'nr1',
-  //     createdAt: new Date(),
-  //     isActive: true,
-  //     isDeleted: false,
-  //     bio: 'nr1',
-  //     educationalInstitution: 'nr1',
-  //     subject: 'nr1',
-  //     reviewStatus: 'nr1',
-  //     city: 'nr1',
-  //     county: 'nr1',
-  //     addressInfo: 'nr1',
-  //     numberOfStars: 5
-  //   },
-  //   {
-  //     username: 'nr2',
-  //     email: 'nr2',
-  //     phoneNumber: 'nr2',
-  //     passwordHash: 'nr2',
-  //     createdAt: new Date(),
-  //     isActive: true,
-  //     isDeleted: false,
-  //     bio: 'nr2',
-  //     educationalInstitution: 'nr2',
-  //     subject: 'nr2',
-  //     reviewStatus: 'nr2',
-  //     city: 'nr2',
-  //     county: 'nr2',
-  //     addressInfo: 'nr2',
-  //     numberOfStars: 5
-  //   },
-  //   {
-  //     username: 'nr3',
-  //     email: 'nr3',
-  //     phoneNumber: 'nr3',
-  //     passwordHash: 'nr3',
-  //     createdAt: new Date(),
-  //     isActive: true,
-  //     isDeleted: false,
-  //     bio: 'nr3',
-  //     educationalInstitution: 'nr3',
-  //     subject: 'nr3',
-  //     reviewStatus: 'nr3',
-  //     city: 'nr3',
-  //     county: 'nr3',
-  //     addressInfo: 'nr3',
-  //     numberOfStars: 5
-  //   },
-  //   {
-  //     username: 'nr31',
-  //     email: 'nr3',
-  //     phoneNumber: 'nr3',
-  //     passwordHash: 'nr3',
-  //     createdAt: new Date(),
-  //     isActive: true,
-  //     isDeleted: false,
-  //     bio: 'nr3',
-  //     educationalInstitution: 'nr3',
-  //     subject: 'nr3',
-  //     reviewStatus: 'nr3',
-  //     city: 'nr3',
-  //     county: 'nr3',
-  //     addressInfo: 'nr3',
-  //     numberOfStars: 5
-  //   },
-  //   {
-  //     username: 'nr32',
-  //     email: 'nr3',
-  //     phoneNumber: 'nr3',
-  //     passwordHash: 'nr3',
-  //     createdAt: new Date(),
-  //     isActive: true,
-  //     isDeleted: false,
-  //     bio: 'nr3',
-  //     educationalInstitution: 'nr3',
-  //     subject: 'nr3',
-  //     reviewStatus: 'nr3',
-  //     city: 'nr3',
-  //     county: 'nr3',
-  //     addressInfo: 'nr3',
-  //     numberOfStars: 5
-  //   },
-  //   {
-  //     username: 'nr33',
-  //     email: 'nr3',
-  //     phoneNumber: 'nr3',
-  //     passwordHash: 'nr3',
-  //     createdAt: new Date(),
-  //     isActive: true,
-  //     isDeleted: false,
-  //     bio: 'nr3',
-  //     educationalInstitution: 'nr3',
-  //     subject: 'nr3',
-  //     reviewStatus: 'nr3',
-  //     city: 'nr3',
-  //     county: 'nr3',
-  //     addressInfo: 'nr3',
-  //     numberOfStars: 5
-  //   }];
-
   matchCity: string = ""; 
   matchCounty: string = ""; 
   matchSubject: string = ""; 
@@ -145,12 +40,12 @@ export class MentorsComponent {
     this.mentorsService.getAllMentors().subscribe(
       (result: MentorModel[]) => {
         this.mentors = result;
-        
+       
         for(let mentor of this.mentors) {
-          console.log(mentor.email);
+ 
           this.reviewService.getMentorsStars(mentor.email).subscribe(
             (result:number) => {
-              console.log(result);
+              // console.log(result);
               this.starsForMentors.push([result, mentor.email]);
               mentor.numberOfStars = result;
             },
@@ -159,6 +54,8 @@ export class MentorsComponent {
             });
         }
 
+        console.log(this.mentors);
+        this.filterMentors();
         this.sortByNameASC();
         this.sortByNameAsc = true;
       },
@@ -166,17 +63,36 @@ export class MentorsComponent {
         console.error(error);
       }
     );
-
-    this.filterMentors();
   }
 
   
   filterMentors() {
-    this.matchCity = this.cookie.get('matchCity');
-    this.matchCounty = this.cookie.get('matchCounty');
-    this.matchSubject = this.cookie.get('matchSubject');
-    this.matchAddress = this.cookie.get('matchAddress');
-    this.matchStars = parseInt(this.cookie.get('matchStars'));
+    console.log(this.cookie.check('matchCity'));
+
+    if (this.cookie.check('matchCity'))
+      this.matchCity = this.cookie.get('matchCity');
+    else
+      this.matchCity = "";
+
+    if (this.cookie.check('matchCounty'))
+      this.matchCounty = this.cookie.get('matchCounty');
+    else
+      this.matchCounty = "";
+    
+    if (this.cookie.check('matchSubject'))
+      this.matchSubject = this.cookie.get('matchSubject');
+    else
+      this.matchSubject = "";
+
+    if (this.cookie.check('matchAddress'))
+      this.matchAddress = this.cookie.get('matchAddress');
+    else
+      this.matchAddress = "";
+    
+    if (this.cookie.check('matchStars'))
+      this.matchStars = parseInt(this.cookie.get('matchStars'));
+    else
+      this.matchStars = 0;
     
     this.filteredList = this.mentors.filter((mentor) => {
       if (this.matchCity  === "")
@@ -214,6 +130,8 @@ export class MentorsComponent {
     });
     
     this.mentors = this.filteredList;
+    
+    console.log(this.mentors);
   }
 
   public sortByNameASC() {

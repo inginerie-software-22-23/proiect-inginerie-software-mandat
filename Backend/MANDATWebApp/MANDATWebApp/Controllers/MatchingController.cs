@@ -9,16 +9,23 @@ namespace MANDATWebApp.Controllers
     public class MatchingController : BaseController
     {
         private readonly IMatchingService _matchingService;
+        private readonly IUserManager _userAccountService;
+
         public MatchingController(ControllerDependencies dependencies,
-            IMatchingService matchingService) 
+            IMatchingService matchingService,
+            IUserManager userAccountService) 
             : base(dependencies)
         {
-            _matchingService = matchingService;
+            _matchingService = matchingService; 
+            _userAccountService = userAccountService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateAMatch(Guid mentorId, Guid studentId)
+        [HttpPost("createNewMatch/{emailMentor}-{emailStudent}")]
+        public async Task<IActionResult> CreateMatch([FromRoute] string emailMentor, string emailStudent)
         {
+            var mentorId = _userAccountService.GetUserByTheEmail(emailMentor);
+            var studentId = _userAccountService.GetUserByTheEmail(emailStudent);
+
             var result = _matchingService.NewMatching(mentorId, studentId);
             return Ok(result);
         }

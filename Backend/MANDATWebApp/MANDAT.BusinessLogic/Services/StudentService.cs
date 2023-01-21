@@ -148,7 +148,7 @@ namespace MANDAT.BusinessLogic.Services
                                 .Include(a => a.Mentor.Announcements)
                                 .Include(s => s.Student)
                                 .Include(r => r.Student.Reviews)
-                                .Where(match => match.StudentId.Equals(studentId) && match.Status.Equals("1"))
+                                .Where(match => match.StudentId.Equals(studentId) && match.Status.Equals(StatusMatch.Accepted.ToString()))//.Where(match => match.StudentId.Equals(studentId) && match.Status.Equals("1"))//
                                 .Select(match => new MentorsForStudentDTO
                                 {
                                     Username = match.Mentor.User.Username,
@@ -178,7 +178,7 @@ namespace MANDAT.BusinessLogic.Services
             var phoneNumber = db.Matches
                              .Get()
                              .Include(m => m.Mentor)
-                             .Where(match => match.StudentId.Equals(studentId) && match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
+                             .Where(match => match.StudentId.Equals(studentId) && match.MentorId.Equals(mentorId) && match.Status.Equals(StatusMatch.Accepted.ToString()))//("1")
                              .Select(match => match.Mentor.User.PhoneNumber).FirstOrDefault();
 
                 if (phoneNumber == null)

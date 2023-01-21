@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ export class MatchingFormComponent implements OnInit {
   ngOnInit(): void {}
 
   constructor(
-    public cookieService: CookieService
+    public cookieService: CookieService,
+    public router: Router
   ){}
 
   subjects: string[] = [
@@ -64,7 +66,7 @@ export class MatchingFormComponent implements OnInit {
     this.cookieService.set('matchAddress', this.model.addressInfo);
     this.cookieService.set('matchStars', this.model.stars.toString());
 
-    window.location.href = 'http://localhost:4200/mentors';
+    this.router.navigate(["/mentors"]);
   }
 
 }

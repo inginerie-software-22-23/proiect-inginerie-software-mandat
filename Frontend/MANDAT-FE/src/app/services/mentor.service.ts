@@ -21,11 +21,6 @@ export class MentorService {
     private cookieService: CookieService,
   ) { }
 
-  // public getMyMentors(id:any): Observable<MentorModel[]> {
-  //   return this.http.get<MentorModel[]>(`${this.url}/studentsByEmailMentor/${id}`,
-  //   this.httpOptions);
-  // }
-
   public getAllMentors(): Observable<any>{
     return this.http.get<any>(`${this.url}/mentors`);
   }
@@ -66,6 +61,7 @@ export class MentorService {
     return this.http.patch(`${this.url}/mentorDelete/${email}`,isDeleted);
   }
 
-
-
+  public createNewMatch(email_mentor: string, email_student: string): Observable<any>{
+    return this.http.post(`${this.url}/createNewMatch/${email_mentor}-${email_student}`, '');
+  }
 }

@@ -6,6 +6,9 @@ import { DialogViewStudentReviewsComponent } from '../shared/dialog-view-student
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { ReviewService } from 'src/app/services/review.service';
 import { StudentModel } from '../interface/student-model';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
+import { MentorService } from 'src/app/services/mentor.service';
 
 @Component({
   selector: "app-card",
@@ -13,7 +16,6 @@ import { StudentModel } from '../interface/student-model';
   styleUrls: ["./card.component.scss"],
 })
 export class CardComponent {
-
   public name: string= "Firstname + Lastname";
   public subject: string = "Subject";
   public phoneNumber: string = "Phone number (if case)";
@@ -25,7 +27,10 @@ export class CardComponent {
   @Input() pageToShowOn: string = "";
 
   constructor(
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private cookie: CookieService,
+    private router: Router,
+    private mentorService: MentorService
   ) { }
 
   ngOnInit() {
@@ -48,7 +53,13 @@ export class CardComponent {
   }
   
   public chooseMentor(person: any) { 
+    let email = this.cookie.get('Email');
 
+    if (email === '') {
+      this.router.navigate(["/login"]);
+    } else {
+      this.mentorService.createNewMatch(person.email, email);
+    }
   }
 
 }

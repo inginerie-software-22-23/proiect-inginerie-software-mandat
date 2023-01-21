@@ -16,8 +16,6 @@ export class MentorsComponent {
   public emailSt?: string;
   public mentors: MentorModel[] = [];
   public filteredList: MentorModel[] = [];
-  public starsForMentors:Array<[number,string]> = [];
-  public starsForMentorsAux:Array<[number,string]> = [];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
 
@@ -31,7 +29,6 @@ export class MentorsComponent {
   constructor(
     private reviewService: ReviewService,
     private cookie: CookieService,
-    private dialog: MatDialog,
     private mentorsService: MentorService,
 
   ){}
@@ -45,8 +42,6 @@ export class MentorsComponent {
  
           this.reviewService.getMentorsStars(mentor.email).subscribe(
             (result:number) => {
-              // console.log(result);
-              this.starsForMentors.push([result, mentor.email]);
               mentor.numberOfStars = result;
             },
             (error) => {
@@ -148,29 +143,17 @@ export class MentorsComponent {
     });
   }
 
-  public sortedStarsAscending(){
+  public sortedStarsAscending() {
     this.sortByStarsAsc = true;
-    this.starsForMentors.sort((a, b) => {
-      return a[0] - b[0];
-    });
-
     this.mentors.sort((a, b) => {
-      let aIndex = this.starsForMentors.findIndex(([index, email]) => email === a.email);
-      let bIndex = this.starsForMentors.findIndex(([index, email]) => email === b.email);
-      return aIndex - bIndex;
+      return (a.numberOfStars !== undefined? a.numberOfStars : 0) - (b.numberOfStars !== undefined? b.numberOfStars : 0);
     });
   }
 
-  public sortedStarsDescending(){
+  public sortedStarsDescending() {
     this.sortByStarsAsc = false;
-    this.starsForMentors.sort((a, b) => {
-      return b[0] - a[0];
-    });
-
     this.mentors.sort((a, b) => {
-      let aIndex = this.starsForMentors.findIndex(([index, email]) => email === a.email);
-      let bIndex = this.starsForMentors.findIndex(([index, email]) => email === b.email);
-      return aIndex - bIndex;
+      return (b.numberOfStars !== undefined? b.numberOfStars : 0) - (a.numberOfStars !== undefined? a.numberOfStars : 0);
     });
   }
 

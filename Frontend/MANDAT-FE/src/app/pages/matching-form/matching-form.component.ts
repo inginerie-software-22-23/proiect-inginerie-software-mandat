@@ -1,4 +1,3 @@
-
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { MatchingFormModel } from 'src/app/interfaces/matching-form-model';
@@ -7,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from 'src/app/components/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 
 
@@ -18,6 +18,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 export class MatchingFormComponent implements OnInit {
   ngOnInit(): void {}
+
+  constructor(
+    public cookieService: CookieService
+  ){}
 
   subjects: string[] = [
     "Informatics",
@@ -51,23 +55,16 @@ export class MatchingFormComponent implements OnInit {
     }
   }
   
-  public match(stars: any): void {
-    localStorage.setItem("matchCity", this.model.city);
+  public match(): void {
 
-    localStorage.setItem("matchCounty", this.model.county);
+    this.cookieService.set('matchCity', this.model.city);
+    this.cookieService.set('matchCounty', this.model.county);
+    this.cookieService.set('matchSubject', this.model.subjects);
+    this.cookieService.set('matchMeeting', this.model.meetingType);
+    this.cookieService.set('matchAddress', this.model.addressInfo);
+    this.cookieService.set('matchStars', this.model.stars.toString());
 
-    localStorage.setItem("matchSubject", this.model.subjects);
-
-    localStorage.setItem("matchMeeting", this.model.meetingType);
-
-    localStorage.setItem("matchAddress", this.model.addressInfo);
-
-    localStorage.setItem("matchStars", this.model.stars.toString());
-    // var star = this.rating;
-
-    // console.log(city);
-
-    window.location.href = 'http://localhost:54432/requests';
+    window.location.href = 'http://localhost:4200/mentors';
   }
 
 }

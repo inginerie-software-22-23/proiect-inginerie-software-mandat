@@ -63,25 +63,22 @@
           value=""
           type="text"
           [(ngModel)]="model.city" />
-      </mat-form-field>
-
-
-  
-                        <div class="rate" id="rating" #radioButtons >
-                            <p>Mentor Rating</p>
-                            <input type="radio" id="star5" name="rate" value="5"  [(ngModel)]="stars"/>
-                            <label for="star5" title="text">5 stars</label>
-                            <input type="radio" id="star4" name="rate" value="4" [(ngModel)]="stars"/>
-                            <label for="star4" title="text">4 stars</label>
-                            <input type="radio" id="star3" name="rate" value="3"  [(ngModel)]="stars"/>
-                            <label for="star3" title="text">3 stars</label>
-                            <input type="radio" id="star2" name="rate" value="2"  [(ngModel)]="stars"/>
-                            <label for="star2" title="text">2 stars</label>
-                            <input type="radio" id="star1" name="rate" value="1"  [(ngModel)]="stars"/>
-                            <label for="star1" title="text">1 star</label>
-                        </div>
-                        <button type="submit" color="primary" class="btn btn-success" (click)="match(stars)">Submit</button>
-                        <!-- <button mat-raised-button color="primary" routerLink="home-page" >{{ 'Submit' | titlecase}}</button> -->
-                    </div>
+      </mat-form-field>  
+          <div class="rate" id="rating" #radioButtons >
+              <p>Mentor Rating</p>
+              <input type="radio" id="star5" name="rate" value="5"  [(ngModel)]="stars"/>
+              <label for="star5" title="text">5 stars</label>
+              <input type="radio" id="star4" name="rate" value="4" [(ngModel)]="stars"/>
+              <label for="star4" title="text">4 stars</label>
+              <input type="radio" id="star3" name="rate" value="3"  [(ngModel)]="stars"/>
+              <label for="star3" title="text">3 stars</label>
+              <input type="radio" id="star2" name="rate" value="2"  [(ngModel)]="stars"/>
+              <label for="star2" title="text">2 stars</label>
+              <input type="radio" id="star1" name="rate" value="1"  [(ngModel)]="stars"/>
+              <label for="star1" title="text">1 star</label>
+          </div>
+          <button type="submit" color="primary" class="btn btn-success" (click)="match()">Submit</button>
+          <!-- <button mat-raised-button color="primary" routerLink="home-page" >{{ 'Submit' | titlecase}}</button> -->
+      </div>
     </div>
   </div>

@@ -11,6 +11,8 @@ export class UserAccountService {
   private url2 = "https://localhost:7278/api/Accounts/login";
   private url3 = "https://localhost:7278/api/Accounts/GetUserInfoByEmail/";
   private url4 = "https://localhost:7278/api/Accounts/DeleteTokenAsync/";
+  private url5 = "https://localhost:7278/api/Accounts/GetUserInfoWithAddressByEmail/";
+
   constructor(private http: HttpClient) {}
   public Register(user: RegisterModel): Observable<any> {
     const headers = { "content-type": "application/json" };
@@ -25,6 +27,10 @@ export class UserAccountService {
 
   public GetUserInfo(email: string): Observable<any> {
     return this.http.get(`${this.url3 + email}`);
+  }
+
+  public GetUserInfoWithAddressByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.url5 + email}`);
   }
 
   public Logout(email: any): Observable<any> {

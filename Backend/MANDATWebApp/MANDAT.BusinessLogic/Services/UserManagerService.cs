@@ -84,6 +84,33 @@ namespace MANDAT.BusinessLogic.Services
 
         }
 
+        public CurrentUserWithAddressDto GetUserInfoWithAddressByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.IdentityUsers.Get()
+                                            .Include(r => r.Role)
+                                            .Where(m => m.IsDeleted.Equals(false) && m.Email.Equals(email))
+                                            .Select(m => new CurrentUserWithAddressDto
+                                            {
+                                                //  MentorIdentityCardFront = m.MentorIdentityCardFront,
+                                                //  MentorIdentityCardBack = m.MentorIdentityCardBack,
+                                                //UserImage = m.User.UserImage,
+                                                Username = m.Username,
+                                                Email = m.Email,
+                                                PhoneNumber = m.PhoneNumber,
+                                                Bio = m.Bio,
+                                                EducationalInstitution = m.EducationalInstitution,
+                                                Subject = uow.Announcements.Get().FirstOrDefault(an => an.MentorId == m.Id).Subject,
+                                                City = m.Adress.City,
+                                                County = m.Adress.County,
+                                                AddressInfo = m.Adress.AddressInfo,
+                                            })
+                                            .FirstOrDefault();
+
+            });
+        }
+
         public  Guid GetUserByUsername(string username)
         {
             return ExecuteInTransaction(uow =>

@@ -1,9 +1,28 @@
 <div class="profile-card">
   <img src="../../../assets/images/user-profile.png" class="profile-image" />
   <div class="details">
-    <div class="name-surname">{{ "First Name + Last Name" | titlecase }}</div>
-    <div class="city">{{ "City" | titlecase }}</div>
-    <div class="courses">{{ "Courses" | titlecase }}</div>
+    <div class="name-surname">
+      <span class="value">{{
+        userAccountWithAddress.username | titlecase
+      }}</span>
+    </div>
+
+    <div class="city"
+      >{{ "City: " | titlecase }}
+      <span class="value">{{ userAccountWithAddress.city | titlecase }}</span>
+    </div>
+
+    <div
+      class="courses"
+      [style.display]="
+        userAccountWithAddress.subject === null ? 'none' : 'block'
+      "
+      >{{ "Courses: " | titlecase }}
+      <span class="value">{{
+        userAccountWithAddress.subject | titlecase
+      }}</span>
+    </div>
+
     <div class="stars">
       {{ "Stars" | titlecase }}
     </div>
@@ -15,12 +34,12 @@
 
   <div class="studies">
     <h2>{{ "Studies:" | titlecase }} </h2>
-    <p>studies</p>
+    <p>{{ userAccountWithAddress.educationalInstitution }}</p>
   </div>
 
   <div class="bio">
     <h2>{{ "Bio:" | titlecase }} </h2>
-    <p>bio</p>
+    <p>{{ userAccountWithAddress.bio }}</p>
   </div>
 </div>
 <div id="map"></div>

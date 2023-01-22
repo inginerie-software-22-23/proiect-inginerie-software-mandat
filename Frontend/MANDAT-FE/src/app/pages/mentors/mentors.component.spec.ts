@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MentorModel } from 'src/app/components/interface/mentor-model';
+import { MentorModel } from 'src/app/models/mentor-model';
 import { MentorsComponent } from './mentors.component';
 
 fdescribe('MentorsComponent', () => {

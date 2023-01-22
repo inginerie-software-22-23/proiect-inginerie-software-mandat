@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { StudentModel } from "src/app/components/interface/student-model";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MyStudentsComponent } from "./my-students.component";
 import { MatDialogModule } from '@angular/material/dialog';
+import { StudentModel } from "src/app/models/student-model";
 
 fdescribe("MyStudentsComponent", () => {
   let component: MyStudentsComponent;

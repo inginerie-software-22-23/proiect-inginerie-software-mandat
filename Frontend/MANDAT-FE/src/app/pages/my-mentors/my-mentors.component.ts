@@ -37,16 +37,12 @@ export class MyMentorsComponent implements OnInit{
     if(this.emailSt){
       this.myStudentService.getMentorsForStudent(this.emailSt).subscribe(
         (result: MentorModel[]) =>{
-          console.log(result);
           this.mentors = result;
             for(let mentor of this.mentors)
             {
-              console.log(mentor.email);
               this.reviewService.getMentorsStars(mentor.email).subscribe(
                 (result:number) => {
-                  console.log(result);
-                 // this.starsForMentors.push([result,mentor.email]);
-                 mentor.numberOfStars = result;
+                  mentor.numberOfStars = result;
                 },
                 (error) => {
                   console.error(error);
@@ -72,15 +68,12 @@ export class MyMentorsComponent implements OnInit{
                        mentor.link = "";
                      }
                    }
-    
                  }
                 },
                 (error) => {
                   console.error(error);
                 });
-            //}
-    
-          }
+              }
           this.sortByNameASC();
           this.sortByNameAsc = true;
         },

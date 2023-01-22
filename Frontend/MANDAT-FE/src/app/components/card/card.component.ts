@@ -19,8 +19,7 @@ export class CardComponent {
   public address: string = "Address";
   public description: string = "Short description";
   public review: string = "";
-
-  @Input() person!: StudentModel | MentorModel;
+  @Input() person: StudentModel | MentorModel; 
   // @Input() personLink!: string;
   @Input() pageToShowOn: string = "";
 

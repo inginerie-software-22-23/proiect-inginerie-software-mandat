@@ -4,7 +4,7 @@ $section-shadow-blur: 2px;
 $section-shadow: 1px 1px $section-shadow-blur $section-shadow-color, -1px -1px $section-shadow-blur $section-shadow-color;
 
 :host{
-  height: 120vh;
+  height: 220vh;
 }
 
 :host,
@@ -22,7 +22,8 @@ $section-shadow: 1px 1px $section-shadow-blur $section-shadow-color, -1px -1px $
 }
 
 .profile-card {
-  height: 50vh;
+  // height: 50vh;
+  height: 25%;
   width: 30vw;
   background-color: $section-background;
 
@@ -43,6 +44,12 @@ $section-shadow: 1px 1px $section-shadow-blur $section-shadow-color, -1px -1px $
 
 .more-about-me{
   background-color: $section-background;
+  height: 20%;
   width: 90%;
   padding: 4%;
+}
+
+#map{
+  height: 35%;
+  width: 75%;
 }

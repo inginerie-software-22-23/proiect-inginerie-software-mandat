@@ -1,5 +1,5 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MentorModel } from 'src/app/components/interface/mentor-model';
 
@@ -332,4 +332,13 @@ fdescribe('MyMentorsComponent', () => {
       }
     ]);
   });
+
+  it('should call getMyReviews when clicked', fakeAsync(() => {
+    spyOn(component, 'getMyReviews');
+    let button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    tick();
+    expect(component.getMyReviews).toHaveBeenCalled();
+  }));
+
 });

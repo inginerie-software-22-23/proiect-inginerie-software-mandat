@@ -100,92 +100,6 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 
 ![HTML5](https://skillicons.dev/icons?i=git,github,discord,md,nodejs,stackoverflow,vscode)
 
-# 🔒 Git and GitHub Conventions
-
-<details>
-<summary><i><b>Branch Names</b></i></summary>
-
----
-
-> `type/summary`
-
-Branch names should be all lower case and contain only "/" and "-" as a special characters.
-Spaces between words should be replaced by the character "-".
-
-##### ✔️ type:
-
--   feature
--   fix
--   patch
--   remove
-
-##### 📜 summary:
-
-Always must be in present tense.
-Describes the changes made.
-
-#### Branch Examples:
-
-> `feature/add-dropdown-bullets`
->
-> `fix/get-account-info-endpoint`
->
-> `patch/refactor-method-names`
->
-> `remove/unused-queries`
-
----
-
-</details>
-
-
-
-<details>
-<summary><i><b>Commit Names</b></i></summary>
-
----
-
-> type(project): summary
-
-Commit names should be all lower case and contain only ":", "(", ")" as special characters.
-
-##### ✔️ type:
-
--   feature
--   fix
--   patch
--   refactor
--   remove
-
-##### 🏭 project:
-
--   fe -> Front-End
--   be -> Back-End
--   db -> Database
--   do -> DevOps
-
-##### 📜 summary:
-
-Always must be in **present tense**.
-Describes the changes made.
-Each word is separated by a single space character.
-After the ":", put a space please. :)
-
-#### Commit Examples:
-
-> `feature(fe): add dropdown bullets`
->
-> `fix(be): get account info endpoint`
->
-> `patch(be): reduce method queries`
->
-> `refactor(fe/be): variable names`
->
-> `remove(db): unused rows`
-
----
-
-</details>
 
 
 # Platform logic :bulb:
@@ -324,6 +238,31 @@ https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 https://gist.github.com/rxaviers/7360908
 
 https://unicode.org/emoji/charts/full-emoji-list.html
+
+
+# Software Architecture
+
+
+### MVC 
+
+The term MVC stands for "Model-View-Controller", a UI pattern that breaks up the responsibilities of responding to user requests into several parts.
+Our application template is composed of ConsoleApp, WebApp and WebApplication. The WebApp it is structured on a "N-Layer" architecturen.
+
+### Traditional "N-Layer" architecture applications
+The application is divided into 4 layers: Business Logic, DataAccess, Common and Entities.
+
+![image](https://user-images.githubusercontent.com/96074975/213930875-b14eff6a-59e4-437c-a96e-49804b8afb19.png)
+
+
+### Repository Pattern
+
+A Repository is used to manage aggregate persistence and retrieval. The repository mediates between the data-access layer and the domain. It decouples the domain layer from the data layer effectively. It does so by providing collection-like access to the underlying data. The repository offers a collection interface by providing methods to add, modify, remove, and fetch domain objects. This enables the domain to remain agnostic of the underlying persistence mechanism. This allows both these layers to evolve independently maintaining high cohesion with low coupling.
+
+### Unit of Work
+
+The unit of work pattern keeps track of all changes to aggregates. Once all updates of the aggregates in a scope are completed, the tracked changes are played onto the database in a transaction so that the database reflects the desired changes. Thus, the unit of work pattern tracks a business transaction and translates it into a database transaction, wherein steps are collectively run as a single unit. To ensure that data integrity is not compromised, the transaction commits or is rolled back discretely, thus preventing indeterminate state.
+
+![image](https://user-images.githubusercontent.com/96074975/213930972-4c0d9c72-a2d6-4888-bd7d-9cd65baba450.png)
 
 
 # Sustainability and Ethics

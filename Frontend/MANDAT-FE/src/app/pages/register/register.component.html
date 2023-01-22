@@ -57,10 +57,18 @@
         <mat-label>{{ "Password" | titlecase }}</mat-label>
         <input
           matInput
+          [formControl]="passwordFormControl"
+          name="password" 
+          required pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
           [placeholder]="'Ex. ' + 'Jeff'"
           value=""
           type="password"
           [(ngModel)]="model.password" />
+          <mat-error *ngIf="passwordFormControl.hasError('pattern')">Password must be a 
+            combination of lower-case, upper-case, numbers and at least 9
+             characters long</mat-error>
+
+             <mat-error *ngIf="passwordFormControl.hasError('required')">Password is <strong>required</strong></mat-error>
       </mat-form-field>
 
       <!-- <mat-form-field appearance="fill">
@@ -147,6 +155,7 @@
         mat-raised-button
         (click)="register()"
         color="primary"
+        [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
         routerLink="home-page">
         {{ "Sign Up" | titlecase }}
       </button>

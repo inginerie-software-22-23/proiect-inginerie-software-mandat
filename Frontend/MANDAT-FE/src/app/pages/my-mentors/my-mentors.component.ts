@@ -1,16 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { MentorModel } from 'src/app/components/interface/mentor-model';
-import { Subscription } from 'rxjs';
-import { ReviewForSave } from 'src/app/components/interface/review-for-save';
-import { StarsModel } from 'src/app/components/interface/stars-model';
 import { DialogAddReviewByStudentComponent } from 'src/app/components/shared/dialog-add-review-by-student/dialog-add-review-by-student.component';
 import { DialogViewStudentReviewsComponent } from 'src/app/components/shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
-import { AccountService } from 'src/app/services/account.service';
-import { MentorService } from 'src/app/services/mentor.service';
 import { LinksModel } from 'src/app/interfaces/links-model';
+import { MentorModel } from 'src/app/models/mentor-model';
 import { ReviewService } from 'src/app/services/review.service';
 import { StudentService } from 'src/app/services/student.service';
 import { VideoCallService } from 'src/app/services/video-call.service';

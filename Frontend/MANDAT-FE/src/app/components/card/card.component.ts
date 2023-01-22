@@ -13,7 +13,7 @@ import { MentorService } from 'src/app/services/mentor.service';
   styleUrls: ["./card.component.scss"],
 })
 export class CardComponent {
-  @Input() person!: StudentModel | MentorModel;  
+  @Input() person: StudentModel | MentorModel;  
   // @Input() personLink!: string;
   @Input() pageToShowOn: string = "";
 

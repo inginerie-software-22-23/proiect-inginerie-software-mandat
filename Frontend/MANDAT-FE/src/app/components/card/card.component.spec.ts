@@ -1,11 +1,14 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testing";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { CardComponent } from "./card.component";
+import { StudentModel } from "../interface/student-model";
 
 fdescribe("CardComponent", () => {
   let component: CardComponent;
   let fixture: ComponentFixture<CardComponent>;
+  let student: StudentModel;
+  let popup: MatDialogConfig;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -16,12 +19,39 @@ fdescribe("CardComponent", () => {
       declarations: [CardComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture = TestBed.createComponent(CardComponent);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
+
+    student = {
+      username: "student1",
+      email: "student1@email.com",
+      phoneNumber: "0712345678",
+      passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+      createdAt: new Date(50000),
+      isActive: true,
+      isDeleted: true,
+      bio: "string",
+      educationalInstitution: "string",
+      studentGrade: 4,
+      studentSchoolQualification: "string",
+      subject: "string",
+      message: "string",
+      city: "string",
+      county: "string",
+      addressInfo: "string",
+      numberOfStars: 4
+    };
+  
   });
 
-  it("should create", () => {
+  it("should create with a given student", () => {
+    fixture = TestBed.createComponent(CardComponent);
+    component = fixture.componentInstance;
+    component.person = student;
+    component.pageToShowOn = 'my-students';
+    fixture.detectChanges();
+
     expect(component).toBeTruthy();
   });
 });

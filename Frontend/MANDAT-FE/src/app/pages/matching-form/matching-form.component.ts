@@ -54,8 +54,6 @@ export class MatchingFormComponent implements OnInit {
     this.stars = newValue;
   }
 
-
-
   
   public match(): void {
 

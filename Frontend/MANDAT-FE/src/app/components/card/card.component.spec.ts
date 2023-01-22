@@ -2,8 +2,8 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testin
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatDialogConfig, MatDialogModule } from '@angular/material/dialog';
 import { CardComponent } from "./card.component";
-import { StudentModel } from "../interface/student-model";
-import { MentorModel } from "../interface/mentor-model";
+import { StudentModel } from "../../models/student-model";
+import { MentorModel } from "../../models/mentor-model";
 
 fdescribe("CardComponent", () => {
   let component: CardComponent;

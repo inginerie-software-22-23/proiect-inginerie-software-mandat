@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { StudentModel } from "src/app/components/interface/student-model";
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MyStudentsComponent } from "./my-students.component";
 import { MatDialogModule } from '@angular/material/dialog';
 

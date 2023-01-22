@@ -13,17 +13,8 @@ import { MentorService } from 'src/app/services/mentor.service';
   styleUrls: ["./card.component.scss"],
 })
 export class CardComponent {
-
-  public name: string= "Firstname + Lastname";
-  public subject: string = "Subject";
-  public phoneNumber: string = "Phone number (if case)";
-  public address: string = "Address";
-  public description: string = "Short description";
-  public review: string = "";
-
   @Input() person!: StudentModel | MentorModel;  
   // @Input() personLink!: string;
-  @Input() canEdit: boolean = true;
   @Input() pageToShowOn: string = "";
 
   constructor(

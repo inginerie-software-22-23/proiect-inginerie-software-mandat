@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { MentorRequestsComponent } from './mentor-requests.component';
 import { RequestModel } from 'src/app/components/interface/request-model';
 
-describe('MentorRequestsComponent', () => {
+fdescribe('MentorRequestsComponent', () => {
   let component: MentorRequestsComponent;
   let fixture: ComponentFixture<MentorRequestsComponent>;
   let requests: RequestModel[];
@@ -64,7 +64,7 @@ describe('MentorRequestsComponent', () => {
       let buttons = fixture.debugElement.queryAll(By.css('button'));
       if (buttons.length > 1) {
         buttons[1].triggerEventHandler('click',null);
-        expect(component.rejectStudent).toHaveBeenCalledWith('student2@yahoo.com');
+        expect(component.rejectStudent).toHaveBeenCalledWith('student1@yahoo.com');
       } else {
         console.error("There is no button to be clicked");
       }

@@ -18,7 +18,6 @@ namespace MANDAT.Entities.Entities
         public virtual ICollection<Announcement> Announcements { get; set; }
         public virtual ICollection<Review> Reviews { get; set; }
         public virtual ICollection<Match> Matches { get; set; }
-
         public virtual ICollection<VideoMeetingDetails> VideoMeetingsDetails { get; set; }
     }
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { RequestModel } from 'src/app/components/interface/request-model';
+import { RequestModel } from 'src/app/models/request-model';
 import { MentorRequestsService } from 'src/app/services/mentor-requests.service';
 
 @Component({

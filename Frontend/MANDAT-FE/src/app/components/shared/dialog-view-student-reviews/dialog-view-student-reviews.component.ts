@@ -1,9 +1,9 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
+import { MyReviews } from 'src/app/models/my-reviews';
+import { ReviewEdit } from 'src/app/models/review-edit';
 import { ReviewService } from 'src/app/services/review.service';
-import { ReviewEdit } from '../../interface/review-edit';
-import { MyReviews } from '../../interface/my-reviews';
 
 @Component({
   selector: 'app-dialog-view-student-reviews',

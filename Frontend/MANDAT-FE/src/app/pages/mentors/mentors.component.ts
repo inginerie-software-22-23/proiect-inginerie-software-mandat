@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
-import { MentorModel } from 'src/app/components/interface/mentor-model';
-import { StarRatingComponent } from 'src/app/components/star-rating/star-rating.component';
-import { MentorRequestsService } from 'src/app/services/mentor-requests.service';
+import { MentorModel } from 'src/app/models/mentor-model';
 import { MentorService } from 'src/app/services/mentor.service';
 import { ReviewService } from 'src/app/services/review.service';
 

@@ -9,6 +9,7 @@
 				</div>
 				<div class="card-info">
 					<div class="info-title">
+						<br>
 						<h2>{{person.username}}</h2>
                         <h3>{{person.subject}}</h3>
                         <h3  *ngIf="pageToShowOn != 'mentors'">{{person.phoneNumber}}</h3>
@@ -36,6 +37,8 @@
 					<button *ngIf="pageToShowOn == 'mentors'" mat-raised-button class="button" (click)="chooseMentor(person)">
 						Choose
 					</button>
+
+					<a *ngIf="pageToShowOn != 'mentors'" [ngClass]="person.link" href={{person.link}}><button mat-raised-button class="button width:">Meet Link</button></a>
 				</div>
 			</div>
 		</div>

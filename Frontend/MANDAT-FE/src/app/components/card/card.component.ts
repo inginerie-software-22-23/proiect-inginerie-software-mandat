@@ -2,9 +2,6 @@ import { Component, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { MentorModel } from '../interface/mentor-model';
 import { DialogAddReviewByStudentComponent } from '../shared/dialog-add-review-by-student/dialog-add-review-by-student.component';
-import { DialogViewStudentReviewsComponent } from '../shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { ReviewService } from 'src/app/services/review.service';
 import { StudentModel } from '../interface/student-model';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -23,7 +20,8 @@ export class CardComponent {
   public description: string = "Short description";
   public review: string = "";
 
-  @Input() person!: StudentModel | MentorModel;  
+  @Input() person!: StudentModel | MentorModel;
+  // @Input() personLink!: string;
   @Input() pageToShowOn: string = "";
 
   constructor(
@@ -35,11 +33,9 @@ export class CardComponent {
 
   ngOnInit() {
     console.log(this.person);
-    this.name = this.person.username;
-    this.subject = this.person.subject;
   }
 
-  public addReview(person: any) { //does not work yet
+  public addReview(person: any) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '550px';
     dialogConfig.height = '770px';
@@ -61,5 +57,4 @@ export class CardComponent {
       this.mentorService.createNewMatch(person.email, email);
     }
   }
-
 }

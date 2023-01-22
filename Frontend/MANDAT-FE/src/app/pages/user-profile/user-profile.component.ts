@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { UserAccountService } from "src/app/services/user-account.service";
 import { UserAccountWithAddress } from "src/app/models/user-account-with-address-model";
+import { CookieService } from "ngx-cookie-service";
+import { ReviewService } from "src/app/services/review.service";
 
 declare var google: any;
 const apiKey = "";
@@ -23,15 +25,26 @@ export class UserProfileComponent implements OnInit {
     addressInfo: "",
   };
 
+  notifications: number;
+  email: string;
+  rating: number;
+
   constructor(
     private userAccountService: UserAccountService,
+    private reviewService: ReviewService,
+    private cookieService: CookieService
   ) {
+    this.email = cookieService.get("Email");
     userAccountService
-      .GetUserInfoWithAddressByEmail("pat@example1.com")
+      .GetUserInfoWithAddressByEmail(this.email)
       .subscribe(res => {
         console.log(res);
         this.userAccountWithAddress = res;
       });
+
+    reviewService.getMentorsStars(this.email).subscribe(res => {
+      this.rating = res;
+    });
   }
 
   ngOnInit() {

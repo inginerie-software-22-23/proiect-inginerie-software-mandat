@@ -1,7 +1,30 @@
+$section-background: rgb(232, 230, 230);
+$section-shadow-color: rgb(166, 166, 166);
+$section-shadow-blur: 2px;
+$section-shadow: 1px 1px $section-shadow-blur $section-shadow-color, -1px -1px $section-shadow-blur $section-shadow-color;
+
+:host{
+  height: 120vh;
+}
+
+:host,
+.profile-card,
+.profile-card .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile-card,
+.more-about-me{
+  background-color: $section-background;
+}
+
 .profile-card {
   height: 50vh;
   width: 30vw;
-  background-color: rgb(217, 217, 217);
+  background-color: $section-background;
 
   img {
     height: 30%;
@@ -18,11 +41,8 @@
   }
 }
 
-.profile-card,
-.profile-card .details,
-:host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
+.more-about-me{
+  background-color: $section-background;
+  width: 90%;
+  padding: 4%;
 }

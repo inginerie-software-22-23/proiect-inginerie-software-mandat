@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
+import { DialogAddReviewByStudentComponent } from 'src/app/components/shared/dialog-add-review-by-student/dialog-add-review-by-student.component';
 import { DialogViewStudentReviewsComponent } from 'src/app/components/shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
 import { LinksModel } from 'src/app/interfaces/links-model';
 import { MentorModel } from 'src/app/models/mentor-model';
@@ -13,13 +14,12 @@ import { VideoCallService } from 'src/app/services/video-call.service';
   templateUrl: './my-mentors.component.html',
   styleUrls: ['./my-mentors.component.scss']
 })
+
 export class MyMentorsComponent implements OnInit{
   public emailSt?: string;
   public mentors: MentorModel[] = [];
   public links: LinksModel[] = [];
   public linksNew: Array<[string,string]> = [];
-  // public starsForMentors:Array<[number,string]>=[];// number[]=[];
-  // public starsForMentorsAux:Array<[number,string]>=[];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
  

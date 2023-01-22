@@ -19,8 +19,7 @@ export class MentorsComponent {
   matchCity: string = ""; 
   matchCounty: string = ""; 
   matchSubject: string = ""; 
-  matchMeeting: string = ""; 
-  matchAddress: string = ""; 
+  matchMeeting: string = "";
   matchStars: number = 0; 
 
   constructor(
@@ -75,11 +74,6 @@ export class MentorsComponent {
       this.matchSubject = this.cookie.get('matchSubject');
     else
       this.matchSubject = "";
-
-    if (this.cookie.check('matchAddress'))
-      this.matchAddress = this.cookie.get('matchAddress');
-    else
-      this.matchAddress = "";
     
     if (this.cookie.check('matchStars'))
       this.matchStars = parseInt(this.cookie.get('matchStars'));
@@ -105,13 +99,6 @@ export class MentorsComponent {
         return mentor;
       else
         return mentor.subject == this.matchSubject;  
-    });
-    
-    this.filteredList = this.filteredList.filter((mentor) => {
-      if (this.matchAddress  === "")
-        return mentor;
-      else
-        return mentor.addressInfo == this.matchAddress;  
     });
     
     this.filteredList = this.filteredList.filter((mentor) => {

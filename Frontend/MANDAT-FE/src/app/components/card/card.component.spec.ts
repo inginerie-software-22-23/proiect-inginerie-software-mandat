@@ -97,4 +97,18 @@ fdescribe("CardComponent", () => {
     tick();
     expect(component.addReview).toHaveBeenCalled();
   }));
+
+  it("should click when press to add review MyMentors page", fakeAsync(() => {
+    fixture = TestBed.createComponent(CardComponent);
+    component = fixture.componentInstance;
+    component.person = mentor;
+    component.pageToShowOn = 'my-mentors';
+    fixture.detectChanges();
+
+    spyOn(component, 'addReview');
+    let button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    tick();
+    expect(component.addReview).toHaveBeenCalled();
+  }));
 });

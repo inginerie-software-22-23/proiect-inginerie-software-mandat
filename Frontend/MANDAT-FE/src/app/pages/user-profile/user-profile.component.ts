@@ -3,6 +3,7 @@ import { UserAccountService } from "src/app/services/user-account.service";
 import { UserAccountWithAddress } from "src/app/models/user-account-with-address-model";
 import { CookieService } from "ngx-cookie-service";
 import { ReviewService } from "src/app/services/review.service";
+import { MentorRequestsService } from "src/app/services/mentor-requests.service";
 
 declare var google: any;
 const apiKey = "";
@@ -32,6 +33,7 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private userAccountService: UserAccountService,
     private reviewService: ReviewService,
+    private mentorRequestService: MentorRequestsService,
     private cookieService: CookieService
   ) {
     this.email = cookieService.get("Email");
@@ -44,6 +46,10 @@ export class UserProfileComponent implements OnInit {
 
     reviewService.getMentorsStars(this.email).subscribe(res => {
       this.rating = res;
+    });
+
+    mentorRequestService.GetUserRequests(this.email).subscribe(res => {
+      this.notifications = res.length;
     });
   }
 

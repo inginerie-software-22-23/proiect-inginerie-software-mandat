@@ -1,5 +1,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<img class="avatar mat-elevation-z8" src="../../../assets/images/profile.jpg" />
+<a routerLink="/user-profile">
+  <img class="avatar mat-elevation-z8" src="../../../assets/images/profile.jpg"/>
+</a>
 
 <div *ngIf="isLoggedin === 'true'">
   <h4 class="name">Hi, {{ name }}</h4>

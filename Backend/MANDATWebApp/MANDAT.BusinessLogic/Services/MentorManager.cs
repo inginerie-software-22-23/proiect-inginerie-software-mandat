@@ -28,9 +28,9 @@ namespace MANDAT.BusinessLogic.Services
                                             .Where(m => m.User.IsDeleted.Equals(false))
                                             .Select(m => new AllMentorsDto
                                             {
-                                              //  MentorIdentityCardFront = m.MentorIdentityCardFront,
-                                              //  MentorIdentityCardBack = m.MentorIdentityCardBack,
-                                             //   UserImage = m.User.UserImage,
+                                                //  MentorIdentityCardFront = m.MentorIdentityCardFront,
+                                                //  MentorIdentityCardBack = m.MentorIdentityCardBack,
+                                                //  UserImage = m.User.UserImage,
                                                 Username = m.User.Username,
                                                 Email = m.User.Email,
                                                 PhoneNumber = m.User.PhoneNumber,
@@ -40,7 +40,11 @@ namespace MANDAT.BusinessLogic.Services
                                                 IsDeleted = m.User.IsDeleted,
                                                 Bio = m.User.Bio,
                                                 EducationalInstitution = m.User.EducationalInstitution,
-                                                RoleName = uow.IdentityRoles.Get().Where(r => r.Id.Equals(m.User.RoleId)).Select(r => r.Name).Single()
+                                                RoleName = uow.IdentityRoles.Get().Where(r => r.Id.Equals(m.User.RoleId)).Select(r => r.Name).Single(),
+                                                City = m.User.Adress.City,
+                                                County = m.User.Adress.County,
+                                                AddressInfo = m.User.Adress.AddressInfo,
+                                                Subject = uow.Announcements.Get().FirstOrDefault(an => an.MentorId == m.Id).Subject,
                                             })
                                             .ToList();
 

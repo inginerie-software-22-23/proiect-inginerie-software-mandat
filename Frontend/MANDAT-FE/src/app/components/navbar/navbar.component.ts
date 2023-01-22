@@ -50,7 +50,6 @@ export class NavbarComponent {
         this.router.navigate(["/home"]);
         setTimeout(function(){window.location.reload();
         },1000);
-        
       },
       error => {
         console.error(error);

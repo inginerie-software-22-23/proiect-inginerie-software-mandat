@@ -281,7 +281,6 @@ After the ":", put a space please. :)
 </details>
 
 
-
 ### ➡️ Helper for working in backend
 <details>
 [HelperBackend.docx](https://github.com/inginerie-software-22-23/proiect-inginerie-software-mandat/files/10257937/HelperBackend.docx)
@@ -301,3 +300,27 @@ https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 https://gist.github.com/rxaviers/7360908
 
 https://unicode.org/emoji/charts/full-emoji-list.html
+
+
+# Sustainability and Ethics
+
+### What is sustainability? 
+
+Sustainability is the quality of an activity or a product, that balances, preserves, and improves in the following three dimensions: <b> Social, Economic, Environment. </b>
+
+In order for a product to be sustainable, it should generally be economically viable, preserve or improving existing social structures, and minimizing the environmental footprint.
+
+### Is it MANDAT.io 🚀 sustainable?
+
+###  Social :heavy_check_mark:
+
+The platform promotes education and offers students the chance for cheap and quality education, guided by mentors trained in the field of interest. Mentors have        the chance to round off their income through an easy and fun way related to the studies they are following.
+
+###  Environment :heavy_check_mark:
+
+The platform has a positive impact because through the online meeting option, the need to use means of transport is reduced.
+
+###  Econimic :heavy_check_mark:
+
+Future Implementation: In order to post an announcement, mentors must pay a fee. Students can search for announcement for free. Currently this is not implemented,      because the platform is in the testing period on the wide market.
+

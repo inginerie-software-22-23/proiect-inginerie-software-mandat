@@ -21,10 +21,9 @@ export class CardComponent {
   public description: string = "Short description";
   public review: string = "";
 
-  @Input() person!: StudentModel | MyMentorsModel;  
+  @Input() person!: StudentModel | MentorModel;  
   // @Input() personLink!: string;
   @Input() canEdit: boolean = true;
-  @Input() person!: StudentModel | MentorModel;  
   @Input() pageToShowOn: string = "";
 
   constructor(

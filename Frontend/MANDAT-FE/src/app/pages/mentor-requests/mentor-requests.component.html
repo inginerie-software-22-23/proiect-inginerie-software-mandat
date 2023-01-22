@@ -1,5 +1,5 @@
 
-<div class="landing" *ngIf="requests != null" else noData>
+<div class="landing" *ngIf="requests.length > 0" else noData>
 <div *ngFor="let req of requests " class="container" >
 <span style="  display: flex; " class="card" id="{{req.email}}"><img alt="user Avatar" src="../../../assets/images/profile.jpg"/>
   <h2>{{req.fullName}}</h2>
@@ -12,7 +12,7 @@
 </span>
 </div>
 </div>
-<div #noData class="container2" >
+<div #noData class="container2" [style.display]="requests?.length !== 0 ? 'none' : 'block'">
   <div class="empty-icon-container">
     <div class="animation-container">
       <div class="bounce"></div>

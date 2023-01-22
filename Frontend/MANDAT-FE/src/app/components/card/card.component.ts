@@ -14,7 +14,6 @@ import { MentorModel } from 'src/app/models/mentor-model';
 })
 export class CardComponent {
   @Input() person: StudentModel | MentorModel;  
-  // @Input() personLink!: string;
   @Input() pageToShowOn: string = "";
 
   constructor(

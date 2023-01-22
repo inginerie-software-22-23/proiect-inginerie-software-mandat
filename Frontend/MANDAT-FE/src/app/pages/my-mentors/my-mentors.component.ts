@@ -59,13 +59,13 @@ export class MyMentorsComponent implements OnInit{
                   for(let oneLink of this.links)
                    {
                      if(oneLink.mentorEmail == mentor.email){
-                       this.linksNew.push([oneLink.link,mentor.email]);
-                       mentor.link = oneLink.link;        
-                       break;
+                      this.linksNew.push([oneLink.link,mentor.email]);
+                      mentor.link = oneLink.link;        
+                      break;
                      }
                      else{
-                       this.linksNew.push(["",mentor.email]);
-                       mentor.link = "";
+                      this.linksNew.push(["",mentor.email]);
+                      mentor.link = "";
                      }
                    }
                  }

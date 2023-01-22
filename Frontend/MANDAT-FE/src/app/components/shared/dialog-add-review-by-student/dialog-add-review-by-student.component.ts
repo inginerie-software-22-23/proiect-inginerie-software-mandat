@@ -36,11 +36,10 @@ export class DialogAddReviewByStudentComponent implements OnInit{
     @Inject(MAT_DIALOG_DATA) public data: any
 
   ){
-    console.log(data)
     if(data){
       this.user = data.data;
     }
-    const emailStudent =  this.cookie.get('Email');
+    
     if (this.cookie.get('Rol') === 'student') {
       this.reviewStatus = "ReviewMentor";
       this.emailStudent =  this.cookie.get('Email');
@@ -55,9 +54,7 @@ export class DialogAddReviewByStudentComponent implements OnInit{
     this.addReviewForm.get('studentEmail')?.setValue(this.emailStudent);
     this.addReviewForm.get('reviewStatus')?.setValue(this.reviewStatus);
     this.addReviewForm.get('mentorEmail')?.setValue(this.emailMentor);
-
   }
-
 
   get message(): AbstractControl{
     return this.addReviewForm.get('message') as AbstractControl;
@@ -75,10 +72,6 @@ export class DialogAddReviewByStudentComponent implements OnInit{
     return this.addReviewForm.get('studentEmail') as AbstractControl;
   }
 
-  // get reviewStatus(): AbstractControl{
-  //   return this.addReviewForm.get('reviewStatus') as AbstractControl;
-  // }
-
   public saveAdd(): void{
     console.log(this.addReviewForm.value);
 
@@ -94,5 +87,4 @@ export class DialogAddReviewByStudentComponent implements OnInit{
       }
     );
   }
-
 }

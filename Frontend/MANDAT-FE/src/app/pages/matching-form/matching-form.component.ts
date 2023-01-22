@@ -45,7 +45,6 @@ export class MatchingFormComponent implements OnInit {
     subjects: "",
     city: "",
     meetingType: "",
-    addressInfo: "",
     stars: 0,
   };
 
@@ -63,7 +62,6 @@ export class MatchingFormComponent implements OnInit {
     this.cookieService.set('matchCounty', this.model.county);
     this.cookieService.set('matchSubject', this.model.subjects);
     this.cookieService.set('matchMeeting', this.model.meetingType);
-    this.cookieService.set('matchAddress', this.model.addressInfo);
     this.cookieService.set('matchStars', this.model.stars.toString());
 
     this.router.navigate(["/mentors"]);

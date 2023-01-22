@@ -32,18 +32,6 @@
         </mat-select>
       </mat-form-field>
 
-      
-      <mat-form-field class="example-form">
-        <mat-label>{{ "Address" | titlecase }}</mat-label>
-        <input
-          matInput
-          [placeholder]="'Ex. ' + 'Cool People Street, number 1'"
-          value=""
-          type="text"
-          [(ngModel)]="model.addressInfo" />
-      </mat-form-field>
-      <!-- <app-material-input [label]="'County'" id="county" ></app-material-input> -->
-
       <mat-form-field appearance="fill" id="subject">
         <mat-label>{{ "Subject" | titlecase }}</mat-label>
         <mat-select [(ngModel)]="model.subjects">
@@ -52,8 +40,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-
-      <!-- <app-material-input [label]="'City'" id="city" [placeholder]="'Frankfurt'"></app-material-input> -->
 
       <mat-form-field class="example-form">
         <mat-label>{{ "City" | titlecase }}</mat-label>
@@ -78,7 +64,6 @@
               <label for="star1" title="text">1 star</label>
           </div>
           <button type="submit" color="primary" class="btn btn-success" (click)="match()">Submit</button>
-          <!-- <button mat-raised-button color="primary" routerLink="home-page" >{{ 'Submit' | titlecase}}</button> -->
       </div>
     </div>
   </div>

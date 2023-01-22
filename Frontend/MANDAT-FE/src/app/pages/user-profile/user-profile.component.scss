@@ -1,0 +1,55 @@
+$section-background: rgb(232, 230, 230);
+$section-shadow-color: rgb(166, 166, 166);
+$section-shadow-blur: 2px;
+$section-shadow: 1px 1px $section-shadow-blur $section-shadow-color, -1px -1px $section-shadow-blur $section-shadow-color;
+
+:host{
+  height: 220vh;
+}
+
+:host,
+.profile-card,
+.profile-card .details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile-card,
+.more-about-me{
+  background-color: $section-background;
+}
+
+.profile-card {
+  // height: 50vh;
+  height: 25%;
+  width: 30vw;
+  background-color: $section-background;
+
+  img {
+    height: 30%;
+    width: 100%;
+    object-fit: contain;
+  }
+  .details {
+    list-style: none;
+    height: 50%;
+    width: 100%;
+    div {
+      text-align: center;
+    }
+  }
+}
+
+.more-about-me{
+  background-color: $section-background;
+  height: 20%;
+  width: 90%;
+  padding: 4%;
+}
+
+#map{
+  height: 35%;
+  width: 75%;
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { RequestModel } from 'src/app/components/interface/request-model';
@@ -16,6 +16,7 @@ export class MentorRequestsComponent {
   result = [];
   constructor(
     private router: Router,
+    private changeDetectorRef: ChangeDetectorRef,
     private mentorRequests: MentorRequestsService,
     private cookieService: CookieService
   ) { 
@@ -24,10 +25,13 @@ export class MentorRequestsComponent {
   }
    ngOnInit(): void{
     
+    this.changeDetectorRef.detectChanges();   
     var email = this.cookieService.get('Email');
      this.mentorRequests.GetUserRequests(email).forEach(
       (result)=> {
-        this.requests = result;        
+        this.requests = result;   
+        this.changeDetectorRef.detectChanges();   
+        console.log(this.requests.length);  
           });
    
    }

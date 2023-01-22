@@ -38,8 +38,8 @@ export class MatchingFormComponent implements OnInit {
     "Physics",
   ];
   meetingTypes: string[] = ["Online", "Face-To-Face"];
-  stars: number[] = [1, 2, 3, 4, 5];
-
+  stars: number = 0;
+  
   public model: MatchingFormModel = {
     county: "",
     subjects: "",
@@ -48,12 +48,9 @@ export class MatchingFormComponent implements OnInit {
     stars: 0,
   };
 
-
-  onChange(event: Event) {
-    const target = event.target as HTMLInputElement;
-    if (target.checked) {
-      this.model.stars = parseInt(target.value);
-    }
+  onStarsChanged(newValue: number) {
+    console.log(`Stars selected: ${newValue}`);
+    this.stars = newValue;
   }
   
   public match(): void {
@@ -63,7 +60,7 @@ export class MatchingFormComponent implements OnInit {
     this.cookieService.set('matchSubject', this.model.subjects);
     this.cookieService.set('matchMeeting', this.model.meetingType);
     this.cookieService.set('matchStars', this.model.stars.toString());
-
+    this.cookieService.set('matchStars', this.stars.toString());
     this.router.navigate(["/mentors"]);
   }
 

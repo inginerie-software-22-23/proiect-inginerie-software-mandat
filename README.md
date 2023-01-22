@@ -274,9 +274,32 @@ After the ":", put a space please. :)
 </details>
 
 <details>
-<summary><b> 📗 Sprint :three: </b></summary>
+<summary><b> 📗 Sprint :three:✔️ </b></summary>
 
 ![Sprint3Image](/readme-images/sprint_3.png)
+
+</details>
+
+<details>
+<summary><b> 📗 Sprint :four:✔️ </b></summary>
+
+![image](https://user-images.githubusercontent.com/96074975/213914120-280f22d9-6983-42f5-9c45-be28298bc2dc.png)
+
+</details>
+
+
+<details>
+<summary><b> 📗 Sprint :five:✔️ </b></summary>
+
+![image](https://user-images.githubusercontent.com/96074975/213914141-0cdaed96-d419-414e-97cb-1805f3a01557.png)
+
+</details>
+
+
+<details>
+<summary><b> 📗 Sprint :six: </b></summary>
+
+![image](https://user-images.githubusercontent.com/96074975/213914170-53111c09-45dc-49f0-b703-222927c9f478.png)
 
 </details>
 
@@ -301,3 +324,27 @@ https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 https://gist.github.com/rxaviers/7360908
 
 https://unicode.org/emoji/charts/full-emoji-list.html
+
+
+# Sustainability and Ethics
+
+### What is sustainability? 
+
+Sustainability is the quality of an activity or a product, that balances, preserves, and improves in the following three dimensions: <b> Social, Economic, Environment. </b>
+
+In order for a product to be sustainable, it should generally be economically viable, preserve or improving existing social structures, and minimizing the environmental footprint.
+
+### Is it MANDAT.io 🚀 sustainable?
+
+###  Social :heavy_check_mark:
+
+The platform promotes education and offers students the chance for cheap and quality education, guided by mentors trained in the field of interest. Mentors have        the chance to round off their income through an easy and fun way related to the studies they are following.
+
+###  Environment :heavy_check_mark:
+
+The platform has a positive impact because through the online meeting option, the need to use means of transport is reduced.
+
+###  Economic :heavy_check_mark:
+
+Future Implementation: In order to post an announcement, mentors must pay a fee. Students can search for announcement for free. Currently this is not implemented,      because the platform is in the testing period on the wide market.
+

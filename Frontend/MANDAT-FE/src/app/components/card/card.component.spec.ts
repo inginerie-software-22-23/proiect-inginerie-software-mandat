@@ -70,7 +70,7 @@ fdescribe("CardComponent", () => {
     component.person = student;
     component.pageToShowOn = 'my-students';
     fixture.detectChanges();
-
+    
     expect(component).toBeTruthy();
   });
 
@@ -83,4 +83,18 @@ fdescribe("CardComponent", () => {
 
     expect(component).toBeTruthy();
   });
+
+  it("should click when press to add review", fakeAsync(() => {
+    fixture = TestBed.createComponent(CardComponent);
+    component = fixture.componentInstance;
+    component.person = student;
+    component.pageToShowOn = 'my-students';
+    fixture.detectChanges();
+
+    spyOn(component, 'addReview');
+    let button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    tick();
+    expect(component.addReview).toHaveBeenCalled();
+  }));
 });

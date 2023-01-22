@@ -13,14 +13,7 @@ import { MentorModel } from 'src/app/models/mentor-model';
   styleUrls: ["./card.component.scss"],
 })
 export class CardComponent {
-  public name: string= "Firstname + Lastname";
-  public subject: string = "Subject";
-  public phoneNumber: string = "Phone number (if case)";
-  public address: string = "Address";
-  public description: string = "Short description";
-  public review: string = "";
-  @Input() person: StudentModel | MentorModel; 
-  // @Input() personLink!: string;
+  @Input() person: StudentModel | MentorModel;  
   @Input() pageToShowOn: string = "";
 
   constructor(

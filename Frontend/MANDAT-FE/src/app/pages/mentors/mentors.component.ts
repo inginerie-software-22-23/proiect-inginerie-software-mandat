@@ -56,7 +56,6 @@ export class MentorsComponent {
     );
   }
 
-  
   filterMentors() {
     console.log(this.cookie.check('matchCity'));
 

@@ -443,6 +443,49 @@ https://unicode.org/emoji/charts/full-emoji-list.html
 
 # Software Architecture
 
+Principles of design & implementation
+2. Presentation (API): the interface of the system with the outside
+- One Controller per resource
+- Command or query type actions; never mixed
+- One DTO per action (order/query); never work with entities
+- Actions in controllers are related to the resource that the controller models
+- Actions in controllers, in 99% of cases, just check the model and pass the request to BL
+- No business logic in the API
+- Authorize accordingly
+- Configured dependency lifecycle accordingly
+
+3. Domain (Business Logic): use cases that the system implements
+- One service per concept
+- A method per use-case
+- Use cases of order or query type;
+- Orders are executed transactionally
+- Paginated and filtered queries
+- Services have DTOs
+
+4. Domain (Entities): the models with which the solution works
+- Entity per table
+- Enums for static and referenceable nomenclature in the code
+
+5. Data Access: abstraction over the data source
+- Generic repo
+- Transactional repo (by default with Unit Of Work with EF)
+
+6. Database: data source
+- Tables in FN3
+- UUIDs as PKs
+- Views if large and/or non-performing queries appear
+- FKs where needed, Non-Clustered Indexes, cascade rules, constraints
+- A lot of seed data: in the main tables in the order of tens of thousands
+
+
+General principles:
+- The user is at the center of the solution
+- Solve the client's need well, efficiently and sustainably
+- The user has access only to the minimum set of data/functionalities
+- Fewer but more complex public methods are preferred over many but simple public methods
+- Resources for admin/user editable configurations
+- DRY, Keep it very simple
+
 ### Traditional "N-Layer" architecture applications
 The application is divided into 4 layers: Business Logic, DataAccess, Common and Entities.
 

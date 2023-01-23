@@ -444,6 +444,7 @@ https://unicode.org/emoji/charts/full-emoji-list.html
 # Software Architecture
 
 Principles of design & implementation
+
 2. Presentation (API): the interface of the system with the outside
 - One Controller per resource
 - Command or query type actions; never mixed

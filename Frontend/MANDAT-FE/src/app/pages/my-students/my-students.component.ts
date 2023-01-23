@@ -31,7 +31,6 @@ export class MyStudentsComponent {
         console.log(response);
         this.students = response;
         for(let student of this.students) {
-          console.log(student.email);
           this.reviewService.getStudentStars(student.email).subscribe(
             (result:number) => {
               student.numberOfStars = result;

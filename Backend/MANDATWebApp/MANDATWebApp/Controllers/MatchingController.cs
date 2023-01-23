@@ -20,8 +20,8 @@ namespace MANDATWebApp.Controllers
             _userAccountService = userAccountService;
         }
 
-        [HttpPost("createNewMatch/{emailMentor}-{emailStudent}-{subject}")]
-        public async Task<IActionResult> CreateMatch([FromRoute] string emailMentor, string emailStudent, string subject)
+        [HttpPost("CreateMatch/{emailMentor}/{emailStudent}/{subject}")]
+        public IActionResult CreateMatch( string emailMentor, string emailStudent, string subject)
         {
             var mentorId = _userAccountService.GetUserByTheEmail(emailMentor);
             var studentId = _userAccountService.GetUserByTheEmail(emailStudent);

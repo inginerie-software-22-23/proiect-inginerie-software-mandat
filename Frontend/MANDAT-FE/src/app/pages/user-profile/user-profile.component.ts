@@ -20,7 +20,7 @@ export class UserProfileComponent implements OnInit {
     phoneNumber: "",
     bio: "",
     educationalInstitution: "",
-    subject: "",
+    subject: [],
     city: "",
     county: "",
     addressInfo: "",

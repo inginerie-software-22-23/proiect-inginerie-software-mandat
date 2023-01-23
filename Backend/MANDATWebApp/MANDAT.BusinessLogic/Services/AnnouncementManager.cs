@@ -46,7 +46,7 @@ namespace MANDAT.BusinessLogic.Services
                 return uow.Announcements.Get()
                                             .Include(m => m.Mentor)
                                             .ThenInclude(m => m.User)
-                                            .Where(m => m.Mentor.User.IsDeleted == false && m.Mentor.User.Id.Equals(mentorId))
+                                            .Where(m =>  m.MentorId.Equals(mentorId))
                                             .Select(m => new AllAnnouncementsDto
                                             {
                                                 Subject = m.Subject,

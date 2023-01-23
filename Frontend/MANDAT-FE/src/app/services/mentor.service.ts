@@ -60,7 +60,7 @@ export class MentorService {
     return this.http.patch(`${this.url}/mentorDelete/${email}`,isDeleted);
   }
 
-  public createNewMatch(emailMentor: string, emailStudent: string): Observable<any>{
-    return this.http.post(`${this.url}/createNewMatch/${emailMentor}-${emailStudent}`, '');
+  public createNewMatch(emailMentor: string, emailStudent: string, subject: string): Observable<any>{
+    return this.http.post(`${this.url}/createNewMatch/${emailMentor}-${emailStudent}-${subject}`, '');
   }
 }

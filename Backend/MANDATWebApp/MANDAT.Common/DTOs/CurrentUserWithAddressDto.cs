@@ -8,7 +8,7 @@
         public string PhoneNumber { get; set; }
         public string Bio { get; set; } = null!;
         public string EducationalInstitution { get; set; } = null!;
-        public string Subject { get ; set; }
+        public List<string> Subject { get ; set; }
         public string City { get; set; } = null!;
         public string County { get; set; } = null!;
         public string AddressInfo { get; set; } = null!;

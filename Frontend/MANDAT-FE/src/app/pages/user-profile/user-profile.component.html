@@ -15,12 +15,13 @@
   
       <div
         class="courses"
+        *ngFor="let sub of userAccountWithAddress.subject"
         [style.display]="
           userAccountWithAddress.subject === null ? 'none' : 'block'
         "
         >{{ "Courses: " | titlecase }}
-        <span class="value">{{
-          userAccountWithAddress.subject | titlecase
+        <span class="value" >{{
+          sub | titlecase
         }}</span>
       </div>
   

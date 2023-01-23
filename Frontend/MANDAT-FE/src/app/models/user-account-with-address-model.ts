@@ -4,7 +4,7 @@ export interface UserAccountWithAddress {
   phoneNumber: string,
   bio: string,
   educationalInstitution: string,
-  subject: string,
+  subject: Array<string>,
   city: string,
   county: string,
   addressInfo: string,

@@ -12,7 +12,8 @@ export class MentorRequestCardComponent {
     fullName: '',
     email: '',
     matchDate: '',
-    status: 'Waiting'
+    status: 'Waiting',
+    subject: ''
   }
 
   ngOnInit(): void {

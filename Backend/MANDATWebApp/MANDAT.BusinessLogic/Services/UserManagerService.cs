@@ -101,7 +101,7 @@ namespace MANDAT.BusinessLogic.Services
                                                 PhoneNumber = m.PhoneNumber,
                                                 Bio = m.Bio,
                                                 EducationalInstitution = m.EducationalInstitution,
-                                                Subject = uow.Announcements.Get().FirstOrDefault(an => an.MentorId == m.Id).Subject,
+                                                Subject = uow.Announcements.Get().Where(an => an.MentorId == m.Id).Select(s=> s.Subject).ToList(),
                                                 City = m.Adress.City,
                                                 County = m.Adress.County,
                                                 AddressInfo = m.Adress.AddressInfo,

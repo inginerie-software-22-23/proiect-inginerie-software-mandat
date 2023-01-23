@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { RegisterModel } from "../interfaces/registermodel";
+import { RegisterModel } from "../models/register-model";
 
 @Injectable({
   providedIn: "root",
@@ -11,7 +11,8 @@ export class UserAccountService {
   private url2 = "https://localhost:7278/api/Accounts/login";
   private url3 = "https://localhost:7278/api/Accounts/GetUserInfoByEmail/";
   private url4 = "https://localhost:7278/api/Accounts/DeleteTokenAsync/";
-  private url5 = "https://localhost:7278/api/Accounts/GetUserInfoWithAddressByEmail/";
+  private url5 =
+    "https://localhost:7278/api/Accounts/GetUserInfoWithAddressByEmail/";
 
   constructor(private http: HttpClient) {}
   public Register(user: RegisterModel): Observable<any> {

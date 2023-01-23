@@ -1,82 +1,58 @@
-import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-} from "@angular/forms";
-import { ErrorStateMatcher } from "@angular/material/core";
+import { Component } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { RegisterModel } from "src/app/interfaces/registermodel";
-import { UserAccountService } from "src/app/services/user-account.service";
+import { CookieService } from "ngx-cookie-service";
+import { AnnouncementModel } from "src/app/models/announcement-model";
+import { AnnouncementService } from "src/app/services/announcement.service";
 import { Country, Countries } from "src/assets/countries";
 
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(
-      control &&
-      control.invalid &&
-      (control.dirty || control.touched || isSubmitted)
-    );
-  }
-}
-
-
 @Component({
-  selector: 'app-create-announcement',
-  templateUrl: './create-announcement.component.html',
-  styleUrls: ['./create-announcement.component.scss']
+  selector: "app-create-announcement",
+  templateUrl: "./create-announcement.component.html",
+  styleUrls: ["./create-announcement.component.scss"],
 })
 export class CreateAnnouncementComponent {
-  public model: RegisterModel = {
-    firstName: "",
-    lastName: "",
+  public model: AnnouncementModel = {
     email: "",
-    password: "",
-    county: "",
-    city: "",
-    addressInfo: "",
-    role: "",
-    bio: "",
-    phoneNumber: "",
-    educationalInstitution: "",
+    subject: "",
+    description: "",
+    price: 0,
+    meetingType: true,
   };
-
-  emailFormControl = new FormControl("", [
-    Validators.required,
-    Validators.email,
-  ]);
-  passwordFormControl = new FormControl("", [
-    Validators.required,
-    Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$")
-  ]);
-
-  matcher = new MyErrorStateMatcher();
 
   constructor(
     private router: Router,
-    private userAccount: UserAccountService
-  ) {}
+    private announcementService: AnnouncementService,
+    private cookieService: CookieService
+  ) {
+    this.model.email = cookieService.get('Email');
+  }
   countries: Country[] = Countries;
-  accountTypes: string[] = ["Student", "Mentor"];
+  meetingTypes: string[] = ["Online", "Face-to-Face"];
 
-  public register(): void {
-    this.userAccount.Register(this.model).subscribe(
+  public post(): void {
+    this.announcementService.CreateAnnouncementWithEmail(this.model).subscribe(
       result => {
         console.log(result);
-        this.router.navigate(["/login"]);
+        this.router.navigate(["/home"]);
       },
       error => {
         console.log(error);
       }
     );
-    // //console.log(this.model.value.email);
     console.log(this.model);
-    //this.router.navigate(['/login'])
+
+    // this.userAccount.Register(this.model).subscribe(
+    //   result => {
+    //     console.log(result);
+    //     this.router.navigate(["/login"]);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
+    // // //console.log(this.model.value.email);
+    // console.log(this.model);
+    // //this.router.navigate(['/login'])
   }
 }

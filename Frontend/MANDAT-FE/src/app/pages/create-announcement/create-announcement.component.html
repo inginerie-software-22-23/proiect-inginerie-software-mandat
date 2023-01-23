@@ -18,7 +18,7 @@
           [placeholder]="'Ex: Mathematics'"
           value=""
           type="text"
-          [(ngModel)]="model.firstName" />
+          [(ngModel)]="model.subject" />
       </mat-form-field>
 
       <mat-form-field class="example-form">
@@ -28,16 +28,16 @@
           [placeholder]="'Ex: 100'"
           value=""
           type="number"
-          [(ngModel)]="model.educationalInstitution" />
+          [(ngModel)]="model.price" />
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>{{ "Meeting Type" | titlecase }}</mat-label>
-        <mat-select [(ngModel)]="model.role">
+        <mat-select [(ngModel)]="model.meetingType">
           <mat-option
-            *ngFor="let accountType of accountTypes"
-            [value]="accountType">
-            {{ accountType }}
+            *ngFor="let meetingType of meetingTypes"
+            [value]="meetingType">
+            {{ meetingType }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -49,17 +49,17 @@
           [placeholder]="'Ex: I teach High School level algebra, calculus and geometry.'"
           value=""
           type="text"
-          [(ngModel)]="model.bio"></textarea>
+          [(ngModel)]="model.description"></textarea>
       </mat-form-field>
 
       <button
         mat-raised-button
-        (click)="register()"
+        (click)="post()"
         color="primary"
-        [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
-        routerLink="home-page">
+        routerLink="not-found">
         {{ "Post Announcement" | titlecase }}
       </button>
     </div>
   </div>
 </div>
+

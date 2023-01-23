@@ -12,6 +12,7 @@ namespace MANDAT.Common.DTOs
         public string Email { get; set; } = null!;
         public DateTime MatchDate { get; set; }
         public string Status { get; set; } = null!;
+        public string subject { get; set; } = null!;
 
 
     }

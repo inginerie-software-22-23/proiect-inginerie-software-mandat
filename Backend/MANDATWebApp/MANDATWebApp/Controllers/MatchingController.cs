@@ -20,13 +20,13 @@ namespace MANDATWebApp.Controllers
             _userAccountService = userAccountService;
         }
 
-        [HttpPost("createNewMatch/{emailMentor}-{emailStudent}")]
-        public async Task<IActionResult> CreateMatch([FromRoute] string emailMentor, string emailStudent)
+        [HttpPost("createNewMatch/{emailMentor}-{emailStudent}-{subject}")]
+        public async Task<IActionResult> CreateMatch([FromRoute] string emailMentor, string emailStudent, string subject)
         {
             var mentorId = _userAccountService.GetUserByTheEmail(emailMentor);
             var studentId = _userAccountService.GetUserByTheEmail(emailStudent);
 
-            var result = _matchingService.NewMatching(mentorId, studentId);
+            var result = _matchingService.NewMatching(mentorId, studentId, subject);
             return Ok(result);
         }
 
@@ -89,18 +89,18 @@ namespace MANDATWebApp.Controllers
             return result;
         }
 
-        [HttpPatch("RespondToRequests/{mentorEmail}, {studentEmail}, {response}")]
-        public IActionResult RespondToRequests(string mentorEmail, string studentEmail, bool response)
+        [HttpPatch("RespondToRequests/{mentorEmail}, {studentEmail}, {response}/{subject}")]
+        public IActionResult RespondToRequests(string mentorEmail, string studentEmail, bool response, string subject)
         {
-            var result = _matchingService.RespondToRequests(mentorEmail, studentEmail, response);
+            var result = _matchingService.RespondToRequests(mentorEmail, studentEmail, response, subject);
             return Ok(result);
         }
 
 
         [HttpDelete]
-        public IActionResult DeleteRequests(Guid mentorId, Guid studentId)
+        public IActionResult DeleteRequests(Guid mentorId, Guid studentId, string subject)
         {
-            var result = _matchingService.DeleteRequests(mentorId, studentId);
+            var result = _matchingService.DeleteRequests(mentorId, studentId, subject);
             return Ok(result);
         }
 

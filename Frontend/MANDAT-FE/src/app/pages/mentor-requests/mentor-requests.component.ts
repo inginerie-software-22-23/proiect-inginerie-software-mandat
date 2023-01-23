@@ -36,10 +36,10 @@ export class MentorRequestsComponent {
    
    }
    
-   acceptStudent(data: string) : void{
+   acceptStudent(data: string, sub: string) : void{
     var email = this.cookieService.get('Email');
     
-      this.mentorRequests.ChangeRequestStatus(email, data, true).subscribe(
+      this.mentorRequests.ChangeRequestStatus(email, data, true, sub).subscribe(
         (result) => {
            const  div =  document.getElementById(data);
            div!!.remove();
@@ -48,9 +48,9 @@ export class MentorRequestsComponent {
 
    }
 
-   rejectStudent(data: string) : void{
+   rejectStudent(data: string, sub: string) : void{
     var email = this.cookieService.get('Email');
-      this.mentorRequests.ChangeRequestStatus(email, data, false).subscribe(
+      this.mentorRequests.ChangeRequestStatus(email, data, false, sub).subscribe(
         (result) => {
            const  div =  document.getElementById(data);
            div!!.remove();

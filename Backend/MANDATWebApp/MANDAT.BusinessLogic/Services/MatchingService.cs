@@ -18,7 +18,7 @@ namespace MANDAT.BusinessLogic.Services
     {
         public MatchingService (ServiceDependencies dependencies) : base(dependencies) { }
 
-        public Match NewMatching(Guid mentorId, Guid studentId)
+        public Match NewMatching(Guid mentorId, Guid studentId, string subject)
         {
             return ExecuteInTransaction(uow =>
             {
@@ -26,6 +26,7 @@ namespace MANDAT.BusinessLogic.Services
                 match.StudentId = studentId;
                 match.MentorId = mentorId;
                 match.Status = StatusMatch.Waiting.ToString();
+                match.AnnouncementId = uow.Announcements.Get().Where(m => m.MentorId.Equals(mentorId) && m.Subject.Equals(subject)).Select(m => m.Id).FirstOrDefault();
                 match.MatchDate = DateTime.Now;
                 uow.Matches.Insert(match);
                 uow.SaveChanges();
@@ -204,6 +205,8 @@ namespace MANDAT.BusinessLogic.Services
                                                           .Single(),
                                        MatchDate = x.MatchDate,
                                        Status = x.Status,
+                                       subject = uow.Announcements.Get().Where(s => s.Id.Equals(x.AnnouncementId)).Select(s => s.Subject).First()
+
 
                                    }).ToList();
             });
@@ -211,14 +214,15 @@ namespace MANDAT.BusinessLogic.Services
 
         //update request
 
-        public bool RespondToRequests(string mentorEmail, string studentEmail, bool response)
+        public bool RespondToRequests(string mentorEmail, string studentEmail, bool response, string subject)
         {
             return ExecuteInTransaction(uow =>
             {
                 var mentorId = uow.IdentityUsers.Get().Where(s => s.Email == mentorEmail).Select(s => s.Id).Single();
                 var studentId = uow.IdentityUsers.Get().Where(s => s.Email == studentEmail).Select(s => s.Id).Single();
+                var announcementId = uow.Announcements.Get().Where(s => s.Subject.Equals(subject) && s.MentorId.Equals(mentorId)).Select(s => s.Id).FirstOrDefault();
                 var request = uow.Matches.Get()
-                                            .Where(x => x.StudentId == studentId && x.MentorId == mentorId)
+                                            .Where(x => x.StudentId == studentId && x.MentorId == mentorId && x.AnnouncementId.Equals(announcementId))
                                             .Include(s => s.Mentor)
                                             .SingleOrDefault();
                 if (request == null)
@@ -245,12 +249,13 @@ namespace MANDAT.BusinessLogic.Services
 
         }
         //delete request
-        public bool DeleteRequests(Guid mentorId, Guid studentId)
+        public bool DeleteRequests(Guid mentorId, Guid studentId, string subject)
         {
             return ExecuteInTransaction(uow =>
             {
+                var announcementId = uow.Announcements.Get().Where(s => s.Subject.Equals(subject) && s.MentorId.Equals(mentorId)).Select(s => s.Id).FirstOrDefault();
                 var request = uow.Matches.Get()
-                                            .Where(x => x.StudentId == studentId && x.MentorId == mentorId)
+                                            .Where(x => x.StudentId == studentId && x.MentorId == mentorId && x.AnnouncementId.Equals(announcementId))
                                             .SingleOrDefault();
                 if (request == null)
                 {

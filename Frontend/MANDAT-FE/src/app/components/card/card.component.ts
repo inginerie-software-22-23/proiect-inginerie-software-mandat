@@ -46,7 +46,7 @@ export class CardComponent {
     if (email === '') {
       this.router.navigate(["/login"]);
     } else {
-      this.mentorService.createNewMatch(person.email, email);
+      this.mentorService.createNewMatch(person.email, email, person.subject);
     }
   }
 }

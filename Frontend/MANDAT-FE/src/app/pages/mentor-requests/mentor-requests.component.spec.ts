@@ -3,7 +3,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
 
 import { MentorRequestsComponent } from './mentor-requests.component';
-import { RequestModel } from 'src/app/components/interface/request-model';
+import { RequestModel } from 'src/app/models/request-model';
 
 fdescribe('MentorRequestsComponent', () => {
   let component: MentorRequestsComponent;

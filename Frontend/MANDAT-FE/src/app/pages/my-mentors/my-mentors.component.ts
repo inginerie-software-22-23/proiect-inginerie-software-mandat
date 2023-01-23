@@ -1,32 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { Subscription } from 'rxjs';
-import { ReviewForSave } from 'src/app/components/interface/review-for-save';
-import { StarsModel } from 'src/app/components/interface/stars-model';
 import { DialogAddReviewByStudentComponent } from 'src/app/components/shared/dialog-add-review-by-student/dialog-add-review-by-student.component';
 import { DialogViewStudentReviewsComponent } from 'src/app/components/shared/dialog-view-student-reviews/dialog-view-student-reviews.component';
-import { AccountService } from 'src/app/services/account.service';
-import { MentorService } from 'src/app/services/mentor.service';
 import { LinksModel } from 'src/app/interfaces/links-model';
+import { MentorModel } from 'src/app/models/mentor-model';
 import { ReviewService } from 'src/app/services/review.service';
 import { StudentService } from 'src/app/services/student.service';
 import { VideoCallService } from 'src/app/services/video-call.service';
-import { MentorModel } from 'src/app/components/interface/mentor-model';
 
 @Component({
   selector: 'app-my-mentors',
   templateUrl: './my-mentors.component.html',
   styleUrls: ['./my-mentors.component.scss']
 })
+
 export class MyMentorsComponent implements OnInit{
   public emailSt?: string;
   public mentors: MentorModel[] = [];
   public links: LinksModel[] = [];
   public linksNew: Array<[string,string]> = [];
-  // public starsForMentors:Array<[number,string]>=[];// number[]=[];
-  // public starsForMentorsAux:Array<[number,string]>=[];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
  
@@ -44,16 +37,12 @@ export class MyMentorsComponent implements OnInit{
     if(this.emailSt){
       this.myStudentService.getMentorsForStudent(this.emailSt).subscribe(
         (result: MentorModel[]) =>{
-          console.log(result);
           this.mentors = result;
             for(let mentor of this.mentors)
             {
-              console.log(mentor.email);
               this.reviewService.getMentorsStars(mentor.email).subscribe(
                 (result:number) => {
-                  console.log(result);
-                 // this.starsForMentors.push([result,mentor.email]);
-                 mentor.numberOfStars = result;
+                  mentor.numberOfStars = result;
                 },
                 (error) => {
                   console.error(error);
@@ -70,24 +59,21 @@ export class MyMentorsComponent implements OnInit{
                   for(let oneLink of this.links)
                    {
                      if(oneLink.mentorEmail == mentor.email){
-                       this.linksNew.push([oneLink.link,mentor.email]);
-                       mentor.link = oneLink.link;        
-                       break;
+                      this.linksNew.push([oneLink.link,mentor.email]);
+                      mentor.link = oneLink.link;        
+                      break;
                      }
                      else{
-                       this.linksNew.push(["",mentor.email]);
-                       mentor.link = "";
+                      this.linksNew.push(["",mentor.email]);
+                      mentor.link = "";
                      }
                    }
-    
                  }
                 },
                 (error) => {
                   console.error(error);
                 });
-            //}
-    
-          }
+              }
           this.sortByNameASC();
           this.sortByNameAsc = true;
         },

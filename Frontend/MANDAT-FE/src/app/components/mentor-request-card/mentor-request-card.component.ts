@@ -1,5 +1,5 @@
 import { Component, Input, Output } from '@angular/core';
-import { RequestModel } from '../interface/request-model';
+import { RequestModel } from 'src/app/models/request-model';
 
 @Component({
   selector: 'app-mentor-request-card',

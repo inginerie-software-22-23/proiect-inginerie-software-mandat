@@ -123,6 +123,13 @@ namespace MANDATWebApp.Controllers
             return Ok(result);
         }
 
+        [HttpGet("GetUserInfoWithAddressByEmail/{email}")]
+        public IActionResult GetUserInfoWithAddressByEmail(string email)
+        {
+            var result = _userAccountService.GetUserInfoWithAddressByEmail(email);
+            return Ok(result);
+        }
+
         //[HttpGet("userGuid/{email}")]
         //public IActionResult GetUserGuid(string email)
         //{

@@ -100,92 +100,6 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 
 ![HTML5](https://skillicons.dev/icons?i=git,github,discord,md,nodejs,stackoverflow,vscode)
 
-# 🔒 Git and GitHub Conventions
-
-<details>
-<summary><i><b>Branch Names</b></i></summary>
-
----
-
-> `type/summary`
-
-Branch names should be all lower case and contain only "/" and "-" as a special characters.
-Spaces between words should be replaced by the character "-".
-
-##### ✔️ type:
-
--   feature
--   fix
--   patch
--   remove
-
-##### 📜 summary:
-
-Always must be in present tense.
-Describes the changes made.
-
-#### Branch Examples:
-
-> `feature/add-dropdown-bullets`
->
-> `fix/get-account-info-endpoint`
->
-> `patch/refactor-method-names`
->
-> `remove/unused-queries`
-
----
-
-</details>
-
-
-
-<details>
-<summary><i><b>Commit Names</b></i></summary>
-
----
-
-> type(project): summary
-
-Commit names should be all lower case and contain only ":", "(", ")" as special characters.
-
-##### ✔️ type:
-
--   feature
--   fix
--   patch
--   refactor
--   remove
-
-##### 🏭 project:
-
--   fe -> Front-End
--   be -> Back-End
--   db -> Database
--   do -> DevOps
-
-##### 📜 summary:
-
-Always must be in **present tense**.
-Describes the changes made.
-Each word is separated by a single space character.
-After the ":", put a space please. :)
-
-#### Commit Examples:
-
-> `feature(fe): add dropdown bullets`
->
-> `fix(be): get account info endpoint`
->
-> `patch(be): reduce method queries`
->
-> `refactor(fe/be): variable names`
->
-> `remove(db): unused rows`
-
----
-
-</details>
 
 
 # Platform logic :bulb:
@@ -219,7 +133,10 @@ After the ":", put a space please. :)
 - I can view all my accepted students/the students I tutor so that I can have an overview on them
 - I can post announcements with subjects I can teach so that I attract more students 
 - I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
-    
+  
+  
+ ![image](https://user-images.githubusercontent.com/96074975/214015920-a98107aa-ac20-4ce6-bcb3-b9cb2e3f63d8.png)
+ 
 ---
 </details>
 
@@ -276,15 +193,147 @@ After the ":", put a space please. :)
 <details>
 <summary><b> 📗 Sprint :three:✔️ </b></summary>
 
+### Sprint backlog
+
 ![Sprint3Image](/readme-images/sprint_3.png)
+
+
+### 🎬 User Stories checked 📰
+
+As a unregistered user/someone without an account:
+
+- I want to be able to register so that I can have my own personal account ✔️
+
+As a registered user(mentor or student):
+
+- I want to be able to login so that I can navigate on my own personal account ✔️
+
+
+### Sprint outcome
+
+This sprint includes backend and frontend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/30)
+  - Frontend: ![](https://geps.dev/progress/10)
+  
+> Create initial database ✔️
+
+- Backend 
+
+        Tables:
+
+        Adress
+        Announcement
+        IdentityUser
+        IdentityRole
+        IdentityUserToken
+        IdentityUserTokenConfirmation
+        Mentor
+        Review
+        Student
+
+> Login and Register ✔️
+
+- Backend 
+
+        Hash function for password
+        Login : token (JWT token)
+        Register table
+        Controllers
+
+- Frontend
+
+![Capture](https://user-images.githubusercontent.com/96074975/214018445-bdecef09-0901-4bf6-b39a-a44488c27eaf.PNG)
+
+  
+  
+ 
 
 </details>
 
 <details>
 <summary><b> 📗 Sprint :four:✔️ </b></summary>
 
+### Sprint backlog  
+  
 ![image](https://user-images.githubusercontent.com/96074975/213914120-280f22d9-6983-42f5-9c45-be28298bc2dc.png)
 
+### 🎬 User Stories checked 📰
+  
+As a registered user(mentor or student):
+
+- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person ✔️
+  
+As a student:
+
+- I want to search for mentors both for online sessions and physical session so that I can find a mentor ✔️
+  
+As a mentor:
+
+- I can view all my accepted students/the students I tutor so that I can have an overview on them ✔️
+- I can post announcements with subjects I can teach so that I attract more students ✔️
+
+### Sprint outcome
+
+This sprint only includes backend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/60)
+  - Frontend: ![](https://geps.dev/progress/10)
+
+> Table Students CRUD ✔️
+
+- Backend 
+  
+       Get All Students
+       Get Students By Id
+       Get Students By Name (output => list)
+       Get Students By Location
+       Get Mentors for Current Student (We get from Match table the students who have status true - it means the student is accepted by mentor)
+       Post - Update Student Profile
+       Patch - Soft Delete for Student(In Identity User we change the IsDeleted Column to true)
+  
+> Table Announcement CRUD ✔️
+
+- Backend 
+  
+        Get All Announcements
+        Get All Announcements By Mentor Id
+        Get Announcement By Subject
+        Get Announcement By Price (Ascending and Descending Order)
+        Get Announcement By Meeting Type
+        Post - Create Announcement By Mentor
+        Patch - Edit Announcement
+        Delete Announcement By Mentor And Admin
+  
+  
+ > Table Mentors CRUD ✔️
+
+- Backend 
+  
+         Get All Mentors
+         Get Mentors By Id
+         Get Mentors By Name (output => list)
+         Get Mentors By Location
+         Get Students for Current Mentor (We get from Match table the students who have status true - it means the student is accepted by mentor)
+         Post - Update Mentor Profile
+         Patch - Soft Delete for Mentors (In Identity User We change the IsDeleted Column to true)
+  
+ 
+   
+ > Table Review  CRUD ✔️
+
+- Backend 
+  
+           Get All Reviews By Mentor Id
+           Get All Reviews By Student Id
+           Post - Create Review
+           Get - Average Rating
+           Patch - Edit comment
+           Delete Review
+   
+  
 </details>
 
 
@@ -324,6 +373,31 @@ https://github.com/tandpfun/skill-icons?ref=reactjsexample.com#icons-list
 https://gist.github.com/rxaviers/7360908
 
 https://unicode.org/emoji/charts/full-emoji-list.html
+
+
+# Software Architecture
+
+
+### MVC 
+
+The term MVC stands for "Model-View-Controller", a UI pattern that breaks up the responsibilities of responding to user requests into several parts.
+Our application template is composed of ConsoleApp, WebApp and WebApplication. The WebApp it is structured on a "N-Layer" architecturen.
+
+### Traditional "N-Layer" architecture applications
+The application is divided into 4 layers: Business Logic, DataAccess, Common and Entities.
+
+![image](https://user-images.githubusercontent.com/96074975/213930875-b14eff6a-59e4-437c-a96e-49804b8afb19.png)
+
+
+### Repository Pattern
+
+A Repository is used to manage aggregate persistence and retrieval. The repository mediates between the data-access layer and the domain. It decouples the domain layer from the data layer effectively. It does so by providing collection-like access to the underlying data. The repository offers a collection interface by providing methods to add, modify, remove, and fetch domain objects. This enables the domain to remain agnostic of the underlying persistence mechanism. This allows both these layers to evolve independently maintaining high cohesion with low coupling.
+
+### Unit of Work
+
+The unit of work pattern keeps track of all changes to aggregates. Once all updates of the aggregates in a scope are completed, the tracked changes are played onto the database in a transaction so that the database reflects the desired changes. Thus, the unit of work pattern tracks a business transaction and translates it into a database transaction, wherein steps are collectively run as a single unit. To ensure that data integrity is not compromised, the transaction commits or is rolled back discretely, thus preventing indeterminate state.
+
+![image](https://user-images.githubusercontent.com/96074975/213930972-4c0d9c72-a2d6-4888-bd7d-9cd65baba450.png)
 
 
 # Sustainability and Ethics

@@ -1,13 +1,12 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MentorModel } from 'src/app/models/mentor-model';
+import { MentorsComponent } from './mentors.component';
 
-import { MyMentorsComponent } from './my-mentors.component';
-
-fdescribe('MyMentorsComponent', () => {
-  let component: MyMentorsComponent;
-  let fixture: ComponentFixture<MyMentorsComponent>;
+fdescribe('MentorsComponent', () => {
+  let component: MentorsComponent;
+  let fixture: ComponentFixture<MentorsComponent>;
   let mentors: MentorModel[]=[];
 
   beforeEach(async () => {
@@ -16,10 +15,10 @@ fdescribe('MyMentorsComponent', () => {
         HttpClientTestingModule,
         MatDialogModule
       ],
-      declarations: [ MyMentorsComponent ],
+      declarations: [ MentorsComponent ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MyMentorsComponent);
+    fixture = TestBed.createComponent(MentorsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -332,13 +331,4 @@ fdescribe('MyMentorsComponent', () => {
       }
     ]);
   });
-
-  it('should call getMyReviews when clicked', fakeAsync(() => {
-    spyOn(component, 'getMyReviews');
-    let button = fixture.debugElement.nativeElement.querySelector('button');
-    button.click();
-    tick();
-    expect(component.getMyReviews).toHaveBeenCalled();
-  }));
-
 });

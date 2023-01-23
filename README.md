@@ -209,12 +209,13 @@ As a registered user(mentor or student):
 - I want to be able to login so that I can navigate on my own personal account ✔️
 
 
+
 ### Sprint outcome
 
 This sprint includes backend and frontend.
   
 Project progress after this sprint:
-  - Backend: ![](https://geps.dev/progress/30)
+  - Backend: ![](https://geps.dev/progress/25)
   - Frontend: ![](https://geps.dev/progress/10)
   
 > Create initial database ✔️
@@ -264,6 +265,8 @@ Project progress after this sprint:
 As a registered user(mentor or student):
 
 - I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person ✔️
+- I want to to have the ability to check the details of my profile so that I can view my personal info ✔️
+- I want to manage my account(update details/delete account) so that I can leave my details up-to-date ✔️
   
 As a student:
 
@@ -279,7 +282,7 @@ As a mentor:
 This sprint only includes backend.
   
 Project progress after this sprint:
-  - Backend: ![](https://geps.dev/progress/60)
+  - Backend: ![](https://geps.dev/progress/55)
   - Frontend: ![](https://geps.dev/progress/10)
 
 > Table Students CRUD ✔️
@@ -340,8 +343,71 @@ Project progress after this sprint:
 <details>
 <summary><b> 📗 Sprint :five:✔️ </b></summary>
 
+### Sprint backlog  
+  
 ![image](https://user-images.githubusercontent.com/96074975/213914141-0cdaed96-d419-414e-97cb-1805f3a01557.png)
+  
+  
+ ### 🎬 User Stories checked 📰
+  
+As a student:
 
+- I want to see a mentor's phone number so that I can call him/her and schedule a timeslot for the future sessions ✔️
+  
+As a mentor:
+
+- I want to be able to accept/reject student requests so that I can be more selective with the students I work with ✔️
+- I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions :interrobang:
+
+### Sprint outcome
+
+This sprint only includes backend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/90)
+  - Frontend: ![](https://geps.dev/progress/10)
+
+> Table Students CRUD ✔️
+
+- Backend 
+  
+      GetMentorsPhoneNumber(Guid studentId, Guid mentorId) -> intoarce numarul sau "" daca nu exista match intre ei
+      Update student location
+  
+  
+> Table Match CRUD ✔️
+
+- Backend 
+    
+       Create
+       GetMatchesForStudent(Guid mentorId) -> a student can see his/her requests
+            1. one method for accepted requests of match
+            2. one method for requests without an answer
+            3. one method for rejected requests
+       Update - mentor change the status of requests (accept or reject)
+       Delete
+       GetMatchesForMentor(Guid mentorId) -> a mentor receive requests from students
+            1. one method for accepted requests of match
+            2. one method for requests without an answer
+            3. one method for rejected requests
+
+  
+ > Table Mentors CRUD ✔️
+
+- Backend 
+  
+       GetLocationsForMentors
+       GetMentorPhoneNumber
+       Update Mentor location
+       Update just for mentor items
+
+
+> Generate zoom link :interrobang:
+  
+- Backend 
+      
+       Task In progress, but unfinished in this sprint
+  
 </details>
 
 

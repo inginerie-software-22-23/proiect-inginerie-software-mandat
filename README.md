@@ -443,12 +443,6 @@ https://unicode.org/emoji/charts/full-emoji-list.html
 
 # Software Architecture
 
-
-### MVC 
-
-The term MVC stands for "Model-View-Controller", a UI pattern that breaks up the responsibilities of responding to user requests into several parts.
-Our application template is composed of ConsoleApp, WebApp and WebApplication. The WebApp it is structured on a "N-Layer" architecturen.
-
 ### Traditional "N-Layer" architecture applications
 The application is divided into 4 layers: Business Logic, DataAccess, Common and Entities.
 

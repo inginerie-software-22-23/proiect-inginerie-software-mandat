@@ -202,11 +202,11 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 
 As a unregistered user/someone without an account:
 
-I want to be able to register so that I can have my own personal account ✔️
+- I want to be able to register so that I can have my own personal account ✔️
 
 As a registered user(mentor or student):
 
-I want to be able to login so that I can navigate on my own personal account ✔️
+- I want to be able to login so that I can navigate on my own personal account ✔️
 
 
 ### Sprint outcome
@@ -248,8 +248,81 @@ This sprint includes backend and frontend.
 <details>
 <summary><b> 📗 Sprint :four:✔️ </b></summary>
 
+### Sprint backlog  
+  
 ![image](https://user-images.githubusercontent.com/96074975/213914120-280f22d9-6983-42f5-9c45-be28298bc2dc.png)
 
+### 🎬 User Stories checked 📰
+  
+As a registered user(mentor or student):
+
+- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person ✔️
+  
+As a student:
+
+- I want to search for mentors both for online sessions and physical session so that I can find a mentor ✔️
+  
+As a mentor:
+
+- I can view all my accepted students/the students I tutor so that I can have an overview on them ✔️
+- I can post announcements with subjects I can teach so that I attract more students ✔️
+
+### Sprint outcome
+
+This sprint only includes backend.
+
+> Table Students CRUD ✔️
+
+- Backend 
+  
+       Get All Students
+       Get Students By Id
+       Get Students By Name (output => list)
+       Get Students By Location
+       Get Mentors for Current Student (We get from Match table the students who have status true - it means the student is accepted by mentor)
+       Post - Update Student Profile
+       Patch - Soft Delete for Student(In Identity User we change the IsDeleted Column to true)
+  
+> Table Announcement CRUD ✔️
+
+- Backend 
+  
+        Get All Announcements
+        Get All Announcements By Mentor Id
+        Get Announcement By Subject
+        Get Announcement By Price (Ascending and Descending Order)
+        Get Announcement By Meeting Type
+        Post - Create Announcement By Mentor
+        Patch - Edit Announcement
+        Delete Announcement By Mentor And Admin
+  
+  
+ > Table Mentors CRUD ✔️
+
+- Backend 
+  
+         Get All Mentors
+         Get Mentors By Id
+         Get Mentors By Name (output => list)
+         Get Mentors By Location
+         Get Students for Current Mentor (We get from Match table the students who have status true - it means the student is accepted by mentor)
+         Post - Update Mentor Profile
+         Patch - Soft Delete for Mentors (In Identity User We change the IsDeleted Column to true)
+  
+ 
+   
+ > Table Review  CRUD ✔️
+
+- Backend 
+  
+           Get All Reviews By Mentor Id
+           Get All Reviews By Student Id
+           Post - Create Review
+           Get - Average Rating
+           Patch - Edit comment
+           Delete Review
+   
+  
 </details>
 
 

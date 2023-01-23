@@ -212,7 +212,11 @@ As a registered user(mentor or student):
 ### Sprint outcome
 
 This sprint includes backend and frontend.
-
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/30)
+  - Frontend: ![](https://geps.dev/progress/10)
+  
 > Create initial database ✔️
 
 - Backend 
@@ -242,6 +246,9 @@ This sprint includes backend and frontend.
 
 ![Capture](https://user-images.githubusercontent.com/96074975/214018445-bdecef09-0901-4bf6-b39a-a44488c27eaf.PNG)
 
+  
+  
+ 
 
 </details>
 
@@ -270,6 +277,10 @@ As a mentor:
 ### Sprint outcome
 
 This sprint only includes backend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/60)
+  - Frontend: ![](https://geps.dev/progress/10)
 
 > Table Students CRUD ✔️
 

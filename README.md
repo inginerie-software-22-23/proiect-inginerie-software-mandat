@@ -133,7 +133,10 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 - I can view all my accepted students/the students I tutor so that I can have an overview on them
 - I can post announcements with subjects I can teach so that I attract more students 
 - I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
-    
+  
+  
+ ![image](https://user-images.githubusercontent.com/96074975/214015920-a98107aa-ac20-4ce6-bcb3-b9cb2e3f63d8.png)
+ 
 ---
 </details>
 
@@ -190,7 +193,55 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 <details>
 <summary><b> 📗 Sprint :three:✔️ </b></summary>
 
+### Sprint backlog
+
 ![Sprint3Image](/readme-images/sprint_3.png)
+
+
+### 🎬 User Stories checked 📰
+
+As a unregistered user/someone without an account:
+
+I want to be able to register so that I can have my own personal account ✔️
+
+As a registered user(mentor or student):
+
+I want to be able to login so that I can navigate on my own personal account ✔️
+
+
+### Sprint outcome
+
+This sprint includes backend and frontend.
+
+> Create initial database ✔️
+
+- Backend 
+
+        Tables:
+
+        Adress
+        Announcement
+        IdentityUser
+        IdentityRole
+        IdentityUserToken
+        IdentityUserTokenConfirmation
+        Mentor
+        Review
+        Student
+
+> Login and Register ✔️
+
+- Backend 
+
+        Hash function for password
+        Login : token (JWT token)
+        Register table
+        Controllers
+
+- Frontend
+
+![Capture](https://user-images.githubusercontent.com/96074975/214018445-bdecef09-0901-4bf6-b39a-a44488c27eaf.PNG)
+
 
 </details>
 

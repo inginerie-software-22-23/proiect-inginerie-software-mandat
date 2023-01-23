@@ -14,8 +14,11 @@ namespace MANDAT.BusinessLogic.Services
 {
     public class AnnouncementManager : BaseService, IAnnouncementManager
     {
-        public AnnouncementManager(ServiceDependencies serviceDependencies) : base(serviceDependencies)
-        { }
+        private readonly IUserManager _userAccountService;
+        public AnnouncementManager(ServiceDependencies serviceDependencies, IUserManager userAccountService) : base(serviceDependencies)
+        {
+            _userAccountService = userAccountService;
+        }
 
         public List<AllAnnouncementsDto> GetAllAnnouncements()
         {
@@ -144,6 +147,28 @@ namespace MANDAT.BusinessLogic.Services
                 announcement.MeetingType = createAnnouncementDto.MeetingType;
                 announcement.MentorId = createAnnouncementDto.MentorId;
 
+
+                uow.Announcements.Insert(announcement);
+                uow.SaveChanges();
+                return announcement;
+            });
+        }
+
+        public Announcement CreateWithEmail(CreateAnnouncementWithEmailDto createAnnouncementWithEmailDto)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var announcement = new Announcement();
+
+                announcement.Id = new Guid();
+                announcement.Description = createAnnouncementWithEmailDto.Description;
+                announcement.Subject = createAnnouncementWithEmailDto.Subject;
+                announcement.Price = createAnnouncementWithEmailDto.Price;
+                announcement.MeetingType = createAnnouncementWithEmailDto.MeetingType;
+
+                var Id = _userAccountService.GetUserByEmail(createAnnouncementWithEmailDto.Email).Result.Id;
+                
+                announcement.MentorId = Id;
 
                 uow.Announcements.Insert(announcement);
                 uow.SaveChanges();

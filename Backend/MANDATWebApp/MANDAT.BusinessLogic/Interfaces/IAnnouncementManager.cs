@@ -1,10 +1,5 @@
 ﻿using MANDAT.Common.DTOs;
 using MANDAT.Entities.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MANDAT.BusinessLogic.Interfaces
 {
@@ -17,6 +12,7 @@ namespace MANDAT.BusinessLogic.Interfaces
         List<AllAnnouncementsDto> GetAllAnnouncementByPrice(int price);
         List<AllAnnouncementsDto> GetAllAnnouncementByType(bool MeetingType);
         Announcement Create(CreateAnnouncementDto createAnnouncementDto);
+        Announcement CreateWithEmail(CreateAnnouncementWithEmailDto createAnnouncementWithEmailDto);
         bool Update(Guid id, UpdateAnnouncementDto updateAnnouncementDto);
         bool DeleteAnnouncement(Guid id);
     }

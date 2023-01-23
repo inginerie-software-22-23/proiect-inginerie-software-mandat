@@ -15,6 +15,7 @@ namespace MANDAT.DataAccess
 
         public DbSet<IdentityRole> IdentityRoles { get; set; }
         public DbSet<Adress> Adresses { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Review> Reviews { get; set; }
@@ -64,7 +65,8 @@ namespace MANDAT.DataAccess
             //1-M (Student - Recenzie)
             builder.Entity<Student>()
                  .HasMany(s => s.Reviews)
-                 .WithOne(r => r.Student);
+                 .WithOne(r => r.Student)
+                .OnDelete(DeleteBehavior.Restrict);
 
             //1-M (Mentor - Recenzie)
             builder.Entity<Mentor>()
@@ -76,7 +78,9 @@ namespace MANDAT.DataAccess
             builder.Entity<Match>()
                 .HasOne(m => m.Student)
                 .WithMany(s => s.Matches)
-                .HasForeignKey(m => m.StudentId);
+                .HasForeignKey(m => m.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<Match>()
                 .HasOne(m => m.Mentor)
                 .WithMany(me => me.Matches)
@@ -86,7 +90,9 @@ namespace MANDAT.DataAccess
             builder.Entity<VideoMeetingDetails>()
                 .HasOne(m => m.Student)
                 .WithMany(s => s.VideoMeetingsDetails)
-                .HasForeignKey(m => m.StudentId);
+                .HasForeignKey(m => m.StudentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<VideoMeetingDetails>()
                 .HasOne(m => m.Mentor)
                 .WithMany(me => me.VideoMeetingsDetails)

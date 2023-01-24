@@ -4,9 +4,16 @@
 
     <div class="remaining-details">
       <div>{{ announcement.price }}</div>
-      <div>{{ meetingTypes.get(announcement.meetingType) }}</div>
-      <div>{{ announcement.description }}</div>
+      <div
+        [style]="announcement.meetingType? 'background-color: green' : 'background-color: red'"
+        style="color: white">
+        {{ meetingTypes.get(announcement.meetingType) }}
+      </div>
+      <div class="description">{{ announcement.description }}</div>
     </div>
-    <div class="options"> </div>
+    
+    <div class="options">
+      <button (click)="delete(announcement.id)">❌</button>
+    </div>
   </div>
 </div>

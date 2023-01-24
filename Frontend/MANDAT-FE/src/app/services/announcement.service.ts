@@ -19,4 +19,8 @@ export class AnnouncementService {
   public CreateAnnouncementWithEmail(model: AnnouncementModel): Observable<any> {
     return this.http.post<AnnouncementModel>(`${this.url}/create-with-email`, model);
   }
+
+  public DeleteAnnouncement(id: string): Observable<any> {
+    return this.http.delete(`${this.url}?id=${id}`);
+  }
 }

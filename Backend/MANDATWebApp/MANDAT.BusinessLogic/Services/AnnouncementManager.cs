@@ -226,16 +226,16 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var announcements = uow.Announcements.Get()
+                var announcement = uow.Announcements.Get()
                                             .Include(m => m.Mentor)
                                             .ThenInclude(m => m.User)
                                             .Where(m => m.Mentor.User.IsDeleted == false && m.Id.Equals(id))                                     
                                             .SingleOrDefault();
-                if (announcements == null)
+                if (announcement == null)
                 {
                     return false;
                 }
-                
+                uow.Announcements.Delete(announcement);
                 uow.SaveChanges();
                 return true;
             });

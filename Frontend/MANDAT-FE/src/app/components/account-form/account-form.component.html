@@ -6,9 +6,9 @@
         <p>
           {{ accountFormDetails.subTitle.question }}
           <a
-            [routerLink]="accountFormDetails.subTitle.buttonLink"
+            [routerLink]="accountFormDetails.subTitle.button.link"
             class="login-link"
-            >{{ accountFormDetails.subTitle.buttonCaption }}</a
+            >{{ accountFormDetails.subTitle.button.caption }}</a
           >
         </p>
       </div>
@@ -170,8 +170,8 @@
         (click)="submit()"
         color="primary"
         [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
-        routerLink="home-page">
-        {{ accountFormDetails.submitButtonCaption | titlecase }}
+        [routerLink]="[accountFormDetails.submitButton.link]">
+        {{ accountFormDetails.submitButton.caption | titlecase }}
       </button>
       <!-- [disabled]="!emailFormControl.valid || !passwordFormControl.valid" -->
 

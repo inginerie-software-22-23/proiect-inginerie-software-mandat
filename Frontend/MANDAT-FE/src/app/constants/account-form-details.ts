@@ -1,31 +1,48 @@
+interface SubmitButton {
+  link: string;
+  caption: string;
+}
+
 interface SubTitle {
   question: string;
-  buttonLink: string;
-  buttonCaption: string;
+  button: SubmitButton;
 }
 
 export interface AccountFormDetails {
+  pageUrl: string;
   pageTitle: string;
   subTitle: SubTitle;
-  submitButtonCaption: string;
+  submitButton: SubmitButton;
 }
 
 export const RegisterAccountFormDetails: AccountFormDetails = {
+  pageUrl: "/register",
   pageTitle: "Get Started",
   subTitle: {
     question: "Already have an account?",
-    buttonLink: "/login",
-    buttonCaption: "Sign In",
+    button: {
+      link: "/login",
+      caption: "Sign In",
+    },
   },
-  submitButtonCaption: "Sign Up",
+  submitButton: {
+    link: "/home",
+    caption: "Sign Up",
+  },
 };
 
 export const SettingsAccountFormDetails: AccountFormDetails = {
+  pageUrl: "/settings",
   pageTitle: "Settings",
   subTitle: {
     question: "Changed your mind?",
-    buttonLink: "/user-profile",
-    buttonCaption: "Go back",
+    button: {
+      link: "/user-profile",
+      caption: "Go back",
+    },
   },
-  submitButtonCaption: "Save Settings",
+  submitButton: {
+    link: "/user-profile",
+    caption: "Save Settings",
+  },
 };

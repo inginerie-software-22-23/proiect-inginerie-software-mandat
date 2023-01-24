@@ -1,14 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AccountFormDetails } from 'src/app/constants/account-form-details';
-import { AccountModel } from 'src/app/models/account-model';
-import { MyErrorStateMatcher } from '../material-email/material-email.component';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { FormControl, Validators } from "@angular/forms";
+import { AccountFormDetails } from "src/app/constants/account-form-details";
+import { AccountModel } from "src/app/models/account-model";
+import { MyErrorStateMatcher } from "../material-email/material-email.component";
 
 @Component({
-  selector: 'app-account-form',
-  templateUrl: './account-form.component.html',
-  styleUrls: ['./account-form.component.scss']
+  selector: "app-account-form",
+  templateUrl: "./account-form.component.html",
+  styleUrls: ["./account-form.component.scss"],
 })
 export class AccountFormComponent {
   public model: AccountModel = {
@@ -37,26 +36,20 @@ export class AccountFormComponent {
 
   matcher = new MyErrorStateMatcher();
   accountTypes: string[] = ["Student", "Mentor"];
-  page: string;
   @Input() accountFormDetails: AccountFormDetails;
   @Output() submitEmitter = new EventEmitter<AccountModel>();
 
-  constructor(
-    private router: Router
-  )
-  {
-    this.page = this.router.url;
-  }
+  constructor() {}
 
-  submit(): void{
+  submit(): void {
     this.submitEmitter.emit(this.model);
   }
 
-  isRegisterPage(): boolean{
-    return this.page === "/register";
+  isRegisterPage(): boolean {
+    return this.accountFormDetails.pageUrl === "/register";
   }
 
-  isSettingsPage(): boolean{
-    return this.page == "/settings";
+  isSettingsPage(): boolean {
+    return this.accountFormDetails.pageUrl == "/settings";
   }
 }

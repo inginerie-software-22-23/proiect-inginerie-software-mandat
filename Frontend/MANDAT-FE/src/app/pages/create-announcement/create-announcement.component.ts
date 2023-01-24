@@ -1,10 +1,8 @@
 import { Component } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { AnnouncementModel } from "src/app/models/announcement-model";
 import { AnnouncementService } from "src/app/services/announcement.service";
-import { Country, Countries } from "src/assets/countries";
 
 @Component({
   selector: "app-create-announcement",
@@ -20,6 +18,9 @@ export class CreateAnnouncementComponent {
     meetingType: true,
   };
 
+  meetingTypes: string[] = ["Online", "Face-to-Face"];
+  selectedMeetingType: string; 
+
   constructor(
     private router: Router,
     private announcementService: AnnouncementService,
@@ -27,10 +28,10 @@ export class CreateAnnouncementComponent {
   ) {
     this.model.email = cookieService.get('Email');
   }
-  countries: Country[] = Countries;
-  meetingTypes: string[] = ["Online", "Face-to-Face"];
+  
 
   public post(): void {
+    this.model.meetingType = this.selectedMeetingType === "Online" ? true : false;
     this.announcementService.CreateAnnouncementWithEmail(this.model).subscribe(
       result => {
         console.log(result);
@@ -41,18 +42,5 @@ export class CreateAnnouncementComponent {
       }
     );
     console.log(this.model);
-
-    // this.userAccount.Register(this.model).subscribe(
-    //   result => {
-    //     console.log(result);
-    //     this.router.navigate(["/login"]);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // );
-    // // //console.log(this.model.value.email);
-    // console.log(this.model);
-    // //this.router.navigate(['/login'])
   }
 }

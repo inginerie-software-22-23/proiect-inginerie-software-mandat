@@ -2,7 +2,7 @@
   <div class="banner">
     <div class="header">
       <h1 class="title">Get Started</h1>
-      <div class="already-have-account">
+      <div>
         <p>
           Not sure how it should look like?
           <a routerLink="/requests" class="login-link">View Examples</a>
@@ -33,7 +33,7 @@
 
       <mat-form-field appearance="fill">
         <mat-label>{{ "Meeting Type" | titlecase }}</mat-label>
-        <mat-select [(ngModel)]="model.meetingType">
+        <mat-select [(ngModel)]="selectedMeetingType">
           <mat-option
             *ngFor="let meetingType of meetingTypes"
             [value]="meetingType">

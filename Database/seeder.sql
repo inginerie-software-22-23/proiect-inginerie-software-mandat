@@ -11,7 +11,7 @@ INSERT INTO IdentityUsers
 VALUES
 ('92679149-0886-4FD3-BB04-66FE96E6C77E', NULL, 'Dobre Ianis', 'ianis@yahoo.com', '0742134088', '10000.Qwlva6qPjMfXot9gGLhYig==.6tV8d99pHpiw0nqWW8ARaYqTi2ytw40N5Owjaewidl0=', '2022-12-27 13:18:09.9697935', 1, 0, 'elev clasa a X-a pasionat de sport si matematica', 'L.T.C.B', 'B5B8D19F-40A8-4EDB-A438-007E0556F2E2'), 
 ('71855B64-30E2-4227-AFC9-F4521A941E9A', NULL, 'Jeff Smith', 'pat@example1.com', '1234567890', '10000.SMGQ+fVojFnHGr3Z5N2tHw==./H5wLX12FxpdNNQLbvW45HWmZTz/c7YkPBRzxkFD+p8=', '2023-01-16 19:05:57.3224430', 1, 0, 'I am a passionate university student', 'Unibuc', 'C6924CD6-B1AA-4DD3-9337-259AFB5A4A28'),
-('FCFA02A7-C615-461A-B586-D992CED13DE6', NULL, 'Steven Johnson', 'pat@example2.com', '0987654321', '10000.SMGQ+fVojFnHGr3Z5N2tHw==./H5wLX12FxpdNNQLbvW45HWmZTz/c7YkPBRzxkFD+p8=', '2023-01-24 15:24:14.1353520', 1, 0, 'I have 3 years of teaching experience', 'Politehnica', 'C6924CD6-B1AA-4DD3-9337-259AFB5A4A28');
+('58E476E4-6993-49F0-386C-08DAFE16E2DE', NULL, 'Steven Johnson', 'pat@example2.com', '0987654321', '10000.SMGQ+fVojFnHGr3Z5N2tHw==./H5wLX12FxpdNNQLbvW45HWmZTz/c7YkPBRzxkFD+p8=', '2023-01-24 15:24:14.1353520', 1, 0, 'I have 3 years of teaching experience', 'Politehnica', 'C6924CD6-B1AA-4DD3-9337-259AFB5A4A28');
 
 
 
@@ -29,7 +29,8 @@ VALUES
 
 INSERT INTO Mentors
 VALUES
-('71855B64-30E2-4227-AFC9-F4521A941E9A',	0x10101010101010,	0x10101010101010);
+('71855B64-30E2-4227-AFC9-F4521A941E9A',	0x10101010101010,	0x10101010101010),
+('58E476E4-6993-49F0-386C-08DAFE16E2DE',	0x10101010101010,	0x10101010101010);
 
 
 
@@ -60,6 +61,5 @@ VALUES
 (N'e9fc24f8-9d67-437f-f25a-08dafd9f5300', N'French', N'Qu est-ce que vous avez préparé pour aujourd hui?', 90, 0, N'71855B64-30E2-4227-AFC9-F4521A941E9A', NULL),
 (N'2d0131ed-66c2-40cf-f25b-08dafd9f5300', N'Mathematics', N'Lessons will be focused on spacial and plane geometry. There will me a small module for intro to trigonometry.', 80, 1, N'71855b64-30e2-4227-afc9-f4521a941e9a', NULL),
 (N'03e12217-ae99-4b3e-f25c-08dafd9f5300', N'Romanian', N'Predau romana doar la smecheri.', 65, 0, N'71855B64-30E2-4227-AFC9-F4521A941E9A', NULL),
-(N'7535163c-7a28-4983-f25d-08dafd9f5300', N'English', N'A cup of tea and you can have me.', 60, 1, N'FCFA02A7-C615-461A-B586-D992CED13DE6', NULL),
-(N'fc268b92-4b01-4181-f25e-08dafd9f5300', N'History', N'Lessons can range from ancient civilizations to modern geopolitics.', 55, 0, N'FCFA02A7-C615-461A-B586-D992CED13DE6', NULL);
-
+(N'7535163c-7a28-4983-f25d-08dafd9f5300', N'English', N'A cup of tea and you can have me.', 60, 1, N'58E476E4-6993-49F0-386C-08DAFE16E2DE', NULL),
+(N'fc268b92-4b01-4181-f25e-08dafd9f5300', N'History', N'Lessons can range from ancient civilizations to modern geopolitics.', 55, 0, N'58E476E4-6993-49F0-386C-08DAFE16E2DE', NULL);

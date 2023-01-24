@@ -49,6 +49,8 @@ import { CommonModule } from "@angular/common";
 import { MentorsComponent } from "./pages/mentors/mentors.component";
 import { CreateAnnouncementComponent } from "./pages/create-announcement/create-announcement.component";
 import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announcements.component";
+import { SettingsComponent } from './pages/settings/settings.component';
+import { AccountFormComponent } from './components/account-form/account-form.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announceme
     MentorsComponent,
     CreateAnnouncementComponent,
     MyAnnouncementsComponent,
+    SettingsComponent,
+    AccountFormComponent,
   ],
   imports: [
     BrowserModule,

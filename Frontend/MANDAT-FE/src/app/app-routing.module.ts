@@ -13,10 +13,12 @@ import { VideoMeetingComponent } from "./pages/video-meeting/video-meeting.compo
 import { MentorsComponent } from "./pages/mentors/mentors.component";
 import { CreateAnnouncementComponent } from "./pages/create-announcement/create-announcement.component";
 import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announcements.component";
+import { SettingsComponent } from "./pages/settings/settings.component";
 
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
   { path: "user-profile", component: UserProfileComponent },
+  { path: "settings", component: SettingsComponent },
   { path: "create-announcement", component: CreateAnnouncementComponent },
   { path: "match", component: MatchingFormComponent },
   { path: "my-students", component: MyStudentsComponent },

@@ -8,6 +8,7 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
+import { AccountFormDetails, RegisterAccountFormDetails } from "src/app/constants/account-form-details";
 import { RegisterModel } from "src/app/models/register-model";
 import { UserAccountService } from "src/app/services/user-account.service";
 import { Country, Countries } from "src/assets/countries";
@@ -56,13 +57,13 @@ export class RegisterComponent {
   ]);
 
   matcher = new MyErrorStateMatcher();
+  accountTypes: string[] = ["Student", "Mentor"];
+  accountFormDetails: AccountFormDetails = RegisterAccountFormDetails;
 
   constructor(
     private router: Router,
     private userAccount: UserAccountService
   ) {}
-  countries: Country[] = Countries;
-  accountTypes: string[] = ["Student", "Mentor"];
 
   public register(): void {
     this.userAccount.Register(this.model).subscribe(

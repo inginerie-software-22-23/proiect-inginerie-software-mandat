@@ -59,12 +59,13 @@ export class LoginComponent {
             this.cookieService.set("Rol", details.roles);
             this.cookieService.set("LoggedIn", "true");
           });
-        
+
         this.cookieService.set("Token", result.token);
-        
+
         this.router.navigate(["/home"]);
-        setTimeout(function(){window.location.reload();
-        },1000);
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
       },
 
       error => {
@@ -85,6 +86,6 @@ export class LoginComponent {
   logOut(): any {
     // ramane navbarul neactualizat
     this.socialAuthService.signOut();
-    window.location.reload(); 
+    window.location.reload();
   }
 }

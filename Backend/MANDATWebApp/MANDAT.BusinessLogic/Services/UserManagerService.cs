@@ -59,7 +59,7 @@ namespace MANDAT.BusinessLogic.Services
             return null;
         }
 
-        public  Task<IdentityUser> GetUserByEmail(string email)
+        public Task<IdentityUser> GetUserByEmail(string email)
         {
             return ExecuteInTransaction(uow =>
             {

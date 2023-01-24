@@ -52,7 +52,21 @@ $section-shadow: 1px 1px $section-shadow-blur $section-shadow-color,
     div {
       text-align: center;
     }
+    .courses {
+      display: flex;
+      justify-content: center;
+      text-align: unset;
+      width: 100%;
 
+      .courses-list {
+        margin-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        list-style: none;
+      }
+    }
     .value {
       font-weight: bold;
     }

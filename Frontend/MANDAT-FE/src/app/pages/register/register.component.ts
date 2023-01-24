@@ -8,7 +8,7 @@ import {
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
 import { Router } from "@angular/router";
-import { RegisterModel } from "src/app/interfaces/registermodel";
+import { RegisterModel } from "src/app/models/register-model";
 import { UserAccountService } from "src/app/services/user-account.service";
 import { Country, Countries } from "src/assets/countries";
 
@@ -52,7 +52,7 @@ export class RegisterComponent {
   ]);
   passwordFormControl = new FormControl("", [
     Validators.required,
-    Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$")
+    Validators.pattern("^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"),
   ]);
 
   matcher = new MyErrorStateMatcher();

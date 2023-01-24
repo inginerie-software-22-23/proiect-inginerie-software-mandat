@@ -1,8 +1,22 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormControl, Validators } from "@angular/forms";
+import { FormControl, FormGroupDirective, NgForm, Validators } from "@angular/forms";
+import { ErrorStateMatcher } from "@angular/material/core";
 import { AccountFormDetails } from "src/app/constants/account-form-details";
 import { AccountModel } from "src/app/models/account-model";
-import { MyErrorStateMatcher } from "../material-email/material-email.component";
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(
+    control: FormControl | null,
+    form: FormGroupDirective | NgForm | null
+  ): boolean {
+    const isSubmitted = form && form.submitted;
+    return !!(
+      control &&
+      control.invalid &&
+      (control.dirty || control.touched || isSubmitted)
+    );
+  }
+}
 
 @Component({
   selector: "app-account-form",

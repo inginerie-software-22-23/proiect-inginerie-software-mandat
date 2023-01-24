@@ -47,7 +47,7 @@ export class NavbarComponent {
         localStorage.clear();
         this.cookieService.deleteAll();
        
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/login"]);
         setTimeout(function(){window.location.reload();
         },1000);
       },

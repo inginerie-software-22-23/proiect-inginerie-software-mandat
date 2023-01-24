@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { MatchingFormModel } from 'src/app/models/matching-form-model';
+import { subjects } from 'src/app/constants/subjects';
 
 @Component({
   selector: "app-matching-form",
@@ -17,18 +18,7 @@ export class MatchingFormComponent implements OnInit {
     public router: Router
   ){}
 
-  subjects: string[] = [
-    "Informatics",
-    "English",
-    "Mathematics",
-    "History",
-    "Biology",
-    "Geography",
-    "Romanian",
-    "French",
-    "Chemistry",
-    "Physics",
-  ];
+  subjects: string[] = subjects;
   meetingTypes: string[] = ["Online", "Face-To-Face"];
   stars: number = 0;
   

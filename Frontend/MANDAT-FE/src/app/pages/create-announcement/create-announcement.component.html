@@ -11,14 +11,13 @@
     </div>
 
     <div class="form-fields">
-      <mat-form-field class="example-form">
+      <mat-form-field appearance="fill" id="subject">
         <mat-label>{{ "Subject" | titlecase }}</mat-label>
-        <input
-          matInput
-          [placeholder]="'Ex: Mathematics'"
-          value=""
-          type="text"
-          [(ngModel)]="model.subject" />
+        <mat-select [(ngModel)]="model.subject">
+          <mat-option *ngFor="let subjects of subjects" [value]="subjects">
+            {{ subjects }}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="example-form">
@@ -55,8 +54,7 @@
       <button
         mat-raised-button
         (click)="post()"
-        color="primary"
-        routerLink="not-found">
+        color="primary">
         {{ "Post Announcement" | titlecase }}
       </button>
     </div>

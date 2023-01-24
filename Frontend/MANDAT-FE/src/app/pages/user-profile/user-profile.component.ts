@@ -29,6 +29,7 @@ export class UserProfileComponent implements OnInit {
   notifications: number;
   email: string;
   rating: number;
+  rol: string;
 
   constructor(
     private userAccountService: UserAccountService,
@@ -37,6 +38,7 @@ export class UserProfileComponent implements OnInit {
     private cookieService: CookieService
   ) {
     this.email = cookieService.get("Email");
+    this.rol = cookieService.get("Rol");
     userAccountService
       .GetUserInfoWithAddressByEmail(this.email)
       .subscribe(res => {

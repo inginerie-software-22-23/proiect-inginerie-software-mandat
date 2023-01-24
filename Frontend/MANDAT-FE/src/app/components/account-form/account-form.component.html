@@ -169,7 +169,7 @@
         mat-raised-button
         (click)="submit()"
         color="primary"
-        [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
+        [disabled]="!emailFormControl.valid || (isRegisterPage() && !passwordFormControl.valid)"
         [routerLink]="[accountFormDetails.submitButton.link]">
         {{ accountFormDetails.submitButton.caption | titlecase }}
       </button>

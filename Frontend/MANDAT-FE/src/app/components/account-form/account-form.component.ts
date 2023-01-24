@@ -1,8 +1,16 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { FormControl, FormGroupDirective, NgForm, Validators } from "@angular/forms";
+import {
+  FormControl,
+  FormGroupDirective,
+  NgForm,
+  Validators,
+} from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
+import { Router } from "@angular/router";
+import { CookieService } from "ngx-cookie-service";
 import { AccountFormDetails } from "src/app/constants/account-form-details";
 import { AccountModel } from "src/app/models/account-model";
+import { UserAccountService } from "src/app/services/user-account.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(
@@ -53,7 +61,19 @@ export class AccountFormComponent {
   @Input() accountFormDetails: AccountFormDetails;
   @Output() submitEmitter = new EventEmitter<AccountModel>();
 
-  constructor() {}
+  constructor(
+    private userAccountService: UserAccountService,
+    private cookieService: CookieService,
+    private router: Router
+  ) {
+    const email = cookieService.get("Email");
+    if (this.router.url === "/settings") {
+      userAccountService.GetUserInfoWithAddressByEmail(email).subscribe(res => {
+        this.model = res;
+        [this.model.firstName, this.model.lastName] = res.username.split(" ");
+      });
+    }
+  }
 
   submit(): void {
     this.submitEmitter.emit(this.model);

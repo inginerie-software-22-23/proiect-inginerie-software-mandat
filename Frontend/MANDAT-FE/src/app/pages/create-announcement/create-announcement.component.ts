@@ -12,6 +12,7 @@ import { AnnouncementService } from "src/app/services/announcement.service";
 })
 export class CreateAnnouncementComponent {
   public model: AnnouncementModel = {
+    id: "",
     email: "",
     subject: "",
     description: "",

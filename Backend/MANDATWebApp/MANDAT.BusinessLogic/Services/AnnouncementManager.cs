@@ -65,6 +65,32 @@ namespace MANDAT.BusinessLogic.Services
 
             });
         }
+
+        public List<AllAnnouncementsDto> GetAllAnnouncementByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.Announcements.Get()
+                                            .Include(m => m.Mentor)
+                                            .ThenInclude(m => m.User)
+                                            .Where(m => m.Mentor.User.Email.Equals(email))
+                                            .Select(m => new AllAnnouncementsDto
+                                            {
+                                                Id = m.Id,
+                                                Subject = m.Subject,
+                                                Description = m.Description,
+                                                Price = m.Price,
+                                                MeetingType = m.MeetingType,
+                                                Username = m.Mentor.User.Username,
+                                                Email = m.Mentor.User.Email,
+                                                PhoneNumber = m.Mentor.User.PhoneNumber
+
+                                            })
+                                            .ToList();
+
+            });
+        }
+
         public List<AllAnnouncementsDto> GetAllAnnouncementBySubject(string subject)
         {
             return ExecuteInTransaction(uow =>

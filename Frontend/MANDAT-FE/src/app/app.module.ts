@@ -48,6 +48,7 @@ import { StarRatingComponent } from './components/star-rating/star-rating.compon
 import { CommonModule } from '@angular/common';
 import { MentorsComponent } from './pages/mentors/mentors.component';
 import { CreateAnnouncementComponent } from './pages/create-announcement/create-announcement.component';
+import { MyAnnouncementsComponent } from './pages/my-announcements/my-announcements.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { CreateAnnouncementComponent } from './pages/create-announcement/create-
     VideoMeetingComponent,
     AddParticipantsComponent,
     MentorsComponent,
-    CreateAnnouncementComponent
+    CreateAnnouncementComponent,
+    MyAnnouncementsComponent
     
   ],
   imports: [

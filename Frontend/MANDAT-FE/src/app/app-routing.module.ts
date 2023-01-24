@@ -12,6 +12,7 @@ import { UserProfileComponent } from "./pages/user-profile/user-profile.componen
 import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
 import { MentorsComponent } from './pages/mentors/mentors.component';
 import { CreateAnnouncementComponent } from './pages/create-announcement/create-announcement.component';
+import { MyAnnouncementsComponent } from './pages/my-announcements/my-announcements.component';
 
 const routes: Routes = [
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'match', component: MatchingFormComponent  },
   { path: 'my-students', component: MyStudentsComponent  },
   { path: 'my-mentors', component: MyMentorsComponent},
+  { path: 'my-announcements', component: MyAnnouncementsComponent},
   { path: 'video-meeting', component: VideoMeetingComponent  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

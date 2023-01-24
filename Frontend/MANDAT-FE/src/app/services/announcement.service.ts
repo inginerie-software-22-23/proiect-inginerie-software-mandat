@@ -12,6 +12,10 @@ export class AnnouncementService {
 
   constructor(private http: HttpClient) { }
 
+  public GetAllAnnouncmentWithEmail(email: string): Observable<any>{
+    return this.http.get<AnnouncementModel>(`${this.url}/getAllAnnouncementByEmail/${email}`);
+  }
+
   public CreateAnnouncementWithEmail(model: AnnouncementModel): Observable<any> {
     return this.http.post<AnnouncementModel>(`${this.url}/create-with-email`, model);
   }

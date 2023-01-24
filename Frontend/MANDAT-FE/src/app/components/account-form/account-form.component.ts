@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountFormDetails } from 'src/app/constants/account-form-details';
@@ -39,12 +39,17 @@ export class AccountFormComponent {
   accountTypes: string[] = ["Student", "Mentor"];
   page: string;
   @Input() accountFormDetails: AccountFormDetails;
+  @Output() submitEmitter = new EventEmitter<AccountModel>();
 
   constructor(
     private router: Router
   )
   {
     this.page = this.router.url;
+  }
+
+  submit(): void{
+    this.submitEmitter.emit(this.model);
   }
 
   isRegisterPage(): boolean{

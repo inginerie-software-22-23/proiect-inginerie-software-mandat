@@ -7,6 +7,7 @@ interface SubTitle {
 export interface AccountFormDetails {
   pageTitle: string;
   subTitle: SubTitle;
+  submitButtonCaption: string;
 }
 
 export const RegisterAccountFormDetails: AccountFormDetails = {
@@ -14,16 +15,17 @@ export const RegisterAccountFormDetails: AccountFormDetails = {
   subTitle: {
     question: "Already have an account?",
     buttonLink: "/login",
-    buttonCaption: "Sign In"
+    buttonCaption: "Sign In",
   },
+  submitButtonCaption: "Sign Up",
 };
-
 
 export const SettingsAccountFormDetails: AccountFormDetails = {
   pageTitle: "Settings",
   subTitle: {
     question: "Changed your mind?",
     buttonLink: "/user-profile",
-    buttonCaption: "Go back"
+    buttonCaption: "Go back",
   },
+  submitButtonCaption: "Save Settings",
 };

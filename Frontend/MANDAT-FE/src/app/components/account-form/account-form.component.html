@@ -165,6 +165,16 @@
         </mat-select>
       </mat-form-field>
 
+      <button
+        mat-raised-button
+        (click)="submit()"
+        color="primary"
+        [disabled]="!emailFormControl.valid || !passwordFormControl.valid"
+        routerLink="home-page">
+        {{ accountFormDetails.submitButtonCaption | titlecase }}
+      </button>
+      <!-- [disabled]="!emailFormControl.valid || !passwordFormControl.valid" -->
+
       <!-- <button
         mat-raised-button
         (click)="register()"

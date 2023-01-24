@@ -66,17 +66,18 @@ export class RegisterComponent {
   ) {}
 
   public register(): void {
-    this.userAccount.Register(this.model).subscribe(
-      result => {
-        console.log(result);
-        this.router.navigate(["/login"]);
-      },
-      error => {
-        console.log(error);
-      }
-    );
-    // //console.log(this.model.value.email);
-    console.log(this.model);
-    //this.router.navigate(['/login'])
+    alert("Register!")
+    // this.userAccount.Register(this.model).subscribe(
+    //   result => {
+    //     console.log(result);
+    //     this.router.navigate(["/login"]);
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   }
+    // );
+    // // //console.log(this.model.value.email);
+    // console.log(this.model);
+    // //this.router.navigate(['/login'])
   }
 }

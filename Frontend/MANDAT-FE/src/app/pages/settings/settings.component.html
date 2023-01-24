@@ -1,1 +1,4 @@
-<app-account-form [accountFormDetails]="accountFormDetails"></app-account-form>
+<app-account-form
+  [accountFormDetails]="accountFormDetails"
+  (submitEmitter)="updateAccountDetails()">
+</app-account-form>

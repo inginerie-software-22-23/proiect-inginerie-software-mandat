@@ -1,4 +1,5 @@
-﻿using MANDAT.BusinessLogic.Base;
+﻿using Azure.Core;
+using MANDAT.BusinessLogic.Base;
 using MANDAT.BusinessLogic.Base;
 using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
@@ -8,6 +9,7 @@ using MANDAT.Common.Exceptions;
 using MANDAT.Common.External.Auth;
 using MANDAT.Common.Features.Register;
 using MANDAT.Entities.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -167,32 +169,71 @@ namespace MANDAT.BusinessLogic.Services
             return selectedUserTokenPropertiesObject;
         }
 
+
+        public bool SoftDeleteUser(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get()
+                                                .Where(m => m.Email.Equals(email))
+                                                .SingleOrDefault();
+                if (user == null)
+                {
+                    return false;
+                }
+                user.IsDeleted = true;
+                uow.IdentityUsers.Update(user);
+                uow.SaveChanges();
+                return user.IsDeleted;
+            });
+        }
+
         public TokenWrapper Login(LoginCommand loginCommand)
         {
+            
 
             return ExecuteInTransaction(uow => {
+
                 var email = loginCommand.Email;
-                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) ).SingleOrDefault();
+                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) && u.IsDeleted == false).SingleOrDefault();
                 user = uow.IdentityUsers.Get().Include(u => u.Role)
                                .SingleOrDefault(u => u.Email.Equals(loginCommand.Email));
                 var  roles = user.Role.Name;
 
-                var newJti = Guid.NewGuid().ToString();
-                var tokenHandler = new JwtSecurityTokenHandler();
-                //usersecret
-                var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_signInKeySetting.SecretSignInKeyForJwtToken));
-                //int usedRefreshes = -1;
-                var tokenresult =  _tokenManager.GenerateTokenAndRefreshToken(signinKey, user, roles, tokenHandler, newJti);
-                //var refreshToken = _tokenManager.GenerateRefreshToken();
+                if (user == null)
+                {
+                    string message = $"User with username or password = {loginCommand.Email}  was not found or your account is deleted";
+                    throw new NotFoundException(nameof(IdentityUser), message);
+                }
+
+
+                string initialsalt = user.PasswordHash.Split('.')[1];
+                bool isPasswordVerified = _hashAlgo.IsPasswordVerified(user.PasswordHash, initialsalt, loginCommand.Password);
+                if (isPasswordVerified)
+                {
+
+                    //  var userL = GetUserById(user.Id);
+
+                    //  updateUser(user);
+
+                    var newJti = Guid.NewGuid().ToString();
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    //usersecret
+                    var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_signInKeySetting.SecretSignInKeyForJwtToken));
+                    //int usedRefreshes = -1;
+                    var tokenresult = _tokenManager.GenerateTokenAndRefreshToken(signinKey, user, roles, tokenHandler, newJti);
+                    //var refreshToken = _tokenManager.GenerateRefreshToken();
 
 
 
-                TokenWrapper tokenwrapper = new TokenWrapper();
-                tokenwrapper.Token = tokenresult.Item1;
-                tokenwrapper.RefreshToken = tokenresult.Item2;
+                    TokenWrapper tokenwrapper = new TokenWrapper();
+                    tokenwrapper.Token = tokenresult.Item1;
+                    tokenwrapper.RefreshToken = tokenresult.Item2;
 
 
-                return tokenwrapper;
+                    return tokenwrapper;
+                }
+                throw new IncorrectPasswordException("Wrong Password");
             });
 
             

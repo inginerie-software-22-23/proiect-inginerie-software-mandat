@@ -95,6 +95,15 @@ namespace MANDATWebApp.Controllers
             return Ok();
 
         }
+
+        [HttpPut("SoftDelete")]
+        public IActionResult DeleteUserAccount(string email)
+        {
+            var result = _userAccountService.SoftDeleteUser(email);
+            return Ok(result);
+
+        }
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshLoginToken([FromBody] RefreshTokenCommand refreshTokenCommand, CancellationToken cancellationToken)

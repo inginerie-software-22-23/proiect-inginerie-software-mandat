@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
-import { RegisterModel } from "../../interfaces/registermodel";
+import { RegisterModel } from "src/app/models/register-model";
+
 
 @Component({
   selector: "app-material-input",

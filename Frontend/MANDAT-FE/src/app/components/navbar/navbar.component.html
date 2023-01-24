@@ -26,19 +26,24 @@
   </button>
 
   <mat-divider></mat-divider>
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'student'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Student'">
       <mat-icon>My mentors</mat-icon>
       <a style="color: white;" (click)="myMentors()">My mentors</a>
   </button>
 
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
     <mat-icon>My students</mat-icon>
     <a style="color: white" (click)="myStudents()">My students</a>
   </button>
   
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'mentor'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
     <mat-icon>Requests</mat-icon>
     <a style="color: white" routerLink="/requests">Requests</a>
+  </button>
+
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
+    <mat-icon>Create Announcement</mat-icon>
+    <a style="color: white" routerLink="/create-announcement">Announcement</a>
   </button>
 </div>
 

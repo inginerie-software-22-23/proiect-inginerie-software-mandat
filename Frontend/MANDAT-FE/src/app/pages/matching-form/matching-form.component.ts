@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { MatchingFormModel } from 'src/app/interfaces/matching-form-model';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { MatchingFormModel } from 'src/app/models/matching-form-model';
 
 @Component({
   selector: "app-matching-form",

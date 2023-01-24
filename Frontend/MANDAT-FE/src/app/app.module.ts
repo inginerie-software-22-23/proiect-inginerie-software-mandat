@@ -47,6 +47,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { CommonModule } from '@angular/common';
 import { MentorsComponent } from './pages/mentors/mentors.component';
+import { CreateAnnouncementComponent } from './pages/create-announcement/create-announcement.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { MentorsComponent } from './pages/mentors/mentors.component';
     MentorRequestCardComponent,
     VideoMeetingComponent,
     AddParticipantsComponent,
-    MentorsComponent
+    MentorsComponent,
+    CreateAnnouncementComponent
     
   ],
   imports: [

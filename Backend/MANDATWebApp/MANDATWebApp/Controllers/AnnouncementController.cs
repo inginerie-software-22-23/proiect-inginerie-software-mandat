@@ -74,5 +74,11 @@ namespace MANDATWebApp.Controllers
             return Ok(result);
         }
 
+        [HttpPost("create-with-email")]
+        public IActionResult CreateAnnouncementWithEmail(CreateAnnouncementWithEmailDto createAnnouncementWithEmailDto)
+        {
+            var result = announcementManager.CreateWithEmail(createAnnouncementWithEmailDto);
+            return Ok(result);
+        }
     }
 }

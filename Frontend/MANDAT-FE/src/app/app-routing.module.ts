@@ -11,11 +11,13 @@ import { MyStudentsComponent } from './pages/my-students/my-students.component';
 import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
 import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
 import { MentorsComponent } from './pages/mentors/mentors.component';
+import { CreateAnnouncementComponent } from './pages/create-announcement/create-announcement.component';
 
 const routes: Routes = [
 
   {path: 'home', component: HomePageComponent},
   { path: "user-profile", component: UserProfileComponent },
+  { path: "create-announcement", component: CreateAnnouncementComponent },
   { path: 'match', component: MatchingFormComponent  },
   { path: 'my-students', component: MyStudentsComponent  },
   { path: 'my-mentors', component: MyMentorsComponent},

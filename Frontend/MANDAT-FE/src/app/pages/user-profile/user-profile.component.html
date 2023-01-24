@@ -7,45 +7,65 @@
           userAccountWithAddress.username | titlecase
         }}</span>
       </div>
-  
+
       <div class="city"
         >{{ "City: " | titlecase }}
         <span class="value">{{ userAccountWithAddress.city | titlecase }}</span>
       </div>
-  
+
       <div
         class="courses"
-        *ngFor="let sub of userAccountWithAddress.subject"
         [style.display]="
-          userAccountWithAddress.subject === null ? 'none' : 'block'
-        "
-        >{{ "Courses: " | titlecase }}
-        <span class="value" >{{
-          sub | titlecase
-        }}</span>
+          userAccountWithAddress.subject === null ? 'none' : 'flex'
+        ">
+        <div>{{ "Courses: " | titlecase }}</div>
+        <span class="courses-list">
+          <ng-container *ngFor="let sub of userAccountWithAddress.subject">
+            <li class="value">{{ sub | titlecase }}</li>
+          </ng-container>
+        </span>
       </div>
-  
+
       <div class="stars">
         {{ "Stars" | titlecase }}
       </div>
 
       <div class="rating">
-        <span [ngClass]="rating !== undefined && rating >= 1 ? 'yellow' : 'gray'">★</span>
-        <span [ngClass]="rating !== undefined && rating >= 2 ? 'yellow' : 'gray'">★</span>
-        <span [ngClass]="rating !== undefined && rating >= 3 ? 'yellow' : 'gray'">★</span>
-        <span [ngClass]="rating !== undefined && rating >= 4 ? 'yellow' : 'gray'">★</span>
-        <span [ngClass]="rating !== undefined && rating >= 5 ? 'yellow' : 'gray'">★</span>
+        <span
+          [ngClass]="rating !== undefined && rating >= 1 ? 'yellow' : 'gray'"
+          >★</span
+        >
+        <span
+          [ngClass]="rating !== undefined && rating >= 2 ? 'yellow' : 'gray'"
+          >★</span
+        >
+        <span
+          [ngClass]="rating !== undefined && rating >= 3 ? 'yellow' : 'gray'"
+          >★</span
+        >
+        <span
+          [ngClass]="rating !== undefined && rating >= 4 ? 'yellow' : 'gray'"
+          >★</span
+        >
+        <span
+          [ngClass]="rating !== undefined && rating >= 5 ? 'yellow' : 'gray'"
+          >★</span
+        >
       </div>
     </div>
   </div>
-  
+
   <div class="menu-box">
-    <a routerLink="/video-meeting">{{ 'Video Link' | titlecase }}</a>
-    <a routerLink="/my-students">{{ 'My Students' | titlecase }}</a>
-    <a routerLink="/requests" [ngClass]="notifications > 0 ? 'notifications' : ''">{{ 'Notifications' | titlecase }}</a>
+    <a routerLink="/video-meeting">{{ "Video Link" | titlecase }}</a>
+    <a routerLink="/my-students">{{ "My Students" | titlecase }}</a>
+    <a routerLink="/my-announcements">{{ "My Announcements" | titlecase }}</a>
+    <a
+      routerLink="/requests"
+      [ngClass]="notifications > 0 ? 'notifications' : ''"
+      >{{ "Notifications" | titlecase }}</a
+    >
   </div>
 </div>
-
 
 <div class="more-about-me">
   <h1>{{ "🔥 More About Me: 👋" | titlecase }}</h1>

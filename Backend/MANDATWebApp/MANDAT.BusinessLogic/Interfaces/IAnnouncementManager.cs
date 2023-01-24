@@ -8,6 +8,7 @@ namespace MANDAT.BusinessLogic.Interfaces
 
         List<AllAnnouncementsDto> GetAllAnnouncements();
         List<AllAnnouncementsDto> GetAllAnnouncementByMentorId(Guid mentorId);
+        List<AllAnnouncementsDto> GetAllAnnouncementByEmail(string email);
         List<AllAnnouncementsDto> GetAllAnnouncementBySubject(string subject);
         List<AllAnnouncementsDto> GetAllAnnouncementByPrice(int price);
         List<AllAnnouncementsDto> GetAllAnnouncementByType(bool MeetingType);

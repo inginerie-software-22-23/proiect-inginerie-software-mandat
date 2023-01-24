@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
+import { subjects } from "src/app/constants/subjects";
 import { AnnouncementModel } from "src/app/models/announcement-model";
 import { AnnouncementService } from "src/app/services/announcement.service";
 
@@ -11,6 +12,7 @@ import { AnnouncementService } from "src/app/services/announcement.service";
 })
 export class CreateAnnouncementComponent {
   public model: AnnouncementModel = {
+    id: "",
     email: "",
     subject: "",
     description: "",
@@ -19,7 +21,8 @@ export class CreateAnnouncementComponent {
   };
 
   meetingTypes: string[] = ["Online", "Face-to-Face"];
-  selectedMeetingType: string; 
+  selectedMeetingType: string = ""; 
+  subjects: string[] = subjects;
 
   constructor(
     private router: Router,
@@ -31,6 +34,18 @@ export class CreateAnnouncementComponent {
   
 
   public post(): void {
+    if(this.model.subject === ""){
+      alert("Please choose a subject!");
+      return;
+    }
+    if(this.model.price <= 0){
+      alert("Price cannot be less than or equal than 0.")
+      return;
+    }
+    if(this.selectedMeetingType == ""){
+      alert("Please choose a meeting type!");
+      return;
+    }
     this.model.meetingType = this.selectedMeetingType === "Online" ? true : false;
     this.announcementService.CreateAnnouncementWithEmail(this.model).subscribe(
       result => {

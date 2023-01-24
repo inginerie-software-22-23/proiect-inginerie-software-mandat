@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CookieService } from "ngx-cookie-service";
+import { MeetingTypes } from 'src/app/constants/meeting-types';
 import { AnnouncementModel } from 'src/app/models/announcement-model';
 import { AnnouncementService } from 'src/app/services/announcement.service';
 
@@ -11,6 +12,7 @@ import { AnnouncementService } from 'src/app/services/announcement.service';
 export class MyAnnouncementsComponent {
   private url: string = "https://localhost:7278/api/Announcement/getAllAnnouncementByEmail/pat@example1.com"
   private email: string;
+  meetingTypes: Map<boolean, string> = MeetingTypes;
   announcements: AnnouncementModel[];
 
   constructor(

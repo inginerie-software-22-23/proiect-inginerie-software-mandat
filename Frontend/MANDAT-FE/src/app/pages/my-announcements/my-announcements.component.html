@@ -1,3 +1,12 @@
-<ng-container *ngFor="let announcement of announcements">
-  <p>{{announcement.subject}}</p>
-</ng-container>
+<div class="background">
+  <div class="card-container" *ngFor="let announcement of announcements">
+    <div class="subject">{{ announcement.subject }}</div>
+
+    <div class="remaining-details">
+      <div>{{ announcement.price }}</div>
+      <div>{{ meetingTypes.get(announcement.meetingType) }}</div>
+      <div>{{ announcement.description }}</div>
+    </div>
+    <div class="options"> </div>
+  </div>
+</div>

@@ -3,4 +3,5 @@ export interface RequestModel{
     email: string;
     matchDate: string;
     status: string;
+    subject: string;
 }

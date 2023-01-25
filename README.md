@@ -133,7 +133,10 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 - I can view all my accepted students/the students I tutor so that I can have an overview on them
 - I can post announcements with subjects I can teach so that I attract more students 
 - I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
-    
+  
+  
+ ![image](https://user-images.githubusercontent.com/96074975/214015920-a98107aa-ac20-4ce6-bcb3-b9cb2e3f63d8.png)
+ 
 ---
 </details>
 
@@ -190,23 +193,221 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 <details>
 <summary><b> 📗 Sprint :three:✔️ </b></summary>
 
+### Sprint backlog
+
 ![Sprint3Image](/readme-images/sprint_3.png)
+
+
+### 🎬 User Stories checked 📰
+
+As a unregistered user/someone without an account:
+
+- I want to be able to register so that I can have my own personal account ✔️
+
+As a registered user(mentor or student):
+
+- I want to be able to login so that I can navigate on my own personal account ✔️
+
+
+
+### Sprint outcome
+
+This sprint includes backend and frontend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/25)
+  - Frontend: ![](https://geps.dev/progress/10)
+  
+> Create initial database ✔️
+
+- Backend 
+
+        Tables:
+
+        Adress
+        Announcement
+        IdentityUser
+        IdentityRole
+        IdentityUserToken
+        IdentityUserTokenConfirmation
+        Mentor
+        Review
+        Student
+
+> Login and Register ✔️
+
+- Backend 
+
+        Hash function for password
+        Login : token (JWT token)
+        Register table
+        Controllers
+
+- Frontend
+
+![Capture](https://user-images.githubusercontent.com/96074975/214018445-bdecef09-0901-4bf6-b39a-a44488c27eaf.PNG)
+
+  
+  
+ 
 
 </details>
 
 <details>
 <summary><b> 📗 Sprint :four:✔️ </b></summary>
 
+### Sprint backlog  
+  
 ![image](https://user-images.githubusercontent.com/96074975/213914120-280f22d9-6983-42f5-9c45-be28298bc2dc.png)
 
+### 🎬 User Stories checked 📰
+  
+As a registered user(mentor or student):
+
+- I can leave a review/rating score on the person I worked with(mentor for student/student for mentor) so that I can acknowledge my experience with them/help others get some feedback on that person ✔️
+- I want to to have the ability to check the details of my profile so that I can view my personal info ✔️
+- I want to manage my account(update details/delete account) so that I can leave my details up-to-date ✔️
+  
+As a student:
+
+- I want to search for mentors both for online sessions and physical session so that I can find a mentor ✔️
+  
+As a mentor:
+
+- I can view all my accepted students/the students I tutor so that I can have an overview on them ✔️
+- I can post announcements with subjects I can teach so that I attract more students ✔️
+
+### Sprint outcome
+
+This sprint only includes backend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/55)
+  - Frontend: ![](https://geps.dev/progress/10)
+
+> Table Students CRUD ✔️
+
+- Backend 
+  
+       Get All Students
+       Get Students By Id
+       Get Students By Name (output => list)
+       Get Students By Location
+       Get Mentors for Current Student (We get from Match table the students who have status true - it means the student is accepted by mentor)
+       Post - Update Student Profile
+       Patch - Soft Delete for Student(In Identity User we change the IsDeleted Column to true)
+  
+> Table Announcement CRUD ✔️
+
+- Backend 
+  
+        Get All Announcements
+        Get All Announcements By Mentor Id
+        Get Announcement By Subject
+        Get Announcement By Price (Ascending and Descending Order)
+        Get Announcement By Meeting Type
+        Post - Create Announcement By Mentor
+        Patch - Edit Announcement
+        Delete Announcement By Mentor And Admin
+  
+  
+ > Table Mentors CRUD ✔️
+
+- Backend 
+  
+         Get All Mentors
+         Get Mentors By Id
+         Get Mentors By Name (output => list)
+         Get Mentors By Location
+         Get Students for Current Mentor (We get from Match table the students who have status true - it means the student is accepted by mentor)
+         Post - Update Mentor Profile
+         Patch - Soft Delete for Mentors (In Identity User We change the IsDeleted Column to true)
+  
+ 
+   
+ > Table Review  CRUD ✔️
+
+- Backend 
+  
+           Get All Reviews By Mentor Id
+           Get All Reviews By Student Id
+           Post - Create Review
+           Get - Average Rating
+           Patch - Edit comment
+           Delete Review
+   
+  
 </details>
 
 
 <details>
 <summary><b> 📗 Sprint :five:✔️ </b></summary>
 
+### Sprint backlog  
+  
 ![image](https://user-images.githubusercontent.com/96074975/213914141-0cdaed96-d419-414e-97cb-1805f3a01557.png)
+  
+  
+ ### 🎬 User Stories checked 📰
+  
+As a student:
 
+- I want to see a mentor's phone number so that I can call him/her and schedule a timeslot for the future sessions ✔️
+  
+As a mentor:
+
+- I want to be able to accept/reject student requests so that I can be more selective with the students I work with ✔️
+- I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions :interrobang:
+
+### Sprint outcome
+
+This sprint only includes backend.
+  
+Project progress after this sprint:
+  - Backend: ![](https://geps.dev/progress/90)
+  - Frontend: ![](https://geps.dev/progress/10)
+
+> Table Students CRUD ✔️
+
+- Backend 
+  
+      GetMentorsPhoneNumber(Guid studentId, Guid mentorId) -> intoarce numarul sau "" daca nu exista match intre ei
+      Update student location
+  
+  
+> Table Match CRUD ✔️
+
+- Backend 
+    
+       Create
+       GetMatchesForStudent(Guid mentorId) -> a student can see his/her requests
+            1. one method for accepted requests of match
+            2. one method for requests without an answer
+            3. one method for rejected requests
+       Update - mentor change the status of requests (accept or reject)
+       Delete
+       GetMatchesForMentor(Guid mentorId) -> a mentor receive requests from students
+            1. one method for accepted requests of match
+            2. one method for requests without an answer
+            3. one method for rejected requests
+
+  
+ > Table Mentors CRUD ✔️
+
+- Backend 
+  
+       GetLocationsForMentors
+       GetMentorPhoneNumber
+       Update Mentor location
+       Update just for mentor items
+
+
+> Generate zoom link :interrobang:
+  
+- Backend 
+      
+       Task In progress, but unfinished in this sprint
+  
 </details>
 
 
@@ -242,11 +443,49 @@ https://unicode.org/emoji/charts/full-emoji-list.html
 
 # Software Architecture
 
+Principles of design & implementation
 
-### MVC 
+2. Presentation (API): the interface of the system with the outside
+- One Controller per resource
+- Command or query type actions; never mixed
+- One DTO per action (order/query); never work with entities
+- Actions in controllers are related to the resource that the controller models
+- Actions in controllers, in 99% of cases, just check the model and pass the request to BL
+- No business logic in the API
+- Authorize accordingly
+- Configured dependency lifecycle accordingly
 
-The term MVC stands for "Model-View-Controller", a UI pattern that breaks up the responsibilities of responding to user requests into several parts.
-Our application template is composed of ConsoleApp, WebApp and WebApplication. The WebApp it is structured on a "N-Layer" architecturen.
+3. Domain (Business Logic): use cases that the system implements
+- One service per concept
+- A method per use-case
+- Use cases of order or query type;
+- Orders are executed transactionally
+- Paginated and filtered queries
+- Services have DTOs
+
+4. Domain (Entities): the models with which the solution works
+- Entity per table
+- Enums for static and referenceable nomenclature in the code
+
+5. Data Access: abstraction over the data source
+- Generic repo
+- Transactional repo (by default with Unit Of Work with EF)
+
+6. Database: data source
+- Tables in FN3
+- UUIDs as PKs
+- Views if large and/or non-performing queries appear
+- FKs where needed, Non-Clustered Indexes, cascade rules, constraints
+- A lot of seed data: in the main tables in the order of tens of thousands
+
+
+General principles:
+- The user is at the center of the solution
+- Solve the client's need well, efficiently and sustainably
+- The user has access only to the minimum set of data/functionalities
+- Fewer but more complex public methods are preferred over many but simple public methods
+- Resources for admin/user editable configurations
+- DRY, Keep it very simple
 
 ### Traditional "N-Layer" architecture applications
 The application is divided into 4 layers: Business Logic, DataAccess, Common and Entities.

@@ -32,21 +32,25 @@ import {
 } from "@abacritt/angularx-social-login";
 import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 import { AcceptJSService } from "@openutility/acceptjs-angular-wrapper";
-import { MatchingFormComponent } from './pages/matching-form/matching-form.component';
-import { MentorRequestsComponent } from './pages/mentor-requests/mentor-requests.component';
-import { MyMentorsComponent } from './pages/my-mentors/my-mentors.component';
-import { MyStudentsComponent } from './pages/my-students/my-students.component';
-import { CardComponent } from './components/card/card.component';
-import { MentorRequestCardComponent } from './components/mentor-request-card/mentor-request-card.component';
-import { VideoMeetingComponent } from './pages/video-meeting/video-meeting.component';
-import { AddParticipantsComponent } from './pages/video-meeting/add-participants/add-participants.component';
+import { MatchingFormComponent } from "./pages/matching-form/matching-form.component";
+import { MentorRequestsComponent } from "./pages/mentor-requests/mentor-requests.component";
+import { MyMentorsComponent } from "./pages/my-mentors/my-mentors.component";
+import { MyStudentsComponent } from "./pages/my-students/my-students.component";
+import { CardComponent } from "./components/card/card.component";
+import { MentorRequestCardComponent } from "./components/mentor-request-card/mentor-request-card.component";
+import { VideoMeetingComponent } from "./pages/video-meeting/video-meeting.component";
+import { AddParticipantsComponent } from "./pages/video-meeting/add-participants/add-participants.component";
 import { HomeCardComponent } from "./components/home-card/home-card.component";
-import { MatDialogModule } from '@angular/material/dialog';
-import { SharedModule } from './components/shared/shared.module';
-import { UserProfileComponent } from './pages/user-profile/user-profile.component';
-import { StarRatingComponent } from './components/star-rating/star-rating.component';
-import { CommonModule } from '@angular/common';
-import { MentorsComponent } from './pages/mentors/mentors.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { SharedModule } from "./components/shared/shared.module";
+import { UserProfileComponent } from "./pages/user-profile/user-profile.component";
+import { StarRatingComponent } from "./components/star-rating/star-rating.component";
+import { CommonModule } from "@angular/common";
+import { MentorsComponent } from "./pages/mentors/mentors.component";
+import { CreateAnnouncementComponent } from "./pages/create-announcement/create-announcement.component";
+import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announcements.component";
+import { SettingsComponent } from './pages/settings/settings.component';
+import { AccountFormComponent } from './components/account-form/account-form.component';
 
 @NgModule({
   declarations: [
@@ -72,8 +76,11 @@ import { MentorsComponent } from './pages/mentors/mentors.component';
     MentorRequestCardComponent,
     VideoMeetingComponent,
     AddParticipantsComponent,
-    MentorsComponent
-    
+    MentorsComponent,
+    CreateAnnouncementComponent,
+    MyAnnouncementsComponent,
+    SettingsComponent,
+    AccountFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -12,8 +12,8 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
+import { MyErrorStateMatcher } from "src/app/components/account-form/account-form.component";
 import { UserAccountService } from "src/app/services/user-account.service";
-import { MyErrorStateMatcher } from "../register/register.component";
 
 @Component({
   selector: "app-login",
@@ -59,12 +59,13 @@ export class LoginComponent {
             this.cookieService.set("Rol", details.roles);
             this.cookieService.set("LoggedIn", "true");
           });
-        
+
         this.cookieService.set("Token", result.token);
-        
+
         this.router.navigate(["/home"]);
-        setTimeout(function(){window.location.reload();
-        },1000);
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
       },
 
       error => {
@@ -85,6 +86,6 @@ export class LoginComponent {
   logOut(): any {
     // ramane navbarul neactualizat
     this.socialAuthService.signOut();
-    window.location.reload(); 
+    window.location.reload();
   }
 }

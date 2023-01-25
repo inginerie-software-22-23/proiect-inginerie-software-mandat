@@ -1,10 +1,9 @@
 import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
+import { MyErrorStateMatcher } from "src/app/components/account-form/account-form.component";
 import { MeetingModel } from "src/app/models/meeting-model";
 import { VideoCallService } from "src/app/services/video-call.service";
-import { MyErrorStateMatcher } from "../../register/register.component";
 
 @Component({
   selector: "app-add-participants",
@@ -26,7 +25,6 @@ export class AddParticipantsComponent {
 
   matcher = new MyErrorStateMatcher();
   constructor(
-    private router: Router,
     private videocallService: VideoCallService,
     private cookieService: CookieService
   ) {}

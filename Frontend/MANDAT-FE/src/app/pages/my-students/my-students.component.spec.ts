@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { StudentModel } from "src/app/components/interface/student-model";
+import { ComponentFixture, fakeAsync, TestBed, tick } from "@angular/core/testing";
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MyStudentsComponent } from "./my-students.component";
 import { MatDialogModule } from '@angular/material/dialog';
+import { StudentModel } from "src/app/models/student-model";
 
 fdescribe("MyStudentsComponent", () => {
   let component: MyStudentsComponent;
@@ -386,42 +386,50 @@ fdescribe("MyStudentsComponent", () => {
         addressInfo: "string",
         numberOfStars: 3
       }, {
-      username: "student2",
-      email: "student1@email.com",
-      phoneNumber: "0712345678",
-      passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
-      createdAt: new Date(50000),
-      isActive: true,
-      isDeleted: true,
-      bio: "string",
-      educationalInstitution: "string",
-      studentGrade: 4,
-      studentSchoolQualification: "string",
-      subject: "string",
-      message: "string",
-      city: "string",
-      county: "string",
-      addressInfo: "string",
-      numberOfStars: 2
-    }, {
-      username: "student3",
-      email: "student1@email.com",
-      phoneNumber: "0712345678",
-      passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
-      createdAt: new Date(50000),
-      isActive: true,
-      isDeleted: true,
-      bio: "string",
-      educationalInstitution: "string",
-      studentGrade: 4,
-      studentSchoolQualification: "string",
-      subject: "string",
-      message: "string",
-      city: "string",
-      county: "string",
-      addressInfo: "string",
-      numberOfStars: 2
-    }
+        username: "student2",
+        email: "student1@email.com",
+        phoneNumber: "0712345678",
+        passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+        createdAt: new Date(50000),
+        isActive: true,
+        isDeleted: true,
+        bio: "string",
+        educationalInstitution: "string",
+        studentGrade: 4,
+        studentSchoolQualification: "string",
+        subject: "string",
+        message: "string",
+        city: "string",
+        county: "string",
+        addressInfo: "string",
+        numberOfStars: 2
+      }, {
+        username: "student3",
+        email: "student1@email.com",
+        phoneNumber: "0712345678",
+        passwordHash: "10000.ON2pb+5dgOcr00Y7GN+N7A==.JfF2SwcWEregrLQaheM9jhF2u5FFxX7S+GEvzY6Gis8=",
+        createdAt: new Date(50000),
+        isActive: true,
+        isDeleted: true,
+        bio: "string",
+        educationalInstitution: "string",
+        studentGrade: 4,
+        studentSchoolQualification: "string",
+        subject: "string",
+        message: "string",
+        city: "string",
+        county: "string",
+        addressInfo: "string",
+        numberOfStars: 2
+      }
     ]);
   });
+
+  it('should call getMyReviews when clicked', fakeAsync(() => {
+    spyOn(component, 'getMyReviews');
+    let button = fixture.debugElement.nativeElement.querySelector('button');
+    button.click();
+    tick();
+    expect(component.getMyReviews).toHaveBeenCalled();
+  }));
 });

@@ -14,7 +14,6 @@ import { MentorModel } from 'src/app/models/mentor-model';
 })
 export class CardComponent {
   @Input() person: StudentModel | MentorModel;  
-  // @Input() personLink!: string;
   @Input() pageToShowOn: string = "";
 
   constructor(
@@ -47,7 +46,12 @@ export class CardComponent {
     if (email === '') {
       this.router.navigate(["/login"]);
     } else {
-      this.mentorService.createNewMatch(person.email, email);
+      this.mentorService.createNewMatch(person.email, email, person.subject).subscribe((result) =>{
+        if(result){
+          alert("The matching request was send!!")
+          console.log(result);
+        }
+      });
     }
   }
 }

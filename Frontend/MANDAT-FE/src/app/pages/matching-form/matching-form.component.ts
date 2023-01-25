@@ -1,15 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { MatchingFormModel } from 'src/app/interfaces/matching-form-model';
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/components/shared/shared.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-
-
+import { MatchingFormModel } from 'src/app/models/matching-form-model';
+import { subjects } from 'src/app/constants/subjects';
 
 @Component({
   selector: "app-matching-form",
@@ -25,18 +18,7 @@ export class MatchingFormComponent implements OnInit {
     public router: Router
   ){}
 
-  subjects: string[] = [
-    "Informatics",
-    "English",
-    "Mathematics",
-    "History",
-    "Biology",
-    "Geography",
-    "Romanian",
-    "French",
-    "Chemistry",
-    "Physics",
-  ];
+  subjects: string[] = subjects;
   meetingTypes: string[] = ["Online", "Face-To-Face"];
   stars: number = 0;
   
@@ -45,7 +27,6 @@ export class MatchingFormComponent implements OnInit {
     subjects: "",
     city: "",
     meetingType: "",
-    addressInfo: "",
     stars: 0,
   };
 
@@ -53,7 +34,6 @@ export class MatchingFormComponent implements OnInit {
     console.log(`Stars selected: ${newValue}`);
     this.stars = newValue;
   }
-
   
   public match(): void {
 
@@ -61,10 +41,7 @@ export class MatchingFormComponent implements OnInit {
     this.cookieService.set('matchCounty', this.model.county);
     this.cookieService.set('matchSubject', this.model.subjects);
     this.cookieService.set('matchMeeting', this.model.meetingType);
-    this.cookieService.set('matchAddress', this.model.addressInfo);
     this.cookieService.set('matchStars', this.stars.toString());
-
-
     this.router.navigate(["/mentors"]);
   }
 

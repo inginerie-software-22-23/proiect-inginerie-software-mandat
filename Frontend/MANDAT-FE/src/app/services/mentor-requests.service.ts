@@ -19,8 +19,8 @@ public GetUserRequests(email :string) : Observable<any>{
   return this.http.get(`${this.url + email}`);
 }
 
-public ChangeRequestStatus(emailMentor :string, studentEmail: string, status: boolean) : Observable<any>{
+public ChangeRequestStatus(emailMentor :string, studentEmail: string, status: boolean, subject: string) : Observable<any>{
   const headers = { 'content-type': 'application/json'};
-  return this.http.patch(`${this.url1 + emailMentor + ", " + studentEmail + ", " + status}`, {'headers':headers});
+  return this.http.patch(`${this.url1 + emailMentor + ", " + studentEmail + ", " + status + "/"+ subject}`, {'headers':headers});
 }
 }

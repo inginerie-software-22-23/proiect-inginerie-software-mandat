@@ -1,6 +1,7 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.BusinessLogic.Services;
+using MANDAT.Common.DTOs;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.Features.RefreshLoginToken;
 using MANDAT.Common.Features.Register;
@@ -95,6 +96,15 @@ namespace MANDATWebApp.Controllers
             return Ok();
 
         }
+
+        [HttpPut("SoftDelete")]
+        public IActionResult DeleteUserAccount(string email)
+        {
+            var result = _userAccountService.SoftDeleteUser(email);
+            return Ok(result);
+
+        }
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshLoginToken([FromBody] RefreshTokenCommand refreshTokenCommand, CancellationToken cancellationToken)
@@ -120,6 +130,20 @@ namespace MANDATWebApp.Controllers
         public IActionResult GetUserInfoByEmail(string email)
         {
             var result = _userAccountService.GetUserInfoByEmail(email);
+            return Ok(result);
+        }
+
+        [HttpGet("GetUserInfoWithAddressByEmail/{email}")]
+        public IActionResult GetUserInfoWithAddressByEmail(string email)
+        {
+           var result = _userAccountService.GetUserInfoWithAddressByEmail(email);
+            return Ok(result);
+        }
+
+        [HttpPut("UpdateUserWithAddressByEmail/{email}")]
+        public IActionResult UpdateUserWithAddress([FromRoute] string email, [FromBody] CurrentUserWithAddressDto user)
+        {
+            var result = _userAccountService.UpdateUserWithAddressByEmail(email, user);
             return Ok(result);
         }
 

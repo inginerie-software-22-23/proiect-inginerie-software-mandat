@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { HomeCard, HomeCards } from "src/app/interfaces/home-card";
+import { HomeCard, HomeCards } from "src/app/constants/home-card";
 
 @Component({
   selector: "app-home-page",

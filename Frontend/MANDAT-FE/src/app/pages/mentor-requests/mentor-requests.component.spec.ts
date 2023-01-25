@@ -25,19 +25,22 @@ fdescribe('MentorRequestsComponent', () => {
       fullName: "student1",
       email: "student1@yahoo.com",
       matchDate: '2023-01-21T22:58:50.7697837',
-      status: 'Waiting' 
+      status: 'Waiting',
+      subject: "Informatics"
     },
     {
       fullName: "student2",
       email: "student2@yahoo.com",
       matchDate: '2023-01-21T22:58:50.7697837',
-      status: 'Waiting'
+      status: 'Waiting',
+      subject: "Informatics"
     },
     {
       fullName: "student3",
       email: "student3@yahoo.com",
       matchDate: '2023-01-21T22:58:50.7697837',
-      status: 'Waiting'
+      status: 'Waiting',
+      subject: "Informatics"
     }];
     component.requests = requests;
     fixture.detectChanges();
@@ -53,7 +56,7 @@ fdescribe('MentorRequestsComponent', () => {
       let buttons = fixture.debugElement.queryAll(By.css('button'));
       if (buttons.length > 0) {
         buttons[0].triggerEventHandler('click',null);
-        expect(component.acceptStudent).toHaveBeenCalledWith('student1@yahoo.com');
+        expect(component.acceptStudent).toHaveBeenCalledWith('student1@yahoo.com', 'Informatics');
       } else {
         console.error("There is no button to be clicked");
       }
@@ -64,7 +67,7 @@ fdescribe('MentorRequestsComponent', () => {
       let buttons = fixture.debugElement.queryAll(By.css('button'));
       if (buttons.length > 1) {
         buttons[1].triggerEventHandler('click',null);
-        expect(component.rejectStudent).toHaveBeenCalledWith('student1@yahoo.com');
+        expect(component.rejectStudent).toHaveBeenCalledWith('student1@yahoo.com', 'Informatics');
       } else {
         console.error("There is no button to be clicked");
       }

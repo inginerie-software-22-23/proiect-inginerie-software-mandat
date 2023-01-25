@@ -22,6 +22,7 @@ export class MyStudentsComponent {
     private cookieService: CookieService,
     private dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
     this.email = this.cookieService.get('Email');
     console.log(this.email);
@@ -30,10 +31,8 @@ export class MyStudentsComponent {
         console.log(response);
         this.students = response;
         for(let student of this.students) {
-          console.log(student.email);
           this.reviewService.getStudentStars(student.email).subscribe(
             (result:number) => {
-              console.log(result);
               student.numberOfStars = result;
             },
             (error) => {
@@ -48,18 +47,21 @@ export class MyStudentsComponent {
       }
     );
   }
+
   public sortByNameASC() {
     this.sortByNameAsc = true;
     this.students.sort((a, b) => {
         return a.username.localeCompare(b.username);
     });
   }
+
   public sortByNameDESC() {
     this.sortByNameAsc = false;
     this.students.sort((a, b) => {
         return b.username.localeCompare(a.username);
     });
   }
+
   public sortedStarsAscending() {
     this.sortByStarsAsc = true;
     this.students.sort((a, b) => {
@@ -73,6 +75,7 @@ export class MyStudentsComponent {
       return (b.numberOfStars !== undefined? b.numberOfStars : 0) - (a.numberOfStars !== undefined? a.numberOfStars : 0);
     });
   }
+
   public getMyReviews() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.width = '1000px';

@@ -3,10 +3,10 @@
 <div *ngFor="let req of requests " class="container" >
 <span style="  display: flex; " class="card" id="{{req.email}}"><img alt="user Avatar" src="../../../assets/images/profile.jpg"/>
   <h2>{{req.fullName}}</h2>
-  <p>Email: {{req.email}} <br> Data request: {{req.matchDate}}</p>
+  <p>Email: {{req.email}} <br> Data request: {{req.matchDate}} <br> Subject: {{req.subject}}</p>
   <div class="buttongroup">
-     <button (click)="acceptStudent(req.email)">Approve</button> <!-- -->
-    <button (click)="rejectStudent(req.email)" >Remove</button> 
+     <button (click)="acceptStudent(req.email, req.subject)">Approve</button> <!-- -->
+    <button (click)="rejectStudent(req.email, req.subject)" >Remove</button> 
     <!--  -->
   </div>
 </span>

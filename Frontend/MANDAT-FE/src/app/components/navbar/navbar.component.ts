@@ -6,6 +6,7 @@ import { UserAccountService } from "src/app/services/user-account.service";
 import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { FormBuilder } from "@angular/forms";
+import { Roles } from "src/app/constants/roles";
 
 @Component({
   selector: "app-navbar",
@@ -19,6 +20,7 @@ export class NavbarComponent {
   isLoggedin?: string;
   name?: string;
   rol?: string;
+  roles: Roles = new Roles();
   constructor(
     private observer: BreakpointObserver,
     private router: Router,
@@ -36,20 +38,21 @@ export class NavbarComponent {
     }
   }
   public myMentors(): void {
-    this.router.navigate(['my-mentors']);
+    this.router.navigate(["my-mentors"]);
   }
-   logOut():any {
-    let email= this.cookieService.get('Email');
+  logOut(): any {
+    let email = this.cookieService.get("Email");
     this.accountService.Logout(email).subscribe(
       result => {
         console.log(result);
         sessionStorage.clear();
         localStorage.clear();
         this.cookieService.deleteAll();
-       
+
         this.router.navigate(["/login"]);
-        setTimeout(function(){window.location.reload();
-        },1000);
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
       },
       error => {
         console.error(error);

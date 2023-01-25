@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MAT_SORT_HEADER_INTL_PROVIDER } from '@angular/material/sort';
 import { CookieService } from 'ngx-cookie-service';
+import { Roles } from 'src/app/constants/roles';
 import { AccountService } from 'src/app/services/account.service';
 import { ReviewService } from 'src/app/services/review.service';
 import { StudentService } from 'src/app/services/student.service';
@@ -20,6 +21,7 @@ export class DialogAddReviewByStudentComponent implements OnInit{
   public emailStudent: string = '';
   public emailMentor: string = '';
   public user:any;
+  roles: Roles = new Roles();
 
   public addReviewForm: FormGroup = new FormGroup({
     message: new FormControl(''),
@@ -40,12 +42,12 @@ export class DialogAddReviewByStudentComponent implements OnInit{
       this.user = data.data;
     }
     
-    if (this.cookie.get('Rol') === 'student') {
+    if (this.cookie.get('Rol') === this.roles.Student) {
       this.reviewStatus = "ReviewMentor";
       this.emailStudent =  this.cookie.get('Email');
       this.emailMentor = this.user.email;
 
-    } else if (this.cookie.get('Rol') === 'mentor') {
+    } else if (this.cookie.get('Rol') === this.roles.Mentor) {
       this.reviewStatus = "ReviewStudent";
       this.emailMentor =  this.cookie.get('Email');
       this.emailStudent= this.user.email;

@@ -4,6 +4,7 @@ import { UserAccountWithAddress } from "src/app/models/user-account-with-address
 import { CookieService } from "ngx-cookie-service";
 import { ReviewService } from "src/app/services/review.service";
 import { MentorRequestsService } from "src/app/services/mentor-requests.service";
+import { Roles } from "src/app/constants/roles";
 
 declare var google: any;
 const apiKey = "";
@@ -30,6 +31,7 @@ export class UserProfileComponent implements OnInit {
   email: string;
   rating: number;
   rol: string;
+  roles: Roles = new Roles();
 
   constructor(
     private userAccountService: UserAccountService,

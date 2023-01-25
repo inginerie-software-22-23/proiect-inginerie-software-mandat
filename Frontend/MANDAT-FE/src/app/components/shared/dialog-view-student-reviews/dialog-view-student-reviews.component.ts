@@ -1,6 +1,7 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie-service';
+import { Roles } from 'src/app/constants/roles';
 import { MyReviews } from 'src/app/models/my-reviews';
 import { ReviewEdit } from 'src/app/models/review-edit';
 import { ReviewService } from 'src/app/services/review.service';
@@ -17,6 +18,7 @@ export class DialogViewStudentReviewsComponent implements OnInit{
   public displayedColumns = ['message','starsNumber','mentorName', 'studentName','edit'];
   public emailUser: string | undefined;
   public role: string = '';
+  roles: Roles = new Roles();
   public count: number = 0;
 
   constructor(

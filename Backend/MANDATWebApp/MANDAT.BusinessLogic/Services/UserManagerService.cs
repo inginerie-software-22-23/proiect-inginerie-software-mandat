@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Linq.Expressions;
@@ -276,7 +277,7 @@ namespace MANDAT.BusinessLogic.Services
 
 
 
-        public  IdentityUser updateUser(IdentityUser user)
+        public IdentityUser updateUser(IdentityUser user)
         {
             return ExecuteInTransaction(uow =>
             {
@@ -286,6 +287,31 @@ namespace MANDAT.BusinessLogic.Services
             });
             
 
+        }
+
+        public bool UpdateUserWithAddressByEmail(string email, CurrentUserWithAddressDto user)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var updatedUser = uow.IdentityUsers.Get()
+                    .Include(a => a.Adress)
+                    .Where(u => u.Email.Equals(email))
+                    .SingleOrDefault();
+
+                updatedUser.Username = user.Username;
+                updatedUser.Email = user.Email;
+                updatedUser.PhoneNumber = user.PhoneNumber;
+                updatedUser.Bio = user.Bio;
+                updatedUser.EducationalInstitution = user.EducationalInstitution;
+
+                updatedUser.Adress.AddressInfo = user.AddressInfo;
+                updatedUser.Adress.City = user.City;
+                updatedUser.Adress.County = user.County;
+
+                uow.IdentityUsers.Update(updatedUser);
+                uow.SaveChanges();
+                return true;
+            });
         }
 
     }

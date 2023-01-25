@@ -35,6 +35,7 @@ export class AccountFormComponent {
   public model: AccountModel = {
     firstName: "",
     lastName: "",
+    userName: "",
     email: "",
     password: "",
     repeatPassword: "",

@@ -1,41 +1,41 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { AccountModel } from "../models/account-model";
 import { RegisterModel } from "../models/register-model";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserAccountService {
-  private url = "https://localhost:7278/api/Accounts/register";
-  private url2 = "https://localhost:7278/api/Accounts/login";
-  private url3 = "https://localhost:7278/api/Accounts/GetUserInfoByEmail/";
-  private url4 = "https://localhost:7278/api/Accounts/DeleteTokenAsync/";
-  private url5 =
-    "https://localhost:7278/api/Accounts/GetUserInfoWithAddressByEmail/";
+  private url = "https://localhost:7278/api/Accounts";
 
   constructor(private http: HttpClient) {}
   public Register(user: RegisterModel): Observable<any> {
     const headers = { "content-type": "application/json" };
     // const body=JSON.stringify();
-    return this.http.post(`${this.url}`, user, { headers: headers });
+    return this.http.post(`${this.url}/register`, user, { headers: headers });
   }
 
   public Login(info: any): Observable<any> {
     const headers = { "content-type": "application/json" };
-    return this.http.post(`${this.url2}`, info, { headers: headers });
+    return this.http.post(`${this.url}/login`, info, { headers: headers });
   }
 
   public GetUserInfo(email: string): Observable<any> {
-    return this.http.get(`${this.url3 + email}`);
+    return this.http.get(`${this.url}/GetUserInfoByEmail/${email}`);
   }
 
   public GetUserInfoWithAddressByEmail(email: string): Observable<any> {
-    return this.http.get(`${this.url5 + email}`);
+    return this.http.get(`${this.url}/GetUserInfoWithAddressByEmail/${email}`);
+  }
+
+  public UpdateUserInfoWithAddressByEmail(email: string, user: AccountModel): Observable<any> {
+    return this.http.put(`${this.url}/UpdateUserWithAddressByEmail/${email}`, user);
   }
 
   public Logout(email: any): Observable<any> {
     const headers = { "content-type": "application/json" };
-    return this.http.delete(`${this.url4 + email}`);
+    return this.http.delete(`${this.url}/DeleteTokenAsync/${email}`);
   }
 }

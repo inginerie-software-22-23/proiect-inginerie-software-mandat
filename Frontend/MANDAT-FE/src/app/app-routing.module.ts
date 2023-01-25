@@ -17,6 +17,7 @@ import { SettingsComponent } from "./pages/settings/settings.component";
 
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
+  { path: "user-profile/:email", component: UserProfileComponent },
   { path: "user-profile", component: UserProfileComponent },
   { path: "settings", component: SettingsComponent },
   { path: "create-announcement", component: CreateAnnouncementComponent },

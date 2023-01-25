@@ -56,7 +56,7 @@
     </div>
   </div>
 
-  <div class="menu-box">
+  <div class="menu-box" *ngIf="isPersonalProfile">
     <a routerLink="/settings">{{ "Settings" | titlecase }}</a>
     <ng-container *ngIf="roles.isMentor(rol)">
       <a routerLink="/video-meeting">{{ "Video Link" | titlecase }}</a>

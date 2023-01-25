@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <div class="menu-box" *ngIf="rol == 'Mentor'">
+  <div class="menu-box" *ngIf="rol == roles.Mentor">
     <a routerLink="/settings">{{ "Settings" | titlecase }}</a>
     <a routerLink="/video-meeting">{{ "Video Link" | titlecase }}</a>
     <a routerLink="/my-students">{{ "My Students" | titlecase }}</a>

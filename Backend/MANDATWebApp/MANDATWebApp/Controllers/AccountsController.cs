@@ -1,6 +1,7 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.BusinessLogic.Services;
+using MANDAT.Common.DTOs;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.Features.RefreshLoginToken;
 using MANDAT.Common.Features.Register;
@@ -137,7 +138,14 @@ namespace MANDATWebApp.Controllers
         {
            var result = _userAccountService.GetUserInfoWithAddressByEmail(email);
             return Ok(result);
-       }
+        }
+
+        [HttpPut("UpdateUserWithAddressByEmail/{email}")]
+        public IActionResult UpdateUserWithAddress([FromRoute] string email, [FromBody] CurrentUserWithAddressDto user)
+        {
+            var result = _userAccountService.UpdateUserWithAddressByEmail(email, user);
+            return Ok(result);
+        }
 
         //[HttpGet("userGuid/{email}")]
         //public IActionResult GetUserGuid(string email)

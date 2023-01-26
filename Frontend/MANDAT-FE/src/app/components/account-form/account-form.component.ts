@@ -6,10 +6,10 @@ import {
   Validators,
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import { AccountFormDetails } from "src/app/constants/account-form-details";
-import { AccountModel } from "src/app/models/account-model";
+import { AccountFormModel, AccountModel } from "src/app/models/account-model";
 import { UserAccountService } from "src/app/services/user-account.service";
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -59,25 +59,38 @@ export class AccountFormComponent {
 
   matcher = new MyErrorStateMatcher();
   accountTypes: string[] = ["Student", "Mentor"];
+  email: string;
   @Input() accountFormDetails: AccountFormDetails;
-  @Output() submitEmitter = new EventEmitter<AccountModel>();
+  @Output() submitEmitter = new EventEmitter<AccountFormModel>();
 
   constructor(
     private userAccountService: UserAccountService,
     private cookieService: CookieService,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
-    const email = cookieService.get("Email");
-    if (this.router.url === "/settings") {
-      userAccountService.GetUserInfoWithAddressByEmail(email).subscribe(res => {
-        this.model = res;
-        [this.model.firstName, this.model.lastName] = res.username.split(" ");
+    if (this.router.url.startsWith("/settings")) {
+      this.activatedRoute.paramMap.subscribe(params => {
+        this.email = params.get("email") || "";
       });
+      if (this.email === "") {
+        this.email = this.cookieService.get("Email");
+      }
+      userAccountService
+        .GetUserInfoWithAddressByEmail(this.email)
+        .subscribe(res => {
+          this.model = res;
+          [this.model.firstName, this.model.lastName] = res.username.split(" ");
+        });
     }
   }
 
   submit(): void {
-    this.submitEmitter.emit(this.model);
+    const accountFormModel: AccountFormModel = {
+      userEmail: this.email,
+      model: this.model,
+    };
+    this.submitEmitter.emit(accountFormModel);
   }
 
   isRegisterPage(): boolean {

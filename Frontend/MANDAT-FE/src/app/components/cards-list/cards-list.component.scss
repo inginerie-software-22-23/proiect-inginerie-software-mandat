@@ -62,4 +62,11 @@ $card-border-radius: 8px;
       /* etc. */
     }
   }
+
+  .multiple-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 40%;
+  }
 }

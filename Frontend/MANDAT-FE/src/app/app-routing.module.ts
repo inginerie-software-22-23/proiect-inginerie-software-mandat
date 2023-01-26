@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: "home", component: HomePageComponent },
   { path: "user-profile/:email", component: UserProfileComponent },
   { path: "user-profile", component: UserProfileComponent },
+  { path: "settings/:email", component: SettingsComponent },
   { path: "settings", component: SettingsComponent },
   { path: "admin-manage-users", component: AdminManageUsersComponent },
   { path: "create-announcement", component: CreateAnnouncementComponent },

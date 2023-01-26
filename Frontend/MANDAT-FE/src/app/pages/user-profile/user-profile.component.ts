@@ -47,7 +47,7 @@ export class UserProfileComponent implements OnInit {
     });
     if (this.email === "") {
       this.isPersonalProfile = true;
-      this.email = cookieService.get("Email");
+      this.email = this.cookieService.get("Email");
     }
     this.rol = cookieService.get("Rol");
     userAccountService

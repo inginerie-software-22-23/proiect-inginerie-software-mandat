@@ -3,7 +3,7 @@
     <div class="leftTitle">{{ card.leftTitle }}</div>
 
     <div class="remaining-details">
-      <div class="mainTitle">{{ card.mainTitle }}</div>
+      <div class="mainTitle" (click)="goToProfile(card.id)">{{ card.mainTitle }}</div>
       <div
         class="type"
         [style]="

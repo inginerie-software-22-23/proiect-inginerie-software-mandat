@@ -15,16 +15,22 @@ export class CardsListComponent {
     console.log(this.models);
   }
 
+  goToProfile(email: string): void {
+    if (this.isAdminPage()) {
+      this.router.navigate([`user-profile/${email}`]);
+    }
+  }
+
   delete(id: string): void {
     this.deleteEmitter.emit(id);
     this.models = this.models.filter(model => model.id !== id);
   }
 
   settings(email: string): void {
-    this.router.navigate([`settings/${email}`])
+    this.router.navigate([`settings/${email}`]);
   }
 
-  isAdminPage(): boolean{
-    return this.router.url === "/admin-manage-users"
+  isAdminPage(): boolean {
+    return this.router.url === "/admin-manage-users";
   }
 }

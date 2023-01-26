@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 import { CookieService } from "ngx-cookie-service";
 import {
   AccountFormDetails,
@@ -6,6 +7,7 @@ import {
 } from "src/app/constants/account-form-details";
 import { Roles } from "src/app/constants/roles";
 import { AccountFormModel, AccountModel } from "src/app/models/account-model";
+import { AccountService } from "src/app/services/account.service";
 import { UserAccountService } from "src/app/services/user-account.service";
 
 @Component({
@@ -19,6 +21,8 @@ export class SettingsComponent {
 
   constructor(
     private userAccountService: UserAccountService,
+    private accountService: AccountService,
+    private router: Router,
     private cookieService: CookieService
   ) {}
 
@@ -39,5 +43,28 @@ export class SettingsComponent {
           console.log(error);
         }
       );
+  }
+
+  deleteUserAccount(email: string): void {
+    this.userAccountService.Logout(email).subscribe(
+      result => {
+        console.log(result);
+        sessionStorage.clear();
+        localStorage.clear();
+        this.cookieService.deleteAll();
+
+        this.userAccountService
+          .SoftDeleteUserByEmail(email)
+          .subscribe(result => {});
+
+        this.router.navigate(["/login"]);
+        setTimeout(function () {
+          window.location.reload();
+        }, 1000);
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }
 }

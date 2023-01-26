@@ -62,6 +62,7 @@ export class AccountFormComponent {
   email: string;
   @Input() accountFormDetails: AccountFormDetails;
   @Output() submitEmitter = new EventEmitter<AccountFormModel>();
+  @Output() deleteEmitter = new EventEmitter<string>();
 
   constructor(
     private userAccountService: UserAccountService,
@@ -91,6 +92,10 @@ export class AccountFormComponent {
       model: this.model,
     };
     this.submitEmitter.emit(accountFormModel);
+  }
+
+  delete(): void {
+    this.deleteEmitter.emit(this.email);
   }
 
   isRegisterPage(): boolean {

@@ -97,12 +97,11 @@ namespace MANDATWebApp.Controllers
 
         }
 
-        [HttpPut("SoftDelete/{email}")]
-        public IActionResult DeleteUserAccount([FromRoute] string email)
+        [HttpPut("SoftDelete")]
+        public IActionResult DeleteUserAccount([FromBody] SoftDeleteUserDTO user)
         {
-            var result = _userAccountService.SoftDeleteUser(email);
+            var result = _userAccountService.SoftDeleteUser(user.Email);
             return Ok(result);
-
         }
 
         [HttpPost]

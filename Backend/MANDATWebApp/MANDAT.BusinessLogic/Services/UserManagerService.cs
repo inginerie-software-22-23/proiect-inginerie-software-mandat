@@ -58,7 +58,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                return uow.IdentityUsers.Get().Select(u => new CurrentUserDto
+                return uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false)).Select(u => new CurrentUserDto
                 {
                     Email = u.Email,
                     Name = u.Username,
@@ -81,7 +81,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).SingleOrDefaultAsync();
+                var user =  uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).SingleOrDefaultAsync();
                 return user;
             });
             
@@ -91,7 +91,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).Select(u => new CurrentUserDto
+                var user = uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).Select(u => new CurrentUserDto
                 {
                     Email = u.Email,
                     Name = u.Username,
@@ -135,7 +135,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user =  uow.IdentityUsers.Get().Where(u => u.Username.Equals(username)).FirstOrDefault();
+                var user =  uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Username.Equals(username)).FirstOrDefault();
                 return user.Id;
             });
         }
@@ -144,7 +144,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                var user = uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).FirstOrDefault();
                 return user.Id;
             });
         }
@@ -153,7 +153,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                var user = uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).FirstOrDefault();
                 return user.Id;
             });
 
@@ -165,7 +165,7 @@ namespace MANDAT.BusinessLogic.Services
             {
                 var selectedUserPropertiesObject = uow.IdentityUsers.Get()
               .AsNoTracking()
-              .Where(u => u.Email.Equals(email) )
+              .Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email) )
               .Select(selector)
               .SingleOrDefaultAsync(cancellationToken);
 

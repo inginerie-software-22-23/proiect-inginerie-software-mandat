@@ -40,7 +40,7 @@ export class UserAccountService {
 
 
   public SoftDeleteUserByEmail(email: string): Observable<any> {
-    return this.http.get(`${this.url}/DeleteUserByEmail/${email}`);
+    return this.http.put(`${this.url}/SoftDelete`, {email: email});
   }
 
 

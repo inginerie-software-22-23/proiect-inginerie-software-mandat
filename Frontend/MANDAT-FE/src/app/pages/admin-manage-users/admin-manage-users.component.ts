@@ -30,7 +30,7 @@ export class AdminManageUsersComponent {
         this.cardsListModel.push(model);
       });
       console.log(this.cardsListModel);
-      
+
       console.log(result);
     });
   }
@@ -38,11 +38,8 @@ export class AdminManageUsersComponent {
   public delete(email: string): void {
     console.log("Delete user");
 
-    // this.announcementService.DeleteAnnouncement(id).subscribe(result => {
-    //   console.log(result);
-    //   // this.announcements = this.announcements.filter(
-    //   //   announcement => announcement.id !== id
-    //   // );
-    // });
+    this.userAccountService.SoftDeleteUserByEmail(email).subscribe(result => {
+      console.log(result);
+    });
   }
 }

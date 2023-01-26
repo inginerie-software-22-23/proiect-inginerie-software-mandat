@@ -53,6 +53,23 @@ namespace MANDAT.BusinessLogic.Services
             var imageBytes = reader.ReadBytes((int)image.Length);
             return imageBytes;
         }
+
+        public List<CurrentUserDto> GetAllUsers()
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.IdentityUsers.Get().Select(u => new CurrentUserDto
+                {
+                    Email = u.Email,
+                    Name = u.Username,
+                    UserImage = u.UserImage,
+                    Roles = uow.IdentityRoles.Get().Where(w => w.Id.Equals(u.RoleId)).Select(r => r.Name).FirstOrDefault(),
+                    Bio = u.Bio
+                }).ToList();
+            });
+
+        }
+
         public async Task<IdentityUser> GetUserById(Guid id)
         {
             //var user = await uow.IdentityUsers.Where(u => u.Id.Equals(id)).SingleOrDefaultAsync();

@@ -52,6 +52,7 @@ import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announceme
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AccountFormComponent } from './components/account-form/account-form.component';
 import { CardsListComponent } from './components/cards-list/cards-list.component';
+import { AdminManageUsersComponent } from './pages/admin-manage-users/admin-manage-users.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { CardsListComponent } from './components/cards-list/cards-list.component
     SettingsComponent,
     AccountFormComponent,
     CardsListComponent,
+    AdminManageUsersComponent,
   ],
   imports: [
     BrowserModule,

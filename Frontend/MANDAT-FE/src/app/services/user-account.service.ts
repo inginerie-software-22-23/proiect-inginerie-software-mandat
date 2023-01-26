@@ -22,6 +22,10 @@ export class UserAccountService {
     return this.http.post(`${this.url}/login`, info, { headers: headers });
   }
 
+  public GetAllUsers(): Observable<any> {
+    return this.http.get(`${this.url}/GetAllUsers`);
+  }
+
   public GetUserInfo(email: string): Observable<any> {
     return this.http.get(`${this.url}/GetUserInfoByEmail/${email}`);
   }
@@ -33,6 +37,12 @@ export class UserAccountService {
   public UpdateUserInfoWithAddressByEmail(email: string, user: AccountModel): Observable<any> {
     return this.http.put(`${this.url}/UpdateUserWithAddressByEmail/${email}`, user);
   }
+
+
+  public SoftDeleteUserByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.url}/DeleteUserByEmail/${email}`);
+  }
+
 
   public Logout(email: any): Observable<any> {
     const headers = { "content-type": "application/json" };

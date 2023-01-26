@@ -4,13 +4,13 @@
 			<div class="card seamus">
 				<div class="card-top"></div>
 				<div class="card-profile">
-					<div class="profile-image">
+					<div class="profile-image" (click)="redirectToProfile()">
 					</div>
 				</div>
 				<div class="card-info">
 					<div class="info-title">
 						<br>
-						<h2>{{person.username}}</h2>
+						<h2 (click)="redirectToProfile()">{{person.username}}</h2>
                         <h3>{{person.subject}}</h3>
                         <h3  *ngIf="pageToShowOn != 'mentors'">{{person.phoneNumber}}</h3>
 					</div>

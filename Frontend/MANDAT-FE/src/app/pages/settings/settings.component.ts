@@ -27,9 +27,8 @@ export class SettingsComponent {
       .UpdateUserInfoWithAddressByEmail(email, model)
       .subscribe(
         result => {
-          this.cookieService.set("Email", result.email);
-          this.cookieService.set("Nume", result.username)
-          console.log(result);
+          this.cookieService.set("Email", model.email);
+          this.cookieService.set("Nume", model.userName);
         },
         error => {
           console.log(error);

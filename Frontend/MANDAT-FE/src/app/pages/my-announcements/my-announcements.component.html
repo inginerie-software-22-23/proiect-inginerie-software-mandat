@@ -1,19 +1,4 @@
-<div class="background">
-  <div class="card-container" *ngFor="let announcement of announcements">
-    <div class="subject">{{ announcement.subject }}</div>
-
-    <div class="remaining-details">
-      <div class="price">{{ announcement.price + ' Lei' | titlecase}}</div>
-      <div class="meeting-type"
-        [style]="announcement.meetingType? 'background-color: green' : 'background-color: red'"
-        style="color: white">
-        {{ meetingTypes.get(announcement.meetingType) }}
-      </div>
-      <div>{{ announcement.description }}</div>
-    </div>
-    
-    <div class="options">
-      <button (click)="delete(announcement.id)">❌</button>
-    </div>
-  </div>
-</div>
+<app-cards-list
+  [models]="cardsListModel"
+  (deleteEmitter)="delete($event)">
+</app-cards-list>

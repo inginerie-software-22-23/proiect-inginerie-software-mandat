@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { CookieService } from "ngx-cookie-service";
 import { MeetingTypes } from "src/app/constants/meeting-types";
 import { AnnouncementModel } from "src/app/models/announcement-model";
+import { ListCardModel } from "src/app/models/cards-list-model";
 import { AnnouncementService } from "src/app/services/announcement.service";
 
 @Component({
@@ -10,11 +11,10 @@ import { AnnouncementService } from "src/app/services/announcement.service";
   styleUrls: ["./my-announcements.component.scss"],
 })
 export class MyAnnouncementsComponent {
-  private url: string =
-    "https://localhost:7278/api/Announcement/getAllAnnouncementByEmail/pat@example1.com";
   private email: string;
   meetingTypes: Map<boolean, string> = MeetingTypes;
   announcements: AnnouncementModel[];
+  cardsListModel: ListCardModel[] = [];
 
   constructor(
     private announcementService: AnnouncementService,
@@ -25,16 +25,29 @@ export class MyAnnouncementsComponent {
       .GetAllAnnouncmentWithEmail(this.email)
       .subscribe(result => {
         this.announcements = result;
-        console.log(this.announcements);
+        this.announcements.forEach(announcement => {
+          const model: ListCardModel = {
+            id: announcement.id,
+            leftTitle: announcement.subject,
+            mainTitle: announcement.price + " Lei",
+            typeSubtitle: {
+              key: this.meetingTypes.get(announcement.meetingType) || "",
+              value: announcement.meetingType,
+            },
+            description: announcement.description,
+          };
+          this.cardsListModel.push(model);
+        });
+        console.log(this.cardsListModel);
       });
   }
 
   public delete(id: string): void {
     this.announcementService.DeleteAnnouncement(id).subscribe(result => {
       console.log(result);
-      this.announcements = this.announcements.filter(
-        announcement => announcement.id !== id
-      );
+      // this.announcements = this.announcements.filter(
+      //   announcement => announcement.id !== id
+      // );
     });
   }
 }

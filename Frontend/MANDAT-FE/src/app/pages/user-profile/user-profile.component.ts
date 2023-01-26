@@ -5,6 +5,7 @@ import { CookieService } from "ngx-cookie-service";
 import { ReviewService } from "src/app/services/review.service";
 import { MentorRequestsService } from "src/app/services/mentor-requests.service";
 import { Roles } from "src/app/constants/roles";
+import { ActivatedRoute } from "@angular/router";
 
 declare var google: any;
 const apiKey = "AIzaSyDoXRvHuYgJDyVIhkYxJN8zhPa_6tRbces";
@@ -32,19 +33,26 @@ export class UserProfileComponent implements OnInit {
   rating: number;
   rol: string;
   roles: Roles = new Roles();
+  isPersonalProfile: boolean = false;
 
   constructor(
     private userAccountService: UserAccountService,
     private reviewService: ReviewService,
     private mentorRequestService: MentorRequestsService,
+    private activatedRoute: ActivatedRoute,
     private cookieService: CookieService
   ) {
-    this.email = cookieService.get("Email");
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.email = params.get("email") || "";
+    });
+    if (this.email === "") {
+      this.isPersonalProfile = true;
+      this.email = cookieService.get("Email");
+    }
     this.rol = cookieService.get("Rol");
     userAccountService
       .GetUserInfoWithAddressByEmail(this.email)
       .subscribe(res => {
-        console.log(res);
         this.userAccountWithAddress = res;
       });
 
@@ -66,8 +74,6 @@ export class UserProfileComponent implements OnInit {
       .then(resp => resp.json())
       .then(data => {
         const location = data.results[0]?.geometry.location;
-        console.log(this.userAccountWithAddress);
-        console.log(data);
 
         let latitude = location !== undefined ? location.lat : -34.397;
         let longitude = location !== undefined ? location.lng : 150.644;

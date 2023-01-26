@@ -12,36 +12,33 @@
       <mat-icon>home</mat-icon>
       <a  routerLink="/home">Home</a>
   </button>
-  <button mat-button class="menu-button">
+  <button mat-button class="menu-button" *ngIf="rol === roles.Student">
       <mat-icon>home</mat-icon>
       <a routerLink="/match">Matching</a>
   </button>
-  <button mat-button class="menu-button">
+  <button mat-button class="menu-button" *ngIf="rol === roles.Student">
       <mat-icon>Mentors</mat-icon>
       <a style="color: white;" routerLink="/mentors">Mentors</a>
   </button>
-  <button mat-button class="menu-button" onclick="">
-      <mat-icon>person</mat-icon>
-      <a style="color: white;" (click)="logOut()">LogOut</a>
-  </button>
+
 
   <mat-divider></mat-divider>
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Student'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === roles.Student">
       <mat-icon>My mentors</mat-icon>
       <a style="color: white;" (click)="myMentors()">My mentors</a>
   </button>
 
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === roles.Mentor">
     <mat-icon>My students</mat-icon>
     <a style="color: white" (click)="myStudents()">My students</a>
   </button>
   
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === roles.Mentor">
     <mat-icon>Requests</mat-icon>
     <a style="color: white" routerLink="/requests">Requests</a>
   </button>
 
-  <button mat-button class="menu-button" onclick="" *ngIf="rol === 'Mentor'">
+  <button mat-button class="menu-button" onclick="" *ngIf="rol === roles.Mentor">
     <mat-icon>Create Announcement</mat-icon>
     <a style="color: white" routerLink="/create-announcement">Announcement</a>
   </button>
@@ -72,6 +69,11 @@
 </div>
 
 <mat-divider></mat-divider>
+
+<button mat-button class="menu-button" onclick="">
+  <mat-icon>person</mat-icon>
+  <a style="color: white;" (click)="logOut()">LogOut</a>
+</button>
 
 <button mat-button class="menu-button">
   <mat-icon>info</mat-icon>

@@ -7,7 +7,7 @@ import { MentorRequestsService } from "src/app/services/mentor-requests.service"
 import { Roles } from "src/app/constants/roles";
 
 declare var google: any;
-const apiKey = "";
+const apiKey = "AIzaSyDoXRvHuYgJDyVIhkYxJN8zhPa_6tRbces";
 
 @Component({
   selector: "app-user-profile",

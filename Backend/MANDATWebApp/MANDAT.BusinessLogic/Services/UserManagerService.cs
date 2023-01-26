@@ -93,7 +93,7 @@ namespace MANDAT.BusinessLogic.Services
             {
                 return uow.IdentityUsers.Get()
                                             .Include(r => r.Role)
-                                            .Where(m => m.IsDeleted.Equals(false) && m.Email.Equals(email))
+                                            .Where(m => m.IsDeleted == false && m.Email.Equals(email))
                                             .Select(m => new CurrentUserWithAddressDto
                                             {
                                                 //  MentorIdentityCardFront = m.MentorIdentityCardFront,

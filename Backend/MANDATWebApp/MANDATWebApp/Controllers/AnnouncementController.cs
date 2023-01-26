@@ -29,6 +29,13 @@ namespace MANDATWebApp.Controllers
             return Ok(announcement);
         }
 
+        [HttpGet("getAllAnnouncementByEmail/{email}")]
+        public async Task<IActionResult> GetAllAnnouncementByEmail([FromRoute] string email)
+        {
+            var announcement = announcementManager.GetAllAnnouncementByEmail(email);
+            return Ok(announcement);
+        }
+
 
         [HttpGet("bySubject/{subject}")]
         public async Task<IActionResult> GetAllAnnouncementBySubject([FromRoute] string subject)
@@ -74,5 +81,11 @@ namespace MANDATWebApp.Controllers
             return Ok(result);
         }
 
+        [HttpPost("create-with-email")]
+        public IActionResult CreateAnnouncementWithEmail(CreateAnnouncementWithEmailDto createAnnouncementWithEmailDto)
+        {
+            var result = announcementManager.CreateWithEmail(createAnnouncementWithEmailDto);
+            return Ok(result);
+        }
     }
 }

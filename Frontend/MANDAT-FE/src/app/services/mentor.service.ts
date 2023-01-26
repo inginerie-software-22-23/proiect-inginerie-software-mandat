@@ -13,7 +13,8 @@ export class MentorService {
     .set('Authorization', 'Bearer ' + this.cookieService.get('Token'))
   };
 
-  public url ='https://localhost:7278/api/Mentor'
+  public url ='https://localhost:7278/api/Mentor';
+  private url1 = 'https://localhost:7278/api/Matching/CreateMatch/';
 
   constructor(
     public http: HttpClient,
@@ -61,6 +62,7 @@ export class MentorService {
   }
 
   public createNewMatch(emailMentor: string, emailStudent: string, subject: string): Observable<any>{
-    return this.http.post(`${this.url}/createNewMatch/${emailMentor}-${emailStudent}-${subject}`, '');
+    const headers = { 'content-type': 'application/json'};
+    return this.http.post(`${this.url1}${emailMentor}/${emailStudent}/${subject}`, {'headers':headers});
   }
 }

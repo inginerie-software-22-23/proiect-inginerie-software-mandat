@@ -1,6 +1,7 @@
 ﻿using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
 using MANDAT.BusinessLogic.Services;
+using MANDAT.Common.DTOs;
 using MANDAT.Common.Exceptions;
 using MANDAT.Common.Features.RefreshLoginToken;
 using MANDAT.Common.Features.Register;
@@ -95,6 +96,14 @@ namespace MANDATWebApp.Controllers
             return Ok();
 
         }
+
+        [HttpPut("SoftDelete")]
+        public IActionResult DeleteUserAccount([FromBody] SoftDeleteUserDTO user)
+        {
+            var result = _userAccountService.SoftDeleteUser(user.Email);
+            return Ok(result);
+        }
+
         [HttpPost]
         [Route("refresh-token")]
         public async Task<IActionResult> RefreshLoginToken([FromBody] RefreshTokenCommand refreshTokenCommand, CancellationToken cancellationToken)
@@ -116,6 +125,13 @@ namespace MANDATWebApp.Controllers
             }
         }
 
+        [HttpGet("GetAllUsers")]
+        public IActionResult GetAllUsers()
+        {
+            var result = _userAccountService.GetAllUsers();
+            return Ok(result);
+        }
+
         [HttpGet("GetUserInfoByEmail/{email}")]
         public IActionResult GetUserInfoByEmail(string email)
         {
@@ -128,7 +144,14 @@ namespace MANDATWebApp.Controllers
         {
            var result = _userAccountService.GetUserInfoWithAddressByEmail(email);
             return Ok(result);
-       }
+        }
+
+        [HttpPut("UpdateUserWithAddressByEmail/{email}")]
+        public IActionResult UpdateUserWithAddress([FromRoute] string email, [FromBody] CurrentUserWithAddressDto user)
+        {
+            var result = _userAccountService.UpdateUserWithAddressByEmail(email, user);
+            return Ok(result);
+        }
 
         //[HttpGet("userGuid/{email}")]
         //public IActionResult GetUserGuid(string email)

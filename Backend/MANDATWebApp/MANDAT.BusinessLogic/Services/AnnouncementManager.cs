@@ -14,8 +14,11 @@ namespace MANDAT.BusinessLogic.Services
 {
     public class AnnouncementManager : BaseService, IAnnouncementManager
     {
-        public AnnouncementManager(ServiceDependencies serviceDependencies) : base(serviceDependencies)
-        { }
+        private readonly IUserManager _userAccountService;
+        public AnnouncementManager(ServiceDependencies serviceDependencies, IUserManager userAccountService) : base(serviceDependencies)
+        {
+            _userAccountService = userAccountService;
+        }
 
         public List<AllAnnouncementsDto> GetAllAnnouncements()
         {
@@ -62,6 +65,32 @@ namespace MANDAT.BusinessLogic.Services
 
             });
         }
+
+        public List<AllAnnouncementsDto> GetAllAnnouncementByEmail(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.Announcements.Get()
+                                            .Include(m => m.Mentor)
+                                            .ThenInclude(m => m.User)
+                                            .Where(m => m.Mentor.User.Email.Equals(email))
+                                            .Select(m => new AllAnnouncementsDto
+                                            {
+                                                Id = m.Id,
+                                                Subject = m.Subject,
+                                                Description = m.Description,
+                                                Price = m.Price,
+                                                MeetingType = m.MeetingType,
+                                                Username = m.Mentor.User.Username,
+                                                Email = m.Mentor.User.Email,
+                                                PhoneNumber = m.Mentor.User.PhoneNumber
+
+                                            })
+                                            .ToList();
+
+            });
+        }
+
         public List<AllAnnouncementsDto> GetAllAnnouncementBySubject(string subject)
         {
             return ExecuteInTransaction(uow =>
@@ -150,6 +179,28 @@ namespace MANDAT.BusinessLogic.Services
                 return announcement;
             });
         }
+
+        public Announcement CreateWithEmail(CreateAnnouncementWithEmailDto createAnnouncementWithEmailDto)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var announcement = new Announcement();
+
+                announcement.Id = new Guid();
+                announcement.Description = createAnnouncementWithEmailDto.Description;
+                announcement.Subject = createAnnouncementWithEmailDto.Subject;
+                announcement.Price = createAnnouncementWithEmailDto.Price;
+                announcement.MeetingType = createAnnouncementWithEmailDto.MeetingType;
+
+                var Id = _userAccountService.GetUserByEmail(createAnnouncementWithEmailDto.Email).Result.Id;
+                
+                announcement.MentorId = Id;
+
+                uow.Announcements.Insert(announcement);
+                uow.SaveChanges();
+                return announcement;
+            });
+        }
         public bool Update(Guid id, UpdateAnnouncementDto updateAnnouncementDto)
         {
             return ExecuteInTransaction(uow =>
@@ -175,16 +226,16 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var announcements = uow.Announcements.Get()
+                var announcement = uow.Announcements.Get()
                                             .Include(m => m.Mentor)
                                             .ThenInclude(m => m.User)
                                             .Where(m => m.Mentor.User.IsDeleted == false && m.Id.Equals(id))                                     
                                             .SingleOrDefault();
-                if (announcements == null)
+                if (announcement == null)
                 {
                     return false;
                 }
-                
+                uow.Announcements.Delete(announcement);
                 uow.SaveChanges();
                 return true;
             });

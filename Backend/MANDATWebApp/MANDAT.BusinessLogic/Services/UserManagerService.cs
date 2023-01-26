@@ -1,4 +1,5 @@
-﻿using MANDAT.BusinessLogic.Base;
+﻿using Azure.Core;
+using MANDAT.BusinessLogic.Base;
 using MANDAT.BusinessLogic.Base;
 using MANDAT.BusinessLogic.Features.Login;
 using MANDAT.BusinessLogic.Interfaces;
@@ -8,11 +9,13 @@ using MANDAT.Common.Exceptions;
 using MANDAT.Common.External.Auth;
 using MANDAT.Common.Features.Register;
 using MANDAT.Entities.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Linq.Expressions;
@@ -50,6 +53,23 @@ namespace MANDAT.BusinessLogic.Services
             var imageBytes = reader.ReadBytes((int)image.Length);
             return imageBytes;
         }
+
+        public List<CurrentUserDto> GetAllUsers()
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                return uow.IdentityUsers.Get().Include(w => w.Role).Where(u => u.IsDeleted.Equals(false) && !u.Role.Name.Equals("admin")).Select(u => new CurrentUserDto
+                {
+                    Email = u.Email,
+                    Name = u.Username,
+                    UserImage = u.UserImage,
+                    Roles = uow.IdentityRoles.Get().Where(w => w.Id.Equals(u.RoleId)).Select(r => r.Name).FirstOrDefault(),
+                    Bio = u.Bio
+                }).ToList();
+            });
+
+        }
+
         public async Task<IdentityUser> GetUserById(Guid id)
         {
             //var user = await uow.IdentityUsers.Where(u => u.Id.Equals(id)).SingleOrDefaultAsync();
@@ -57,11 +77,11 @@ namespace MANDAT.BusinessLogic.Services
             return null;
         }
 
-        public  Task<IdentityUser> GetUserByEmail(string email)
+        public Task<IdentityUser> GetUserByEmail(string email)
         {
             return ExecuteInTransaction(uow =>
             {
-                var user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).SingleOrDefaultAsync();
+                var user =  uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).SingleOrDefaultAsync();
                 return user;
             });
             
@@ -71,7 +91,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).Select(u => new CurrentUserDto
+                var user = uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).Select(u => new CurrentUserDto
                 {
                     Email = u.Email,
                     Name = u.Username,
@@ -115,7 +135,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user =  uow.IdentityUsers.Get().Where(u => u.Username.Equals(username)).FirstOrDefault();
+                var user =  uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Username.Equals(username)).FirstOrDefault();
                 return user.Id;
             });
         }
@@ -124,7 +144,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                var user = uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).FirstOrDefault();
                 return user.Id;
             });
         }
@@ -133,7 +153,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                var user = uow.IdentityUsers.Get().Where(u => u.Email.Equals(email)).FirstOrDefault();
+                var user = uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email)).FirstOrDefault();
                 return user.Id;
             });
 
@@ -145,7 +165,7 @@ namespace MANDAT.BusinessLogic.Services
             {
                 var selectedUserPropertiesObject = uow.IdentityUsers.Get()
               .AsNoTracking()
-              .Where(u => u.Email.Equals(email) )
+              .Where(u => u.IsDeleted.Equals(false) && u.Email.Equals(email) )
               .Select(selector)
               .SingleOrDefaultAsync(cancellationToken);
 
@@ -167,32 +187,71 @@ namespace MANDAT.BusinessLogic.Services
             return selectedUserTokenPropertiesObject;
         }
 
+
+        public bool SoftDeleteUser(string email)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var user = uow.IdentityUsers.Get()
+                                                .Where(m => m.Email.Equals(email))
+                                                .SingleOrDefault();
+                if (user == null)
+                {
+                    return false;
+                }
+                user.IsDeleted = true;
+                uow.IdentityUsers.Update(user);
+                uow.SaveChanges();
+                return user.IsDeleted;
+            });
+        }
+
         public TokenWrapper Login(LoginCommand loginCommand)
         {
+            
 
             return ExecuteInTransaction(uow => {
+
                 var email = loginCommand.Email;
-                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) ).SingleOrDefault();
+                IdentityUser user =  uow.IdentityUsers.Get().Where(u => u.Email.Equals(loginCommand.Email) && u.IsDeleted == false).SingleOrDefault();
                 user = uow.IdentityUsers.Get().Include(u => u.Role)
                                .SingleOrDefault(u => u.Email.Equals(loginCommand.Email));
                 var  roles = user.Role.Name;
 
-                var newJti = Guid.NewGuid().ToString();
-                var tokenHandler = new JwtSecurityTokenHandler();
-                //usersecret
-                var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_signInKeySetting.SecretSignInKeyForJwtToken));
-                //int usedRefreshes = -1;
-                var tokenresult =  _tokenManager.GenerateTokenAndRefreshToken(signinKey, user, roles, tokenHandler, newJti);
-                //var refreshToken = _tokenManager.GenerateRefreshToken();
+                if (user == null)
+                {
+                    string message = $"User with username or password = {loginCommand.Email}  was not found or your account is deleted";
+                    throw new NotFoundException(nameof(IdentityUser), message);
+                }
+
+
+                string initialsalt = user.PasswordHash.Split('.')[1];
+                bool isPasswordVerified = _hashAlgo.IsPasswordVerified(user.PasswordHash, initialsalt, loginCommand.Password);
+                if (isPasswordVerified)
+                {
+
+                    //  var userL = GetUserById(user.Id);
+
+                    //  updateUser(user);
+
+                    var newJti = Guid.NewGuid().ToString();
+                    var tokenHandler = new JwtSecurityTokenHandler();
+                    //usersecret
+                    var signinKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_signInKeySetting.SecretSignInKeyForJwtToken));
+                    //int usedRefreshes = -1;
+                    var tokenresult = _tokenManager.GenerateTokenAndRefreshToken(signinKey, user, roles, tokenHandler, newJti);
+                    //var refreshToken = _tokenManager.GenerateRefreshToken();
 
 
 
-                TokenWrapper tokenwrapper = new TokenWrapper();
-                tokenwrapper.Token = tokenresult.Item1;
-                tokenwrapper.RefreshToken = tokenresult.Item2;
+                    TokenWrapper tokenwrapper = new TokenWrapper();
+                    tokenwrapper.Token = tokenresult.Item1;
+                    tokenwrapper.RefreshToken = tokenresult.Item2;
 
 
-                return tokenwrapper;
+                    return tokenwrapper;
+                }
+                throw new IncorrectPasswordException("Wrong Password");
             });
 
             
@@ -276,7 +335,7 @@ namespace MANDAT.BusinessLogic.Services
 
 
 
-        public  IdentityUser updateUser(IdentityUser user)
+        public IdentityUser updateUser(IdentityUser user)
         {
             return ExecuteInTransaction(uow =>
             {
@@ -286,6 +345,31 @@ namespace MANDAT.BusinessLogic.Services
             });
             
 
+        }
+
+        public bool UpdateUserWithAddressByEmail(string email, CurrentUserWithAddressDto user)
+        {
+            return ExecuteInTransaction(uow =>
+            {
+                var updatedUser = uow.IdentityUsers.Get()
+                    .Include(a => a.Adress)
+                    .Where(u => u.Email.Equals(email))
+                    .SingleOrDefault();
+
+                updatedUser.Username = user.Username;
+                updatedUser.Email = user.Email;
+                updatedUser.PhoneNumber = user.PhoneNumber;
+                updatedUser.Bio = user.Bio;
+                updatedUser.EducationalInstitution = user.EducationalInstitution;
+
+                updatedUser.Adress.AddressInfo = user.AddressInfo;
+                updatedUser.Adress.City = user.City;
+                updatedUser.Adress.County = user.County;
+
+                uow.IdentityUsers.Update(updatedUser);
+                uow.SaveChanges();
+                return true;
+            });
         }
 
     }

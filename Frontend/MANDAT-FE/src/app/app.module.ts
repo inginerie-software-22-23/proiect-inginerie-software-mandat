@@ -51,6 +51,8 @@ import { CreateAnnouncementComponent } from "./pages/create-announcement/create-
 import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announcements.component";
 import { SettingsComponent } from './pages/settings/settings.component';
 import { AccountFormComponent } from './components/account-form/account-form.component';
+import { CardsListComponent } from './components/cards-list/cards-list.component';
+import { AdminManageUsersComponent } from './pages/admin-manage-users/admin-manage-users.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { AccountFormComponent } from './components/account-form/account-form.com
     MyAnnouncementsComponent,
     SettingsComponent,
     AccountFormComponent,
+    CardsListComponent,
+    AdminManageUsersComponent,
   ],
   imports: [
     BrowserModule,

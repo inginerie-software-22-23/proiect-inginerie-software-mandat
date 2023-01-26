@@ -98,11 +98,10 @@ namespace MANDATWebApp.Controllers
         }
 
         [HttpPut("SoftDelete")]
-        public IActionResult DeleteUserAccount(string email)
+        public IActionResult DeleteUserAccount([FromBody] SoftDeleteUserDTO user)
         {
-            var result = _userAccountService.SoftDeleteUser(email);
+            var result = _userAccountService.SoftDeleteUser(user.Email);
             return Ok(result);
-
         }
 
         [HttpPost]
@@ -124,6 +123,13 @@ namespace MANDATWebApp.Controllers
                 Console.WriteLine(ex.Message);
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet("GetAllUsers")]
+        public IActionResult GetAllUsers()
+        {
+            var result = _userAccountService.GetAllUsers();
+            return Ok(result);
         }
 
         [HttpGet("GetUserInfoByEmail/{email}")]

@@ -13,3 +13,8 @@ export interface AccountModel {
   county: string;
   addressInfo: string;
 }
+
+export interface AccountFormModel{
+  userEmail: string;
+  model: AccountModel;
+}

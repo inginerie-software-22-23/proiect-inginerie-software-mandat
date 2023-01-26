@@ -14,12 +14,15 @@ import { MentorsComponent } from "./pages/mentors/mentors.component";
 import { CreateAnnouncementComponent } from "./pages/create-announcement/create-announcement.component";
 import { MyAnnouncementsComponent } from "./pages/my-announcements/my-announcements.component";
 import { SettingsComponent } from "./pages/settings/settings.component";
+import { AdminManageUsersComponent } from "./pages/admin-manage-users/admin-manage-users.component";
 
 const routes: Routes = [
   { path: "home", component: HomePageComponent },
   { path: "user-profile/:email", component: UserProfileComponent },
   { path: "user-profile", component: UserProfileComponent },
+  { path: "settings/:email", component: SettingsComponent },
   { path: "settings", component: SettingsComponent },
+  { path: "admin-manage-users", component: AdminManageUsersComponent },
   { path: "create-announcement", component: CreateAnnouncementComponent },
   { path: "match", component: MatchingFormComponent },
   { path: "my-students", component: MyStudentsComponent },

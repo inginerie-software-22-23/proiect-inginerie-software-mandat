@@ -19,6 +19,7 @@ namespace MANDAT.BusinessLogic.Interfaces
         byte[] ConvertToBytes(IFormFile image);
         Task<T> GetUserSelectedProperties<T>(string uniqueIdentifier, Expression<Func<IdentityUser, T>> selector, CancellationToken cancellationToken = default);
         Task<T> GetUserTokensSelectedProperties<T>(string tokenValue, Expression<Func<IdentityUserTokenConfirmation, T>> selector, CancellationToken cancellationToken = default);
+        List<CurrentUserDto> GetAllUsers();
         Task<IdentityUser> GetUserById(Guid id);
         Task<IdentityUser> GetUserByEmail(string email);
         Guid GetUserByUsername(string username);

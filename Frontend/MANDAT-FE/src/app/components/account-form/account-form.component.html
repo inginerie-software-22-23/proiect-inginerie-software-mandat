@@ -173,6 +173,14 @@
         [routerLink]="[accountFormDetails.submitButton.link]">
         {{ accountFormDetails.submitButton.caption | titlecase }}
       </button>
+
+      <button
+        mat-raised-button
+        *ngIf="isSettingsPage()"
+        class="delete-button"
+        (click)="delete()">
+        {{ "Delete Account" | titlecase }}
+      </button>
     </div>
   </div>
 </div>

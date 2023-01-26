@@ -4,6 +4,7 @@ import {
   AccountFormDetails,
   RegisterAccountFormDetails,
 } from "src/app/constants/account-form-details";
+import { AccountFormModel } from "src/app/models/account-model";
 import { UserAccountService } from "src/app/services/user-account.service";
 
 @Component({
@@ -20,8 +21,9 @@ export class RegisterComponent {
     private userAccount: UserAccountService
   ) {}
 
-  public register(model: any): void {
+  public register(accountFormModel: AccountFormModel): void {
     // alert("Register!")
+    const model = accountFormModel.model;
     console.log(model);
     this.userAccount.Register(model).subscribe(
       result => {

@@ -13,9 +13,10 @@ VALUES
 -- parola este "parola"
 ('71855B64-30E2-4227-AFC9-F4521A941E9A', NULL, 'Jeff Smith', 'pat@example1.com', '1234567890', '10000.SMGQ+fVojFnHGr3Z5N2tHw==./H5wLX12FxpdNNQLbvW45HWmZTz/c7YkPBRzxkFD+p8=', '2023-01-16 19:05:57.3224430', 1, 0, 'I am a passionate university student', 'Unibuc', 'C6924CD6-B1AA-4DD3-9337-259AFB5A4A28'),
 -- parola este "parola"
-('0524DB1E-CC5D-492C-B911-4203CA470128', NULL, 'Steven Johnson', 'pat@example2.com', '0987654321', '10000.ragOVru8wlRhRErf+V1aDQ==.eguRgXK+0Hs3OKWz+Zz/dTODGvGHzklSwrXWginHCLU=',	'2023-01-25 12:38:35.6002786', 1, 0, 'I have 3 years of teaching experience.', 'Politehnica', 'C6924CD6-B1AA-4DD3-9337-259AFB5A4A28');
+('0524DB1E-CC5D-492C-B911-4203CA470128', NULL, 'Steven Johnson', 'pat@example2.com', '0987654321', '10000.ragOVru8wlRhRErf+V1aDQ==.eguRgXK+0Hs3OKWz+Zz/dTODGvGHzklSwrXWginHCLU=',	'2023-01-25 12:38:35.6002786', 1, 0, 'I have 3 years of teaching experience.', 'Politehnica', 'C6924CD6-B1AA-4DD3-9337-259AFB5A4A28'),
 -- Parola@1
-
+('FEBEC7ED-D313-4FD1-9148-0E71F36EAE52', NULL, 'admin', 'admin@example.com', '', '10000.SMGQ+fVojFnHGr3Z5N2tHw==./H5wLX12FxpdNNQLbvW45HWmZTz/c7YkPBRzxkFD+p8=', '2023-01-16 19:05:57.3224430', 1, 0, '', '', '143067D6-9045-4F7A-83D0-9BEE13A93749');
+-- parola este "parola"
 
 INSERT INTO Adresses
 VALUES

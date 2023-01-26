@@ -135,8 +135,8 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
 - I can generate a Google Meet/Zoom link so that it would be easier to have online tutoring sessions
   
   
- ![image](https://user-images.githubusercontent.com/96074975/214015920-a98107aa-ac20-4ce6-bcb3-b9cb2e3f63d8.png)
- 
+![user stories](https://user-images.githubusercontent.com/86727047/214879057-f6dd7185-29c3-408c-bc86-a2cf45253319.png)
+
 ---
 </details>
 
@@ -144,6 +144,26 @@ Weekly the mentor will update his/her schedule, his/her students will then have 
  <summary><b>Prioritized Product Backlog</b> :page_with_curl: :judge:</summary>
 
 ![BacklogImage](/readme-images/backlog.png)
+</details>
+
+<details>
+ <summary><b>Prioritized Product Backlog Review</b> :judge: :thinking:</summary>
+
+![backlog](https://user-images.githubusercontent.com/86727047/214884411-962135f6-e9ee-4e6f-936e-54c69ccb4ee7.png)
+
+> On above picture: 
+>
+> :white_circle: means the task was completed successfully
+>
+> :yellow_circle: means the task was started but not completed successfully
+>
+> :red_circle: means the task was not started
+
+:white_circle: The main task was to complete high priority (aka MUST) tasks.
+These are essential to have a functional application, easy to navigate inside it and with logical requirements.
+
+:white_circle: Medium priority (aka SHOULD) tasks have also been done. Now the user can experience some
+benefits that are nice to have but not essential to the site: login page has validation field, a mentor can create a video meeting link and a mentor/student can review and rate their students/mentors.
 
 </details>
 

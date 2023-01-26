@@ -58,7 +58,7 @@ namespace MANDAT.BusinessLogic.Services
         {
             return ExecuteInTransaction(uow =>
             {
-                return uow.IdentityUsers.Get().Where(u => u.IsDeleted.Equals(false)).Select(u => new CurrentUserDto
+                return uow.IdentityUsers.Get().Include(w => w.Role).Where(u => u.IsDeleted.Equals(false) && !u.Role.Name.Equals("admin")).Select(u => new CurrentUserDto
                 {
                     Email = u.Email,
                     Name = u.Username,

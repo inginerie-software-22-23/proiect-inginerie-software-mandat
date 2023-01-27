@@ -34,16 +34,16 @@ export class MentorsComponent {
       (result: MentorModel[]) => {
         this.mentors = result;
        
-        for(let mentor of this.mentors) {
+        // for(let mentor of this.mentors) {
  
-          this.reviewService.getMentorsStars(mentor.email).subscribe(
-            (result:number) => {
-              mentor.numberOfStars = result;
-            },
-            (error) => {
-              console.error(error);
-            });
-        }
+        //   this.reviewService.getMentorsStars(mentor.email).subscribe(
+        //     (result:number) => {
+        //       mentor.numberOfStars = result;
+        //     },
+        //     (error) => {
+        //       console.error(error);
+        //     });
+        // } // the stars now come from server; I added this change because when I added a console log in star filter method the numberOfStars were undefined
 
         console.log(this.mentors);
         this.filterMentors();
@@ -94,13 +94,26 @@ export class MentorsComponent {
     });
     
     this.filteredList = this.filteredList.filter((mentor) => {
-      if (this.matchSubject  === "")
+      if (this.matchSubject  === "") {
         return mentor;
-      else
-        return mentor.subject == this.matchSubject;  
+      } 
+      else {
+        if(mentor.subject.length > 1){
+          for (let sub of mentor.subject){
+            if(sub == this.matchSubject)
+              return mentor;  
+            else 
+              continue;
+          }
+        }
+        else        
+          return mentor.subject[0] == this.matchSubject; 
+      }
+      return false;
     });
     
     this.filteredList = this.filteredList.filter((mentor) => {
+      console.log(mentor.numberOfStars)
       if (this.matchStars === 0)
         return mentor;
       else

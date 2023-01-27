@@ -32,6 +32,8 @@ namespace MANDAT.Common.DTOs
         public string County { get; set; } = null!;
         public string AddressInfo { get; set; } = null!;
 
-        public string Subject { get; set; }
+        public List<string> Subject { get; set; }
+        public List<int>? Price { get; set; }
+        public double? NumberOfStars { get; set; } = 0;
     }
 }

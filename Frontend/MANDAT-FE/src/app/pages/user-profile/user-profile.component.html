@@ -33,23 +33,23 @@
 
       <div class="rating">
         <span
-          [ngClass]="rating !== undefined && rating >= 1 ? 'yellow' : 'gray'"
+          [ngClass]="rating !== undefined && userAccountWithAddress.numberOfStars >= 1 ? 'yellow' : 'gray'"
           >★</span
         >
         <span
-          [ngClass]="rating !== undefined && rating >= 2 ? 'yellow' : 'gray'"
+          [ngClass]="rating !== undefined && userAccountWithAddress.numberOfStars >= 2 ? 'yellow' : 'gray'"
           >★</span
         >
         <span
-          [ngClass]="rating !== undefined && rating >= 3 ? 'yellow' : 'gray'"
+          [ngClass]="rating !== undefined && userAccountWithAddress.numberOfStars >= 3 ? 'yellow' : 'gray'"
           >★</span
         >
         <span
-          [ngClass]="rating !== undefined && rating >= 4 ? 'yellow' : 'gray'"
+          [ngClass]="rating !== undefined && userAccountWithAddress.numberOfStars >= 4 ? 'yellow' : 'gray'"
           >★</span
         >
         <span
-          [ngClass]="rating !== undefined && rating >= 5 ? 'yellow' : 'gray'"
+          [ngClass]="rating !== undefined && userAccountWithAddress.numberOfStars >= 5 ? 'yellow' : 'gray'"
           >★</span
         >
       </div>

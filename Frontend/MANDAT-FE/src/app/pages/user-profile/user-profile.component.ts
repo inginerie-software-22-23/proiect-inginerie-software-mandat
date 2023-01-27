@@ -26,6 +26,7 @@ export class UserProfileComponent implements OnInit {
     city: "",
     county: "",
     addressInfo: "",
+    numberOfStars: 0
   };
 
   notifications: number;
@@ -51,14 +52,14 @@ export class UserProfileComponent implements OnInit {
     }
     this.rol = cookieService.get("Rol");
     userAccountService
-      .GetUserInfoWithAddressByEmail(this.email)
+      .GetUserInfoWithAddressByEmail(this.email, this.rol)
       .subscribe(res => {
         this.userAccountWithAddress = res;
+        this.rating = res.numberOfStars;
       });
-
-    reviewService.getMentorsStars(this.email).subscribe(res => {
-      this.rating = res;
-    });
+    //reviewService.getMentorsStars(this.email).subscribe(res => {
+     // this.rating = res;
+    //});
 
     mentorRequestService.GetUserRequests(this.email).subscribe(res => {
       this.notifications = res.length;

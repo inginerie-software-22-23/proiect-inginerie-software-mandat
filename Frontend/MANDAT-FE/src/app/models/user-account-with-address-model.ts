@@ -8,4 +8,5 @@ export interface UserAccountWithAddress {
   city: string,
   county: string,
   addressInfo: string,
+  numberOfStars: number
 }

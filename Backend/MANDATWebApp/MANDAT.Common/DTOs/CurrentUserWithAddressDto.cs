@@ -12,5 +12,6 @@
         public string City { get; set; } = null!;
         public string County { get; set; } = null!;
         public string AddressInfo { get; set; } = null!;
+        public double? NumberOfStars { get; set; }
     }
 }

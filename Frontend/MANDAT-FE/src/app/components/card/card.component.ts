@@ -22,7 +22,9 @@ export class CardComponent {
     private router: Router,
     private mentorService: MentorService
   ) {}
-
+  isArray(subject: any): boolean {
+    return Array.isArray(subject);
+}
   ngOnInit() {
     console.log(this.person);
   }

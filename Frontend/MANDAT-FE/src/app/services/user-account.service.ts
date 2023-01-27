@@ -30,8 +30,8 @@ export class UserAccountService {
     return this.http.get(`${this.url}/GetUserInfoByEmail/${email}`);
   }
 
-  public GetUserInfoWithAddressByEmail(email: string): Observable<any> {
-    return this.http.get(`${this.url}/GetUserInfoWithAddressByEmail/${email}`);
+  public GetUserInfoWithAddressByEmail(email: string, rol: string): Observable<any> {
+    return this.http.get(`${this.url}/GetUserInfoWithAddressByEmail/${email}/${rol}`);
   }
 
   public UpdateUserInfoWithAddressByEmail(email: string, user: AccountModel): Observable<any> {

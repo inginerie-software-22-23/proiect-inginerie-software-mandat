@@ -18,9 +18,10 @@ img {
 }
 
 .display {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+	display: grid;
+    /* justify-content: center; */
+    flex-wrap: wrap;
+   // margin-left: 30%;
   .display-item {
     flex-grow: 1;
     flex-basis: 1px;

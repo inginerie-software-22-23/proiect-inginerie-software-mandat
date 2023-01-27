@@ -444,7 +444,7 @@ Project progress after this sprint:
 
 
 <details>
-<summary><b> 📗 Sprint :six: </b></summary>
+<summary><b> 📗 Sprint :six: ✔️</b></summary>
 
 ![image](https://user-images.githubusercontent.com/96074975/213914170-53111c09-45dc-49f0-b703-222927c9f478.png)
 

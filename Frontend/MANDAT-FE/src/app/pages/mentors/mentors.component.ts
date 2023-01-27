@@ -15,6 +15,7 @@ export class MentorsComponent {
   public filteredList: MentorModel[] = [];
   public sortByStarsAsc: boolean = true;
   public sortByNameAsc: boolean = true;
+  public matchStatus: boolean = false;
 
   matchCity: string = ""; 
   matchCounty: string = ""; 
@@ -69,9 +70,11 @@ export class MentorsComponent {
     else
       this.matchCounty = "";
     
-    if (this.cookie.check('matchSubject'))
+    if (this.cookie.check('matchSubject')) {
       this.matchSubject = this.cookie.get('matchSubject');
-    else
+      this.matchStatus = true;
+    }
+    else 
       this.matchSubject = "";
     
     if (this.cookie.check('matchStars'))

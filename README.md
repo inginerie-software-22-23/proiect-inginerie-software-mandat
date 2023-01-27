@@ -183,6 +183,16 @@ In the frontend (in the login page) both the possibility to <i>login with Facebo
 # 📚 Sprints 📚
 
 <details>
+<summary><b> Delivrables per 3 sprints </b></summary>
+
+[DelivrableSprint4](/readme-images/delivrablesprint4.doc)
+
+[DelivrableSprint5](/readme-images/delivrablesprint5.doc)
+
+[DelivrableSprint6](/readme-images/delivrablesprint6.doc)
+</details>
+
+<details>
 
 <summary><b> 📗 Sprint 1️⃣✔️ </b></summary>
 

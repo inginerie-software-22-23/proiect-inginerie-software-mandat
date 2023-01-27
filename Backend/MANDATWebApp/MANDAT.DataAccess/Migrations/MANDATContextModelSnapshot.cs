@@ -70,9 +70,6 @@ namespace MANDAT.DataAccess.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("StudentId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Subject")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -80,8 +77,6 @@ namespace MANDAT.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("MentorId");
-
-                    b.HasIndex("StudentId");
 
                     b.ToTable("Announcements");
                 });
@@ -322,10 +317,6 @@ namespace MANDAT.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MANDAT.Entities.Entities.Student", null)
-                        .WithMany("Announcements")
-                        .HasForeignKey("StudentId");
-
                     b.Navigation("Mentor");
                 });
 
@@ -463,8 +454,6 @@ namespace MANDAT.DataAccess.Migrations
 
             modelBuilder.Entity("MANDAT.Entities.Entities.Student", b =>
                 {
-                    b.Navigation("Announcements");
-
                     b.Navigation("Matches");
 
                     b.Navigation("Reviews");

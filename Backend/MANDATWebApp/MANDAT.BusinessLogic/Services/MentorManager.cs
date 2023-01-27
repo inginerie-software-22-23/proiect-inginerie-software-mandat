@@ -195,7 +195,6 @@ namespace MANDAT.BusinessLogic.Services
                     var mentors = db.Matches
                                     .Get()
                                     .Include(m => m.Student)
-                                    .Include(a => a.Student.Announcements)
                                     .Include(s => s.Mentor)
                                     .Include(r => r.Mentor.Reviews)
                                     .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals(StatusMatch.Accepted.ToString()))//.Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
@@ -204,10 +203,10 @@ namespace MANDAT.BusinessLogic.Services
                                         Username = match.Student.User.Username,
                                         Email = match.Student.User.Email,
                                         PhoneNumber = match.Student.User.PhoneNumber,
-                                        PasswordHash = match.Student.User.PasswordHash,
-                                        CreatedAt = match.Student.User.CreatedAt,
-                                        IsActive = match.Student.User.IsActive,
-                                        IsDeleted = match.Student.User.IsDeleted,
+                                        //PasswordHash = match.Student.User.PasswordHash,
+                                        //CreatedAt = match.Student.User.CreatedAt,
+                                        //IsActive = match.Student.User.IsActive,
+                                        //IsDeleted = match.Student.User.IsDeleted,
                                         Bio = match.Student.User.Bio,
                                         EducationalInstitution = match.Student.User.EducationalInstitution,
                                         StudentGrade = match.Student.StudentGrade,

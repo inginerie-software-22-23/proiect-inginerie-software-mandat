@@ -34,13 +34,14 @@ fdescribe("CardComponent", () => {
       isDeleted: false,
       bio: "string",
       educationalInstitution: "string",
-      subject: "string",
+      subject: ["Informatics"],
       reviewStatus: "ReviewStudent",
       city: "string",
       county: "string",
       addressInfo: "string",
       numberOfStars: 2,
-      link: "https://meet.jit.si/grew-continent-ability"
+      link: "https://meet.jit.si/grew-continent-ability",
+      price: [20],
     },
     student = {
       username: "student1",
@@ -54,12 +55,13 @@ fdescribe("CardComponent", () => {
       educationalInstitution: "string",
       studentGrade: 4,
       studentSchoolQualification: "string",
-      subject: "string",
+      subject: ["string"],
       message: "string",
       city: "string",
       county: "string",
       addressInfo: "string",
-      numberOfStars: 4
+      numberOfStars: 4,
+      price:[]
     };
   
   });

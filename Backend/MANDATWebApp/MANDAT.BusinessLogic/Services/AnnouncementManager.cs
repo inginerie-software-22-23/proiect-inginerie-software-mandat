@@ -166,12 +166,12 @@ namespace MANDAT.BusinessLogic.Services
             {
                 var announcement = new Announcement();
                 
-                announcement.Id = new Guid();
+                announcement.Id =  Guid.NewGuid();
                 announcement.Description = createAnnouncementDto.Description;
                 announcement.Subject = createAnnouncementDto.Subject;
                 announcement.Price = createAnnouncementDto.Price;
                 announcement.MeetingType = createAnnouncementDto.MeetingType;
-                announcement.MentorId = createAnnouncementDto.MentorId;
+                announcement.MentorId = uow.IdentityUsers.Get().First(f => f.Email.Equals(createAnnouncementDto.Email)).Id;
 
 
                 uow.Announcements.Insert(announcement);
@@ -229,7 +229,7 @@ namespace MANDAT.BusinessLogic.Services
                 var announcement = uow.Announcements.Get()
                                             .Include(m => m.Mentor)
                                             .ThenInclude(m => m.User)
-                                            .Where(m => m.Mentor.User.IsDeleted == false && m.Id.Equals(id))                                     
+                                            .Where(m => m.Id.Equals(id))                                     
                                             .SingleOrDefault();
                 if (announcement == null)
                 {

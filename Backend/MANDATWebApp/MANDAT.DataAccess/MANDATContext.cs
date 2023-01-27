@@ -73,6 +73,10 @@ namespace MANDAT.DataAccess
                  .HasMany(s => s.Reviews)
                  .WithOne(r => r.Mentor);
 
+            //1-M (Mentor - Recenzie)
+            builder.Entity<Mentor>()
+                 .HasMany(s => s.Announcements)
+                 .WithOne(r => r.Mentor);
             //M-M
             builder.Entity<Match>().HasKey(m => new { m.StudentId, m.MentorId, m.AnnouncementId });
             builder.Entity<Match>()

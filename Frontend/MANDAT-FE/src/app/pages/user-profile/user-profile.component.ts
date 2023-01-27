@@ -8,7 +8,7 @@ import { Roles } from "src/app/constants/roles";
 import { ActivatedRoute } from "@angular/router";
 
 declare var google: any;
-const apiKey = "";
+const apiKey = "AIzaSyDoXRvHuYgJDyVIhkYxJN8zhPa_6tRbces";
 
 @Component({
   selector: "app-user-profile",

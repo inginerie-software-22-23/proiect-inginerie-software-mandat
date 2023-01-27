@@ -11,7 +11,11 @@
 					<div class="info-title">
 						<br>
 						<h2 (click)="redirectToProfile()">{{person.username}}</h2>
-                        <h3>{{person.subject}}</h3>
+						<div *ngFor="let sub of person?.subject; let i = index">
+						<h4 *ngIf="pageToShowOn == 'mentors'">{{sub}}: {{person.price[i] | currency:'RON':'symbol'}}</h4>
+					</div>
+						<h4 *ngIf="pageToShowOn != 'mentors'">{{person.subject}}</h4>
+
                         <h3  *ngIf="pageToShowOn != 'mentors'">{{person.phoneNumber}}</h3>
 					</div>
 					<div class="card-rating divider">

@@ -10,11 +10,12 @@ export interface StudentModel {
     educationalInstitution: string,
     studentGrade: number,
     studentSchoolQualification: string,
-    subject: string,
+    subject: Array<string>,
     message: string,
     city: string,
     county: string,
     addressInfo: string,
     numberOfStars?: number,
+    price: Array<number>,
     link?: string
 }

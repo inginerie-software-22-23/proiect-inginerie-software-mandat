@@ -52,7 +52,6 @@ export class CardComponent {
 
   public chooseMentor(person: any) {
     let email = this.cookie.get("Email");
-
     if (email === "") {
       this.router.navigate(["/login"]);
     } else {
@@ -71,15 +70,29 @@ export class CardComponent {
     }
   }
 
+  public chooseAMentor(person: any, subject: any) {
+    let email = this.cookie.get("Email");
+    if (email === "") {
+      this.router.navigate(["/login"]);
+    } else {
+      this.mentorService
+        .createNewMatch(person.email, email, subject)
+        .subscribe(result => {
+          if (result) {
+            alert("The matching request was send!!");
+            console.log(result);
+            this.cookie.set('matchStars', "");
+            this.cookie.set('matchSubject',  "");
+            this.cookie.set('matchCounty', "");
+            this.cookie.set('matchCity', "");
+          }
+        });
+    }
+  }
+
   public redirectToProfile() {
-   //if(this.rol == "mentor"){
-      this.varTest = true;
-      this.cookie.set("Verificare_User_Profile", this.varTest.toString());
-      setTimeout(() =>{this.router.navigate([`/user-profile/${this.person.email}`]);}, 1000);
-      
-    //}
-    // if(this.rol == "student"){
-    //   this.router.navigate([`/user-profile/${this.person.email}`]);
-    // }
+    this.varTest = true;
+    this.cookie.set("Verificare_User_Profile", this.varTest.toString());
+    setTimeout(() =>{this.router.navigate([`/user-profile/${this.person.email}`]);}, 1000);
   }
 }

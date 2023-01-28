@@ -1,5 +1,5 @@
 <div class="container" *ngIf="person !== null">
-	<div class="display"  *ngIf="pageToShowOn == 'mentors'">
+	<div class="display"  *ngIf="pageToShowOn == 'mentors' && status == false" >
 		<div class="display-item" *ngFor="let sub of person?.subject; let i = index">
 			<div class="card seamus">
 				<div class="card-top"></div>
@@ -44,7 +44,7 @@
 			</div>
 		</div>
     </div>
-	<div class="display"  *ngIf="pageToShowOn != 'mentors'">
+	<div class="display"  *ngIf="pageToShowOn != 'mentors' || (pageToShowOn == 'mentors' && status == true)">
 		<div class="display-item" >
 			<div class="card seamus">
 				<div class="card-top"></div>
@@ -56,8 +56,9 @@
 					<div class="info-title">
 						<br>
 						<h2 (click)="redirectToProfile()">{{person.username}}</h2>
-						<h4 >{{person.subject}}</h4> -->
 
+						<h4 *ngIf="pageToShowOn != 'mentors'">{{person.subject}}</h4> 
+						<h4 *ngIf="pageToShowOn == 'mentors' && status == true">{{cookieSubject}}</h4> 
                         <h3>{{person.phoneNumber}}</h3>
 					</div>
 					<div class="card-rating divider">
@@ -76,10 +77,14 @@
                         <p>{{person.bio}}</p>
                     </div>
 
-					<button  mat-raised-button class="button" (click)="addReview(person)">
+					<button  *ngIf="pageToShowOn != 'mentors'" mat-raised-button class="button" (click)="addReview(person)">
 						Add Review
 					</button>
 					<a *ngIf="pageToShowOn == 'my-mentors'" [ngClass]="person.link" href={{person.link}}><button mat-raised-button class="button">Meet Link</button></a>
+					
+					<button *ngIf="pageToShowOn == 'mentors'" mat-raised-button class="button" (click)="chooseMentor(person)">
+						Choose
+					</button>
 				</div>
 			</div>
 		</div>

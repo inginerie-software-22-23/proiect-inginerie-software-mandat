@@ -50,12 +50,24 @@ export class UserProfileComponent implements OnInit {
       this.isPersonalProfile = true;
       this.email = this.cookieService.get("Email");
     }
-    this.rol = cookieService.get("Rol");
+    if(this.cookieService.get("Verificare_User_Profile") == ""){
+      this.rol = cookieService.get("Rol");
+    }
+    else{
+      if(cookieService.get("Rol") == "mentor"){
+        this.rol = "student";       
+      }
+      else{
+        this.rol = "mentor";  
+      }
+    }
+    
     userAccountService
       .GetUserInfoWithAddressByEmail(this.email, this.rol)
       .subscribe(res => {
         this.userAccountWithAddress = res;
         this.rating = res.numberOfStars;
+        this.cookieService.set("Verificare_User_Profile", "");
       });
     //reviewService.getMentorsStars(this.email).subscribe(res => {
      // this.rating = res;

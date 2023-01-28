@@ -8,11 +8,12 @@ export interface MentorModel {
     isDeleted: boolean,
     bio: string,
     educationalInstitution: string,
-    subject: string,
+    subject: Array<string>,
     reviewStatus: string,
     city: string,
     county: string,
     addressInfo: string,
     numberOfStars?: number,
+    price: Array<number>
     link?: string
 }

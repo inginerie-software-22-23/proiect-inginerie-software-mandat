@@ -15,9 +15,11 @@ namespace MANDAT.BusinessLogic.Services
 {
     public class MentorManager : BaseService, IMentorManager
     {
-        public MentorManager(ServiceDependencies serviceDependencies) : base(serviceDependencies)
-        {  }
+        public MentorManager(ServiceDependencies serviceDependencies, IReview review) : base(serviceDependencies)
+        {  
+        }
 
+      
         public List<AllMentorsDto> GetAllMentors()
         {
             return ExecuteInTransaction(uow =>
@@ -34,18 +36,20 @@ namespace MANDAT.BusinessLogic.Services
                                                 Username = m.User.Username,
                                                 Email = m.User.Email,
                                                 PhoneNumber = m.User.PhoneNumber,
-                                                PasswordHash = m.User.PasswordHash,
-                                                CreatedAt = m.User.CreatedAt,
-                                                IsActive = m.User.IsActive,
-                                                IsDeleted = m.User.IsDeleted,
+                                                //  PasswordHash = m.User.PasswordHash,
+                                                //  CreatedAt = m.User.CreatedAt,
+                                                //  IsActive = m.User.IsActive,
+                                                //  IsDeleted = m.User.IsDeleted,
                                                 Bio = m.User.Bio,
                                                 EducationalInstitution = m.User.EducationalInstitution,
                                                 RoleName = uow.IdentityRoles.Get().Where(r => r.Id.Equals(m.User.RoleId)).Select(r => r.Name).Single(),
                                                 City = m.User.Adress.City,
                                                 County = m.User.Adress.County,
                                                 AddressInfo = m.User.Adress.AddressInfo,
-                                                Subject = uow.Announcements.Get().FirstOrDefault(an => an.MentorId == m.Id).Subject,
-                                            })
+                                                Subject = uow.Announcements.Get().Where(an => an.MentorId == m.Id).Select(s => s.Subject).ToList(),
+                                                Price = uow.Announcements.Get().Where(an => an.MentorId == m.Id).Select(s => s.Price).ToList(),
+                                                // Subject = uow.Announcements.Get().FirstOrDefault(an => an.MentorId == m.Id).Subject, changed because a mentor can have more courses
+                                            }) 
                                             .ToList();
 
             });
@@ -191,7 +195,6 @@ namespace MANDAT.BusinessLogic.Services
                     var mentors = db.Matches
                                     .Get()
                                     .Include(m => m.Student)
-                                    .Include(a => a.Student.Announcements)
                                     .Include(s => s.Mentor)
                                     .Include(r => r.Mentor.Reviews)
                                     .Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals(StatusMatch.Accepted.ToString()))//.Where(match => match.MentorId.Equals(mentorId) && match.Status.Equals("1"))
@@ -200,10 +203,10 @@ namespace MANDAT.BusinessLogic.Services
                                         Username = match.Student.User.Username,
                                         Email = match.Student.User.Email,
                                         PhoneNumber = match.Student.User.PhoneNumber,
-                                        PasswordHash = match.Student.User.PasswordHash,
-                                        CreatedAt = match.Student.User.CreatedAt,
-                                        IsActive = match.Student.User.IsActive,
-                                        IsDeleted = match.Student.User.IsDeleted,
+                                        //PasswordHash = match.Student.User.PasswordHash,
+                                        //CreatedAt = match.Student.User.CreatedAt,
+                                        //IsActive = match.Student.User.IsActive,
+                                        //IsDeleted = match.Student.User.IsDeleted,
                                         Bio = match.Student.User.Bio,
                                         EducationalInstitution = match.Student.User.EducationalInstitution,
                                         StudentGrade = match.Student.StudentGrade,

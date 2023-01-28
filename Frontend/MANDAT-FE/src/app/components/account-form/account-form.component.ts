@@ -77,8 +77,9 @@ export class AccountFormComponent {
       if (this.email === "") {
         this.email = this.cookieService.get("Email");
       }
+
       userAccountService
-        .GetUserInfoWithAddressByEmail(this.email)
+        .GetUserInfoWithAddressByEmail(this.email, this.cookieService.get("Rol"))
         .subscribe(res => {
           this.model = res;
           [this.model.firstName, this.model.lastName] = res.username.split(" ");

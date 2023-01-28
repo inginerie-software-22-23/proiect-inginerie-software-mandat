@@ -214,6 +214,44 @@ namespace MANDAT.BusinessLogic.Services
 
 
         }
+
+        public double GetMentorStarsAverageRatingByEmail(string email)//rating by email mentor for getAllMentors
+        {
+            var review = UnitOfWork.Reviews.Get()
+                                            .Include(m => m.Mentor)
+                                            .ThenInclude(mm => mm.User)
+                                           .Where(sr => sr.Mentor.User.Email == email && sr.ReviewStatus.Equals(StatusReview.ReviewMentor.ToString()));
+            if (review.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                double averageRating = (double)review.Average(cd => cd.StarsNumber);
+                return Math.Ceiling(averageRating);
+            }
+
+
+        }
+
+        public double GetStudentStarsAverageRatingByEmail(string email)//rating by student email 
+        {
+            var review = UnitOfWork.Reviews.Get()
+                                            .Include(m => m.Student)
+                                            .ThenInclude(mm => mm.User)
+                                           .Where(sr => sr.Student.User.Email == email && sr.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString()));
+            if (review.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                double averageRating = (double)review.Average(cd => cd.StarsNumber);
+                return Math.Ceiling(averageRating);
+            }
+
+
+        }
         public double GetStudentStarsAverageRating(Guid id)
         {
             var review = UnitOfWork.Reviews.Get().Where(sr => sr.StudentId.Equals(id) && sr.ReviewStatus.Equals(StatusReview.ReviewStudent.ToString()));

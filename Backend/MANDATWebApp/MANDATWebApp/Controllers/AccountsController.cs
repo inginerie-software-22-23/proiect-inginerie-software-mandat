@@ -16,14 +16,16 @@ namespace MANDATWebApp.Controllers
     {
         private readonly IUserManager _userAccountService;
         private readonly ITokenManager _tokenManager;
-
+        private readonly IReview _review;
         public AccountsController(ControllerDependencies dependencies,
             IUserManager userAccountService,
-            ITokenManager tokenManager)
+            ITokenManager tokenManager,
+            IReview review)
             : base(dependencies)
         {
             _userAccountService = userAccountService;
             _tokenManager = tokenManager;
+            _review = review;
         }
         [HttpPost("register")]
         public IActionResult Register(RegisterCommand registerCommand)
@@ -139,10 +141,22 @@ namespace MANDATWebApp.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetUserInfoWithAddressByEmail/{email}")]
-        public IActionResult GetUserInfoWithAddressByEmail(string email)
+        [HttpGet("GetUserInfoWithAddressByEmail/{email}/{rol}")]
+        public IActionResult GetUserInfoWithAddressByEmail(string email, string rol)
         {
+    
            var result = _userAccountService.GetUserInfoWithAddressByEmail(email);
+            if(rol == "mentor")
+            {
+                result.NumberOfStars = _review.GetMentorStarsAverageRatingByEmail(email);
+
+            }
+            if(rol == "student")
+            {
+                result.NumberOfStars = _review.GetStudentStarsAverageRatingByEmail(email);
+
+            }
+
             return Ok(result);
         }
 

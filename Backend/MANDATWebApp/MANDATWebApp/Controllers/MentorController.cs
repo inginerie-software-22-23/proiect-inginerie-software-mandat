@@ -15,15 +15,23 @@ namespace MANDATWebApp.Controllers
     {
         private readonly IMentorManager mentorManager;
         private readonly IUserManager _userAccountService;
-        public MentorController(IMentorManager mentorManager, IUserManager userAccountService)
+        private readonly IReview _review;
+        public MentorController(IMentorManager mentorManager, 
+                                IUserManager userAccountService,
+                                IReview review)
         {
             this.mentorManager = mentorManager;
             _userAccountService = userAccountService;
+            _review = review;
         }
         [HttpGet("mentors")]
         public async Task<IActionResult> GetAllMentors()
         {
             var mentorList = mentorManager.GetAllMentors();
+            foreach (var mentor in mentorList)
+            {
+                mentor.NumberOfStars = _review.GetMentorStarsAverageRatingByEmail(mentor.Email);
+            }
             return Ok(mentorList);
         }
 

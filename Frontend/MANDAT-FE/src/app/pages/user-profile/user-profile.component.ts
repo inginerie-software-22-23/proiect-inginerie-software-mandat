@@ -8,7 +8,7 @@ import { Roles } from "src/app/constants/roles";
 import { ActivatedRoute } from "@angular/router";
 
 declare var google: any;
-const apiKey = "";
+const apiKey = "AIzaSyDoXRvHuYgJDyVIhkYxJN8zhPa_6tRbces";
 
 @Component({
   selector: "app-user-profile",
@@ -26,6 +26,7 @@ export class UserProfileComponent implements OnInit {
     city: "",
     county: "",
     addressInfo: "",
+    numberOfStars: 0
   };
 
   notifications: number;
@@ -49,16 +50,28 @@ export class UserProfileComponent implements OnInit {
       this.isPersonalProfile = true;
       this.email = this.cookieService.get("Email");
     }
-    this.rol = cookieService.get("Rol");
+    if(this.cookieService.get("Verificare_User_Profile") == ""){
+      this.rol = cookieService.get("Rol");
+    }
+    else{
+      if(cookieService.get("Rol") == "mentor"){
+        this.rol = "student";       
+      }
+      else{
+        this.rol = "mentor";  
+      }
+    }
+    
     userAccountService
-      .GetUserInfoWithAddressByEmail(this.email)
+      .GetUserInfoWithAddressByEmail(this.email, this.rol)
       .subscribe(res => {
         this.userAccountWithAddress = res;
+        this.rating = res.numberOfStars;
+        this.cookieService.set("Verificare_User_Profile", "");
       });
-
-    reviewService.getMentorsStars(this.email).subscribe(res => {
-      this.rating = res;
-    });
+    //reviewService.getMentorsStars(this.email).subscribe(res => {
+     // this.rating = res;
+    //});
 
     mentorRequestService.GetUserRequests(this.email).subscribe(res => {
       this.notifications = res.length;

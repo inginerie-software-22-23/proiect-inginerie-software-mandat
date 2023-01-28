@@ -1,5 +1,8 @@
 ### MANDAT.io 🚀
 
+![Logo Mandat copy](https://user-images.githubusercontent.com/62501946/215290843-17a4d393-f25d-49d3-b266-630212e55e36.jpg)
+
+
 #### 🏢 Team:
 
 1️⃣ Dobre Talida

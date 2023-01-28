@@ -11,12 +11,7 @@
 					<div class="info-title">
 						<br>
 						<h2 (click)="redirectToProfile()">{{person.username}}</h2>
-						<!-- <div *ngFor="let sub of person?.subject; let i = index">
 						<h4 *ngIf="pageToShowOn == 'mentors'">{{sub}}: {{person.price[i] | currency:'RON':'symbol'}}</h4>
-					</div>
-						<h4 *ngIf="pageToShowOn != 'mentors'">{{person.subject}}</h4> -->
-						<h4 *ngIf="pageToShowOn == 'mentors'">{{sub}}: {{person.price[i] | currency:'RON':'symbol'}}</h4>
-						<h4 *ngIf="pageToShowOn != 'mentors'">{{person.subject}}</h4> -->
 
                         <h3  *ngIf="pageToShowOn != 'mentors'">{{person.phoneNumber}}</h3>
 					</div>
@@ -35,9 +30,7 @@
 					<div class="info-bio">
                         <p>{{person.bio}}</p>
                     </div>
-					<!-- <a *ngIf="pageToShowOn == 'my-mentors'" [ngClass]="person.link" href={{person.link}}><button mat-raised-button class="button">Meet Link</button></a> -->
-					
-					<button  mat-raised-button class="button" (click)="chooseMentor(person)">
+					<button  mat-raised-button class="button" (click)="chooseAMentor(person, sub)">
 						Choose
 					</button>
 				</div>

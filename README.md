@@ -466,7 +466,7 @@ Project progress after this sprint:
 
 ### Testing and scalability report:
 
-[QA Report.pdf](https://github.com/inginerie-software-22-23/proiect-inginerie-software-mandat/files/10528419/QA.Report.pdf)
+[Quality Assurance Report - Mandat QA team.pdf.pdf](https://github.com/inginerie-software-22-23/proiect-inginerie-software-mandat/files/10529852/Quality.Assurance.Report.-.Mandat.QA.team.pdf.pdf)
 
 
 ### ➡️ Helper for working in backend
